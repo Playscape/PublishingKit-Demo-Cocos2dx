@@ -1,28 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="org.cocos2dx.simplegame"
-      android:versionCode="1"
-      android:versionName="1.0">
+    package="org.cocos2dx.simplegame"
+    android:versionCode="1"
+    android:versionName="1.0" >
 
-    <uses-sdk android:minSdkVersion="8"/>
+    <!--###################################################################################
+        #                                ACTION  ITEMS                                    #
+        # =============================================================================== #
+        #                                                                                 #
+        # 1. Replace-ALL org.cocos2dx.simplegame strings with your game's package name.   #
+        # 2. PlayscapeActivity.java can either extend from your own activity or replace   #
+        #   it entirely, either way is good.                                              #
+        # 3. Please note that the application tag has an android:name tag which points to #
+        #   the PlayscapeApp class, should you choose not to use it, but to use your own  #
+        #   class, simply call PlayscapeStartup.getInstance().onCreate(this); in that     #
+        #   class's onCreate() method.                                                    #
+        #                                                                                 #
+        ###################################################################################-->
+    
+    <uses-sdk android:minSdkVersion="8" />
+
     <uses-feature android:glEsVersion="0x00020000" />
-	<uses-permission android:name="android.permission.INTERNET" />
-    <application android:label="@string/app_name"
-        android:icon="@drawable/icon">
 
-        <activity android:name=".SimpleGame"
-                  android:label="@string/app_name"
-                  android:screenOrientation="landscape"
-                  android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-                  android:configChanges="orientation">
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    
+    <!-- library -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <!-- GCM connects to Google Services. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- GCM requires a Google account. -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <!-- Keeps the processor from sleeping when a message is received. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!--
+	  Creates a custom permission so only this app can receive its messages.
+	 
+	  NOTE: the permission *must* be called PACKAGE.permission.C2D_MESSAGE,
+	        where PACKAGE is the application's package name.
+    -->
+    <permission
+        android:name="org.cocos2dx.simplegame.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="org.cocos2dx.simplegame.permission.C2D_MESSAGE" />
+
+    <!-- This app has permission to register and receive data message. -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <application
+        android:name="com.playscape.playscapeapp.PlayscapeApp"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name" >
+        <activity
+            android:name="com.playscape.publishingkit.PlayscapeActivity"
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity android:name="com.arellomobile.android.push.PushWebview" />
+        <activity android:name="com.arellomobile.android.push.MessageActivity" />
+        <activity android:name="com.arellomobile.android.push.PushHandlerActivity" />
+
+        <!-- Pushwoosh -->
+
+        <!--
+		  BroadcastReceiver that will receive intents from GCM
+		  services and handle them to the custom IntentService.
+		 
+		  The com.google.android.c2dm.permission.SEND permission is necessary
+		  so only GCM services can send data messages for the app.
+        -->
+        <receiver
+            android:name="com.google.android.gcm.GCMBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+
+                <!-- Receives the actual messages. -->
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <!-- Receives the registration id. -->
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="org.cocos2dx.simplegame" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name="com.playscape.support.pushwoosh.PushWooshReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <!-- Receives the actual messages. -->
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <!-- Receives the registration id. -->
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <category android:name="org.cocos2dx.simplegame" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.playscape.support.pushwoosh.PushWooshProxyActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="org.cocos2dx.simplegame.MESSAGE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!--
+		  Application-specific subclass of PushGCMIntentService that will
+		  handle received messages.
+        -->
+        <service android:name="com.arellomobile.android.push.PushGCMIntentService" />
+
+        <!-- Remote Logger -->
+
+        <service android:name="mominis.common.logger.LoggingService" >
+            <intent-filter>
+                <action android:name="com.mominis.gameconsole.logger.START_LOGGER_SERVICE" />
+            </intent-filter>
+        </service>
+        <service android:name="com.mominis.logger.IsAliveService" />
+
+        <receiver android:name="mominis.common.logger.OnLogAlarmReceiver" >
+            <intent-filter>
+                <action android:name="com.mominis.gameconsole.alarm.START_LOG_SHIPPING_FROM_REPEATING" />
+                <action android:name="com.mominis.gameconsole.alarm.START_LOG_SHIPPING_FROM_DEFERRED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.mominis.logger.ConnectivityChangedReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+        <!-- Used for install referrer tracking -->
+        <receiver
+            android:name="com.playscape.analytics.MarketReferrerReceiver"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
     </application>
-    <supports-screens android:largeScreens="true"
-                      android:smallScreens="true"
-                      android:anyDensity="true"
-                      android:normalScreens="true"/>
-</manifest> 
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true" />
+
+</manifest>
