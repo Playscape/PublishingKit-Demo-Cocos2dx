@@ -4,10 +4,11 @@
 #include "appwarp.h"
 #include "dbgprint.h"
 #include "StoreScene.h"
+#include "playscape/Report.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
-
+using playscape::Report;
 
 CCScene* HelloWorld::scene()
 {
@@ -160,6 +161,10 @@ void HelloWorld::startGame()
         scheduleUpdate();
     }
     
+    std::map<std::string, double> additionalParams;
+    additionalParams["meaningOfLife"] = 42.0;
+
+    Report::getInstance().ReportLevelStarted("1", additionalParams);
 }
 
 void HelloWorld::stopGame() {
@@ -171,6 +176,11 @@ void HelloWorld::stopGame() {
 	unscheduleUpdate();
 	unscheduleRecover();
 	showMessageLayer("Disconnecting...");
+
+    std::map<std::string, double> additionalParams;
+    additionalParams["meaningOfLife"] = 42.0;
+    additionalParams["luckyNumber"] = 7.0;
+	Report::getInstance().ReportLevelCompleted("1", additionalParams);
 }
 
 void HelloWorld::update(float time)

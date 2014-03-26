@@ -26,7 +26,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../AppWarpX/cJSON.c
                    
                    
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes $(LOCAL_PATH)/../../AppWarpX
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes $(LOCAL_PATH)/../../AppWarpX $(LOCAL_PATH)/../../../PlayscapePubkitCocos2D-X/include
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static cocosdenshion_static cocos_curl_static cocos_extension_static
 

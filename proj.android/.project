@@ -133,6 +133,11 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
+			<name>playscape</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
 			<name>Classes/AppDelegate.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/Classes/AppDelegate.cpp</locationURI>
@@ -481,6 +486,56 @@
 			<name>cocosdenshion/wp8</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>playscape/ChartboostX.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/PlayscapePubkitCocos2D-X/include/playscape/ChartboostX.h</locationURI>
+		</link>
+		<link>
+			<name>playscape/FlowInstance.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/PlayscapePubkitCocos2D-X/include/playscape/FlowInstance.h</locationURI>
+		</link>
+		<link>
+			<name>playscape/MPAnalyticsProvider.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/PlayscapePubkitCocos2D-X/include/playscape/MPAnalyticsProvider.h</locationURI>
+		</link>
+		<link>
+			<name>playscape/PurchaseItem.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/PlayscapePubkitCocos2D-X/include/playscape/PurchaseItem.h</locationURI>
+		</link>
+		<link>
+			<name>playscape/PushwooshX.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/PlayscapePubkitCocos2D-X/include/playscape/PushwooshX.h</locationURI>
+		</link>
+		<link>
+			<name>playscape/Report.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/PlayscapePubkitCocos2D-X/include/playscape/Report.h</locationURI>
+		</link>
+		<link>
+			<name>playscape/ServiceState.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/PlayscapePubkitCocos2D-X/include/playscape/ServiceState.h</locationURI>
+		</link>
+		<link>
+			<name>playscape/SocialAnalyticsProvider.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/PlayscapePubkitCocos2D-X/include/playscape/SocialAnalyticsProvider.h</locationURI>
+		</link>
+		<link>
+			<name>playscape/SocialNetwork.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/PlayscapePubkitCocos2D-X/include/playscape/SocialNetwork.h</locationURI>
+		</link>
+		<link>
+			<name>playscape/internal</name>
+			<type>2</type>
+			<locationURI>PARENT-2-PROJECT_LOC/PlayscapePubkitCocos2D-X/include/playscape/internal</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/platform/CCAccelerometerDelegate.h</name>
