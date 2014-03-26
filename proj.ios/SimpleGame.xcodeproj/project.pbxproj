@@ -182,6 +182,11 @@
 		BDF6250418E2C9A20067BDD3 /* utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDF624F818E2C9A20067BDD3 /* utilities.cpp */; };
 		BDF6251C18E2CD480067BDD3 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6251418E2CC9B0067BDD3 /* libcurl.a */; };
 		BDF6251D18E2CD480067BDD3 /* libwebp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6251518E2CC9B0067BDD3 /* libwebp.a */; };
+		BDF6252118E2D6CC0067BDD3 /* libplayscape_pubkit_lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6251E18E2D6CC0067BDD3 /* libplayscape_pubkit_lib.a */; };
+		BDF6252218E2D6CC0067BDD3 /* libplayscape_utils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6251F18E2D6CC0067BDD3 /* libplayscape_utils.a */; };
+		BDF6252318E2D6CC0067BDD3 /* libRemoteLogger.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6252018E2D6CC0067BDD3 /* libRemoteLogger.a */; };
+		BDF6252518E2EC690067BDD3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6252418E2EC690067BDD3 /* SystemConfiguration.framework */; };
+		BDF6252918E2F2B80067BDD3 /* SimpleGame-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BDF6252718E2F2B80067BDD3 /* SimpleGame-Info.plist */; };
 		BF1373EF128A898400D9F789 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492D4B1289302400A09262 /* OpenGLES.framework */; };
 		BF1373F0128A899500D9F789 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492C21128924A800A09262 /* libxml2.dylib */; };
 		BF1373F1128A899E00D9F789 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492B6912891AC600A09262 /* libz.dylib */; };
@@ -594,6 +599,11 @@
 		BDF6251718E2CC9B0067BDD3 /* decode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decode.h; sourceTree = "<group>"; };
 		BDF6251818E2CC9B0067BDD3 /* encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encode.h; sourceTree = "<group>"; };
 		BDF6251918E2CC9B0067BDD3 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		BDF6251E18E2D6CC0067BDD3 /* libplayscape_pubkit_lib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libplayscape_pubkit_lib.a; path = "../../PlayscapePubkitCocos2D-X/proj.ios/prebuilt/libraries/libplayscape_pubkit_lib.a"; sourceTree = "<group>"; };
+		BDF6251F18E2D6CC0067BDD3 /* libplayscape_utils.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libplayscape_utils.a; path = "../../PlayscapePubkitCocos2D-X/proj.ios/prebuilt/libraries/libplayscape_utils.a"; sourceTree = "<group>"; };
+		BDF6252018E2D6CC0067BDD3 /* libRemoteLogger.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRemoteLogger.a; path = "../../PlayscapePubkitCocos2D-X/proj.ios/prebuilt/libraries/libRemoteLogger.a"; sourceTree = "<group>"; };
+		BDF6252418E2EC690067BDD3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		BDF6252718E2F2B80067BDD3 /* SimpleGame-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SimpleGame-Info.plist"; sourceTree = SOURCE_ROOT; };
 		BF137426128A8E4600D9F789 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BF365AA612A103F70050DCF4 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		BF365AA712A103F70050DCF4 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
@@ -616,6 +626,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDF6252518E2EC690067BDD3 /* SystemConfiguration.framework in Frameworks */,
 				D4E6BCCE15FCBAD7008BF525 /* AudioToolbox.framework in Frameworks */,
 				D4E6BCCD15FCBAC8008BF525 /* AVFoundation.framework in Frameworks */,
 				D4E6BCCC15FCBABC008BF525 /* OpenAL.framework in Frameworks */,
@@ -624,6 +635,9 @@
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				BF1373EF128A898400D9F789 /* OpenGLES.framework in Frameworks */,
 				BDF6251C18E2CD480067BDD3 /* libcurl.a in Frameworks */,
+				BDF6252118E2D6CC0067BDD3 /* libplayscape_pubkit_lib.a in Frameworks */,
+				BDF6252218E2D6CC0067BDD3 /* libplayscape_utils.a in Frameworks */,
+				BDF6252318E2D6CC0067BDD3 /* libRemoteLogger.a in Frameworks */,
 				BDF6251D18E2CD480067BDD3 /* libwebp.a in Frameworks */,
 				BF1373F0128A899500D9F789 /* libxml2.dylib in Frameworks */,
 				BF1373F1128A899E00D9F789 /* libz.dylib in Frameworks */,
@@ -658,6 +672,10 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BDF6252418E2EC690067BDD3 /* SystemConfiguration.framework */,
+				BDF6251E18E2D6CC0067BDD3 /* libplayscape_pubkit_lib.a */,
+				BDF6251F18E2D6CC0067BDD3 /* libplayscape_utils.a */,
+				BDF6252018E2D6CC0067BDD3 /* libRemoteLogger.a */,
 				BF492B6912891AC600A09262 /* libz.dylib */,
 				BF137426128A8E4600D9F789 /* QuartzCore.framework */,
 				BF492D4B1289302400A09262 /* OpenGLES.framework */,
@@ -675,6 +693,7 @@
 		784521C214EBA449009D533B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BDF6252718E2F2B80067BDD3 /* SimpleGame-Info.plist */,
 				BDF622BC18E2BF6A0067BDD3 /* Bullet-blue.png */,
 				BDF622BD18E2BF6A0067BDD3 /* Bullet-red.png */,
 				BDF622BE18E2BF6A0067BDD3 /* CloseNormal.png */,
@@ -1538,6 +1557,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDF6252918E2F2B80067BDD3 /* SimpleGame-Info.plist in Resources */,
 				BDF622CA18E2BF6A0067BDD3 /* Icon.png in Resources */,
 				BDF6245D18E2C51E0067BDD3 /* Android.mk in Resources */,
 				782F4619153FEDF0009FC2E5 /* Default.png in Resources */,
@@ -1769,6 +1789,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/mominis/projects/max/demos/DemoGame_AppWarp/proj.ios/libraries/cocos2dx/platform/third_party/ios/libraries,
+					"/Users/mominis/projects/max/demos/PlayscapePubkitCocos2D-X/proj.ios/prebuilt/libraries",
 				);
 				PRODUCT_NAME = SimpleGame;
 				PROVISIONING_PROFILE = "";
@@ -1812,6 +1833,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/mominis/projects/max/demos/DemoGame_AppWarp/proj.ios/libraries/cocos2dx/platform/third_party/ios/libraries,
+					"/Users/mominis/projects/max/demos/PlayscapePubkitCocos2D-X/proj.ios/prebuilt/libraries",
 				);
 				PRODUCT_NAME = SimpleGame;
 				PROVISIONING_PROFILE = "";

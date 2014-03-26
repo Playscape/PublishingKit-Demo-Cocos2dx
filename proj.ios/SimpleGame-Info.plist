@@ -67,5 +67,23 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+ <key>Pushwoosh_APPID</key>
+    <string>REPLACE_ME</string>
+    <key>PlayscapeReporterId</key>
+    <string>ReporterIdGoesHere</string>
+    <key>PlayscapeRemoteLoggerUrl</key>
+    <string>https://qa.server.gameconsole.mominis.com/services/LoggingService/WriteToLog</string>
+    <key>PlayscapePublishingKitVersion</key>
+    <string>Kit Trunk</string>
+    <key>PlayscapeRemoteLoggerDumpSizeThresholdBytes</key>
+    <integer>4096</integer>
+    <key>PlayscapeRemoteLoggerFileSizeLimitBytes</key>
+    <integer>2097152</integer>
+    <key>PlayscapeRemoteLoggerEntrySizeLimitBytes</key>
+    <integer>2048</integer>
+    <key>PlayscapeRemoteLoggerCampaignId</key>
+    <string>campaign_id</string>
+    <key>PlayscapeDebugMode</key>
+    <true/>
 </dict>
 </plist>
