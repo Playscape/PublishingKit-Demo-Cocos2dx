@@ -168,6 +168,16 @@
 			<locationURI>PARENT-1-PROJECT_LOC/Classes/InGameMenuLayer.h</locationURI>
 		</link>
 		<link>
+			<name>Classes/InviteFriendsScene.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Classes/InviteFriendsScene.cpp</locationURI>
+		</link>
+		<link>
+			<name>Classes/InviteFriendsScene.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Classes/InviteFriendsScene.h</locationURI>
+		</link>
+		<link>
 			<name>Classes/Player.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/Classes/Player.cpp</locationURI>
@@ -205,172 +215,172 @@
 		<link>
 			<name>cocos2dx/Android.mk</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/Android.mk</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/Android.mk</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/CCCamera.cpp</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/CCCamera.cpp</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/CCCamera.cpp</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/CCCamera.h</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/CCCamera.h</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/CCCamera.h</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/CCConfiguration.cpp</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/CCConfiguration.cpp</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/CCConfiguration.cpp</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/CCConfiguration.h</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/CCConfiguration.h</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/CCConfiguration.h</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/CCDirector.cpp</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/CCDirector.cpp</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/CCDirector.cpp</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/CCDirector.h</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/CCDirector.h</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/CCDirector.h</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/CCScheduler.cpp</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/CCScheduler.cpp</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/CCScheduler.cpp</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/CCScheduler.h</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/CCScheduler.h</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/CCScheduler.h</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/actions</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/actions</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/actions</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/base_nodes</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/base_nodes</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/base_nodes</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/ccFPSImages.c</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/ccFPSImages.c</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/ccFPSImages.c</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/ccFPSImages.h</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/ccFPSImages.h</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/ccFPSImages.h</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/cocoa</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/cocoa</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/cocoa</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/cocos2d.cpp</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/cocos2d.cpp</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/cocos2d.cpp</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/draw_nodes</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/draw_nodes</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/draw_nodes</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/effects</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/effects</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/effects</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/include</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/include</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/include</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/kazmath</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/kazmath</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/kazmath</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/keypad_dispatcher</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/keypad_dispatcher</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/keypad_dispatcher</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/label_nodes</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/label_nodes</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/label_nodes</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/layers_scenes_transitions_nodes</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/layers_scenes_transitions_nodes</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/layers_scenes_transitions_nodes</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/menu_nodes</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/menu_nodes</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/menu_nodes</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/misc_nodes</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/misc_nodes</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/misc_nodes</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/particle_nodes</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/particle_nodes</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/particle_nodes</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/platform</name>
 			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/script_support</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/script_support</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/script_support</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/shaders</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/shaders</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/shaders</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/sprite_nodes</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/sprite_nodes</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/sprite_nodes</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/support</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/support</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/support</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/text_input_node</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/text_input_node</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/text_input_node</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/textures</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/textures</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/textures</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/tilemap_parallax_nodes</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/tilemap_parallax_nodes</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/tilemap_parallax_nodes</locationURI>
 		</link>
 		<link>
 			<name>cocos2dx/touch_dispatcher</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/touch_dispatcher</locationURI>
+			<locationURI>PARENT-6-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/touch_dispatcher</locationURI>
 		</link>
 		<link>
 			<name>cocosdenshion/android</name>
@@ -536,106 +546,6 @@
 			<name>playscape/internal</name>
 			<type>2</type>
 			<locationURI>PARENT-2-PROJECT_LOC/PlayscapePubkitCocos2D-X/include/playscape/internal</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/CCAccelerometerDelegate.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/CCAccelerometerDelegate.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/CCApplicationProtocol.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/CCApplicationProtocol.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/CCCommon.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/CCCommon.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/CCDevice.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/CCDevice.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/CCEGLViewProtocol.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/CCEGLViewProtocol.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/CCEGLViewProtocol.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/CCEGLViewProtocol.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/CCFileUtils.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/CCFileUtils.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/CCFileUtils.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/CCFileUtils.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/CCImage.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/CCImage.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/CCImageCommonWebp.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/CCImageCommonWebp.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/CCImageCommon_cpp.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/CCImageCommon_cpp.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/CCPlatformConfig.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/CCPlatformConfig.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/CCPlatformMacros.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/CCPlatformMacros.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/CCSAXParser.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/CCSAXParser.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/CCSAXParser.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/CCSAXParser.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/CCThread.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/CCThread.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/CCThread.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/CCThread.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/platform.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/platform.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/platform.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/platform.h</locationURI>
 		</link>
 		<link>
 			<name>cocosdenshion/android/Android.mk</name>
@@ -1048,86 +958,6 @@
 			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/CocosDenshion/wp8/SimpleAudioEngine.cpp</locationURI>
 		</link>
 		<link>
-			<name>cocos2dx/platform/android/CCAccelerometer.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/CCAccelerometer.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/CCAccelerometer.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/CCAccelerometer.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/CCApplication.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/CCApplication.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/CCApplication.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/CCApplication.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/CCCommon.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/CCCommon.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/CCDevice.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/CCDevice.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/CCEGLView.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/CCEGLView.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/CCEGLView.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/CCEGLView.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/CCFileUtilsAndroid.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/CCFileUtilsAndroid.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/CCFileUtilsAndroid.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/CCFileUtilsAndroid.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/CCGL.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/CCGL.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/CCImage.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/CCImage.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/CCPlatformDefine.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/CCPlatformDefine.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/CCStdC.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/CCStdC.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/jni</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
 			<name>cocosdenshion/android/jni/SimpleAudioEngineJni.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/CocosDenshion/android/jni/SimpleAudioEngineJni.cpp</locationURI>
@@ -1203,131 +1033,6 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>cocos2dx/platform/android/java/.classpath</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/.classpath</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/.project</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/.project</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/.settings</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/AndroidManifest.xml</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/AndroidManifest.xml</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/ant.properties</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/ant.properties</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/build.xml</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/build.xml</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/gen</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/proguard-project.txt</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/proguard-project.txt</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/project.properties</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/project.properties</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/res</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/src</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/jni/DPIJni.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/jni/DPIJni.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/jni/DPIJni.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/jni/DPIJni.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/jni/IMEJni.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/jni/IMEJni.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/jni/IMEJni.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/jni/IMEJni.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxAccelerometer.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxAccelerometer.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxBitmap.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxBitmap.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxBitmap.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxBitmap.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxHelper.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxHelper.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxRenderer.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/jni/Java_org_cocos2dx_lib_Cocos2dxRenderer.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/jni/JniHelper.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/jni/JniHelper.cpp</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/jni/JniHelper.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/jni/JniHelper.h</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/jni/TouchesJni.cpp</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/jni/TouchesJni.cpp</locationURI>
-		</link>
-		<link>
 			<name>cocosdenshion/android/opensl/SLES/OpenSLES.h</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/CocosDenshion/android/opensl/SLES/OpenSLES.h</locationURI>
@@ -1394,41 +1099,6 @@
 		</link>
 		<link>
 			<name>cocosdenshion/third_party/fmod/lib64/api</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/.settings/org.eclipse.jdt.core.prefs</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/.settings/org.eclipse.jdt.core.prefs</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/AndroidManifest.xml</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/AndroidManifest.xml</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/libcocos2dx.jar</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/libcocos2dx.jar</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/res</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/gen/org</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/src/org</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
@@ -1538,21 +1208,6 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/gen/org/cocos2dx</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/src/org/cocos2dx</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
 			<name>cocosdenshion/third_party/fmod/lib64/api/inc/fmod.h</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/CocosDenshion/third_party/fmod/lib64/api/inc/fmod.h</locationURI>
@@ -1611,306 +1266,6 @@
 			<name>cocosdenshion/third_party/fmod/lib64/api/lib/libfmodexL64.so</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/CocosDenshion/third_party/fmod/lib64/api/lib/libfmodexL64.so</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/gen/org/cocos2dx/lib</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/src/org/cocos2dx/lib</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/gen/org/cocos2dx/lib/BuildConfig.java</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/gen/org/cocos2dx/lib/BuildConfig.java</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxAccelerometer.java</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxAccelerometer.java</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxActivity.java</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxActivity.java</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxBitmap.java</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxBitmap.java</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxETCLoader.java</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxETCLoader.java</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxEditBoxDialog.java</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxEditBoxDialog.java</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxEditText.java</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxEditText.java</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxGLSurfaceView.java</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxGLSurfaceView.java</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxHandler.java</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxHandler.java</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxHelper.java</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxHelper.java</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxLocalStorage.java</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxLocalStorage.java</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxMusic.java</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxMusic.java</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxRenderer.java</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxRenderer.java</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxSound.java</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxSound.java</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxTextInputWraper.java</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxTextInputWraper.java</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxTypefaces.java</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/src/org/cocos2dx/lib/Cocos2dxTypefaces.java</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/BuildConfig.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/BuildConfig.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxAccelerometer.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxAccelerometer.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxActivity.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxActivity.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxBitmap$TextProperty.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxBitmap$TextProperty.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxBitmap.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxBitmap.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxETCLoader.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxETCLoader.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxEditBoxDialog$1.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxEditBoxDialog$1.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxEditBoxDialog$2.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxEditBoxDialog$2.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxEditBoxDialog.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxEditBoxDialog.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxEditText.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxEditText.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$1.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$1.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$10.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$10.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$11.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$11.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$12.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$12.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$13.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$13.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$2.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$2.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$3.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$3.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$4.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$4.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$5.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$5.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$6.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$6.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$7.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$7.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$8.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$8.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$9.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView$9.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxGLSurfaceView.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxHandler$1.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxHandler$1.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxHandler$DialogMessage.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxHandler$DialogMessage.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxHandler$EditBoxMessage.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxHandler$EditBoxMessage.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxHandler.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxHandler.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxHelper$1.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxHelper$1.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxHelper$Cocos2dxHelperListener.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxHelper$Cocos2dxHelperListener.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxHelper.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxHelper.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxLocalStorage$DBOpenHelper.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxLocalStorage$DBOpenHelper.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxLocalStorage.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxLocalStorage.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxMusic.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxMusic.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxRenderer.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxRenderer.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxSound$OnLoadCompletedListener.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxSound$OnLoadCompletedListener.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxSound$SoundInfoForLoadedCompleted.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxSound$SoundInfoForLoadedCompleted.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxSound.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxSound.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxTextInputWraper.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxTextInputWraper.class</locationURI>
-		</link>
-		<link>
-			<name>cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxTypefaces.class</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sdk/cocos2d-x-2.2.3/cocos2dx/platform/android/java/bin/classes/org/cocos2dx/lib/Cocos2dxTypefaces.class</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

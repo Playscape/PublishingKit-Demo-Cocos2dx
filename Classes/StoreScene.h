@@ -2,8 +2,10 @@
 #define __StoreScene_h__
 
 #include <iostream>
+#include <string>
 #include "cocos2d.h"
 
+using std::string;
 using namespace cocos2d;
 class StoreScene : public cocos2d::CCLayerColor
 {
@@ -18,7 +20,15 @@ protected:
 	void buyNinjaSwordCallback(CCObject* sender);
 	void buySamuraiShieldCallback(CCObject* sender);
 	void buyShogunKatanaCallback(CCObject* sender);
+	void hideBuyDialog();
+	void showBuyDialog(const string& itemName);
 
+	void buyButtonCallback(CCObject* sender);
+	void cancelBuyButtonCallback(CCObject* sender);
+	CCLayerColor* mBuyDialog;
+	CCMenu* mItemsMenu;
+
+	bool mShouldFail;
 public:
     // Method 'init' in cocos2d-x returns bool, instead of 'id' in cocos2d-iphone (an object pointer)
     virtual bool init();

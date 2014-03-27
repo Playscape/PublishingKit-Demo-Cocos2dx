@@ -41,9 +41,12 @@ public:
     void removeMessageLayer();
     void playGameButtonCallback();
     void openStoreButtonCallback();
-    // a selector callback
+
+    // menu callbacks
     void menuCloseCallback(CCObject* pSender);
     void mainMenuButtonCallback(CCObject* pSender);
+    void inviteFriendsButtonCallback(CCObject* pSender);
+    void simulateReceivedInviteButtonCallback(CCObject* pSender);
     void joinRoomIfNeeded();
 
     void startGame();

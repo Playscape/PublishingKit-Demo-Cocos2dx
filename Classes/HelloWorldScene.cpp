@@ -7,6 +7,7 @@
 
 #include "playscape/ChartboostX.h"
 #include "playscape/Report.h"
+#include "InviteFriendsScene.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -53,16 +54,25 @@ void HelloWorld::showStartGameLayer()
     _startGameLayer = StartGameLayer::create();
     addChild(_startGameLayer);
 
-    CCMenuItemFont *startGameButton = CCMenuItemFont::create("Play Game", this,menu_selector(HelloWorld::playGameButtonCallback));
-    startGameButton->setColor(ccBLACK);
+    CCMenu *pMenu =
+		CCMenu::create(
+			CCMenuItemFont::create("Play Game", this,menu_selector(HelloWorld::playGameButtonCallback)),
+			CCMenuItemFont::create("Open Store", this,menu_selector(HelloWorld::openStoreButtonCallback)),
+			CCMenuItemFont::create("Play With Friends", this,menu_selector(HelloWorld::inviteFriendsButtonCallback)),
+			CCMenuItemFont::create("Simulate Received Invite", this,menu_selector(HelloWorld::simulateReceivedInviteButtonCallback)),
+			NULL);
 
-    CCMenuItemFont *openStoreButton = CCMenuItemFont::create("Open Store", this,menu_selector(HelloWorld::openStoreButtonCallback));
-    openStoreButton->setColor(ccBLACK);
-
-    CCMenu *pMenu = CCMenu::create(startGameButton, openStoreButton, NULL);
+    CCObject* item;
+    CCARRAY_FOREACH(pMenu->getChildren(), item) {
+    	((CCMenuItemFont*)item)->setColor(ccBLACK);
+    }
 
     pMenu->alignItemsVertically();
     _startGameLayer->addChild(pMenu, 1);
+}
+
+void HelloWorld::inviteFriendsButtonCallback(CCObject* sender) {
+	CCDirector::sharedDirector()->replaceScene(InviteFriendsScene::scene());
 }
 
 void HelloWorld::showInGameMenuLayer()
@@ -759,4 +769,8 @@ void HelloWorld::onUnsubscribeLobbyDone(AppWarp::lobby levent)
         dbgprint("onUnsubscribeLobbyDone .... Failed");
 
     }
+}
+
+void HelloWorld::simulateReceivedInviteButtonCallback(CCObject* pSender) {
+	dbgprint("simulateReceivedInviteButtonCallback");
 }
