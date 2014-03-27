@@ -4,8 +4,10 @@ import org.cocos2dx.simplegame.SimpleGame;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.playscape.publishingkit.ActivityLifeCycle;
+import com.wenbin.ChartboostX.ChartboostXBridge;
 
 /**
  * Playscape's default implementation to an activity
@@ -21,6 +23,7 @@ public class PlayscapeActivity extends SimpleGame {
 	public void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
 		
+		ChartboostXBridge.onCreate(this);
 		mActivityLifeCycle = Playscape.getActivityLifeCycle(this);
 		mActivityLifeCycle.onCreate(bundle);
 	}
@@ -29,6 +32,7 @@ public class PlayscapeActivity extends SimpleGame {
 	public void onDestroy() {
 	    super.onDestroy();
 	    mActivityLifeCycle.onDestroy();
+	    ChartboostXBridge.onDestroy();
 	}
 
 	@Override
@@ -57,12 +61,24 @@ public class PlayscapeActivity extends SimpleGame {
 	public void onStop() {
 	    super.onStop();
 	    mActivityLifeCycle.onStop();
+	    ChartboostXBridge.onStop();
 	}
 	
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		mActivityLifeCycle.onSaveInstanceState(outState);
+	}
+	
+	@Override
+	public void onBackPressed() {
+
+	    // If an interstitial is on screen, close it. Otherwise continue as normal.
+	    if (ChartboostXBridge.onBackPressed()) {
+	        return;
+	    } else {
+	        super.onBackPressed();
+	    }
 	}
 	
 	/**
