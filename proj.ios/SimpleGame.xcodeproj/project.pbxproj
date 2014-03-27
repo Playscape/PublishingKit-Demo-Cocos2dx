@@ -187,6 +187,7 @@
 		BDF6252318E2D6CC0067BDD3 /* libRemoteLogger.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6252018E2D6CC0067BDD3 /* libRemoteLogger.a */; };
 		BDF6252518E2EC690067BDD3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6252418E2EC690067BDD3 /* SystemConfiguration.framework */; };
 		BDF6252918E2F2B80067BDD3 /* SimpleGame-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BDF6252718E2F2B80067BDD3 /* SimpleGame-Info.plist */; };
+		BDF625B618E418120067BDD3 /* libplayscape_pubkit_libx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF625B518E418120067BDD3 /* libplayscape_pubkit_libx.a */; };
 		BF1373EF128A898400D9F789 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492D4B1289302400A09262 /* OpenGLES.framework */; };
 		BF1373F0128A899500D9F789 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492C21128924A800A09262 /* libxml2.dylib */; };
 		BF1373F1128A899E00D9F789 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492B6912891AC600A09262 /* libz.dylib */; };
@@ -604,6 +605,17 @@
 		BDF6252018E2D6CC0067BDD3 /* libRemoteLogger.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRemoteLogger.a; path = "../../PlayscapePubkitCocos2D-X/proj.ios/prebuilt/libraries/libRemoteLogger.a"; sourceTree = "<group>"; };
 		BDF6252418E2EC690067BDD3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BDF6252718E2F2B80067BDD3 /* SimpleGame-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SimpleGame-Info.plist"; sourceTree = SOURCE_ROOT; };
+		BDF6252B18E2F9C70067BDD3 /* ChartboostX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartboostX.h; sourceTree = "<group>"; };
+		BDF6252C18E2F9C70067BDD3 /* FlowInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowInstance.h; sourceTree = "<group>"; };
+		BDF6252D18E2F9C70067BDD3 /* MPAnalyticsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAnalyticsProvider.h; sourceTree = "<group>"; };
+		BDF6252E18E2F9C70067BDD3 /* PurchaseItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseItem.h; sourceTree = "<group>"; };
+		BDF6252F18E2F9C70067BDD3 /* PushwooshX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushwooshX.h; sourceTree = "<group>"; };
+		BDF6253018E2F9C70067BDD3 /* Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Report.h; sourceTree = "<group>"; };
+		BDF6253118E2F9C70067BDD3 /* ServiceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceState.h; sourceTree = "<group>"; };
+		BDF6253218E2F9C70067BDD3 /* SocialAnalyticsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialAnalyticsProvider.h; sourceTree = "<group>"; };
+		BDF6253318E2F9C70067BDD3 /* SocialNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialNetwork.h; sourceTree = "<group>"; };
+		BDF6253418E2FCE50067BDD3 /* PushwooshXCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushwooshXCommon.h; sourceTree = "<group>"; };
+		BDF625B518E418120067BDD3 /* libplayscape_pubkit_libx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libplayscape_pubkit_libx.a; path = "../../PlayscapePubkitCocos2D-X/proj.ios/prebuilt/libraries/libplayscape_pubkit_libx.a"; sourceTree = "<group>"; };
 		BF137426128A8E4600D9F789 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BF365AA612A103F70050DCF4 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		BF365AA712A103F70050DCF4 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
@@ -638,6 +650,7 @@
 				BDF6252118E2D6CC0067BDD3 /* libplayscape_pubkit_lib.a in Frameworks */,
 				BDF6252218E2D6CC0067BDD3 /* libplayscape_utils.a in Frameworks */,
 				BDF6252318E2D6CC0067BDD3 /* libRemoteLogger.a in Frameworks */,
+				BDF625B618E418120067BDD3 /* libplayscape_pubkit_libx.a in Frameworks */,
 				BDF6251D18E2CD480067BDD3 /* libwebp.a in Frameworks */,
 				BF1373F0128A899500D9F789 /* libxml2.dylib in Frameworks */,
 				BF1373F1128A899E00D9F789 /* libz.dylib in Frameworks */,
@@ -672,6 +685,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BDF625B518E418120067BDD3 /* libplayscape_pubkit_libx.a */,
 				BDF6252418E2EC690067BDD3 /* SystemConfiguration.framework */,
 				BDF6251E18E2D6CC0067BDD3 /* libplayscape_pubkit_lib.a */,
 				BDF6251F18E2D6CC0067BDD3 /* libplayscape_utils.a */,
@@ -717,6 +731,7 @@
 		BDF620A518E2BF240067BDD3 /* libraries */ = {
 			isa = PBXGroup;
 			children = (
+				BDF6252A18E2F9C70067BDD3 /* playscape */,
 				BDF624E218E2C9A20067BDD3 /* AppWarpX */,
 				BDF622CC18E2C51E0067BDD3 /* cocos2dx */,
 				BDF6244118E2C51E0067BDD3 /* CocosDenshion */,
@@ -1471,6 +1486,24 @@
 				BDF6251918E2CC9B0067BDD3 /* types.h */,
 			);
 			path = webp;
+			sourceTree = "<group>";
+		};
+		BDF6252A18E2F9C70067BDD3 /* playscape */ = {
+			isa = PBXGroup;
+			children = (
+				BDF6253418E2FCE50067BDD3 /* PushwooshXCommon.h */,
+				BDF6252B18E2F9C70067BDD3 /* ChartboostX.h */,
+				BDF6252C18E2F9C70067BDD3 /* FlowInstance.h */,
+				BDF6252D18E2F9C70067BDD3 /* MPAnalyticsProvider.h */,
+				BDF6252E18E2F9C70067BDD3 /* PurchaseItem.h */,
+				BDF6252F18E2F9C70067BDD3 /* PushwooshX.h */,
+				BDF6253018E2F9C70067BDD3 /* Report.h */,
+				BDF6253118E2F9C70067BDD3 /* ServiceState.h */,
+				BDF6253218E2F9C70067BDD3 /* SocialAnalyticsProvider.h */,
+				BDF6253318E2F9C70067BDD3 /* SocialNetwork.h */,
+			);
+			name = playscape;
+			path = "../../PlayscapePubkitCocos2D-X/include/playscape";
 			sourceTree = "<group>";
 		};
 		BF23D4E2143315EB00657E08 /* Classes */ = {
