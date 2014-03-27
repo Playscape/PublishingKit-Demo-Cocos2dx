@@ -21,9 +21,10 @@ public class PlayscapeActivity extends SimpleGame {
 
 	@Override
 	public void onCreate(Bundle bundle) {
+		ChartboostXBridge.onCreate(this);
+
 		super.onCreate(bundle);
 		
-		ChartboostXBridge.onCreate(this);
 		mActivityLifeCycle = Playscape.getActivityLifeCycle(this);
 		mActivityLifeCycle.onCreate(bundle);
 	}
