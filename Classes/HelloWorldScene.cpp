@@ -4,6 +4,8 @@
 #include "appwarp.h"
 #include "dbgprint.h"
 #include "StoreScene.h"
+
+#include "playscape/ChartboostX.h"
 #include "playscape/Report.h"
 
 using namespace cocos2d;
@@ -181,6 +183,8 @@ void HelloWorld::stopGame() {
     additionalParams["meaningOfLife"] = 42.0;
     additionalParams["luckyNumber"] = 7.0;
 	Report::getInstance().ReportLevelCompleted("1", additionalParams);
+
+    ChartboostX::showInterstitial();
 }
 
 void HelloWorld::update(float time)
