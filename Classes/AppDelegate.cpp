@@ -12,8 +12,6 @@
 #include "SimpleAudioEngine.h"
 #include "HelloWorldScene.h"
 
-#include "playscape/ChartboostX.h"
-
 USING_NS_CC;
 using namespace CocosDenshion;
 
@@ -28,7 +26,8 @@ AppDelegate::~AppDelegate()
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
-    ChartboostX::cacheInterstitial();
+	Playscape::applicationLaunched();
+
 
     // initialize director
     CCDirector *pDirector = CCDirector::sharedDirector();
