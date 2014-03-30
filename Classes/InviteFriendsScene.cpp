@@ -2,10 +2,17 @@
 #include "dbgprint.h"
 #include "HelloWorldScene.h"
 #include "InGameMenuLayer.h"
+#include "playscape/Report.h"
+
 #include <string>
 
 using namespace cocos2d;
 using std::string;
+using playscape::Report;
+
+#define FAKE_REQUEST_ID "FakeRequestId"
+#define FAKE_REQUESTED_USER_ID "FakeRequestedUserId"
+#define FAKE_RANDOM_REQUEST_ID 31
 
 // on "init" you need to initialize your instance
 bool InviteFriendsScene::init()
@@ -39,6 +46,10 @@ bool InviteFriendsScene::init()
     }
 
     mPlaysWithMenu->alignItemsVertically();
+
+
+    // this should actually be called social user when images done downloading
+    Report::getInstance().ReportSocialGetImagesSuccess(3);
 
     addChild(mPlaysWithMenu, 1);
     addChild(label);
@@ -99,6 +110,8 @@ CCScene* InviteFriendsScene::scene()
 }
 
 void InviteFriendsScene::showInviteDialog(const string& friendName) {
+
+
 	if (mInviteDialog) {
 		mInviteDialog->release();
 	}
@@ -140,11 +153,13 @@ void InviteFriendsScene::showInviteDialog(const string& friendName) {
 	mPlaysWithMenu->setEnabled(false);
 	mPlaysWithMenu->setVisible(false);
 	mInviteDialog->setVisible(true);
-
-
 }
 
 void InviteFriendsScene::inviteButtonCallback(CCObject* sender) {
+	Report::getInstance().ReportSocialRequestSent(FAKE_REQUEST_ID, // in a real game this should be the id of the sent request as given by the social network (fb/google+)
+													  FAKE_REQUESTED_USER_ID, // this should be the social identifier of the user whom the request is sent to (e.g fb/google+ user id)
+													  FAKE_RANDOM_REQUEST_ID // this should be a randomly generated number uniquely identifying the sent request which should be sent along side the request
+													  );
 	hideInviteDialog();
 }
 

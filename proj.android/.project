@@ -118,6 +118,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>AppWarpX</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
 			<name>Classes</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
@@ -136,6 +141,121 @@
 			<name>playscape</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/HMAC_SHA1.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/HMAC_SHA1.cpp</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/HMAC_SHA1.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/HMAC_SHA1.h</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/SHA1.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/SHA1.cpp</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/SHA1.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/SHA1.h</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/appwarp.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/appwarp.cpp</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/appwarp.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/appwarp.h</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/appwarp_extended.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/appwarp_extended.cpp</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/base64.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/base64.cpp</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/base64.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/base64.h</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/cJSON.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/cJSON.c</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/cJSON.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/cJSON.h</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/defines.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/defines.h</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/listener.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/listener.h</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/requests.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/requests.cpp</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/requests.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/requests.h</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/socket.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/socket.cpp</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/socket.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/socket.h</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/udpsocket.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/udpsocket.cpp</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/udpsocket.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/udpsocket.h</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/urlencode.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/urlencode.cpp</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/urlencode.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/urlencode.h</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/utilities.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/utilities.cpp</locationURI>
+		</link>
+		<link>
+			<name>AppWarpX/utilities.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/utilities.h</locationURI>
 		</link>
 		<link>
 			<name>Classes/AppDelegate.cpp</name>

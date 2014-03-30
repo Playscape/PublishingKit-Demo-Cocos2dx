@@ -13,6 +13,8 @@ using namespace cocos2d;
 using namespace CocosDenshion;
 using playscape::Report;
 
+#define FAKE_FACEBOOK_ID "fake_facebook_id"
+
 CCScene* HelloWorld::scene()
 {
     // 'scene' is an autorelease object
@@ -39,20 +41,29 @@ bool HelloWorld::init()
         return false;
     }
 
-    _messageLayer = NULL;
-    _isInRoom = false;
+    mMessageLayer = NULL;
+    mIsInRoom = false;
 
-    _isFirstLaunch = true;
+    mIsFirstLaunch = true;
     setTouchEnabled(true);
     showStartGameLayer();
+
+    mAppWarpMultiplayerProvider = new AppWarpMultiplayerProvider();
+    mFacebookSocialAnalyticsProvider = new FacebookSocialAnalyticsProvider();
+
+    Report::getInstance().InitMultiplayer(*mAppWarpMultiplayerProvider);
+    Report::getInstance().InitSocial(*mFacebookSocialAnalyticsProvider);
+
+    mStartedGameFromSimulatedInvite = false;
+    mIsSocialNetworkLoggedIn = false;
 
     return true;
 }
 
 void HelloWorld::showStartGameLayer()
 {
-    _startGameLayer = StartGameLayer::create();
-    addChild(_startGameLayer);
+    mStartGameLayer = StartGameLayer::create();
+    addChild(mStartGameLayer);
 
     CCMenu *pMenu =
 		CCMenu::create(
@@ -60,6 +71,7 @@ void HelloWorld::showStartGameLayer()
 			CCMenuItemFont::create("Open Store", this,menu_selector(HelloWorld::openStoreButtonCallback)),
 			CCMenuItemFont::create("Play With Friends", this,menu_selector(HelloWorld::inviteFriendsButtonCallback)),
 			CCMenuItemFont::create("Simulate Received Invite", this,menu_selector(HelloWorld::simulateReceivedInviteButtonCallback)),
+			CCMenuItemFont::create("Simulate SocialNetwork Login/Logout", this,menu_selector(HelloWorld::simulateSocialNetworkLoginCallback)),
 			NULL);
 
     CCObject* item;
@@ -68,19 +80,29 @@ void HelloWorld::showStartGameLayer()
     }
 
     pMenu->alignItemsVertically();
-    _startGameLayer->addChild(pMenu, 1);
+    mStartGameLayer->addChild(pMenu, 1);
 }
 
 void HelloWorld::inviteFriendsButtonCallback(CCObject* sender) {
 	CCDirector::sharedDirector()->replaceScene(InviteFriendsScene::scene());
 }
 
+void HelloWorld::simulateSocialNetworkLoginCallback(CCObject* pSender) {
+	mIsSocialNetworkLoggedIn = !mIsSocialNetworkLoggedIn;
+
+	if (mIsSocialNetworkLoggedIn) {
+		Report::getInstance().ReportSocialLoginSuccess(false, FAKE_FACEBOOK_ID);
+	} else {
+		Report::getInstance().ReportSocialLogout();
+	}
+}
+
 void HelloWorld::showInGameMenuLayer()
 {
 	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 
-    _inGameMenuLayer = InGameMenuLayer::create();
-    addChild(_inGameMenuLayer);
+    mInGameMenuLayer = InGameMenuLayer::create();
+    addChild(mInGameMenuLayer);
 
     CCMenuItemFont *menuButton = CCMenuItemFont::create("Menu", this,menu_selector(HelloWorld::mainMenuButtonCallback));
     menuButton->setColor(ccc3(0,0,0));
@@ -90,7 +112,7 @@ void HelloWorld::showInGameMenuLayer()
     CCMenu *pMenu = CCMenu::create(menuButton,NULL);
     pMenu->setPosition(CCPointZero);
 
-    _inGameMenuLayer->addChild(pMenu, 1);
+    mInGameMenuLayer->addChild(pMenu, 1);
 }
 
 
@@ -101,7 +123,7 @@ void HelloWorld::createRoom()
     std::map<std::string, std::string> properties;
     properties["playscape"] = "room123";
     
-    AppWarp::Client::getInstance()->createRoom("room1", "max", 2, properties);
+    AppWarp::Client::getInstance()->createRoom(ROOM_NAME, mUserName, 2, properties);
 }
 
 void HelloWorld::joinLobby()
@@ -134,16 +156,9 @@ void HelloWorld::updateRoomProperties()
     
 }
 
-void HelloWorld::getRoomProperties()
-{
-    std::map<std::string, std::string> properties;
-    properties["a"] = "a";
-    AppWarp::Client::getInstance()->getRoomWithProperties(properties);
-}
-
 void HelloWorld::removeStartGameLayer()
 {
-    removeChild(_startGameLayer,true);
+    removeChild(mStartGameLayer,true);
 }
 
 void HelloWorld::startGame()
@@ -151,24 +166,24 @@ void HelloWorld::startGame()
     showInGameMenuLayer();
 
     // Initialize arrays
-    _targets = new CCArray();
-    _projectiles = new CCArray();
+    mTargets = new CCArray();
+    mProjectiles = new CCArray();
     
     // Get the dimensions of the window for calculation purposes
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     
-    _player = (Player*)CCSprite::create("Player.png");
-    _player->setPosition(ccp(_player->getContentSize().width/2, winSize.height/2));
-    _player->isEnemy = false;
-    addChild(_player);
+    mPlayer = (Player*)CCSprite::create("Player.png");
+    mPlayer->setPosition(ccp(mPlayer->getContentSize().width/2, winSize.height/2));
+    mPlayer->isEnemy = false;
+    addChild(mPlayer);
     
-    _enemy = (Player*)CCSprite::create("Enemy.png");
-    _enemy->setPosition(ccp(winSize.width-_enemy->getContentSize().width/2, winSize.height/2));
-    _enemy->isEnemy = true;
-    _enemy->setOpacity(100);
-    addChild(_enemy);
-    _isConnected = true;
-    if (_isFirstLaunch)
+    mEnemy = (Player*)CCSprite::create("Enemy.png");
+    mEnemy->setPosition(ccp(winSize.width-mEnemy->getContentSize().width/2, winSize.height/2));
+    mEnemy->isEnemy = true;
+    mEnemy->setOpacity(100);
+    addChild(mEnemy);
+    mIsConnected = true;
+    if (mIsFirstLaunch)
     {
         scheduleUpdate();
     }
@@ -176,15 +191,16 @@ void HelloWorld::startGame()
     std::map<std::string, double> additionalParams;
     additionalParams["meaningOfLife"] = 42.0;
 
+    Report::getInstance().ReportMPStartGame(MAX_PLAYER);
     Report::getInstance().ReportLevelStarted("1", additionalParams);
 }
 
 void HelloWorld::stopGame() {
-	_isInRoom = false;
+	mIsInRoom = false;
 	removeMessageLayer();
 	AppWarp::Client::getInstance()->disconnect();
-	removeChild(_enemy);
-	removeChild(_player);
+	removeChild(mEnemy);
+	removeChild(mPlayer);
 	unscheduleUpdate();
 	unscheduleRecover();
 	showMessageLayer("Disconnecting...");
@@ -200,16 +216,16 @@ void HelloWorld::stopGame() {
 void HelloWorld::update(float time)
 {
     
-    if (!_isEnemyAdded)
+    if (!mIsEnemyAdded)
     {
         return;
     }
     
 	CCArray *projectilesToDelete = CCArray::create();
-    if (_projectiles->count())
+    if (mProjectiles->count())
     {
         CCObject *pObj = NULL;
-        CCARRAY_FOREACH(_projectiles, pObj)
+        CCARRAY_FOREACH(mProjectiles, pObj)
         {
             CCSprite *projectile = (CCSprite*)pObj;
             CCRect projectileRect = CCRectMake(projectile->getPosition().x - (projectile->getContentSize().width/2),
@@ -220,7 +236,7 @@ void HelloWorld::update(float time)
             CCArray *targetsToDelete = CCArray::create();
             
             CCObject *tObj = NULL;
-            CCARRAY_FOREACH(_targets, tObj)
+            CCARRAY_FOREACH(mTargets, tObj)
             {
                 CCSprite *target = (CCSprite*)tObj;
                 CCRect targetRect = CCRectMake(target->getPosition().x - (target->getContentSize().width/2),
@@ -232,14 +248,14 @@ void HelloWorld::update(float time)
                 {
                     targetsToDelete->addObject(target);
                 }
-                else if(!targetsToDelete->containsObject(target) && _player->boundingBox().intersectsRect(targetRect))
+                else if(!targetsToDelete->containsObject(target) && mPlayer->boundingBox().intersectsRect(targetRect))
                 {
                      targetsToDelete->addObject(target);
                 }
                 
             }
             
-            if (!projectilesToDelete->containsObject(projectile) && projectileRect.intersectsRect(_enemy->boundingBox()))
+            if (!projectilesToDelete->containsObject(projectile) && projectileRect.intersectsRect(mEnemy->boundingBox()))
             {
                 projectilesToDelete->addObject(projectile);
             }
@@ -247,9 +263,9 @@ void HelloWorld::update(float time)
             CCARRAY_FOREACH(targetsToDelete, tObj)
             {
                 CCSprite *target = (CCSprite*)tObj;
-                _targets->removeObject(target);
+                mTargets->removeObject(target);
                 removeChild(target, true);
-                _projectilesDestroyed++;
+                mProjectilesDestroyed++;
 
             }
             
@@ -263,7 +279,7 @@ void HelloWorld::update(float time)
         CCARRAY_FOREACH(projectilesToDelete, pObj)
         {
             CCSprite *projectile = (CCSprite*)pObj;
-            _projectiles->removeObject(projectile);
+            mProjectiles->removeObject(projectile);
             removeChild(projectile, true);
 
         }
@@ -272,7 +288,7 @@ void HelloWorld::update(float time)
     {
         CCArray *targetsToDelete = CCArray::create();
         CCObject *tObj=NULL;
-        CCARRAY_FOREACH(_targets, tObj)
+        CCARRAY_FOREACH(mTargets, tObj)
         {
             CCSprite *target = (CCSprite*)tObj;
             CCRect targetRect = CCRectMake(target->getPosition().x - (target->getContentSize().width/2),
@@ -280,7 +296,7 @@ void HelloWorld::update(float time)
                                            target->getContentSize().width,
                                            target->getContentSize().height);
             
-            if (!targetsToDelete->containsObject(target) && _player->boundingBox().intersectsRect(targetRect))
+            if (!targetsToDelete->containsObject(target) && mPlayer->boundingBox().intersectsRect(targetRect))
             {
                 targetsToDelete->addObject(target);
             }
@@ -291,25 +307,20 @@ void HelloWorld::update(float time)
         CCARRAY_FOREACH(targetsToDelete, tObj)
         {
             CCSprite *target = (CCSprite*)tObj;
-            _targets->removeObject(target);
+            mTargets->removeObject(target);
             removeChild(target, true);
-            _projectilesDestroyed++;
+            mProjectilesDestroyed++;
         }
     }
     	
 }
 
-void HelloWorld::pauseGame()
-{
-    
-}
-
 void HelloWorld::updateEnemyStatus(CCPoint destination,float actualDuration)
 {
-    _enemy->setOpacity(255);
-    _isEnemyAdded = true;
+    mEnemy->setOpacity(255);
+    mIsEnemyAdded = true;
 	CCSprite *target = CCSprite::create("Bullet-blue.png");
-	target->setPosition(ccp(_enemy->getPosition().x-_enemy->getContentSize().width/2, _enemy->getPosition().y));
+	target->setPosition(ccp(mEnemy->getPosition().x-mEnemy->getContentSize().width/2, mEnemy->getPosition().y));
 	addChild(target,10);
 	
     // Move projectile to actual endpoint
@@ -320,12 +331,12 @@ void HelloWorld::updateEnemyStatus(CCPoint destination,float actualDuration)
 
 	// Add to targets array
 	target->setTag(3);
-	_targets->addObject(target);
+	mTargets->addObject(target);
 }
 
 void HelloWorld::ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent)
 {
-    if (!_isConnected)
+    if (!mIsConnected)
     {
         return;
     }
@@ -336,7 +347,7 @@ void HelloWorld::ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEve
     // Set up initial location of projectile
 	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 	CCSprite *projectile = CCSprite::create("Bullet-red.png");
-	projectile->setPosition(ccp(_player->getPosition().x+_player->getContentSize().width/2, _player->getPosition().y));
+	projectile->setPosition(ccp(mPlayer->getPosition().x+mPlayer->getContentSize().width/2, mPlayer->getPosition().y));
 	
     CCPoint projectilePos = projectile->getPosition();
 	// Determine offset of location to projectile
@@ -349,9 +360,6 @@ void HelloWorld::ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEve
     // Ok to add now - we've double checked position
     addChild(projectile,10);
     
-	// Play a sound!
-    SimpleAudioEngine::sharedEngine()->playEffect("pew-pew-lei.caf");
-	
 	
 	// Determine where we wish to shoot the projectile to
 	int realX = winSize.width + (projectile->getContentSize().width/2);
@@ -377,11 +385,9 @@ void HelloWorld::ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEve
     projectile->runAction(seq);
 	// Add to projectiles array
 	projectile->setTag(2);
-    _projectiles->addObject(projectile);
+    mProjectiles->addObject(projectile);
 	
 }
-
-
 
 void HelloWorld::spriteMoveFinished(CCSprite* pSender)
 {
@@ -390,12 +396,12 @@ void HelloWorld::spriteMoveFinished(CCSprite* pSender)
 	
 	if (sprite->getTag() == 3)
     { // target
-		_targets->removeObject(sprite);
+		mTargets->removeObject(sprite);
 		
 	}
     else if (sprite->getTag() == 2)
     { // projectile
-		_projectiles->removeObject(sprite);
+		mProjectiles->removeObject(sprite);
 	}
 }
 
@@ -433,22 +439,22 @@ std::string genRandom()
 void HelloWorld::disconnect()
 {
     AppWarp::Client::getInstance()->disconnect();
-    _isInRoom = false;
+    mIsInRoom = false;
 }
 
 /********* Menu Callbacks *********/
 
-void HelloWorld::openStoreButtonCallback() {
+void HelloWorld::openStoreButtonCallback(CCObject* pSender) {
 	CCDirector::sharedDirector()->replaceScene(StoreScene::scene());
 }
 
-void HelloWorld::playGameButtonCallback()
+void HelloWorld::playGameButtonCallback(CCObject* pSender)
 {
-    _isConnected = false;
+    mIsConnected = false;
     AppWarp::Client *warpClientRef;
-    if (_isFirstLaunch)
+    if (mIsFirstLaunch)
     {
-        _isFirstLaunch = !_isFirstLaunch;
+        mIsFirstLaunch = !mIsFirstLaunch;
         AppWarp::Client::initialize(APPWARP_APP_KEY,APPWARP_SECRET_KEY);
         warpClientRef = AppWarp::Client::getInstance();
         warpClientRef->setRecoveryAllowance(60);
@@ -457,29 +463,30 @@ void HelloWorld::playGameButtonCallback()
         warpClientRef->setRoomRequestListener(this);
         warpClientRef->setZoneRequestListener(this);
         warpClientRef->setLobbyRequestListener(this);
-        _userName = genRandom();
+        mUserName = genRandom();
     }
 
-
-    if (!_isConnected) {
-    	AppWarp::Client::getInstance()->connect(_userName);
+    if (!mIsConnected) {
+    	Report::getInstance().ReportMPServerConnect("AppWarpServer");
+    	AppWarp::Client::getInstance()->connect(mUserName);
     	showMessageLayer("Connecting...");
     }
 
     removeStartGameLayer();
-
 }
 
 void HelloWorld::onDisconnectDone(int res)
 {
+	Report::getInstance().ReportMPLeaveGame(ROOM_NAME);
+	Report::getInstance().ReportMPServerDisconnect();
 	removeMessageLayer();
-    _isInRoom = false;
+    mIsInRoom = false;
     showStartGameLayer();
-    _isConnected = false;
+    mIsConnected = false;
 }
 
 void HelloWorld::joinRoomIfNeeded() {
-	if (!_isInRoom) {
+	if (!mIsInRoom) {
 		AppWarp::Client *warpClientRef;
 		warpClientRef = AppWarp::Client::getInstance();
 
@@ -491,6 +498,16 @@ void HelloWorld::joinRoomIfNeeded() {
 	}
 }
 
+
+void HelloWorld::simulateReceivedInviteButtonCallback(CCObject* pSender) {
+    mStartedGameFromSimulatedInvite = true;
+
+    Report::getInstance().ReportSocialRequestsFound(1);
+    Report::getInstance().ReportSocialRequestDetails("socialRequestId", "sender-social-id", 12345);
+	playGameButtonCallback(this);
+	dbgprint("simulateReceivedInviteButtonCallback");
+}
+
 void HelloWorld::onConnectDone(int res)
 {
 	removeMessageLayer();
@@ -500,6 +517,8 @@ void HelloWorld::onConnectDone(int res)
 
     	showMessageLayer("Connection Succeeded. Please wait...");
 
+    	Report::getInstance().ReportMPServerConnectSuccess("AppWarp", 123/* if available latency in ms goes here*/);
+
         unscheduleRecover();
         dbgprint("\nonConnectDone .. SUCCESS..session=%d\n",AppWarp::AppWarpSessionID);
         joinRoomIfNeeded();
@@ -507,7 +526,6 @@ void HelloWorld::onConnectDone(int res)
     }
     else if (res==AppWarp::ResultCode::success_recovered)
     {
-
         unscheduleRecover();
         dbgprint("\nonConnectDone .. SUCCESS with success_recovered..session=%d\n",AppWarp::AppWarpSessionID);
         joinRoomIfNeeded();
@@ -515,21 +533,25 @@ void HelloWorld::onConnectDone(int res)
     }
     else if (res==AppWarp::ResultCode::connection_error_recoverable)
     {
+    	Report::getInstance().ReportMPServerConnectFailed("AppWarp::ResultCode::connection_error_recoverable");
         scheduleRecover();
         dbgprint("\nonConnectDone .. FAILED..connection_error_recoverable..session=%d\n",AppWarp::AppWarpSessionID);
     }
     else if (res==AppWarp::ResultCode::bad_request)
     {
+    	Report::getInstance().ReportMPServerConnectFailed("AppWarp::ResultCode::bad_request");
         unscheduleRecover();
         dbgprint("\nonConnectDone .. FAILED with bad request..session=%d\n",AppWarp::AppWarpSessionID);
     }
     else if (res==AppWarp::ResultCode::connection_error)
     {
+    	Report::getInstance().ReportMPServerConnectFailed("AppWarp::ResultCode::connection_error");
         unscheduleRecover();
         dbgprint("\nonConnectDone .. FAILED with connection error..session=%d\n",AppWarp::AppWarpSessionID);
     }
     else
     {
+    	Report::getInstance().ReportMPServerConnectFailed("Unknown error");
     	removeStartGameLayer();
 		unscheduleRecover();
 		showStartGameLayer();
@@ -562,13 +584,24 @@ void HelloWorld::onJoinRoomDone(AppWarp::room revent)
 
     if (revent.result==0)
     {
-    	_isInRoom = true;
+    	mIsInRoom = true;
         dbgprint("\nonJoinRoomDone .. SUCCESS\n");
 
         AppWarp::Client *warpClientRef = AppWarp::Client::getInstance();
+
         warpClientRef->subscribeRoom(revent.roomId);
         startGame();
         removeStartGameLayer();
+
+        // Public games are games played with random people, private games are game played with predefined friends.
+        if (mStartedGameFromSimulatedInvite) {
+        	// The session id must be kept through out a network game and be unique per game,
+        	// when we created the room, we used the owner field to store a randomly generated
+        	// session string.
+        	Report::getInstance().ReportMPJoinedPrivateGame(revent.owner, ROOM_NAME, mUserName.c_str()[0]);
+        } else {
+        	Report::getInstance().ReportMPJoinedPublicGame(revent.owner, ROOM_NAME, mUserName.c_str()[0]);
+        }
     }
     else {
     	createRoom();
@@ -622,7 +655,7 @@ void HelloWorld::onUpdatePropertyDone(AppWarp::liveroom revent)
 void HelloWorld::onChatReceived(AppWarp::chat chatevent)
 {
     dbgprint("onChatReceived..");
-    if(chatevent.sender != _userName)
+    if(chatevent.sender != mUserName)
 	{
 		std::size_t loc = chatevent.chat.find('x');
 		std::string str1 = chatevent.chat.substr(0,loc);
@@ -643,22 +676,22 @@ void HelloWorld::showMessageLayer(std::string message)
     // Get the dimensions of the window for calculation purposes
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     
-    _messageLayer = CCLayerColor::create();
-    _messageLayer->setColor(ccc3(0, 0, 0));
-    _messageLayer->setOpacity(50);
-    addChild(_messageLayer);
+    mMessageLayer = CCLayerColor::create();
+    mMessageLayer->setColor(ccc3(0, 0, 0));
+    mMessageLayer->setOpacity(50);
+    addChild(mMessageLayer);
     
     CCLabelTTF *buttonTitle = CCLabelTTF::create(message.c_str(), "Marker Felt", 30);
     buttonTitle->setColor(ccBLUE);
-    _messageLayer->addChild(buttonTitle);
+    mMessageLayer->addChild(buttonTitle);
     buttonTitle->setPosition(ccp(winSize.width/2,winSize.height/2));
     
 }
 
 void HelloWorld::removeMessageLayer() {
-	if (_messageLayer) {
-		removeChild(_messageLayer);
-		_messageLayer = NULL;
+	if (mMessageLayer) {
+		removeChild(mMessageLayer);
+		mMessageLayer = NULL;
 	}
 }
 
@@ -692,6 +725,17 @@ void HelloWorld::onCreateRoomDone(AppWarp::room revent)
         dbgprint("\nonCreateRoomDone...success\n");
 
     }
+
+    if (mStartedGameFromSimulatedInvite) {
+
+    	Report::getInstance().ReportMPCreatePrivateGame(revent.owner, ROOM_NAME, MAX_PLAYER);
+    } else {
+    	std::map<std::string, std::string> gameParameters;
+    	gameParameters["playscape"] = "room123";
+
+    	Report::getInstance().ReportMPCreatePublicGame(revent.owner, MAX_PLAYER, gameParameters);
+    }
+
     joinRoomIfNeeded();
 }
 
@@ -769,8 +813,4 @@ void HelloWorld::onUnsubscribeLobbyDone(AppWarp::lobby levent)
         dbgprint("onUnsubscribeLobbyDone .... Failed");
 
     }
-}
-
-void HelloWorld::simulateReceivedInviteButtonCallback(CCObject* pSender) {
-	dbgprint("simulateReceivedInviteButtonCallback");
 }

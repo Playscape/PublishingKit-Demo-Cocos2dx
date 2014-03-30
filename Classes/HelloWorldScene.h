@@ -6,6 +6,7 @@
 #include "StartGameLayer.h"
 #include "InGameMenuLayer.h"
 #include "appwarp.h"
+#include "playscape/Report.h"
 
 #define APPWARP_APP_KEY     "1a7bd5e37ca03fa987fd3ab3c119892f8a624bce4b3525533785e8c4f9d5b96d"
 #define APPWARP_SECRET_KEY  "8a88fbc2c03da4c3096965cc1089e9294b728023b7fc9d0aa62f591731ec7b22"
@@ -15,7 +16,24 @@
 #define ROOM_OWNER          "tester"
 #define MAX_PLAYER          2
 
+using playscape::MPAnalyticsProvider;
+using playscape::SocialAnalyticsProvider;
 
+class AppWarpMultiplayerProvider : public MPAnalyticsProvider {
+
+public:
+	// this should be the time since the network session started in seconds, a time that is synchronized between all players is preferable.
+	inline int32_t getCurrentNetworkTime() {
+		return 42;
+	}
+};
+
+class FacebookSocialAnalyticsProvider : public SocialAnalyticsProvider {
+public:
+	playscape::SocialNetwork getCurrentNetwork() const {
+		return playscape::Facebook;
+	}
+};
 
 class HelloWorld : public cocos2d::CCLayerColor,
 				   public AppWarp::ConnectionRequestListener,
@@ -34,23 +52,23 @@ public:
     static cocos2d::CCScene* scene();
     void showStartGameLayer();
     void updateRoomProperties();
-    void getRoomProperties();
     void createRoom();
     void getRooms();
     void removeStartGameLayer();
     void removeMessageLayer();
-    void playGameButtonCallback();
-    void openStoreButtonCallback();
 
     // menu callbacks
     void menuCloseCallback(CCObject* pSender);
     void mainMenuButtonCallback(CCObject* pSender);
     void inviteFriendsButtonCallback(CCObject* pSender);
     void simulateReceivedInviteButtonCallback(CCObject* pSender);
+    void playGameButtonCallback(CCObject* pSender);
+    void openStoreButtonCallback(CCObject* pSender);
+    void simulateSocialNetworkLoginCallback(CCObject* pSender);
+
     void joinRoomIfNeeded();
 
     void startGame();
-    void pauseGame();
     void updateEnemyStatus(cocos2d::CCPoint pos,float duration);
     void spriteMoveFinished(cocos2d::CCSprite* pSender);
     void sendData(float x, float y, float duration);
@@ -90,23 +108,27 @@ public:
     void stopGame();
 
 private:
-    cocos2d::CCArray *_targets;
-    cocos2d::CCArray *_projectiles;
+    AppWarpMultiplayerProvider *mAppWarpMultiplayerProvider;
+    FacebookSocialAnalyticsProvider *mFacebookSocialAnalyticsProvider;
+    cocos2d::CCArray *mTargets;
+    cocos2d::CCArray *mProjectiles;
 
-    int _projectilesDestroyed;
-    Player *_player;
-    Player *_enemy;
-    int _score;
-    bool _isEnemyAdded;
-    bool _isConnected;
-    std::string _userName;
-    bool _isFirstLaunch;
-    StartGameLayer *_startGameLayer;
-    InGameMenuLayer *_inGameMenuLayer;
-    CCLayerColor *_messageLayer;
-    CCLayer *_gameLayer;
-    bool _isInRoom;
+    int mProjectilesDestroyed;
+    Player *mPlayer;
+    Player *mEnemy;
+    int mScore;
+    bool mIsEnemyAdded;
+    bool mIsConnected;
+    std::string mUserName;
+    bool mIsFirstLaunch;
+    StartGameLayer *mStartGameLayer;
+    InGameMenuLayer *mInGameMenuLayer;
+    CCLayerColor *mMessageLayer;
+    CCLayer *mGameLayer;
+    bool mIsInRoom;
+    bool mStartedGameFromSimulatedInvite;
 
+    bool mIsSocialNetworkLoggedIn;
 };
 
 
