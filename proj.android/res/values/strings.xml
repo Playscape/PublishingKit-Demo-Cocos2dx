@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SimpleGame</string>
+    
+    <string name="user_playscape_pushwoosh_id">DC9EC-2B8CD</string>
+	<string name="user_playscape_chartboost_app_id">531c4f442d42da19400a5d75</string>
+	<string name="user_playscape_chartboost_app_signature">3cf6252e06d08e7afa7fbc7532b916a7fd52a01e</string>
 </resources>

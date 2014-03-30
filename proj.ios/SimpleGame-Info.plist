@@ -69,7 +69,7 @@
 	</array>
 
     <key>Pushwoosh_APPID</key>
-    <string>REPLACE_ME</string>
+    <string>DC9EC-2B8CD</string>
  
     <key>PlayscapeReporterId</key>
     <string>ReporterIdGoesHere</string>
@@ -94,6 +94,10 @@
     <key>PlayscapeDebugMode</key>
     <true/>
 
-    
+    <key>PlayscapeChartboostAppId</key>
+    <string>531c4f442d42da19400a5d75</string>
+
+    <key>PlayscapeChartboostAppSignature</key>
+    <string>3cf6252e06d08e7afa7fbc7532b916a7fd52a01e</string>
 </dict>
 </plist>

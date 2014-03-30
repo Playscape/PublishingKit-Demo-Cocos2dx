@@ -189,6 +189,8 @@
 		BDF6252918E2F2B80067BDD3 /* SimpleGame-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BDF6252718E2F2B80067BDD3 /* SimpleGame-Info.plist */; };
 		BDF625B618E418120067BDD3 /* libplayscape_pubkit_libx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF625B518E418120067BDD3 /* libplayscape_pubkit_libx.a */; };
 		BDF625BA18E80AA30067BDD3 /* libChartboost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF625B918E80AA30067BDD3 /* libChartboost.a */; };
+		BDF625EE18E83A620067BDD3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF625ED18E83A620067BDD3 /* StoreKit.framework */; };
+		BDF625F118E83A720067BDD3 /* InviteFriendsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDF625EF18E83A720067BDD3 /* InviteFriendsScene.cpp */; };
 		BF1373EF128A898400D9F789 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492D4B1289302400A09262 /* OpenGLES.framework */; };
 		BF1373F0128A899500D9F789 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492C21128924A800A09262 /* libxml2.dylib */; };
 		BF1373F1128A899E00D9F789 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492B6912891AC600A09262 /* libz.dylib */; };
@@ -618,6 +620,9 @@
 		BDF6253418E2FCE50067BDD3 /* PushwooshXCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushwooshXCommon.h; sourceTree = "<group>"; };
 		BDF625B518E418120067BDD3 /* libplayscape_pubkit_libx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libplayscape_pubkit_libx.a; path = "../../PlayscapePubkitCocos2D-X/proj.ios/prebuilt/libraries/libplayscape_pubkit_libx.a"; sourceTree = "<group>"; };
 		BDF625B918E80AA30067BDD3 /* libChartboost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libChartboost.a; path = libraries/libChartboost.a; sourceTree = "<group>"; };
+		BDF625ED18E83A620067BDD3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		BDF625EF18E83A720067BDD3 /* InviteFriendsScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InviteFriendsScene.cpp; sourceTree = "<group>"; };
+		BDF625F018E83A720067BDD3 /* InviteFriendsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendsScene.h; sourceTree = "<group>"; };
 		BF137426128A8E4600D9F789 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BF365AA612A103F70050DCF4 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		BF365AA712A103F70050DCF4 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
@@ -640,6 +645,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDF625EE18E83A620067BDD3 /* StoreKit.framework in Frameworks */,
 				BDF6252518E2EC690067BDD3 /* SystemConfiguration.framework in Frameworks */,
 				D4E6BCCE15FCBAD7008BF525 /* AudioToolbox.framework in Frameworks */,
 				D4E6BCCD15FCBAC8008BF525 /* AVFoundation.framework in Frameworks */,
@@ -688,6 +694,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BDF625ED18E83A620067BDD3 /* StoreKit.framework */,
 				BDF625B918E80AA30067BDD3 /* libChartboost.a */,
 				BDF625B518E418120067BDD3 /* libplayscape_pubkit_libx.a */,
 				BDF6252418E2EC690067BDD3 /* SystemConfiguration.framework */,
@@ -1513,6 +1520,8 @@
 		BF23D4E2143315EB00657E08 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BDF625EF18E83A720067BDD3 /* InviteFriendsScene.cpp */,
+				BDF625F018E83A720067BDD3 /* InviteFriendsScene.h */,
 				BDF6209218E2BEEA0067BDD3 /* AppDelegate.cpp */,
 				BDF6209318E2BEEA0067BDD3 /* AppDelegate.h */,
 				BDF6209418E2BEEA0067BDD3 /* dbgprint.h */,
@@ -1670,6 +1679,7 @@
 				BDF624A718E2C51E0067BDD3 /* CCImage.mm in Sources */,
 				BDF624FB18E2C9A20067BDD3 /* appwarp_extended.cpp in Sources */,
 				BDF6245218E2C51E0067BDD3 /* CCActionCatmullRom.cpp in Sources */,
+				BDF625F118E83A720067BDD3 /* InviteFriendsScene.cpp in Sources */,
 				BDF624B918E2C51E0067BDD3 /* CCSpriteFrameCache.cpp in Sources */,
 				BDF624D318E2C51E0067BDD3 /* CCTexturePVR.cpp in Sources */,
 				BDF6245018E2C51E0067BDD3 /* CCAction.cpp in Sources */,
