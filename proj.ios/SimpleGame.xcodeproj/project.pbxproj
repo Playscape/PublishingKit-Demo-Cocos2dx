@@ -194,6 +194,7 @@
 		BF13742F128A8E6A00D9F789 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF137426128A8E4600D9F789 /* QuartzCore.framework */; };
 		BF365AA812A103F70050DCF4 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF365AA712A103F70050DCF4 /* AppController.mm */; };
 		BF4DE6AD138BB89600CF907D /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF4DE6AC138BB89600CF907D /* RootViewController.mm */; };
+		CCB979B518E80A1F0076F413 /* libChartboost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB979B418E80A1F0076F413 /* libChartboost.a */; };
 		D41A0AC6160F14F5004552AE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41A0AC5160F14F5004552AE /* Default-568h@2x.png */; };
 		D446FD47161020AC000ADA7B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D446FD46161020AB000ADA7B /* Default@2x.png */; };
 		D4ABB4B313B4395300552E6E /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = D4ABB4B213B4395300552E6E /* main.mm */; };
@@ -624,6 +625,7 @@
 		BF492D4B1289302400A09262 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF4DE6AB138BB89600CF907D /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		BF4DE6AC138BB89600CF907D /* RootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RootViewController.mm; sourceTree = "<group>"; };
+		CCB979B418E80A1F0076F413 /* libChartboost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libChartboost.a; sourceTree = "<group>"; };
 		D41A0AC5160F14F5004552AE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../proj.ios/Default-568h@2x.png"; sourceTree = "<group>"; };
 		D446FD46161020AB000ADA7B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../proj.ios/Default@2x.png"; sourceTree = "<group>"; };
 		D4ABB4B213B4395300552E6E /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
@@ -638,6 +640,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCB979B518E80A1F0076F413 /* libChartboost.a in Frameworks */,
 				BDF6252518E2EC690067BDD3 /* SystemConfiguration.framework in Frameworks */,
 				D4E6BCCE15FCBAD7008BF525 /* AudioToolbox.framework in Frameworks */,
 				D4E6BCCD15FCBAC8008BF525 /* AVFoundation.framework in Frameworks */,
@@ -685,6 +688,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CCB979B418E80A1F0076F413 /* libChartboost.a */,
 				BDF625B518E418120067BDD3 /* libplayscape_pubkit_libx.a */,
 				BDF6252418E2EC690067BDD3 /* SystemConfiguration.framework */,
 				BDF6251E18E2D6CC0067BDD3 /* libplayscape_pubkit_lib.a */,
@@ -1823,6 +1827,7 @@
 					"$(inherited)",
 					/Users/mominis/projects/max/demos/DemoGame_AppWarp/proj.ios/libraries/cocos2dx/platform/third_party/ios/libraries,
 					"/Users/mominis/projects/max/demos/PlayscapePubkitCocos2D-X/proj.ios/prebuilt/libraries",
+					"$(PROJECT_DIR)",
 				);
 				PRODUCT_NAME = SimpleGame;
 				PROVISIONING_PROFILE = "";
@@ -1867,6 +1872,7 @@
 					"$(inherited)",
 					/Users/mominis/projects/max/demos/DemoGame_AppWarp/proj.ios/libraries/cocos2dx/platform/third_party/ios/libraries,
 					"/Users/mominis/projects/max/demos/PlayscapePubkitCocos2D-X/proj.ios/prebuilt/libraries",
+					"$(PROJECT_DIR)",
 				);
 				PRODUCT_NAME = SimpleGame;
 				PROVISIONING_PROFILE = "";
