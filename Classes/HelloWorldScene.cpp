@@ -67,11 +67,12 @@ void HelloWorld::showStartGameLayer()
 
     CCMenu *pMenu =
 		CCMenu::create(
-			CCMenuItemFont::create("Play Game", this,menu_selector(HelloWorld::playGameButtonCallback)),
-			CCMenuItemFont::create("Open Store", this,menu_selector(HelloWorld::openStoreButtonCallback)),
-			CCMenuItemFont::create("Play With Friends", this,menu_selector(HelloWorld::inviteFriendsButtonCallback)),
-			CCMenuItemFont::create("Simulate Received Invite", this,menu_selector(HelloWorld::simulateReceivedInviteButtonCallback)),
-			CCMenuItemFont::create("Simulate SocialNetwork Login/Logout", this,menu_selector(HelloWorld::simulateSocialNetworkLoginCallback)),
+			CCMenuItemFont::create("Play Game", this, menu_selector(HelloWorld::playGameButtonCallback)),
+			CCMenuItemFont::create("Open Store", this, menu_selector(HelloWorld::openStoreButtonCallback)),
+			CCMenuItemFont::create("Play With Friends", this, menu_selector(HelloWorld::inviteFriendsButtonCallback)),
+			CCMenuItemFont::create("Simulate Received Invite", this, menu_selector(HelloWorld::simulateReceivedInviteButtonCallback)),
+			CCMenuItemFont::create("Simulate SocialNetwork Login/Logout", this, menu_selector(HelloWorld::simulateSocialNetworkLoginCallback)),
+            CCMenuItemFont::create("Show Interstitial", this, menu_selector(HelloWorld::showInterstitialCallback)),
 			NULL);
 
     CCObject* item;
@@ -82,6 +83,11 @@ void HelloWorld::showStartGameLayer()
     pMenu->alignItemsVertically();
     mStartGameLayer->addChild(pMenu, 1);
 }
+
+void HelloWorld::showInterstitialCallback(CCObject* sender) {
+    ChartboostX::showInterstitial("ShowInterstitialButton");
+}
+
 
 void HelloWorld::inviteFriendsButtonCallback(CCObject* sender) {
 	CCDirector::sharedDirector()->replaceScene(InviteFriendsScene::scene());
