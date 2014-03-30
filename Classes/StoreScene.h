@@ -13,7 +13,6 @@ using playscape::PurchaseItem;
 using std::string;
 using std::map;
 using namespace cocos2d;
-
 class StoreScene : public cocos2d::CCLayerColor
 {
 protected:
@@ -28,7 +27,7 @@ protected:
 	void buySamuraiShieldCallback(CCObject* sender);
 	void buyShogunKatanaCallback(CCObject* sender);
 	void hideBuyDialog();
-	void showBuyDialog();
+	void showBuyDialog(const string& itemName);
 
 	void buyButtonCallback(CCObject* sender);
 	void cancelBuyButtonCallback(CCObject* sender);
