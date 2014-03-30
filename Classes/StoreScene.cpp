@@ -73,7 +73,7 @@ void StoreScene::buyNinjaStarsCallback(CCObject* sender) {
 	mCurrentItemPurchasing = mItemNinjaStars;
 	mCurrentItemPrice = 10.0;
 
-	showBuyDialog("Ninja Stars");
+	showBuyDialog();
 	dbgprint("Buying ninja stars");
 }
 
@@ -81,7 +81,7 @@ void StoreScene::buyNinjaSwordCallback(CCObject* sender) {
 	mCurrentItemPurchasing = mItemNinjaSword;
 	mCurrentItemPrice = 15.0;
 
-	showBuyDialog("Ninja Stars");
+	showBuyDialog();
 	mShouldFail = true;
 	dbgprint("Buying ninja sword and failing");
 }
@@ -90,14 +90,14 @@ void StoreScene::buySamuraiShieldCallback(CCObject* sender) {
 	mCurrentItemPurchasing = mItemSamuraiShield;
 	mCurrentItemPrice = 20.0;
 
-	showBuyDialog("Samurai Shield");
+	showBuyDialog();
 	dbgprint("Buying samurai shield");
 }
 void StoreScene::buyShogunKatanaCallback(CCObject* sender) {
 	mCurrentItemPurchasing = mItemShogunKatana;
 	mCurrentItemPrice = 25.0;
 
-	showBuyDialog("Shogun Katana");
+	showBuyDialog();
 	dbgprint("Shogun katana");
 }
 
@@ -123,19 +123,18 @@ void StoreScene::menuButtonCallback(CCObject* sender) {
 }
 
 
-void StoreScene::showBuyDialog(const string& itemName) {
+void StoreScene::showBuyDialog() {
 	reportStartPurchase();
 
 	if (mBuyDialog) {
-		mBuyDialog->release();
+		removeChild(mBuyDialog);
 	}
 
 	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 	mBuyDialog = CCLayerColor::create(ccc4(0xcc, 0xcc, 0xcc, 0xff), (winSize.width * 0.8f), (winSize.height * 0.8f));
-	mBuyDialog->retain();
 	addChild(mBuyDialog);
 
-	string question = string("Are you sure you want to buy ") + itemName + "?";
+	string question = "Are you sure you want to buy " + mCurrentItemPurchasing->getName() + "?";
 	CCLabelTTF* questionLabel = CCLabelTTF::create(question.c_str(), "Marker Felt", 26);
 
 	questionLabel->setAnchorPoint(CCPointZero);

@@ -111,14 +111,11 @@ CCScene* InviteFriendsScene::scene()
 
 void InviteFriendsScene::showInviteDialog(const string& friendName) {
 
-
 	if (mInviteDialog) {
-		mInviteDialog->release();
+		removeChild(mInviteDialog);
 	}
-
 	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 	mInviteDialog = CCLayerColor::create(ccc4(0xcc, 0xcc, 0xcc, 0xff), (winSize.width * 0.8f), (winSize.height * 0.8f));
-	mInviteDialog->retain();
 	addChild(mInviteDialog);
 
 	string question = string("Would you like to invite ") + friendName + "?";
