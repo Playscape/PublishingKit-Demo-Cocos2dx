@@ -66,6 +66,7 @@ public:
     void playGameButtonCallback(CCObject* pSender);
     void openStoreButtonCallback(CCObject* pSender);
     void simulateSocialNetworkLoginCallback(CCObject* pSender);
+    void setCustomTagsCallback(CCObject* pSender);
 
     void joinRoomIfNeeded();
 

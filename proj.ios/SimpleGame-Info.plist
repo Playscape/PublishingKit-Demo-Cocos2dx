@@ -43,7 +43,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>org.cocos2d-x.SimpleGame</string>
+	<string>com.playscape.cocos2dxdemo</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -60,6 +60,28 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string></string>
+	<key>PlayscapeChartboostAppId</key>
+	<string>531c4f442d42da19400a5d75</string>
+	<key>PlayscapeChartboostAppSignature</key>
+	<string>3cf6252e06d08e7afa7fbc7532b916a7fd52a01e</string>
+	<key>PlayscapeDebugMode</key>
+	<true/>
+	<key>PlayscapePublishingKitVersion</key>
+	<string>Kit Trunk</string>
+	<key>PlayscapeRemoteLoggerCampaignId</key>
+	<string>campaign_id</string>
+	<key>PlayscapeRemoteLoggerDumpSizeThresholdBytes</key>
+	<integer>4096</integer>
+	<key>PlayscapeRemoteLoggerEntrySizeLimitBytes</key>
+	<integer>2048</integer>
+	<key>PlayscapeRemoteLoggerFileSizeLimitBytes</key>
+	<integer>2097152</integer>
+	<key>PlayscapeRemoteLoggerUrl</key>
+	<string>https://qa.server.gameconsole.mominis.com/services/LoggingService/WriteToLog</string>
+	<key>PlayscapeReporterId</key>
+	<string>ReporterIdGoesHere</string>
+	<key>Pushwoosh_APPID</key>
+	<string>DC9EC-2B8CD</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>
@@ -67,37 +89,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-
-    <key>Pushwoosh_APPID</key>
-    <string>DC9EC-2B8CD</string>
- 
-    <key>PlayscapeReporterId</key>
-    <string>ReporterIdGoesHere</string>
-    
-    <key>PlayscapeRemoteLoggerUrl</key>
-    <string>https://qa.server.gameconsole.mominis.com/services/LoggingService/WriteToLog</string>
-    
-    <key>PlayscapePublishingKitVersion</key>
-    <string>Kit Trunk</string>
-    
-    <key>PlayscapeRemoteLoggerDumpSizeThresholdBytes</key>
-    <integer>4096</integer>
-    
-    <key>PlayscapeRemoteLoggerFileSizeLimitBytes</key>
-    <integer>2097152</integer>
-    
-    <key>PlayscapeRemoteLoggerEntrySizeLimitBytes</key>
-    <integer>2048</integer>
-    
-    <key>PlayscapeRemoteLoggerCampaignId</key>
-    <string>campaign_id</string>
-    <key>PlayscapeDebugMode</key>
-    <true/>
-
-    <key>PlayscapeChartboostAppId</key>
-    <string>531c4f442d42da19400a5d75</string>
-
-    <key>PlayscapeChartboostAppSignature</key>
-    <string>3cf6252e06d08e7afa7fbc7532b916a7fd52a01e</string>
 </dict>
 </plist>
