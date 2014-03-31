@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.playscape.publishingkit.ActivityLifeCycle;
-import com.wenbin.ChartboostX.ChartboostXBridge;
 
 /**
  * Playscape's default implementation to an activity
@@ -21,10 +20,9 @@ public class PlayscapeActivity extends SimpleGame {
 
 	@Override
 	public void onCreate(Bundle bundle) {
-		ChartboostXBridge.onCreate(this);
-
+	
 		super.onCreate(bundle);
-		
+
 		mActivityLifeCycle = Playscape.getActivityLifeCycle(this);
 		mActivityLifeCycle.onCreate(bundle);
 	}
@@ -33,7 +31,6 @@ public class PlayscapeActivity extends SimpleGame {
 	public void onDestroy() {
 	    super.onDestroy();
 	    mActivityLifeCycle.onDestroy();
-	    ChartboostXBridge.onDestroy();
 	}
 
 	@Override
@@ -62,7 +59,6 @@ public class PlayscapeActivity extends SimpleGame {
 	public void onStop() {
 	    super.onStop();
 	    mActivityLifeCycle.onStop();
-	    ChartboostXBridge.onStop();
 	}
 	
 	@Override
@@ -74,8 +70,8 @@ public class PlayscapeActivity extends SimpleGame {
 	@Override
 	public void onBackPressed() {
 
-	    // If an interstitial is on screen, close it. Otherwise continue as normal.
-	    if (ChartboostXBridge.onBackPressed()) {
+	    // If we've handled the back key don't initiate the default handler.
+	    if (mActivityLifeCycle.onBackPressed()) {
 	        return;
 	    } else {
 	        super.onBackPressed();
