@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.cocos2dx.simplegame"
+    package="com.playscape.coco2dxdemo"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -8,7 +8,7 @@
         #                                ACTION  ITEMS                                    #
         # =============================================================================== #
         #                                                                                 #
-        # 1. Replace-ALL org.cocos2dx.simplegame strings with your game's package name.   #
+        # 1. Replace-ALL com.playscape.coco2dxdemo strings with your game's package name.   #
         # 2. PlayscapeActivity.java can either extend from your own activity or replace   #
         #   it entirely, either way is good.                                              #
         # 3. Please note that the application tag has an android:name tag which points to #
@@ -46,10 +46,10 @@
 	        where PACKAGE is the application's package name.
     -->
     <permission
-        android:name="org.cocos2dx.simplegame.permission.C2D_MESSAGE"
+        android:name="com.playscape.coco2dxdemo.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="org.cocos2dx.simplegame.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.playscape.coco2dxdemo.permission.C2D_MESSAGE" />
 
     <!-- This app has permission to register and receive data message. -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
@@ -95,7 +95,7 @@
                 <!-- Receives the registration id. -->
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 
-                <category android:name="org.cocos2dx.simplegame" />
+                <category android:name="com.playscape.coco2dxdemo" />
             </intent-filter>
         </receiver>
 
@@ -105,7 +105,7 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <!-- Receives the registration id. -->
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-                <category android:name="org.cocos2dx.simplegame" />
+                <category android:name="com.playscape.coco2dxdemo" />
             </intent-filter>
         </receiver>
 
@@ -113,7 +113,7 @@
             android:name="com.playscape.support.pushwoosh.PushWooshProxyActivity"
             android:exported="true" >
             <intent-filter>
-                <action android:name="org.cocos2dx.simplegame.MESSAGE" />
+                <action android:name="com.playscape.coco2dxdemo.MESSAGE" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
