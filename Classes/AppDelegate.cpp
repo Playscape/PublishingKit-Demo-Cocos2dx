@@ -30,7 +30,6 @@ AppDelegate::~AppDelegate()
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
-    ChartboostX::cacheInterstitial();
     PlayscapeX::onApplicationLaunched();
 
     // initialize director
