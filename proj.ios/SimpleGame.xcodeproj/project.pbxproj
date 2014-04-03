@@ -1847,10 +1847,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/mominis/projects/max/demos/DemoGame_AppWarp/proj.ios/libraries/cocos2dx/platform/third_party/ios/libraries,
-					"/Users/mominis/projects/max/demos/PlayscapePubkitCocos2D-X/proj.ios/prebuilt/libraries",
+					"$(SRCROOT)/libraries/cocos2dx/platform/third_party/ios/libraries",
+					"$(SRCROOT)/../../PlayscapePubkitCocos2D-X/proj.ios/prebuilt/libraries",
 					"$(PROJECT_DIR)",
-					/Users/mominis/projects/max/demos/DemoGame_AppWarp/proj.ios/libraries,
+					"$(SRCROOT)/libraries",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/playscape_pubkit_libx-gxsgbclkdlbsjubrygapptlzhdeo/Build/Products/Debug-iphoneos",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/RemoteLogger-ckzsdhoqdwqsmdbfuqawhppfcoob/Build/Products/Debug-iphoneos",
 				);
@@ -1895,10 +1895,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/mominis/projects/max/demos/DemoGame_AppWarp/proj.ios/libraries/cocos2dx/platform/third_party/ios/libraries,
-					"/Users/mominis/projects/max/demos/PlayscapePubkitCocos2D-X/proj.ios/prebuilt/libraries",
+					"$(SRCROOT)/libraries/cocos2dx/platform/third_party/ios/libraries",
+					"$(SRCROOT)/../../PlayscapePubkitCocos2D-X/proj.ios/prebuilt/libraries",
 					"$(PROJECT_DIR)",
-					/Users/mominis/projects/max/demos/DemoGame_AppWarp/proj.ios/libraries,
+					"$(SRCROOT)/libraries",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/playscape_pubkit_libx-gxsgbclkdlbsjubrygapptlzhdeo/Build/Products/Debug-iphoneos",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/RemoteLogger-ckzsdhoqdwqsmdbfuqawhppfcoob/Build/Products/Debug-iphoneos",
 				);
