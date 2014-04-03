@@ -29,10 +29,6 @@
 
 #import "RootViewController.h"
 
-#include "playscape/PushwooshXCommon.h"
-
-using playscape::pushwoosh_support::PushwooshXCommon;
-
 @implementation AppController
 
 #pragma mark -
