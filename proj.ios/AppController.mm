@@ -29,6 +29,10 @@
 
 #import "RootViewController.h"
 
+#include "playscape/PushwooshX.h"
+
+using playscape::notifications::PushwooshX;
+
 @implementation AppController
 
 #pragma mark -
@@ -114,6 +118,10 @@ static AppDelegate s_sharedApplication;
      */
 }
 
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    PushwooshX::didReceiveRemoteNotification(userInfo);
+}
 
 #pragma mark -
 #pragma mark Memory management
