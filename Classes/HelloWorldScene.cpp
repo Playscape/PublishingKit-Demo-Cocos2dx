@@ -108,6 +108,16 @@ void HelloWorld::setCustomTagsCallback(CCObject* pSender) {
 	PushwooshX::setTag("customTag2", is.str());
 	PushwooshX::setTag("customTag3Numeric", ++value);
 	PushwooshX::setTag("customTag4Numeric", ++value);
+
+	dbgprint("setting custom vars: var1, var2, var3, var4 is set to empty which means it should not be reported.");
+
+	is << value;
+	Report::getInstance().setCustomVariable("var1", is.str());
+	is << value;
+	Report::getInstance().setCustomVariable("var2", is.str());
+	is << value;
+	Report::getInstance().setCustomVariable("var3", is.str());
+	Report::getInstance().setCustomVariable("var4", "");
 }
 
 void HelloWorld::showInterstitialCallback(CCObject* sender) {
