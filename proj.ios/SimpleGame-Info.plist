@@ -60,6 +60,7 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string></string>
+    
 	<key>PlayscapeChartboostAppId</key>
 	<string>531c4f442d42da19400a5d75</string>
 	<key>PlayscapeChartboostAppSignature</key>
@@ -79,7 +80,7 @@
 	<key>PlayscapeRemoteLoggerUrl</key>
 	<string>https://qa.server.gameconsole.mominis.com/services/LoggingService/WriteToLog</string>
 	<key>PlayscapeReporterId</key>
-	<string>ReporterIdGoesHere</string>
+	<string>PubkitCocos2dxDemo</string>
 	<key>Pushwoosh_APPID</key>
 	<string>DC9EC-2B8CD</string>
 	<key>UIPrerenderedIcon</key>

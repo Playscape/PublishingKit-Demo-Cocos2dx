@@ -8,7 +8,7 @@
         #                                ACTION  ITEMS                                    #
         # =============================================================================== #
         #                                                                                 #
-        # 1. Replace-ALL com.playscape.coco2dxdemo strings with your game's package name.   #
+        # 1. Replace-ALL com.playscape.coco2dxdemo strings with your game's package name. #
         # 2. PlayscapeActivity.java can either extend from your own activity or replace   #
         #   it entirely, either way is good.                                              #
         # 3. Please note that the application tag has an android:name tag which points to #
@@ -99,16 +99,20 @@
             </intent-filter>
         </receiver>
 
-        <receiver android:name="com.playscape.support.pushwoosh.PushWooshReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+        <receiver android:name="com.playscape.support.pushwoosh.PushWooshReceiverX" android:exported="false">
             <intent-filter>
-                <!-- Receives the actual messages. -->
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <!-- Receives the registration id. -->
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-                <category android:name="com.playscape.coco2dxdemo" />
+                <action android:name="com.playscape.coco2dxdemo.action.PUSH_MESSAGE_RECEIVE" />
             </intent-filter>
         </receiver>
-
+        
+        <receiver android:name="com.playscape.support.pushwoosh.PushWooshRegistrationReceiverX" android:exported="false">
+            <intent-filter>
+                <action android:name="com.playscape.coco2dxdemo.com.arellomobile.android.push.REGISTER_BROAD_CAST_ACTION" />
+            </intent-filter>
+        </receiver>
+        
+		<meta-data android:name="PW_BROADCAST_REGISTRATION" android:value="true" />
+                
         <activity
             android:name="com.playscape.support.pushwoosh.PushWooshProxyActivity"
             android:exported="true" >

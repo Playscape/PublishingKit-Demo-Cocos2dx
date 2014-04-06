@@ -1,10 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="user_playscape_remote_logger_url">https://qa.server.gameconsole.mominis.com/services/LoggingService/WriteToLog</string>
-    <string name="user_playscape_publishing_kit_version">Kit Trunk</string>
     <string name="user_playscape_pushwoosh_id">DC9EC-2B8CD</string>
-	<string name="user_playscape_google_sender_id">786132690907</string>
+    <string name="user_playscape_publishing_kit_version">Kit Trunk</string>
+    <string name="user_playscape_reporter_id">PubkitCocos2dxDemo</string>
+    
 	<string name="user_playscape_chartboost_app_id">53396a519ddc3525dec35705</string>
 	<string name="user_playscape_chartboost_app_signature">91b24a2d0a0df604c3e2ccc6bd7dbf832db88d24</string>
     <string name="user_playscape_debug_mode">true</string>
+    
 </resources>
