@@ -61,6 +61,7 @@ public:
     void menuCloseCallback(CCObject* pSender);
     void mainMenuButtonCallback(CCObject* pSender);
     void showInterstitialCallback(CCObject* sender);
+    void showInterstitialWithNoLocationCallback(CCObject* sender);
     void inviteFriendsButtonCallback(CCObject* pSender);
     void simulateReceivedInviteButtonCallback(CCObject* pSender);
     void playGameButtonCallback(CCObject* pSender);

@@ -78,6 +78,7 @@ void HelloWorld::showStartGameLayer()
 			CCMenuItemFont::create("Simulate Received Invite", this, menu_selector(HelloWorld::simulateReceivedInviteButtonCallback)),
 			CCMenuItemFont::create("Simulate SocialNetwork Login/Logout", this, menu_selector(HelloWorld::simulateSocialNetworkLoginCallback)),
             CCMenuItemFont::create("Show Interstitial", this, menu_selector(HelloWorld::showInterstitialCallback)),
+            CCMenuItemFont::create("Show Interstitial With No Location", this, menu_selector(HelloWorld::showInterstitialWithNoLocationCallback)),
             CCMenuItemFont::create("Set PW custom tags", this, menu_selector(HelloWorld::setCustomTagsCallback)),
 			NULL);
 
@@ -124,6 +125,9 @@ void HelloWorld::showInterstitialCallback(CCObject* sender) {
     ChartboostX::showInterstitial("ShowInterstitialButton");
 }
 
+void HelloWorld::showInterstitialWithNoLocationCallback(CCObject* sender) {
+    ChartboostX::showInterstitial();
+}
 
 void HelloWorld::inviteFriendsButtonCallback(CCObject* sender) {
 	CCDirector::sharedDirector()->replaceScene(InviteFriendsScene::scene());
