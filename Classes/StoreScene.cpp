@@ -63,8 +63,11 @@ bool StoreScene::init()
     mBuyDialog = NULL;
     mShouldFail = false;
 
+
     registerStoreFlow();
     initReportableItems();
+
+    Report::getInstance().ReportFlowStep(mStoreFlow , OPEN_STORE_FLOW_STEP, "ok", mDummyFlowDetails);
 
     return true;
 }
