@@ -64,7 +64,8 @@ public:
     void showInterstitialWithNoLocationCallback(CCObject* sender);
     void inviteFriendsButtonCallback(CCObject* pSender);
     void simulateReceivedInviteButtonCallback(CCObject* pSender);
-    void playGameButtonCallback(CCObject* pSender);
+    void joinGameButtonCallback(CCObject* pSender);
+    void hostGameButtonCallback(CCObject* pSender);
     void openStoreButtonCallback(CCObject* pSender);
     void simulateSocialNetworkLoginCallback(CCObject* pSender);
     void setCustomTagsCallback(CCObject* pSender);
@@ -102,19 +103,24 @@ public:
     void onSubscribeLobbyDone(AppWarp::lobby levent);
     void onUnsubscribeLobbyDone(AppWarp::lobby levent);
     void onUserLeftRoom(AppWarp::room rData, std::string user);
+    void onLeaveRoomDone (AppWarp::room revent);
     void showInGameMenuLayer();
 
     void scheduleRecover();
     void unscheduleRecover();
     void recover();
-    void disconnect();
     void stopGame();
+
+    void setSomeCustomVars();
+    void connect(bool force);
 
 private:
     AppWarpMultiplayerProvider *mAppWarpMultiplayerProvider;
     FacebookSocialAnalyticsProvider *mFacebookSocialAnalyticsProvider;
     cocos2d::CCArray *mTargets;
     cocos2d::CCArray *mProjectiles;
+
+    std::string mRoomId;
 
     int mProjectilesDestroyed;
     Player *mPlayer;
@@ -132,6 +138,8 @@ private:
     bool mStartedGameFromSimulatedInvite;
 
     bool mIsSocialNetworkLoggedIn;
+
+    bool mHostGameButtonClicked;
 };
 
 

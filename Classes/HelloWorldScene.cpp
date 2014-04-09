@@ -61,8 +61,30 @@ bool HelloWorld::init()
 
     mStartedGameFromSimulatedInvite = false;
     mIsSocialNetworkLoggedIn = false;
+    mHostGameButtonClicked = false;
 
+    // Here's an example of setting some custom auxilary vars which are reported alongside each report -
+    setSomeCustomVars();
     return true;
+}
+
+void HelloWorld::setSomeCustomVars() {
+	int value = rand() % 20000;
+	ostringstream is;
+	is << "value_" << value;
+	value++;
+	is << value;
+
+	dbgprint("setting custom vars: var1, var2, var3, var4 is set to empty which means it should not be reported.");
+
+	is << value;
+	Report::getInstance().setCustomVariable("var1", is.str());
+	is << value;
+	Report::getInstance().setCustomVariable("var2", is.str());
+	is << value;
+	Report::getInstance().setCustomVariable("var3", is.str());
+	Report::getInstance().setCustomVariable("var4", "");
+
 }
 
 void HelloWorld::showStartGameLayer()
@@ -72,7 +94,8 @@ void HelloWorld::showStartGameLayer()
 
     CCMenu *pMenu =
 		CCMenu::create(
-			CCMenuItemFont::create("Play Game", this, menu_selector(HelloWorld::playGameButtonCallback)),
+			CCMenuItemFont::create("Host Game", this, menu_selector(HelloWorld::hostGameButtonCallback)),
+			CCMenuItemFont::create("Join Game Game", this, menu_selector(HelloWorld::joinGameButtonCallback)),
 			CCMenuItemFont::create("Open Store", this, menu_selector(HelloWorld::openStoreButtonCallback)),
 			CCMenuItemFont::create("Play With Friends", this, menu_selector(HelloWorld::inviteFriendsButtonCallback)),
 			CCMenuItemFont::create("Simulate Received Invite", this, menu_selector(HelloWorld::simulateReceivedInviteButtonCallback)),
@@ -110,15 +133,6 @@ void HelloWorld::setCustomTagsCallback(CCObject* pSender) {
 	PushwooshX::setTag("customTag3Numeric", ++value);
 	PushwooshX::setTag("customTag4Numeric", ++value);
 
-	dbgprint("setting custom vars: var1, var2, var3, var4 is set to empty which means it should not be reported.");
-
-	is << value;
-	Report::getInstance().setCustomVariable("var1", is.str());
-	is << value;
-	Report::getInstance().setCustomVariable("var2", is.str());
-	is << value;
-	Report::getInstance().setCustomVariable("var3", is.str());
-	Report::getInstance().setCustomVariable("var4", "");
 }
 
 void HelloWorld::showInterstitialCallback(CCObject* sender) {
@@ -164,10 +178,10 @@ void HelloWorld::showInGameMenuLayer()
 
 void HelloWorld::createRoom()
 {
-    dbgprint("createRooms");
+    dbgprint("createRoom");
     
     std::map<std::string, std::string> properties;
-    properties["playscape"] = "room123";
+    properties["playscape"] = "room12345";
     
     AppWarp::Client::getInstance()->createRoom(ROOM_NAME, mUserName, 2, properties);
 }
@@ -244,7 +258,10 @@ void HelloWorld::startGame()
 void HelloWorld::stopGame() {
 	mIsInRoom = false;
 	removeMessageLayer();
-	AppWarp::Client::getInstance()->disconnect();
+
+	AppWarp::Client::getInstance()->leaveRoom(mRoomId);
+
+	mRoomId = "";
 	removeChild(mEnemy);
 	removeChild(mPlayer);
 	unscheduleUpdate();
@@ -478,30 +495,24 @@ std::string genRandom()
 }
 
 
-/***
- * AppWarp Helper Methods
- */
-
-void HelloWorld::disconnect()
-{
-    AppWarp::Client::getInstance()->disconnect();
-    mIsInRoom = false;
-}
-
 /********* Menu Callbacks *********/
 
 void HelloWorld::openStoreButtonCallback(CCObject* pSender) {
 	CCDirector::sharedDirector()->replaceScene(StoreScene::scene());
 }
 
-void HelloWorld::playGameButtonCallback(CCObject* pSender)
+void HelloWorld::hostGameButtonCallback(CCObject* pSender) {
+	mHostGameButtonClicked = true;
+	joinGameButtonCallback(pSender);
+}
+
+void HelloWorld::joinGameButtonCallback(CCObject* pSender)
 {
-    mIsConnected = false;
     AppWarp::Client *warpClientRef;
     if (mIsFirstLaunch)
     {
         mIsFirstLaunch = !mIsFirstLaunch;
-        AppWarp::Client::initialize(APPWARP_APP_KEY,APPWARP_SECRET_KEY);
+        AppWarp::Client::initialize(APPWARP_APP_KEY, APPWARP_SECRET_KEY);
         warpClientRef = AppWarp::Client::getInstance();
         warpClientRef->setRecoveryAllowance(60);
         warpClientRef->setConnectionRequestListener(this);
@@ -512,13 +523,16 @@ void HelloWorld::playGameButtonCallback(CCObject* pSender)
         mUserName = genRandom();
     }
 
-    if (!mIsConnected) {
-    	Report::getInstance().ReportMPServerConnect("AppWarpServer");
-    	AppWarp::Client::getInstance()->connect(mUserName);
-    	showMessageLayer("Connecting...");
-    }
-
+    connect(false);
     removeStartGameLayer();
+}
+
+void HelloWorld::connect(bool force) {
+	if (!mIsConnected || force) {
+		Report::getInstance().ReportMPServerConnect("AppWarpServer");
+		AppWarp::Client::getInstance()->connect(mUserName);
+		showMessageLayer("Connecting...");
+	}
 }
 
 void HelloWorld::onDisconnectDone(int res)
@@ -529,6 +543,7 @@ void HelloWorld::onDisconnectDone(int res)
     mIsInRoom = false;
     showStartGameLayer();
     mIsConnected = false;
+    mHostGameButtonClicked = false;
 }
 
 void HelloWorld::joinRoomIfNeeded() {
@@ -536,10 +551,7 @@ void HelloWorld::joinRoomIfNeeded() {
 		AppWarp::Client *warpClientRef;
 		warpClientRef = AppWarp::Client::getInstance();
 
-	    std::map<std::string, std::string> properties;
-	    properties["playscape"] = "room123";
-
-		warpClientRef->joinRoomWithProperties(properties);
+		warpClientRef->joinRoomInUserRange(1, 1, false);
 		showMessageLayer("Joining Room. Please wait...");
 	}
 }
@@ -550,7 +562,7 @@ void HelloWorld::simulateReceivedInviteButtonCallback(CCObject* pSender) {
 
     Report::getInstance().ReportSocialRequestsFound(1);
     Report::getInstance().ReportSocialRequestDetails("socialRequestId", "sender-social-id", 12345);
-	playGameButtonCallback(this);
+	joinGameButtonCallback(this);
 	dbgprint("simulateReceivedInviteButtonCallback");
 }
 
@@ -602,6 +614,9 @@ void HelloWorld::onConnectDone(int res)
 		unscheduleRecover();
 		showStartGameLayer();
 
+		if (AppWarp::AppWarpSessionID == 0) {
+			connect(true);
+		}
         dbgprint("\nonConnectDone .. FAILED with unknown reason..session=%d\n",AppWarp::AppWarpSessionID);
 
     }
@@ -628,30 +643,39 @@ void HelloWorld::onJoinRoomDone(AppWarp::room revent)
 {
 	removeMessageLayer();
 
-    if (revent.result==0)
+    if (revent.result==0 && !mHostGameButtonClicked)
     {
+    	mRoomId = revent.roomId;
+    	dbgprint("mRoomId = %s", mRoomId.c_str());
+
     	mIsInRoom = true;
         dbgprint("\nonJoinRoomDone .. SUCCESS\n");
 
         AppWarp::Client *warpClientRef = AppWarp::Client::getInstance();
 
         warpClientRef->subscribeRoom(revent.roomId);
+
         startGame();
         removeStartGameLayer();
 
         // Public games are games played with random people, private games are game played with predefined friends.
         if (mStartedGameFromSimulatedInvite) {
         	// The session id must be kept through out a network game and be unique per game,
-        	// when we created the room, we used the owner field to store a randomly generated
-        	// session string.
-        	Report::getInstance().ReportMPJoinedPrivateGame(revent.owner, ROOM_NAME, mUserName.c_str()[0]);
+        	// when we created the room, we used the roomId field which is good enough - it is unique through out the session
+        	Report::getInstance().ReportMPJoinedPrivateGame(revent.roomId/*sessionId*/, ROOM_NAME, mUserName.c_str()[0]);
         } else {
-        	Report::getInstance().ReportMPJoinedPublicGame(revent.owner, ROOM_NAME, mUserName.c_str()[0]);
+        	Report::getInstance().ReportMPJoinedPublicGame(revent.roomId/*sessionId*/, ROOM_NAME, mUserName.c_str()[0]);
         }
     }
     else {
     	createRoom();
-        dbgprint("\nonJoinRoomDone .. FAILED, will try to create a room\n");
+    	if (!mHostGameButtonClicked) {
+    		dbgprint("\nonJoinRoomDone .. FAILED, will try to create a room\n");
+    	} else {
+    		dbgprint("Host button clicked... creating room.");
+    	}
+
+    	mHostGameButtonClicked = false;
     }
 }
 
@@ -766,23 +790,27 @@ void HelloWorld::onUserLeftRoom(AppWarp::room rData, std::string user)
 
 void HelloWorld::onCreateRoomDone(AppWarp::room revent)
 {
+
     if (revent.result==0)
     {
+    	mRoomId = revent.roomId;
+    	dbgprint("mRoomId = %s", mRoomId.c_str());
+
         dbgprint("\nonCreateRoomDone...success\n");
 
     }
 
     if (mStartedGameFromSimulatedInvite) {
 
-    	Report::getInstance().ReportMPCreatePrivateGame(revent.owner, ROOM_NAME, MAX_PLAYER);
+    	Report::getInstance().ReportMPCreatePrivateGame(revent.roomId, ROOM_NAME, MAX_PLAYER);
     } else {
     	std::map<std::string, std::string> gameParameters;
-    	gameParameters["playscape"] = "room123";
+    	gameParameters["playscape"] = "room12345";
 
-    	Report::getInstance().ReportMPCreatePublicGame(revent.owner, MAX_PLAYER, gameParameters);
+    	Report::getInstance().ReportMPCreatePublicGame(revent.roomId, MAX_PLAYER, gameParameters);
     }
 
-    joinRoomIfNeeded();
+    AppWarp::Client::getInstance()->joinRoom(revent.roomId);
 }
 
 void HelloWorld::onGetAllRoomsDone(AppWarp::liveresult res)
@@ -808,6 +836,13 @@ void HelloWorld::onGetMatchedRoomsDone(AppWarp::matchedroom mevent)
 		}
         
     }
+}
+
+void HelloWorld::onLeaveRoomDone (AppWarp::room revent) {
+	dbgprint("onLeaveRoom %s", revent.roomId.c_str());
+
+	AppWarp::Client::getInstance()->disconnect();
+
 }
 
 void HelloWorld::onLeaveLobbyDone(AppWarp::lobby levent)
