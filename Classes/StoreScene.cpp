@@ -241,6 +241,13 @@ void StoreScene::registerStoreFlow() {
 
 	Report::getInstance().RegisterFlow(STORE_FLOW_TYPE, stepNameToId);
 	mStoreFlow = Report::getInstance().StartNewFlow(STORE_FLOW_TYPE);
+
+	// In production these values will probably be relevant, this is just an example details map that we put alongside each report
+	mDummyFlowDetails["PremiumCurrency"] = 1000;
+	mDummyFlowDetails["TrashCurrency"] = 200;
+	mDummyFlowDetails["Category"] = 1;
+	mDummyFlowDetails["ItemID"] = 2;
+	mDummyFlowDetails["Source"] = 42;
 }
 
 void StoreScene::reportStartPurchase() {
