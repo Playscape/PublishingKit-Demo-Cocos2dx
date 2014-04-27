@@ -11,6 +11,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		782F4619153FEDF0009FC2E5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 782F4617153FEDF0009FC2E5 /* Default.png */; };
+		BD9F3E60190D4B54001103C2 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD9F3E5F190D4B54001103C2 /* AdSupport.framework */; };
 		BDF6209F18E2BEEA0067BDD3 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDF6209218E2BEEA0067BDD3 /* AppDelegate.cpp */; };
 		BDF620A018E2BEEA0067BDD3 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDF6209518E2BEEA0067BDD3 /* HelloWorldScene.cpp */; };
 		BDF620A118E2BEEA0067BDD3 /* InGameMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDF6209718E2BEEA0067BDD3 /* InGameMenuLayer.cpp */; };
@@ -221,6 +222,7 @@
 		781C33B31547F06B00633F88 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		781C33B51547F06B00633F88 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		782F4617153FEDF0009FC2E5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
+		BD9F3E5F190D4B54001103C2 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		BDF6209218E2BEEA0067BDD3 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		BDF6209318E2BEEA0067BDD3 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BDF6209418E2BEEA0067BDD3 /* dbgprint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbgprint.h; sourceTree = "<group>"; };
@@ -651,6 +653,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD9F3E60190D4B54001103C2 /* AdSupport.framework in Frameworks */,
 				BDF625F718E957170067BDD3 /* CoreLocation.framework in Frameworks */,
 				BDF625F518E9570B0067BDD3 /* Security.framework in Frameworks */,
 				BDF6263218E980D10067BDD3 /* libplayscape_pubkit_lib.a in Frameworks */,
@@ -703,6 +706,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BD9F3E5F190D4B54001103C2 /* AdSupport.framework */,
 				BDF6263718E980F00067BDD3 /* libChartboost.a */,
 				BDF6262D18E980D10067BDD3 /* libplayscape_pubkit_lib.a */,
 				BDF6262E18E980D10067BDD3 /* libplayscape_pubkit_libx.a */,
