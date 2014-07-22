@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.playscape.publishingkit.ActivityLifeCycle;
+import com.playscape.lifecycle.ActivityLifeCycle;
 
 /**
  * Playscape's default implementation to an activity
