@@ -69,13 +69,7 @@ public class PlayscapeActivity extends SimpleGame {
 	
 	@Override
 	public void onBackPressed() {
-
-	    // If we've handled the back key don't initiate the default handler.
-	    if (mActivityLifeCycle.onBackPressed()) {
-	        return;
-	    } else {
-	        super.onBackPressed();
-	    }
+	    mActivityLifeCycle.onBackPressed();
 	}
 	
 	/**
