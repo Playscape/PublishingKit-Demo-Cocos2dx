@@ -12,7 +12,6 @@
 #include "SimpleAudioEngine.h"
 #include "HelloWorldScene.h"
 
-#include "playscape/ChartboostX.h"
 #include "playscape/PlayscapeX.h"
 
 USING_NS_CC;

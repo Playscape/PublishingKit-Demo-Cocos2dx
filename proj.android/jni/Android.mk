@@ -14,6 +14,10 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/InGameMenuLayer.cpp \
                    ../../Classes/StoreScene.cpp \
                    ../../Classes/InviteFriendsScene.cpp \
+                   ../../Classes/AdsTestScene.cpp \
+                   ../../Classes/VideosTestScene.cpp \
+                   ../../Classes/InterstitialsTestScene.cpp \
+                   ../../Classes/BannersTestScene.cpp \
                    ../../AppWarpX/appwarp.cpp \
                    ../../AppWarpX/appwarp_extended.cpp \
                    ../../AppWarpX/base64.cpp \

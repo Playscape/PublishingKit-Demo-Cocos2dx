@@ -258,6 +258,16 @@
 			<locationURI>PARENT-1-PROJECT_LOC/AppWarpX/utilities.h</locationURI>
 		</link>
 		<link>
+			<name>Classes/AdsTestScene.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Classes/AdsTestScene.cpp</locationURI>
+		</link>
+		<link>
+			<name>Classes/AdsTestScene.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Classes/AdsTestScene.h</locationURI>
+		</link>
+		<link>
 			<name>Classes/AppDelegate.cpp</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/Classes/AppDelegate.cpp</locationURI>
@@ -266,6 +276,16 @@
 			<name>Classes/AppDelegate.h</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/Classes/AppDelegate.h</locationURI>
+		</link>
+		<link>
+			<name>Classes/BannersTestScene.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Classes/BannersTestScene.cpp</locationURI>
+		</link>
+		<link>
+			<name>Classes/BannersTestScene.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Classes/BannersTestScene.h</locationURI>
 		</link>
 		<link>
 			<name>Classes/HelloWorldScene.cpp</name>
@@ -286,6 +306,16 @@
 			<name>Classes/InGameMenuLayer.h</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/Classes/InGameMenuLayer.h</locationURI>
+		</link>
+		<link>
+			<name>Classes/InterstitialsTestScene.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Classes/InterstitialsTestScene.cpp</locationURI>
+		</link>
+		<link>
+			<name>Classes/InterstitialsTestScene.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Classes/InterstitialsTestScene.h</locationURI>
 		</link>
 		<link>
 			<name>Classes/InviteFriendsScene.cpp</name>
@@ -326,6 +356,16 @@
 			<name>Classes/StoreScene.h</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/Classes/StoreScene.h</locationURI>
+		</link>
+		<link>
+			<name>Classes/VideosTestScene.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Classes/VideosTestScene.cpp</locationURI>
+		</link>
+		<link>
+			<name>Classes/VideosTestScene.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Classes/VideosTestScene.h</locationURI>
 		</link>
 		<link>
 			<name>Classes/dbgprint.h</name>
@@ -618,14 +658,19 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>playscape/ChartboostX.h</name>
+			<name>playscape/BannersX.h</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/PlayscapePubkitCocos2D-X/include/playscape/ChartboostX.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/PlayscapePubkitCocos2D-X/include/playscape/BannersX.h</locationURI>
 		</link>
 		<link>
 			<name>playscape/FlowInstance.h</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/PlayscapePubkitCocos2D-X/include/playscape/FlowInstance.h</locationURI>
+		</link>
+		<link>
+			<name>playscape/InterstitialsX.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/PlayscapePubkitCocos2D-X/include/playscape/InterstitialsX.h</locationURI>
 		</link>
 		<link>
 			<name>playscape/MPAnalyticsProvider.h</name>
@@ -661,6 +706,11 @@
 			<name>playscape/SocialNetwork.h</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/PlayscapePubkitCocos2D-X/include/playscape/SocialNetwork.h</locationURI>
+		</link>
+		<link>
+			<name>playscape/VideosX.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/PlayscapePubkitCocos2D-X/include/playscape/VideosX.h</locationURI>
 		</link>
 		<link>
 			<name>playscape/internal</name>

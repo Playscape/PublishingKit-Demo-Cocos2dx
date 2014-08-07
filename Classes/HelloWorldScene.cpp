@@ -4,8 +4,8 @@
 #include "appwarp.h"
 #include "dbgprint.h"
 #include "StoreScene.h"
+#include "AdsTestScene.h"
 
-#include "playscape/ChartboostX.h"
 #include "playscape/Report.h"
 #include "InviteFriendsScene.h"
 #include "playscape/PushwooshX.h"
@@ -100,8 +100,7 @@ void HelloWorld::showStartGameLayer()
 			CCMenuItemFont::create("Play With Friends", this, menu_selector(HelloWorld::inviteFriendsButtonCallback)),
 			CCMenuItemFont::create("Simulate Received Invite", this, menu_selector(HelloWorld::simulateReceivedInviteButtonCallback)),
 			CCMenuItemFont::create("Simulate SocialNetwork Login/Logout", this, menu_selector(HelloWorld::simulateSocialNetworkLoginCallback)),
-            CCMenuItemFont::create("Show Interstitial", this, menu_selector(HelloWorld::showInterstitialCallback)),
-            CCMenuItemFont::create("Show Interstitial With No Location", this, menu_selector(HelloWorld::showInterstitialWithNoLocationCallback)),
+            CCMenuItemFont::create("Open Ads Test", this, menu_selector(HelloWorld::openAdsTest)),
             CCMenuItemFont::create("Set PW custom tags", this, menu_selector(HelloWorld::setCustomTagsCallback)),
 			NULL);
 
@@ -135,12 +134,8 @@ void HelloWorld::setCustomTagsCallback(CCObject* pSender) {
 
 }
 
-void HelloWorld::showInterstitialCallback(CCObject* sender) {
-    ChartboostX::showInterstitial("ShowInterstitialButton");
-}
-
-void HelloWorld::showInterstitialWithNoLocationCallback(CCObject* sender) {
-    ChartboostX::showInterstitial();
+void HelloWorld::openAdsTest(CCObject* sender) {
+	CCDirector::sharedDirector()->replaceScene(AdsTestScene::scene());
 }
 
 void HelloWorld::inviteFriendsButtonCallback(CCObject* sender) {
@@ -273,7 +268,6 @@ void HelloWorld::stopGame() {
     additionalParams["luckyNumber"] = 7.0;
 	Report::getInstance().ReportLevelCompleted("1", additionalParams);
 
-    ChartboostX::showInterstitial();
 }
 
 void HelloWorld::update(float time)
