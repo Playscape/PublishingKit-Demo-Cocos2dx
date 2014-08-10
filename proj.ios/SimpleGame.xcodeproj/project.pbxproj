@@ -11,6 +11,10 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		782F4619153FEDF0009FC2E5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 782F4617153FEDF0009FC2E5 /* Default.png */; };
+		BD487FAE19974F3400B40ED8 /* AdsTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD487FA619974F3400B40ED8 /* AdsTestScene.cpp */; };
+		BD487FAF19974F3400B40ED8 /* BannersTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD487FA819974F3400B40ED8 /* BannersTestScene.cpp */; };
+		BD487FB019974F3400B40ED8 /* InterstitialsTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD487FAA19974F3400B40ED8 /* InterstitialsTestScene.cpp */; };
+		BD487FB119974F3400B40ED8 /* VideosTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD487FAC19974F3400B40ED8 /* VideosTestScene.cpp */; };
 		BD9F3E60190D4B54001103C2 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD9F3E5F190D4B54001103C2 /* AdSupport.framework */; };
 		BDF6209F18E2BEEA0067BDD3 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDF6209218E2BEEA0067BDD3 /* AppDelegate.cpp */; };
 		BDF620A018E2BEEA0067BDD3 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDF6209518E2BEEA0067BDD3 /* HelloWorldScene.cpp */; };
@@ -222,6 +226,14 @@
 		781C33B31547F06B00633F88 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		781C33B51547F06B00633F88 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		782F4617153FEDF0009FC2E5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
+		BD487FA619974F3400B40ED8 /* AdsTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdsTestScene.cpp; sourceTree = "<group>"; };
+		BD487FA719974F3400B40ED8 /* AdsTestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdsTestScene.h; sourceTree = "<group>"; };
+		BD487FA819974F3400B40ED8 /* BannersTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BannersTestScene.cpp; sourceTree = "<group>"; };
+		BD487FA919974F3400B40ED8 /* BannersTestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannersTestScene.h; sourceTree = "<group>"; };
+		BD487FAA19974F3400B40ED8 /* InterstitialsTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InterstitialsTestScene.cpp; sourceTree = "<group>"; };
+		BD487FAB19974F3400B40ED8 /* InterstitialsTestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterstitialsTestScene.h; sourceTree = "<group>"; };
+		BD487FAC19974F3400B40ED8 /* VideosTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideosTestScene.cpp; sourceTree = "<group>"; };
+		BD487FAD19974F3400B40ED8 /* VideosTestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideosTestScene.h; sourceTree = "<group>"; };
 		BD9F3E5F190D4B54001103C2 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		BDF6209218E2BEEA0067BDD3 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		BDF6209318E2BEEA0067BDD3 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1536,6 +1548,14 @@
 		BF23D4E2143315EB00657E08 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BD487FA619974F3400B40ED8 /* AdsTestScene.cpp */,
+				BD487FA719974F3400B40ED8 /* AdsTestScene.h */,
+				BD487FA819974F3400B40ED8 /* BannersTestScene.cpp */,
+				BD487FA919974F3400B40ED8 /* BannersTestScene.h */,
+				BD487FAA19974F3400B40ED8 /* InterstitialsTestScene.cpp */,
+				BD487FAB19974F3400B40ED8 /* InterstitialsTestScene.h */,
+				BD487FAC19974F3400B40ED8 /* VideosTestScene.cpp */,
+				BD487FAD19974F3400B40ED8 /* VideosTestScene.h */,
 				BDF625EF18E83A720067BDD3 /* InviteFriendsScene.cpp */,
 				BDF625F018E83A720067BDD3 /* InviteFriendsScene.h */,
 				BDF6209218E2BEEA0067BDD3 /* AppDelegate.cpp */,
@@ -1707,6 +1727,7 @@
 				BDF6245C18E2C51E0067BDD3 /* CCActionTween.cpp in Sources */,
 				BDF6248A18E2C51E0067BDD3 /* CCLayer.cpp in Sources */,
 				BDF620A218E2BEEA0067BDD3 /* Player.cpp in Sources */,
+				BD487FB019974F3400B40ED8 /* InterstitialsTestScene.cpp in Sources */,
 				BDF620A118E2BEEA0067BDD3 /* InGameMenuLayer.cpp in Sources */,
 				BDF6246318E2C51E0067BDD3 /* CCDirector.cpp in Sources */,
 				BDF6248718E2C51E0067BDD3 /* CCLabelAtlas.cpp in Sources */,
@@ -1720,6 +1741,7 @@
 				BDF624FC18E2C9A20067BDD3 /* base64.cpp in Sources */,
 				BDF624FD18E2C9A20067BDD3 /* cJSON.c in Sources */,
 				BDF6249318E2C51E0067BDD3 /* CCProgressTimer.cpp in Sources */,
+				BD487FAE19974F3400B40ED8 /* AdsTestScene.cpp in Sources */,
 				BDF6247518E2C51E0067BDD3 /* CCGrid.cpp in Sources */,
 				BDF6245618E2C51E0067BDD3 /* CCActionInstant.cpp in Sources */,
 				BDF6246F18E2C51E0067BDD3 /* CCString.cpp in Sources */,
@@ -1742,6 +1764,7 @@
 				BDF6247F18E2C51E0067BDD3 /* quaternion.c in Sources */,
 				BDF6246218E2C51E0067BDD3 /* CCConfiguration.cpp in Sources */,
 				BDF624CD18E2C51E0067BDD3 /* CCIMEDispatcher.cpp in Sources */,
+				BD487FB119974F3400B40ED8 /* VideosTestScene.cpp in Sources */,
 				BDF624C218E2C51E0067BDD3 /* CCComponentContainer.cpp in Sources */,
 				BDF624C518E2C51E0067BDD3 /* tinyxml2.cpp in Sources */,
 				BDF6247418E2C51E0067BDD3 /* CCGrabber.cpp in Sources */,
@@ -1807,6 +1830,7 @@
 				BDF6245518E2C51E0067BDD3 /* CCActionGrid3D.cpp in Sources */,
 				BDF6245A18E2C51E0067BDD3 /* CCActionProgressTimer.cpp in Sources */,
 				BDF6249018E2C51E0067BDD3 /* CCMenuItem.cpp in Sources */,
+				BD487FAF19974F3400B40ED8 /* BannersTestScene.cpp in Sources */,
 				BDF620A318E2BEEA0067BDD3 /* StartGameLayer.cpp in Sources */,
 				BDF6249418E2C51E0067BDD3 /* CCRenderTexture.cpp in Sources */,
 				BDF624AC18E2C51E0067BDD3 /* platform.cpp in Sources */,
