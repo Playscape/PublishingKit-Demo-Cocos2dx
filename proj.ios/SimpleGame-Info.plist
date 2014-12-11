@@ -60,11 +60,10 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string></string>
-    
 	<key>PlayscapeChartboostAppId</key>
-	<string>531c4f442d42da19400a5d75</string>
+	<string>53396a669ddc3525dd944440</string>
 	<key>PlayscapeChartboostAppSignature</key>
-	<string>3cf6252e06d08e7afa7fbc7532b916a7fd52a01e</string>
+	<string>3d8480ab1b0e9b1555a8e33a72bbfffb9005a0bd</string>
 	<key>PlayscapeDebugMode</key>
 	<true/>
 	<key>PlayscapePublishingKitVersion</key>
@@ -85,12 +84,6 @@
 	<string>DC9EC-2B8CD</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
-
-       <key>PlayscapeChartboostAppId</key>
-       <string>53396a669ddc3525dd944440</string>
-       <key>PlayscapeChartboostAppSignature</key>
-       <string>3d8480ab1b0e9b1555a8e33a72bbfffb9005a0bd</string>
-
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>

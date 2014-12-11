@@ -5,6 +5,9 @@
 #include "InGameMenuLayer.h"
 #include "playscape/Report.h"
 #include <map>
+
+#import "IAPurchases.h"
+#import <StoreKit/StoreKit.h>
 /// <summary>
 /// Analytics flow type for the store
 /// </summary>
@@ -40,34 +43,54 @@ bool StoreScene::init()
     }
 
     setTouchEnabled(true);
-
-    CCMenuItemFont *item1 = CCMenuItemFont::create("$10 Ninja Stars", this,menu_selector(StoreScene::buyNinjaStarsCallback));
-    item1->setColor(ccBLACK);
-
-    CCMenuItemFont *item2 = CCMenuItemFont::create("$15 Ninja Sword and Simulate Fail", this,menu_selector(StoreScene::buyNinjaSwordCallback));
-    item2->setColor(ccBLACK);
-
-	CCMenuItemFont *item3 = CCMenuItemFont::create("$20 Samurai Shield", this,menu_selector(StoreScene::buySamuraiShieldCallback));
-	item3->setColor(ccBLACK);
-
-	CCMenuItemFont *item4 = CCMenuItemFont::create("$25 Shogun Katana", this,menu_selector(StoreScene::buyShogunKatanaCallback));
-	item4->setColor(ccBLACK);
-
-    mItemsMenu = CCMenu::create(item1, item2, item3, item4, NULL);
-
-    mItemsMenu->alignItemsVertically();
-    addChild(mItemsMenu, 1);
-
-    showInGameMenuLayer();
-
-    mBuyDialog = NULL;
-    mShouldFail = false;
-
-
-    registerStoreFlow();
-    initReportableItems();
-
-    Report::getInstance().ReportFlowStep(mStoreFlow , OPEN_STORE_FLOW_STEP, "ok", mDummyFlowDetails);
+    
+    CCArray *itemsArray = new CCArray;
+    
+    IAPurchases *instance = [IAPurchases sharedInstance];
+    [instance requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
+        if (success) {
+            for (SKProduct *skProduct in products) {
+                if ([skProduct.localizedTitle isEqualToString:@"Ninja Stars"]) {
+                    CCMenuItemFont *item = CCMenuItemFont::create("$10 Ninja Stars", this,menu_selector(StoreScene::buyNinjaStarsCallback));
+                    item->setColor(ccBLACK);
+                    itemsArray->addObject(item);
+                } else if ([skProduct.localizedTitle isEqualToString:@"Ninja Sword and Simulate Fail"]) {
+                    CCMenuItemFont *item = CCMenuItemFont::create("$15 Ninja Sword and Simulate Fail", this,menu_selector(StoreScene::buyNinjaSwordCallback));
+                    item->setColor(ccBLACK);
+                    itemsArray->addObject(item);
+                } else if ([skProduct.localizedTitle isEqualToString:@"Samurai Shield"]) {
+                    CCMenuItemFont *item = CCMenuItemFont::create("$20 Samurai Shield", this,menu_selector(StoreScene::buySamuraiShieldCallback));
+                    item->setColor(ccBLACK);
+                    itemsArray->addObject(item);
+                } else if ([skProduct.localizedTitle isEqualToString:@"Shogun Katana"]) {
+                    CCMenuItemFont *item = CCMenuItemFont::create("$25 Shogun Katana", this,menu_selector(StoreScene::buyShogunKatanaCallback));
+                    item->setColor(ccBLACK);
+                    itemsArray->addObject(item);
+                }
+            }
+        } else {
+            CCMenuItemFont *item = CCMenuItemFont::create("No one product is available");
+            item->setColor(ccBLACK);
+            item->setFontSize(40);
+            itemsArray->addObject(item);
+     
+        }
+    
+        mItemsMenu = CCMenu::createWithArray(itemsArray);
+    
+        mItemsMenu->alignItemsVertically();
+        addChild(mItemsMenu, 1);
+    
+        showInGameMenuLayer();
+    
+        mBuyDialog = NULL;
+        mShouldFail = false;
+     
+        registerStoreFlow();
+        initReportableItems();
+     
+        Report::getInstance().ReportFlowStep(mStoreFlow , OPEN_STORE_FLOW_STEP, "ok", mDummyFlowDetails);
+    }];
 
     return true;
 }
@@ -148,11 +171,16 @@ void StoreScene::showBuyDialog(const string& itemName) {
 	questionLabel->setPosition(ccp(mBuyDialog->getContentSize().width/2 - questionLabel->getContentSize().width/2,
 			mBuyDialog->getContentSize().height/2 - questionLabel->getContentSize().height/2));
 
+    CCMenuItemFont *buyItem = CCMenuItemFont::create("Buy", this,menu_selector(StoreScene::buyButtonCallback));
+    buyItem->setColor(ccBLACK);
+    buyItem->setFontSizeObj(50);
+    
+    CCMenuItemFont *cancelItem = CCMenuItemFont::create("Cancel", this,menu_selector(StoreScene::cancelBuyButtonCallback));
+    cancelItem->setColor(ccBLACK);
+    cancelItem->setFontSizeObj(50);
+    
 	CCMenu *pMenu =
-		CCMenu::create(
-			CCMenuItemFont::create(" Buy ", this,menu_selector(StoreScene::buyButtonCallback)),
-			CCMenuItemFont::create(" Cancel", this,menu_selector(StoreScene::cancelBuyButtonCallback)),
-			NULL);
+		CCMenu::create(buyItem, cancelItem, NULL);
 
 	CCObject* item;
 	CCARRAY_FOREACH(pMenu->getChildren(), item) {
@@ -177,20 +205,24 @@ void StoreScene::showBuyDialog(const string& itemName) {
 
 
 void StoreScene::buyButtonCallback(CCObject* sender) {
-	hideBuyDialog();
+//	hideBuyDialog();
 
 
 	if (mShouldFail) {
 		Report::getInstance().ReportFlowStep(mStoreFlow, CLOSED_STORE_FLOW_STEP, "ok", mDummyFlowDetails);
 
-		Report::getInstance().ReportPurchaseStarted(*mCurrentItemPurchasing);
-		Report::getInstance().ReportPurchaseFailed(*mCurrentItemPurchasing, "User Canceled");
+//		Report::getInstance().ReportPurchaseStarted(*mCurrentItemPurchasing);
+//		Report::getInstance().ReportPurchaseFailed(*mCurrentItemPurchasing, "User Canceled");
 	} else {
 		Report::getInstance().ReportFlowStep(mStoreFlow, PURCHASED_FLOW_STEP, "ok", mDummyFlowDetails);
 		Report::getInstance().ReportFlowStep(mStoreFlow, CLOSED_STORE_FLOW_STEP, "ok", mDummyFlowDetails);
 
-		Report::getInstance().ReportPurchaseStarted(*mCurrentItemPurchasing);
-		Report::getInstance().ReportPurchaseSuccess(*mCurrentItemPurchasing, mCurrentItemPrice, "USD", currentTimeMillis(), "fake-tranaction-id");
+        IAPurchases *instance = [IAPurchases sharedInstance];
+        NSString *productName = [NSString stringWithCString:mCurrentItemPurchasing->getName().c_str() encoding:NSUTF8StringEncoding];
+        [instance buyProduct:productName];
+        
+//		Report::getInstance().ReportPurchaseStarted(*mCurrentItemPurchasing);
+//		Report::getInstance().ReportPurchaseSuccess(*mCurrentItemPurchasing, mCurrentItemPrice, "USD", currentTimeMillis(), "fake-tranaction-id");
 	}
 
 	mShouldFail = false;
@@ -203,8 +235,8 @@ void StoreScene::cancelBuyButtonCallback(CCObject* sender) {
 	Report::getInstance().ReportFlowStep(mStoreFlow, CANCELLED_FLOW_STEP, "ok", mDummyFlowDetails);
 	Report::getInstance().ReportFlowStep(mStoreFlow, CLOSED_STORE_FLOW_STEP, "ok", mDummyFlowDetails);
 
-	Report::getInstance().ReportPurchaseStarted(*mCurrentItemPurchasing);
-	Report::getInstance().ReportPurchaseCancelled(*mCurrentItemPurchasing);
+//	Report::getInstance().ReportPurchaseStarted(*mCurrentItemPurchasing);
+//	Report::getInstance().ReportPurchaseCancelled(*mCurrentItemPurchasing);
 
 }
 
@@ -258,8 +290,8 @@ void StoreScene::reportStartPurchase() {
 }
 
 void StoreScene::initReportableItems() {
-	mItemNinjaStars = new PurchaseItem("com.mycompany.ninja_stars_item");
-	mItemNinjaSword = new PurchaseItem("com.mycompany.ninja_sword_item");
-	mItemSamuraiShield = new PurchaseItem("com.mycompany.samurai_shield_item");
-	mItemShogunKatana = new PurchaseItem("com.mycompany.shogun_katana_item");
+	mItemNinjaStars = new PurchaseItem("com.playscape.cocos2dxdemo.ninja_stars_item");
+	mItemNinjaSword = new PurchaseItem("com.playscape.cocos2dxdemo.ninja_sword_item");
+	mItemSamuraiShield = new PurchaseItem("com.playscape.cocos2dxdemo.samurai_shield_item");
+	mItemShogunKatana = new PurchaseItem("com.playscape.cocos2dxdemo.shogun_katana_item");
 }

@@ -10,6 +10,10 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		424E019C1A36F1CD0009EFE0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424E019A1A36F1850009EFE0 /* CoreData.framework */; };
+		424E019F1A3708B20009EFE0 /* IAPurchases.m in Sources */ = {isa = PBXBuildFile; fileRef = 424E019E1A3708B20009EFE0 /* IAPurchases.m */; };
+		424E01A01A3722250009EFE0 /* StoreScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BDF6209D18E2BEEA0067BDD3 /* StoreScene.mm */; };
+		424E01B41A38A8F60009EFE0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 424E01B31A38A8F60009EFE0 /* libsqlite3.dylib */; };
 		782F4619153FEDF0009FC2E5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 782F4617153FEDF0009FC2E5 /* Default.png */; };
 		BD487FAE19974F3400B40ED8 /* AdsTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD487FA619974F3400B40ED8 /* AdsTestScene.cpp */; };
 		BD487FAF19974F3400B40ED8 /* BannersTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD487FA819974F3400B40ED8 /* BannersTestScene.cpp */; };
@@ -21,7 +25,6 @@
 		BDF620A118E2BEEA0067BDD3 /* InGameMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDF6209718E2BEEA0067BDD3 /* InGameMenuLayer.cpp */; };
 		BDF620A218E2BEEA0067BDD3 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDF6209918E2BEEA0067BDD3 /* Player.cpp */; };
 		BDF620A318E2BEEA0067BDD3 /* StartGameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDF6209B18E2BEEA0067BDD3 /* StartGameLayer.cpp */; };
-		BDF620A418E2BEEA0067BDD3 /* StoreScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDF6209D18E2BEEA0067BDD3 /* StoreScene.cpp */; };
 		BDF622C418E2BF6A0067BDD3 /* Bullet-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF622BC18E2BF6A0067BDD3 /* Bullet-blue.png */; };
 		BDF622C518E2BF6A0067BDD3 /* Bullet-red.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF622BD18E2BF6A0067BDD3 /* Bullet-red.png */; };
 		BDF622C618E2BF6A0067BDD3 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = BDF622BE18E2BF6A0067BDD3 /* CloseNormal.png */; };
@@ -222,6 +225,23 @@
 		1D6058910D05DD3D006BFB54 /* SimpleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		424E018D1A36F1480009EFE0 /* BannersX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannersX.h; sourceTree = "<group>"; };
+		424E018E1A36F1480009EFE0 /* FlowInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowInstance.h; sourceTree = "<group>"; };
+		424E018F1A36F1480009EFE0 /* InterstitialsX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterstitialsX.h; sourceTree = "<group>"; };
+		424E01901A36F1480009EFE0 /* MPAnalyticsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAnalyticsProvider.h; sourceTree = "<group>"; };
+		424E01911A36F1480009EFE0 /* PlayscapeX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayscapeX.h; sourceTree = "<group>"; };
+		424E01921A36F1480009EFE0 /* PurchaseItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseItem.h; sourceTree = "<group>"; };
+		424E01931A36F1480009EFE0 /* PushwooshX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushwooshX.h; sourceTree = "<group>"; };
+		424E01941A36F1480009EFE0 /* Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Report.h; sourceTree = "<group>"; };
+		424E01951A36F1480009EFE0 /* ServiceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceState.h; sourceTree = "<group>"; };
+		424E01961A36F1480009EFE0 /* SocialAnalyticsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialAnalyticsProvider.h; sourceTree = "<group>"; };
+		424E01971A36F1480009EFE0 /* SocialNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialNetwork.h; sourceTree = "<group>"; };
+		424E01981A36F1480009EFE0 /* VideosX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideosX.h; sourceTree = "<group>"; };
+		424E01991A36F1480009EFE0 /* WalletOperationEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletOperationEnums.h; sourceTree = "<group>"; };
+		424E019A1A36F1850009EFE0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		424E019D1A3708B20009EFE0 /* IAPurchases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPurchases.h; sourceTree = "<group>"; };
+		424E019E1A3708B20009EFE0 /* IAPurchases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPurchases.m; sourceTree = "<group>"; };
+		424E01B31A38A8F60009EFE0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		781C33B11547F06B00633F88 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		781C33B31547F06B00633F88 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		781C33B51547F06B00633F88 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -246,7 +266,7 @@
 		BDF6209A18E2BEEA0067BDD3 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		BDF6209B18E2BEEA0067BDD3 /* StartGameLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StartGameLayer.cpp; sourceTree = "<group>"; };
 		BDF6209C18E2BEEA0067BDD3 /* StartGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartGameLayer.h; sourceTree = "<group>"; };
-		BDF6209D18E2BEEA0067BDD3 /* StoreScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StoreScene.cpp; sourceTree = "<group>"; };
+		BDF6209D18E2BEEA0067BDD3 /* StoreScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StoreScene.mm; sourceTree = "<group>"; };
 		BDF6209E18E2BEEA0067BDD3 /* StoreScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreScene.h; sourceTree = "<group>"; };
 		BDF622BC18E2BF6A0067BDD3 /* Bullet-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bullet-blue.png"; sourceTree = "<group>"; };
 		BDF622BD18E2BF6A0067BDD3 /* Bullet-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bullet-red.png"; sourceTree = "<group>"; };
@@ -622,16 +642,6 @@
 		BDF6251918E2CC9B0067BDD3 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
 		BDF6252418E2EC690067BDD3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BDF6252718E2F2B80067BDD3 /* SimpleGame-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SimpleGame-Info.plist"; sourceTree = SOURCE_ROOT; };
-		BDF6252B18E2F9C70067BDD3 /* ChartboostX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartboostX.h; sourceTree = "<group>"; };
-		BDF6252C18E2F9C70067BDD3 /* FlowInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowInstance.h; sourceTree = "<group>"; };
-		BDF6252D18E2F9C70067BDD3 /* MPAnalyticsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAnalyticsProvider.h; sourceTree = "<group>"; };
-		BDF6252E18E2F9C70067BDD3 /* PurchaseItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseItem.h; sourceTree = "<group>"; };
-		BDF6252F18E2F9C70067BDD3 /* PushwooshX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushwooshX.h; sourceTree = "<group>"; };
-		BDF6253018E2F9C70067BDD3 /* Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Report.h; sourceTree = "<group>"; };
-		BDF6253118E2F9C70067BDD3 /* ServiceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceState.h; sourceTree = "<group>"; };
-		BDF6253218E2F9C70067BDD3 /* SocialAnalyticsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialAnalyticsProvider.h; sourceTree = "<group>"; };
-		BDF6253318E2F9C70067BDD3 /* SocialNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialNetwork.h; sourceTree = "<group>"; };
-		BDF6253418E2FCE50067BDD3 /* PushwooshXCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushwooshXCommon.h; sourceTree = "<group>"; };
 		BDF625ED18E83A620067BDD3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		BDF625EF18E83A720067BDD3 /* InviteFriendsScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InviteFriendsScene.cpp; sourceTree = "<group>"; };
 		BDF625F018E83A720067BDD3 /* InviteFriendsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendsScene.h; sourceTree = "<group>"; };
@@ -665,6 +675,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				424E01B41A38A8F60009EFE0 /* libsqlite3.dylib in Frameworks */,
+				424E019C1A36F1CD0009EFE0 /* CoreData.framework in Frameworks */,
 				BD9F3E60190D4B54001103C2 /* AdSupport.framework in Frameworks */,
 				BDF625F718E957170067BDD3 /* CoreLocation.framework in Frameworks */,
 				BDF625F518E9570B0067BDD3 /* Security.framework in Frameworks */,
@@ -718,6 +730,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				424E01B31A38A8F60009EFE0 /* libsqlite3.dylib */,
+				424E019A1A36F1850009EFE0 /* CoreData.framework */,
 				BD9F3E5F190D4B54001103C2 /* AdSupport.framework */,
 				BDF6263718E980F00067BDD3 /* libChartboost.a */,
 				BDF6262D18E980D10067BDD3 /* libplayscape_pubkit_lib.a */,
@@ -1530,16 +1544,19 @@
 		BDF6252A18E2F9C70067BDD3 /* playscape */ = {
 			isa = PBXGroup;
 			children = (
-				BDF6253418E2FCE50067BDD3 /* PushwooshXCommon.h */,
-				BDF6252B18E2F9C70067BDD3 /* ChartboostX.h */,
-				BDF6252C18E2F9C70067BDD3 /* FlowInstance.h */,
-				BDF6252D18E2F9C70067BDD3 /* MPAnalyticsProvider.h */,
-				BDF6252E18E2F9C70067BDD3 /* PurchaseItem.h */,
-				BDF6252F18E2F9C70067BDD3 /* PushwooshX.h */,
-				BDF6253018E2F9C70067BDD3 /* Report.h */,
-				BDF6253118E2F9C70067BDD3 /* ServiceState.h */,
-				BDF6253218E2F9C70067BDD3 /* SocialAnalyticsProvider.h */,
-				BDF6253318E2F9C70067BDD3 /* SocialNetwork.h */,
+				424E018D1A36F1480009EFE0 /* BannersX.h */,
+				424E018E1A36F1480009EFE0 /* FlowInstance.h */,
+				424E018F1A36F1480009EFE0 /* InterstitialsX.h */,
+				424E01901A36F1480009EFE0 /* MPAnalyticsProvider.h */,
+				424E01911A36F1480009EFE0 /* PlayscapeX.h */,
+				424E01921A36F1480009EFE0 /* PurchaseItem.h */,
+				424E01931A36F1480009EFE0 /* PushwooshX.h */,
+				424E01941A36F1480009EFE0 /* Report.h */,
+				424E01951A36F1480009EFE0 /* ServiceState.h */,
+				424E01961A36F1480009EFE0 /* SocialAnalyticsProvider.h */,
+				424E01971A36F1480009EFE0 /* SocialNetwork.h */,
+				424E01981A36F1480009EFE0 /* VideosX.h */,
+				424E01991A36F1480009EFE0 /* WalletOperationEnums.h */,
 			);
 			name = playscape;
 			path = "../../PlayscapePubkitCocos2D-X/include/playscape";
@@ -1569,7 +1586,7 @@
 				BDF6209A18E2BEEA0067BDD3 /* Player.h */,
 				BDF6209B18E2BEEA0067BDD3 /* StartGameLayer.cpp */,
 				BDF6209C18E2BEEA0067BDD3 /* StartGameLayer.h */,
-				BDF6209D18E2BEEA0067BDD3 /* StoreScene.cpp */,
+				BDF6209D18E2BEEA0067BDD3 /* StoreScene.mm */,
 				BDF6209E18E2BEEA0067BDD3 /* StoreScene.h */,
 			);
 			name = Classes;
@@ -1584,6 +1601,8 @@
 				BF365AA712A103F70050DCF4 /* AppController.mm */,
 				BF4DE6AB138BB89600CF907D /* RootViewController.h */,
 				BF4DE6AC138BB89600CF907D /* RootViewController.mm */,
+				424E019D1A3708B20009EFE0 /* IAPurchases.h */,
+				424E019E1A3708B20009EFE0 /* IAPurchases.m */,
 			);
 			name = ios;
 			sourceTree = "<group>";
@@ -1614,6 +1633,11 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = 8A52YCA4PJ;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SimpleGame" */;
 			compatibilityVersion = "Xcode 3.1";
@@ -1687,6 +1711,7 @@
 				BDF624B518E2C51E0067BDD3 /* CCAnimationCache.cpp in Sources */,
 				BDF6249D18E2C51E0067BDD3 /* CCThread.cpp in Sources */,
 				BF4DE6AD138BB89600CF907D /* RootViewController.mm in Sources */,
+				424E019F1A3708B20009EFE0 /* IAPurchases.m in Sources */,
 				BDF624DD18E2C51E0067BDD3 /* CDAudioManager.m in Sources */,
 				BDF624E018E2C51F0067BDD3 /* SimpleAudioEngine.mm in Sources */,
 				BDF624FF18E2C9A20067BDD3 /* requests.cpp in Sources */,
@@ -1736,7 +1761,6 @@
 				BDF624D718E2C51E0067BDD3 /* CCTMXObjectGroup.cpp in Sources */,
 				BDF624C918E2C51E0067BDD3 /* CCUserDefaultAndroid.cpp in Sources */,
 				BDF6245718E2C51E0067BDD3 /* CCActionInterval.cpp in Sources */,
-				BDF620A418E2BEEA0067BDD3 /* StoreScene.cpp in Sources */,
 				BDF6248C18E2C51E0067BDD3 /* CCTransition.cpp in Sources */,
 				BDF624FC18E2C9A20067BDD3 /* base64.cpp in Sources */,
 				BDF624FD18E2C9A20067BDD3 /* cJSON.c in Sources */,
@@ -1776,6 +1800,7 @@
 				BDF624B318E2C51E0067BDD3 /* ccShaders.cpp in Sources */,
 				BDF624AA18E2C51E0067BDD3 /* EAGLView.mm in Sources */,
 				BDF624A518E2C51E0067BDD3 /* CCES2Renderer.m in Sources */,
+				424E01A01A3722250009EFE0 /* StoreScene.mm in Sources */,
 				BDF624AF18E2C51E0067BDD3 /* CCScriptSupport.cpp in Sources */,
 				BDF624BF18E2C51E0067BDD3 /* ccUtils.cpp in Sources */,
 				BDF624AB18E2C51E0067BDD3 /* AccelerometerSimulation.m in Sources */,
@@ -1882,6 +1907,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/playscape_pubkit_libx-gxsgbclkdlbsjubrygapptlzhdeo/Build/Products/Debug-iphoneos",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/RemoteLogger-ckzsdhoqdwqsmdbfuqawhppfcoob/Build/Products/Debug-iphoneos",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = SimpleGame;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -1930,6 +1956,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/playscape_pubkit_libx-gxsgbclkdlbsjubrygapptlzhdeo/Build/Products/Debug-iphoneos",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/RemoteLogger-ckzsdhoqdwqsmdbfuqawhppfcoob/Build/Products/Debug-iphoneos",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = SimpleGame;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
