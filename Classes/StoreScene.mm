@@ -8,6 +8,7 @@
 
 #import "IAPurchases.h"
 #import <StoreKit/StoreKit.h>
+
 /// <summary>
 /// Analytics flow type for the store
 /// </summary>
@@ -41,7 +42,7 @@ bool StoreScene::init()
     {
         return false;
     }
-
+    
     setTouchEnabled(true);
     
     CCArray *itemsArray = new CCArray;
