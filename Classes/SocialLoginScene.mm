@@ -24,7 +24,7 @@ bool SocialLoginScene::init() {
     mItemsMenu = CCMenu::create(
                                 CCMenuItemFont::create("Facebook Login", this, menu_selector(SocialLoginScene::loginButtonCallback)),
                                 CCMenuItemFont::create("Show Native Dialog", this, menu_selector(SocialLoginScene::nativeShareDialogButtonCallback)),
-                                CCMenuItemFont::create("Show Share Dialog", this, menu_selector(SocialLoginScene::shareDialogButtonCallback)),
+                                CCMenuItemFont::create("Share Dialog", this, menu_selector(SocialLoginScene::shareDialogButtonCallback)),
                                 CCMenuItemFont::create("Submit score", this, menu_selector(SocialLoginScene::submitScoreButtonCallback)),
                                 CCMenuItemFont::create("Send Request", this, menu_selector(SocialLoginScene::sendRequestButtonCallback)),
                                 CCMenuItemFont::create("Facebook Logout", this, menu_selector(SocialLoginScene::logoutButtonCallback)),
