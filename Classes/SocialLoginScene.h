@@ -29,6 +29,7 @@ protected:
     void shareDialogButtonCallback(CCObject* sender);
     
     void submitScoreButtonCallback(CCObject* sender);
+    void sendRequestButtonCallback(CCObject* sender);
 	void showLoginDialog();
 
 	void okButtonCallback(CCObject* sender);

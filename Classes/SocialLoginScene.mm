@@ -26,6 +26,7 @@ bool SocialLoginScene::init() {
                                 CCMenuItemFont::create("Show Native Dialog", this, menu_selector(SocialLoginScene::nativeShareDialogButtonCallback)),
                                 CCMenuItemFont::create("Show Share Dialog", this, menu_selector(SocialLoginScene::shareDialogButtonCallback)),
                                 CCMenuItemFont::create("Submit score", this, menu_selector(SocialLoginScene::submitScoreButtonCallback)),
+                                CCMenuItemFont::create("Send Request", this, menu_selector(SocialLoginScene::sendRequestButtonCallback)),
                                 CCMenuItemFont::create("Facebook Logout", this, menu_selector(SocialLoginScene::logoutButtonCallback)),
                                 NULL);
     
@@ -45,7 +46,7 @@ bool SocialLoginScene::init() {
 
 void SocialLoginScene::loginButtonCallback(CCObject* sender) {
     if (FBSession.activeSession.isOpen == NO && [FBSession openActiveSessionWithAllowLoginUI:YES] == NO) {
-        [FBSession openActiveSessionWithPublishPermissions:@[@"public_profile", @"publish_actions"] defaultAudience:FBSessionDefaultAudienceEveryone allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+        [FBSession openActiveSessionWithPublishPermissions:@[@"public_profile", @"publish_actions", @"publish_stream"] defaultAudience:FBSessionDefaultAudienceEveryone allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
             showLoginDialog();
         }];
     } else {
@@ -195,6 +196,30 @@ void SocialLoginScene::submitScoreButtonCallback(CCObject* sender) {
                                   } else {
                                   }
                               }];
+    }
+}
+
+void SocialLoginScene::sendRequestButtonCallback(CCObject *sender) {
+    if (FBSession.activeSession.isOpen == NO && [FBSession openActiveSessionWithAllowLoginUI:YES] == NO) {
+        NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys: @"72014", @"to",
+                                       @"send", @"action_type",
+                                       @"0987654321", @"object_id", nil];
+        
+        [FBWebDialogs presentRequestsDialogModallyWithSession:nil message:@"Take this bomb to blast your way to victory!" title:nil parameters:params handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+            if (error) {
+            } else {
+            }
+        }];
+    } else {
+        NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys: @"72014", @"to",
+                                       @"send", @"action_type",
+                                       @"0987654321", @"object_id", nil];
+        
+        [FBWebDialogs presentRequestsDialogModallyWithSession:nil message:@"Take this bomb to blast your way to victory!" title:nil parameters:params handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+            if (error) {
+            } else {
+            }
+        }];
     }
 }
 
