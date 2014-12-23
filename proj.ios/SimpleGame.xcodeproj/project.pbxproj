@@ -11,10 +11,10 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		42165A8C1A41C1B800977EAF /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42165A8B1A41C1B800977EAF /* FacebookSDK.framework */; };
-		42165A8F1A41CA0000977EAF /* SocialLoginScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42165A8D1A41CA0000977EAF /* SocialLoginScene.mm */; };
+		421923F11A49C9B600F70748 /* SocialLoginScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 421923EF1A49C9B600F70748 /* SocialLoginScene.mm */; };
+		421923F21A49C9B600F70748 /* StoreScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 421923F01A49C9B600F70748 /* StoreScene.mm */; };
 		424E019C1A36F1CD0009EFE0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424E019A1A36F1850009EFE0 /* CoreData.framework */; };
 		424E019F1A3708B20009EFE0 /* IAPurchases.m in Sources */ = {isa = PBXBuildFile; fileRef = 424E019E1A3708B20009EFE0 /* IAPurchases.m */; };
-		424E01A01A3722250009EFE0 /* StoreScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = BDF6209D18E2BEEA0067BDD3 /* StoreScene.mm */; };
 		424E01B41A38A8F60009EFE0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 424E01B31A38A8F60009EFE0 /* libsqlite3.dylib */; };
 		782F4619153FEDF0009FC2E5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 782F4617153FEDF0009FC2E5 /* Default.png */; };
 		BD487FAE19974F3400B40ED8 /* AdsTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD487FA619974F3400B40ED8 /* AdsTestScene.cpp */; };
@@ -228,8 +228,9 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		42165A8B1A41C1B800977EAF /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		42165A8D1A41CA0000977EAF /* SocialLoginScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SocialLoginScene.mm; sourceTree = "<group>"; };
 		42165A8E1A41CA0000977EAF /* SocialLoginScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialLoginScene.h; sourceTree = "<group>"; };
+		421923EF1A49C9B600F70748 /* SocialLoginScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SocialLoginScene.mm; sourceTree = SOURCE_ROOT; };
+		421923F01A49C9B600F70748 /* StoreScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StoreScene.mm; sourceTree = SOURCE_ROOT; };
 		424E018D1A36F1480009EFE0 /* BannersX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannersX.h; sourceTree = "<group>"; };
 		424E018E1A36F1480009EFE0 /* FlowInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowInstance.h; sourceTree = "<group>"; };
 		424E018F1A36F1480009EFE0 /* InterstitialsX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterstitialsX.h; sourceTree = "<group>"; };
@@ -271,7 +272,6 @@
 		BDF6209A18E2BEEA0067BDD3 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		BDF6209B18E2BEEA0067BDD3 /* StartGameLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StartGameLayer.cpp; sourceTree = "<group>"; };
 		BDF6209C18E2BEEA0067BDD3 /* StartGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartGameLayer.h; sourceTree = "<group>"; };
-		BDF6209D18E2BEEA0067BDD3 /* StoreScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StoreScene.mm; sourceTree = "<group>"; };
 		BDF6209E18E2BEEA0067BDD3 /* StoreScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreScene.h; sourceTree = "<group>"; };
 		BDF622BC18E2BF6A0067BDD3 /* Bullet-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bullet-blue.png"; sourceTree = "<group>"; };
 		BDF622BD18E2BF6A0067BDD3 /* Bullet-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bullet-red.png"; sourceTree = "<group>"; };
@@ -1572,7 +1572,7 @@
 		BF23D4E2143315EB00657E08 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				42165A8D1A41CA0000977EAF /* SocialLoginScene.mm */,
+				421923EF1A49C9B600F70748 /* SocialLoginScene.mm */,
 				42165A8E1A41CA0000977EAF /* SocialLoginScene.h */,
 				BD487FA619974F3400B40ED8 /* AdsTestScene.cpp */,
 				BD487FA719974F3400B40ED8 /* AdsTestScene.h */,
@@ -1595,7 +1595,7 @@
 				BDF6209A18E2BEEA0067BDD3 /* Player.h */,
 				BDF6209B18E2BEEA0067BDD3 /* StartGameLayer.cpp */,
 				BDF6209C18E2BEEA0067BDD3 /* StartGameLayer.h */,
-				BDF6209D18E2BEEA0067BDD3 /* StoreScene.mm */,
+				421923F01A49C9B600F70748 /* StoreScene.mm */,
 				BDF6209E18E2BEEA0067BDD3 /* StoreScene.h */,
 			);
 			name = Classes;
@@ -1757,6 +1757,7 @@
 				BDF6246118E2C51E0067BDD3 /* CCCamera.cpp in Sources */,
 				BDF624E118E2C51F0067BDD3 /* SimpleAudioEngine_objc.m in Sources */,
 				BDF6248018E2C51E0067BDD3 /* ray2.c in Sources */,
+				421923F21A49C9B600F70748 /* StoreScene.mm in Sources */,
 				BDF624D918E2C51E0067BDD3 /* CCTMXXMLParser.cpp in Sources */,
 				BDF6245C18E2C51E0067BDD3 /* CCActionTween.cpp in Sources */,
 				BDF6248A18E2C51E0067BDD3 /* CCLayer.cpp in Sources */,
@@ -1774,6 +1775,7 @@
 				BDF624FC18E2C9A20067BDD3 /* base64.cpp in Sources */,
 				BDF624FD18E2C9A20067BDD3 /* cJSON.c in Sources */,
 				BDF6249318E2C51E0067BDD3 /* CCProgressTimer.cpp in Sources */,
+				421923F11A49C9B600F70748 /* SocialLoginScene.mm in Sources */,
 				BD487FAE19974F3400B40ED8 /* AdsTestScene.cpp in Sources */,
 				BDF6247518E2C51E0067BDD3 /* CCGrid.cpp in Sources */,
 				BDF6245618E2C51E0067BDD3 /* CCActionInstant.cpp in Sources */,
@@ -1809,7 +1811,6 @@
 				BDF624B318E2C51E0067BDD3 /* ccShaders.cpp in Sources */,
 				BDF624AA18E2C51E0067BDD3 /* EAGLView.mm in Sources */,
 				BDF624A518E2C51E0067BDD3 /* CCES2Renderer.m in Sources */,
-				424E01A01A3722250009EFE0 /* StoreScene.mm in Sources */,
 				BDF624AF18E2C51E0067BDD3 /* CCScriptSupport.cpp in Sources */,
 				BDF624BF18E2C51E0067BDD3 /* ccUtils.cpp in Sources */,
 				BDF624AB18E2C51E0067BDD3 /* AccelerometerSimulation.m in Sources */,
@@ -1858,7 +1859,6 @@
 				BDF6250418E2C9A20067BDD3 /* utilities.cpp in Sources */,
 				BDF624D818E2C51E0067BDD3 /* CCTMXTiledMap.cpp in Sources */,
 				BDF6249B18E2C51E0067BDD3 /* CCImageCommonWebp.cpp in Sources */,
-				42165A8F1A41CA0000977EAF /* SocialLoginScene.mm in Sources */,
 				BDF6250318E2C9A20067BDD3 /* urlencode.cpp in Sources */,
 				BDF6249C18E2C51E0067BDD3 /* CCSAXParser.cpp in Sources */,
 				BDF624B118E2C51E0067BDD3 /* ccGLStateCache.cpp in Sources */,
