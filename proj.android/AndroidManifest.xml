@@ -106,7 +106,7 @@
         -->
         <receiver android:name="com.playscape.utils.kernel.NotificationActionListener" >
             <intent-filter>
-                <action android:name="com.playscape.utils.kernel.NOTIFICATIONACTION" />
+                <action android:name="com.playscape.utils.intent.NOTIFICATIONACTION" />
 
                 <category android:name="com.playscape.coco2dxdemo" />
             </intent-filter>
