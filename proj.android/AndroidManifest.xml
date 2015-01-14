@@ -83,7 +83,7 @@
 		  so only GCM services can send data messages for the app.
         -->
         <receiver
-            android:name="com.playscape.utils.gcm.GCMBroadcastReceiver"
+            android:name="com.playscape.utils.gcm.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
 
