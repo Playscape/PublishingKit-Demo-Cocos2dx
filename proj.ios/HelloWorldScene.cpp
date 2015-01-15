@@ -5,6 +5,7 @@
 #include "dbgprint.h"
 #include "StoreScene.h"
 #include "AdsTestScene.h"
+#include "SocialLoginScene.h"
 
 #include "playscape/Report.h"
 #include "InviteFriendsScene.h"
@@ -102,6 +103,7 @@ void HelloWorld::showStartGameLayer()
 			CCMenuItemFont::create("Simulate SocialNetwork Login/Logout", this, menu_selector(HelloWorld::simulateSocialNetworkLoginCallback)),
             CCMenuItemFont::create("Open Ads Test", this, menu_selector(HelloWorld::openAdsTest)),
             CCMenuItemFont::create("Set PW custom tags", this, menu_selector(HelloWorld::setCustomTagsCallback)),
+            CCMenuItemFont::create("Social Login", this, menu_selector(HelloWorld::socialLoginCallback)),
 			NULL);
 
     CCObject* item;
@@ -132,6 +134,10 @@ void HelloWorld::setCustomTagsCallback(CCObject* pSender) {
 	PushwooshX::setTag("customTag3Numeric", ++value);
 	PushwooshX::setTag("customTag4Numeric", ++value);
 
+}
+
+void HelloWorld::socialLoginCallback(CCObject* pSender) {
+    CCDirector::sharedDirector()->replaceScene(SocialLoginScene::scene());
 }
 
 void HelloWorld::openAdsTest(CCObject* sender) {

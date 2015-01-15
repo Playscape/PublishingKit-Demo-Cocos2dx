@@ -228,7 +228,7 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		42165A8B1A41C1B800977EAF /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		42165A8E1A41CA0000977EAF /* SocialLoginScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialLoginScene.h; sourceTree = "<group>"; };
+		42165A8E1A41CA0000977EAF /* SocialLoginScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SocialLoginScene.h; path = ../proj.ios/SocialLoginScene.h; sourceTree = "<group>"; };
 		421923EF1A49C9B600F70748 /* SocialLoginScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SocialLoginScene.mm; sourceTree = SOURCE_ROOT; };
 		421923F01A49C9B600F70748 /* StoreScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StoreScene.mm; sourceTree = SOURCE_ROOT; };
 		424E018D1A36F1480009EFE0 /* BannersX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannersX.h; sourceTree = "<group>"; };
@@ -237,7 +237,6 @@
 		424E01901A36F1480009EFE0 /* MPAnalyticsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAnalyticsProvider.h; sourceTree = "<group>"; };
 		424E01911A36F1480009EFE0 /* PlayscapeX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayscapeX.h; sourceTree = "<group>"; };
 		424E01921A36F1480009EFE0 /* PurchaseItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseItem.h; sourceTree = "<group>"; };
-		424E01931A36F1480009EFE0 /* PushwooshX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushwooshX.h; sourceTree = "<group>"; };
 		424E01941A36F1480009EFE0 /* Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Report.h; sourceTree = "<group>"; };
 		424E01951A36F1480009EFE0 /* ServiceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceState.h; sourceTree = "<group>"; };
 		424E01961A36F1480009EFE0 /* SocialAnalyticsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialAnalyticsProvider.h; sourceTree = "<group>"; };
@@ -264,7 +263,7 @@
 		BDF6209218E2BEEA0067BDD3 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		BDF6209318E2BEEA0067BDD3 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BDF6209418E2BEEA0067BDD3 /* dbgprint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbgprint.h; sourceTree = "<group>"; };
-		BDF6209518E2BEEA0067BDD3 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HelloWorldScene.cpp; sourceTree = "<group>"; };
+		BDF6209518E2BEEA0067BDD3 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HelloWorldScene.cpp; path = ../proj.ios/HelloWorldScene.cpp; sourceTree = "<group>"; };
 		BDF6209618E2BEEA0067BDD3 /* HelloWorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldScene.h; sourceTree = "<group>"; };
 		BDF6209718E2BEEA0067BDD3 /* InGameMenuLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InGameMenuLayer.cpp; sourceTree = "<group>"; };
 		BDF6209818E2BEEA0067BDD3 /* InGameMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InGameMenuLayer.h; sourceTree = "<group>"; };
@@ -1557,7 +1556,6 @@
 				424E01901A36F1480009EFE0 /* MPAnalyticsProvider.h */,
 				424E01911A36F1480009EFE0 /* PlayscapeX.h */,
 				424E01921A36F1480009EFE0 /* PurchaseItem.h */,
-				424E01931A36F1480009EFE0 /* PushwooshX.h */,
 				424E01941A36F1480009EFE0 /* Report.h */,
 				424E01951A36F1480009EFE0 /* ServiceState.h */,
 				424E01961A36F1480009EFE0 /* SocialAnalyticsProvider.h */,
