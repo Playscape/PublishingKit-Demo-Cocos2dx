@@ -44,6 +44,7 @@ include $(BUILD_SHARED_LIBRARY)
 $(call import-add-path,$(LOCAL_PATH)/../../../PlayscapePubkitCocos2D-X/proj.android/prebuilt)
 
 # Playscape Publishing Kit Modules
+$(call import-add-path,LOCAL_PATH)
 $(call import-module,playscape_pubkit)
 $(call import-module,playscape_pubkit_cocos2dx)
 
