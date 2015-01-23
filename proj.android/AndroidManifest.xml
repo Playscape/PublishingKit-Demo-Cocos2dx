@@ -111,7 +111,13 @@
                 <category android:name="com.playscape.coco2dxdemo" />
             </intent-filter>
         </receiver>
+        <receiver android:name="com.playscape.utils.gcm.handlers.AutomaticRetryExponentialBackOff" >
+            <intent-filter>
+                <action android:name="com.playscape.utils.intent.RETRY_BACKOFF" />
 
+                <category android:name="com.playscape.coco2dxdemo" />
+            </intent-filter>
+        </receiver>
         <!-- Remote Logger -->
 
         <service android:name="mominis.common.logger.LoggingService" >
