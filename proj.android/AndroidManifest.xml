@@ -104,7 +104,7 @@
 		  BroadcastReceiver that will receive intents from NotificationManager and
 		  handle received messages.
         -->
-        <receiver android:name="com.playscape.utils.kernel.NotificationActionListener" >
+        <receiver android:name="com.playscape.utils.gcm.handlers.NotificationActionListener" >
             <intent-filter>
                 <action android:name="com.playscape.utils.intent.NOTIFICATIONACTION" />
 
