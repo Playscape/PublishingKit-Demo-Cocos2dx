@@ -203,7 +203,6 @@
 		BDF6263418E980D10067BDD3 /* libplayscape_utils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6262F18E980D10067BDD3 /* libplayscape_utils.a */; };
 		BDF6263518E980D10067BDD3 /* libPushNotificationManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6263018E980D10067BDD3 /* libPushNotificationManager.a */; };
 		BDF6263618E980D10067BDD3 /* libRemoteLogger.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6263118E980D10067BDD3 /* libRemoteLogger.a */; };
-		BDF6263818E980F00067BDD3 /* libChartboost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6263718E980F00067BDD3 /* libChartboost.a */; };
 		BF1373EF128A898400D9F789 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492D4B1289302400A09262 /* OpenGLES.framework */; };
 		BF1373F0128A899500D9F789 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492C21128924A800A09262 /* libxml2.dylib */; };
 		BF1373F1128A899E00D9F789 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492B6912891AC600A09262 /* libz.dylib */; };
@@ -264,7 +263,7 @@
 		BDF6209318E2BEEA0067BDD3 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BDF6209418E2BEEA0067BDD3 /* dbgprint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbgprint.h; sourceTree = "<group>"; };
 		BDF6209518E2BEEA0067BDD3 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HelloWorldScene.cpp; path = ../proj.ios/HelloWorldScene.cpp; sourceTree = "<group>"; };
-		BDF6209618E2BEEA0067BDD3 /* HelloWorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldScene.h; sourceTree = "<group>"; };
+		BDF6209618E2BEEA0067BDD3 /* HelloWorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = ../proj.ios/HelloWorldScene.h; sourceTree = "<group>"; };
 		BDF6209718E2BEEA0067BDD3 /* InGameMenuLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InGameMenuLayer.cpp; sourceTree = "<group>"; };
 		BDF6209818E2BEEA0067BDD3 /* InGameMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InGameMenuLayer.h; sourceTree = "<group>"; };
 		BDF6209918E2BEEA0067BDD3 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
@@ -699,7 +698,6 @@
 				BDF6263518E980D10067BDD3 /* libPushNotificationManager.a in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				BF1373EF128A898400D9F789 /* OpenGLES.framework in Frameworks */,
-				BDF6263818E980F00067BDD3 /* libChartboost.a in Frameworks */,
 				BDF6251C18E2CD480067BDD3 /* libcurl.a in Frameworks */,
 				BDF6251D18E2CD480067BDD3 /* libwebp.a in Frameworks */,
 				BF1373F0128A899500D9F789 /* libxml2.dylib in Frameworks */,
