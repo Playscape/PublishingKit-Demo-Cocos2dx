@@ -15,7 +15,7 @@
 		424E019C1A36F1CD0009EFE0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424E019A1A36F1850009EFE0 /* CoreData.framework */; };
 		424E019F1A3708B20009EFE0 /* IAPurchases.m in Sources */ = {isa = PBXBuildFile; fileRef = 424E019E1A3708B20009EFE0 /* IAPurchases.m */; };
 		424E01B41A38A8F60009EFE0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 424E01B31A38A8F60009EFE0 /* libsqlite3.dylib */; };
-		427F12FF1A83994800ACAD24 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427F12FE1A83994800ACAD24 /* FacebookSDK.framework */; };
+		42A157151A83C42A00747820 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427F12FE1A83994800ACAD24 /* FacebookSDK.framework */; };
 		782F4619153FEDF0009FC2E5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 782F4617153FEDF0009FC2E5 /* Default.png */; };
 		BD487FAE19974F3400B40ED8 /* AdsTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD487FA619974F3400B40ED8 /* AdsTestScene.cpp */; };
 		BD487FAF19974F3400B40ED8 /* BannersTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD487FA819974F3400B40ED8 /* BannersTestScene.cpp */; };
@@ -677,7 +677,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				427F12FF1A83994800ACAD24 /* FacebookSDK.framework in Frameworks */,
+				42A157151A83C42A00747820 /* FacebookSDK.framework in Frameworks */,
 				424E01B41A38A8F60009EFE0 /* libsqlite3.dylib in Frameworks */,
 				424E019C1A36F1CD0009EFE0 /* CoreData.framework in Frameworks */,
 				BD9F3E60190D4B54001103C2 /* AdSupport.framework in Frameworks */,
@@ -1895,6 +1895,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"\"$(SDKROOT)/usr/include/libxml2/\"",
 					"\"$(SRCROOT)/libraries/cocos2dx/include\"",
 					"\"$(SRCROOT)/libraries/cocos2dx\"",
@@ -1948,6 +1949,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"\"$(SDKROOT)/usr/include/libxml2/\"",
 					"\"$(SRCROOT)/libraries/cocos2dx/include\"",
 					"\"$(SRCROOT)/libraries/cocos2dx\"",
