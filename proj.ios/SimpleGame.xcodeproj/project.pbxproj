@@ -226,7 +226,7 @@
 		1D6058910D05DD3D006BFB54 /* SimpleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		42165A8B1A41C1B800977EAF /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		42165A8B1A41C1B800977EAF /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = libraries/FacebookSDK.framework; sourceTree = "<group>"; };
 		42165A8E1A41CA0000977EAF /* SocialLoginScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SocialLoginScene.h; path = ../proj.ios/SocialLoginScene.h; sourceTree = "<group>"; };
 		421923EF1A49C9B600F70748 /* SocialLoginScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SocialLoginScene.mm; sourceTree = SOURCE_ROOT; };
 		421923F01A49C9B600F70748 /* StoreScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StoreScene.mm; sourceTree = SOURCE_ROOT; };
@@ -655,7 +655,6 @@
 		BDF6262F18E980D10067BDD3 /* libplayscape_utils.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libplayscape_utils.a; path = "../../PlayscapePubkitCocos2D-X/proj.ios/prebuilt/libraries/libplayscape_utils.a"; sourceTree = "<group>"; };
 		BDF6263018E980D10067BDD3 /* libPushNotificationManager.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPushNotificationManager.a; path = "../../PlayscapePubkitCocos2D-X/proj.ios/prebuilt/libraries/libPushNotificationManager.a"; sourceTree = "<group>"; };
 		BDF6263118E980D10067BDD3 /* libRemoteLogger.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRemoteLogger.a; path = "../../PlayscapePubkitCocos2D-X/proj.ios/prebuilt/libraries/libRemoteLogger.a"; sourceTree = "<group>"; };
-		BDF6263718E980F00067BDD3 /* libChartboost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libChartboost.a; path = libraries/libChartboost.a; sourceTree = "<group>"; };
 		BF137426128A8E4600D9F789 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BF365AA612A103F70050DCF4 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		BF365AA712A103F70050DCF4 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
@@ -737,7 +736,6 @@
 				424E01B31A38A8F60009EFE0 /* libsqlite3.dylib */,
 				424E019A1A36F1850009EFE0 /* CoreData.framework */,
 				BD9F3E5F190D4B54001103C2 /* AdSupport.framework */,
-				BDF6263718E980F00067BDD3 /* libChartboost.a */,
 				BDF6262D18E980D10067BDD3 /* libplayscape_pubkit_lib.a */,
 				BDF6262E18E980D10067BDD3 /* libplayscape_pubkit_libx.a */,
 				BDF6262F18E980D10067BDD3 /* libplayscape_utils.a */,
