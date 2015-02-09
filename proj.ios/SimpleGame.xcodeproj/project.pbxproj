@@ -12,7 +12,7 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		421923F11A49C9B600F70748 /* SocialLoginScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 421923EF1A49C9B600F70748 /* SocialLoginScene.mm */; };
 		421923F21A49C9B600F70748 /* StoreScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 421923F01A49C9B600F70748 /* StoreScene.mm */; };
-		422FFBC81A88E734008F3982 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422FFBC71A88E734008F3982 /* FacebookSDK.framework */; };
+		4219393E1A89246D00225375 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4219393D1A89246D00225375 /* FacebookSDK.framework */; };
 		424E019C1A36F1CD0009EFE0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424E019A1A36F1850009EFE0 /* CoreData.framework */; };
 		424E019F1A3708B20009EFE0 /* IAPurchases.m in Sources */ = {isa = PBXBuildFile; fileRef = 424E019E1A3708B20009EFE0 /* IAPurchases.m */; };
 		424E01B41A38A8F60009EFE0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 424E01B31A38A8F60009EFE0 /* libsqlite3.dylib */; };
@@ -229,7 +229,7 @@
 		42165A8E1A41CA0000977EAF /* SocialLoginScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SocialLoginScene.h; path = ../proj.ios/SocialLoginScene.h; sourceTree = "<group>"; };
 		421923EF1A49C9B600F70748 /* SocialLoginScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SocialLoginScene.mm; sourceTree = SOURCE_ROOT; };
 		421923F01A49C9B600F70748 /* StoreScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StoreScene.mm; sourceTree = SOURCE_ROOT; };
-		422FFBC71A88E734008F3982 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		4219393D1A89246D00225375 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "$(HOME)/Documents/FacebookSDK/FacebookSDK.framework"; sourceTree = "<group>"; };
 		424E018D1A36F1480009EFE0 /* BannersX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannersX.h; sourceTree = "<group>"; };
 		424E018E1A36F1480009EFE0 /* FlowInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowInstance.h; sourceTree = "<group>"; };
 		424E018F1A36F1480009EFE0 /* InterstitialsX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterstitialsX.h; sourceTree = "<group>"; };
@@ -677,7 +677,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				422FFBC81A88E734008F3982 /* FacebookSDK.framework in Frameworks */,
+				4219393E1A89246D00225375 /* FacebookSDK.framework in Frameworks */,
 				424E01B41A38A8F60009EFE0 /* libsqlite3.dylib in Frameworks */,
 				424E019C1A36F1CD0009EFE0 /* CoreData.framework in Frameworks */,
 				BD9F3E60190D4B54001103C2 /* AdSupport.framework in Frameworks */,
@@ -732,7 +732,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				422FFBC71A88E734008F3982 /* FacebookSDK.framework */,
+				4219393D1A89246D00225375 /* FacebookSDK.framework */,
 				424E01B31A38A8F60009EFE0 /* libsqlite3.dylib */,
 				424E019A1A36F1850009EFE0 /* CoreData.framework */,
 				BD9F3E5F190D4B54001103C2 /* AdSupport.framework */,
@@ -1872,17 +1872,13 @@
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Documents/FacebookSDK\\\" \"$(SRCROOT)/../../../Documents/FacebookSDK\\\"/**",
-					"\"$(SRCROOT)/../../../../../Documents/FacebookSDK\\\" \"$(SRCROOT)/../../Documents/FacebookSDK\\\"/**",
-					"$(SRCROOT)/../../../../../../Documents/FacebookSDK/**",
-					"$(SRCROOT)/../../../../../../../Documents/FacebookSDK",
+					"$(HOME)/Documents/FacebookSDK/**",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -1932,17 +1928,13 @@
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Documents/FacebookSDK\\\" \"$(SRCROOT)/../../../Documents/FacebookSDK\\\"/**",
-					"\"$(SRCROOT)/../../../../../Documents/FacebookSDK\\\" \"$(SRCROOT)/../../Documents/FacebookSDK\\\"/**",
-					"$(SRCROOT)/../../../../../../Documents/FacebookSDK/**",
-					"$(SRCROOT)/../../../../../../../Documents/FacebookSDK",
+					"$(HOME)/Documents/FacebookSDK/**",
 				);
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
