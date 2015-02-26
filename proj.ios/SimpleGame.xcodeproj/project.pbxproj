@@ -201,7 +201,6 @@
 		BDF6263218E980D10067BDD3 /* libplayscape_pubkit_lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6262D18E980D10067BDD3 /* libplayscape_pubkit_lib.a */; };
 		BDF6263318E980D10067BDD3 /* libplayscape_pubkit_libx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6262E18E980D10067BDD3 /* libplayscape_pubkit_libx.a */; };
 		BDF6263418E980D10067BDD3 /* libplayscape_utils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6262F18E980D10067BDD3 /* libplayscape_utils.a */; };
-		BDF6263518E980D10067BDD3 /* libPushNotificationManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6263018E980D10067BDD3 /* libPushNotificationManager.a */; };
 		BDF6263618E980D10067BDD3 /* libRemoteLogger.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6263118E980D10067BDD3 /* libRemoteLogger.a */; };
 		BF1373EF128A898400D9F789 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492D4B1289302400A09262 /* OpenGLES.framework */; };
 		BF1373F0128A899500D9F789 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF492C21128924A800A09262 /* libxml2.dylib */; };
@@ -694,7 +693,6 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				BDF6263618E980D10067BDD3 /* libRemoteLogger.a in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
-				BDF6263518E980D10067BDD3 /* libPushNotificationManager.a in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				BF1373EF128A898400D9F789 /* OpenGLES.framework in Frameworks */,
 				BDF6251C18E2CD480067BDD3 /* libcurl.a in Frameworks */,

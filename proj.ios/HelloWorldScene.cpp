@@ -9,14 +9,12 @@
 
 #include "playscape/Report.h"
 #include "InviteFriendsScene.h"
-#include "playscape/PushwooshX.h"
 
 #include <sstream>
 
 using namespace cocos2d;
 using namespace CocosDenshion;
 using playscape::Report;
-using playscape::notifications::PushwooshX;
 using std::ostringstream;
 
 #define FAKE_FACEBOOK_ID "fake_facebook_id"
@@ -124,16 +122,9 @@ void HelloWorld::setCustomTagsCallback(CCObject* pSender) {
 	ostringstream is;
 	is << "value_" << value;
 
-	PushwooshX::setTag("customTag1", is.str());
-
 	value++;
 
 	is << value;
-
-	PushwooshX::setTag("customTag2", is.str());
-	PushwooshX::setTag("customTag3Numeric", ++value);
-	PushwooshX::setTag("customTag4Numeric", ++value);
-
 }
 
 void HelloWorld::socialLoginCallback(CCObject* pSender) {
