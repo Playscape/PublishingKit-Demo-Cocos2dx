@@ -4,6 +4,9 @@
 #include "HelloWorldScene.h"
 #include "InGameMenuLayer.h"
 #include "playscape/Report.h"
+#include "CCStoreInventory.h"
+#include "CCError.h"
+#include "CCSoomlaUtils.h"
 #include <map>
 /// <summary>
 /// Analytics flow type for the store
@@ -20,7 +23,6 @@
 using namespace cocos2d;
 using playscape::Report;
 using std::map;
-
 
 static int64_t currentTimeMillis() {
     struct timeval tv;
@@ -179,7 +181,15 @@ void StoreScene::showBuyDialog(const string& itemName) {
 void StoreScene::buyButtonCallback(CCObject* sender) {
 	hideBuyDialog();
 
+    string itemId = ((PurchaseItem)*mCurrentItemPurchasing).getName();
+    soomla::CCError *soomlaError = NULL;
+    soomla::CCStoreInventory::sharedStoreInventory()->buyItem(itemId.c_str(), &soomlaError);
+        if (soomlaError) {
+            soomla::CCSoomlaUtils::logException("StoreBScene::onBuy", soomlaError);
+            return;
+        }
 
+/*
 	if (mShouldFail) {
 		Report::getInstance().ReportFlowStep(mStoreFlow, CLOSED_STORE_FLOW_STEP, "ok", mDummyFlowDetails);
 
@@ -192,7 +202,7 @@ void StoreScene::buyButtonCallback(CCObject* sender) {
 		Report::getInstance().ReportPurchaseStarted(*mCurrentItemPurchasing);
 		Report::getInstance().ReportPurchaseSuccess(*mCurrentItemPurchasing, mCurrentItemPrice, "USD", currentTimeMillis(), "fake-tranaction-id");
 	}
-
+*/
 	mShouldFail = false;
 }
 
@@ -258,8 +268,8 @@ void StoreScene::reportStartPurchase() {
 }
 
 void StoreScene::initReportableItems() {
-	mItemNinjaStars = new PurchaseItem("com.mycompany.ninja_stars_item");
+	mItemNinjaStars = new PurchaseItem("ninja_stars_10");
 	mItemNinjaSword = new PurchaseItem("com.mycompany.ninja_sword_item");
-	mItemSamuraiShield = new PurchaseItem("com.mycompany.samurai_shield_item");
-	mItemShogunKatana = new PurchaseItem("com.mycompany.shogun_katana_item");
+	mItemSamuraiShield = new PurchaseItem("samurai_shield");
+	mItemShogunKatana = new PurchaseItem("shougun_katana");
 }

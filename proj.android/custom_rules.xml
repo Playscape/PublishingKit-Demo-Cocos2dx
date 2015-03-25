@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+    <target name="-post-build">
+        <property name="patch.file.name" location="../../../../bridges/android/playscape_automated_reports/bin/classes.jar"/>
+        <property name="patcher.file.name" location="../../../../build/AspectjPatcher.py"/>
+        <property name="keystore.path" location="/Users/mac/Desktop/MoMinis.keystore"/>
+        <property name="storepass" value="mominis0326"/>
+        <property name="keypass" value="mominis0326"/>
+        <property name="alias" value="android_market"/>
+        <echo>${out.absolute.dir}/${ant.project.name}-release-unsigned.apk</echo>
+        <exec executable="python">
+            <arg value="${patcher.file.name}"/>
+            <arg value="--apk=${out.absolute.dir}/${ant.project.name}-release-unsigned.apk"/>
+            <arg value="--patch=${patch.file.name}"/>
+            <arg value="--keystore=keystore.path"/>
+            <arg value="--storepass=storepass"/>
+            <arg value="--keypass=keypass"/>
+            <arg value="--alias=alias"/>
+        </exec>
+    </target>
+</project>

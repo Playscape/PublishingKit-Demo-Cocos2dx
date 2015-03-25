@@ -5,6 +5,7 @@ import org.cocos2dx.simplegame.SimpleGame;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import com.facebook.AppEventsLogger;
 
 import com.playscape.lifecycle.ActivityLifeCycle;
 
@@ -33,23 +34,25 @@ public class PlayscapeActivity extends SimpleGame {
 	    mActivityLifeCycle.onDestroy();
 	}
 
-	@Override
-	public void onResume() {
-		super.onResume();
-		mActivityLifeCycle.onResume();
-	}
-	
-	/**
-	 * Call from activity's onPause
-	 */
-     @Override
-	public void onPause() {
-		super.onPause();
-		mActivityLifeCycle.onPause();
-	}
-	
-
-	@Override
+    @Override
+    public void onResume() {
+        super.onResume();
+        AppEventsLogger.activateApp(this);
+        mActivityLifeCycle.onResume();
+    }
+    
+    /**
+     * Call from activity's onPause
+     */
+    @Override
+    public void onPause() {
+        super.onPause();
+        AppEventsLogger.deactivateApp(this);
+        mActivityLifeCycle.onPause();
+    }
+    
+    
+    @Override
 	public void onStart() {
 		super.onStart();
 		mActivityLifeCycle.onStart();

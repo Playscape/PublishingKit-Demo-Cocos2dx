@@ -10,6 +10,13 @@
 #define  _APP_DELEGATE_H_
 
 #include "CCApplication.h"
+#include "CCSoomla.h"
+#include "CCSoomlaEventDispatcher.h"
+#include "CCSoomlaStore.h"
+#include "CCStoreEventDispatcher.h"
+#include "CCStoreInfo.h"
+#include "CCStoreInventory.h"
+#include "CCVirtualCurrency.h"
 
 /**
 @brief    The cocos2d Application.
