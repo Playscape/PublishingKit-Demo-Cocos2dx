@@ -2,7 +2,7 @@
 
 <project>
     <target name="-post-build">
-        <property name="patch.file.name" location="../../../../bridges/android/playscape_automated_reports/bin/classes.jar"/>
+        <property name="patch.file.name" location="../../../../bridges/android/playscape_lifecycle/bin/classes.jar"/>
         <property name="patcher.file.name" location="../../../../build/AspectjPatcher.py"/>
         <property name="keystore.path" location="/Users/mac/Desktop/MoMinis.keystore"/>
         <property name="storepass" value="mominis0326"/>
