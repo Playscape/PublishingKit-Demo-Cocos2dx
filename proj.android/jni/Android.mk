@@ -91,8 +91,26 @@ LOCAL_SRC_FILES += ../../Classes/Soomla//rewards/CCReward.cpp
 LOCAL_SRC_FILES += ../../Classes/Soomla//rewards/CCSequenceReward.cpp
 LOCAL_SRC_FILES += ../../Classes/Soomla//rewards/CCVirtualItemReward.cpp
 
+LOCAL_SRC_FILES += ../../Classes/jansson/dump.c
+LOCAL_SRC_FILES += ../../Classes/jansson/hashtable.c
+LOCAL_SRC_FILES += ../../Classes/jansson/jansson.h
+LOCAL_SRC_FILES += ../../Classes/jansson/jansson_private.h
+LOCAL_SRC_FILES += ../../Classes/jansson/memory.c
+LOCAL_SRC_FILES += ../../Classes/jansson/strbuffer.c
+LOCAL_SRC_FILES += ../../Classes/jansson/strconv.c
+LOCAL_SRC_FILES += ../../Classes/jansson/utf.h
+LOCAL_SRC_FILES += ../../Classes/jansson/error.c
+LOCAL_SRC_FILES += ../../Classes/jansson/hashtable.h
+LOCAL_SRC_FILES += ../../Classes/jansson/jansson_config.h
+LOCAL_SRC_FILES += ../../Classes/jansson/load.c
+LOCAL_SRC_FILES += ../../Classes/jansson/pack_unpack.c
+LOCAL_SRC_FILES += ../../Classes/jansson/strbuffer.h
+LOCAL_SRC_FILES += ../../Classes/jansson/utf.c
+LOCAL_SRC_FILES += ../../Classes/jansson/value.c
+
 LOCAL_C_INCLUDES := $(JNI_LOCAL_PATH)/../../Classes
 LOCAL_C_INCLUDES += $(JNI_LOCAL_PATH)/../../Classes/Soomla
+LOCAL_C_INCLUDES += $(JNI_LOCAL_PATH)/../../Classes/jansson
 LOCAL_C_INCLUDES += $(JNI_LOCAL_PATH)/../../AppWarpX
 LOCAL_C_INCLUDES += $(JNI_LOCAL_PATH)/../../../PlayscapePubkitCocos2D-X/include
 LOCAL_C_INCLUDES += $(JNI_LOCAL_PATH)/../../Classes/Soomla/data
@@ -108,7 +126,7 @@ LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos_curl_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos_extension_static
-LOCAL_WHOLE_STATIC_LIBRARIES += jansson_static
+#LOCAL_WHOLE_STATIC_LIBRARIES += jansson_static
 
 # Playscape libs we're dependant on + gnustl shared lib
 LOCAL_SHARED_LIBRARIES := playscape_pubkit_shared
@@ -130,5 +148,4 @@ $(call import-module,playscape_pubkit_cocos2dx)
 $(call import-module,libcurl)
 $(call import-module,CocosDenshion/android)
 $(call import-module,cocos2dx)
-$(call import-path, $(COCOS2DX_ROOT))
-$(call import-module,external/jansson)
+#$(call import-module,external/jansson)
