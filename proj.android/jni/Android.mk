@@ -93,18 +93,12 @@ LOCAL_SRC_FILES += ../../Classes/Soomla//rewards/CCVirtualItemReward.cpp
 
 LOCAL_SRC_FILES += ../../Classes/jansson/dump.c
 LOCAL_SRC_FILES += ../../Classes/jansson/hashtable.c
-LOCAL_SRC_FILES += ../../Classes/jansson/jansson.h
-LOCAL_SRC_FILES += ../../Classes/jansson/jansson_private.h
 LOCAL_SRC_FILES += ../../Classes/jansson/memory.c
 LOCAL_SRC_FILES += ../../Classes/jansson/strbuffer.c
 LOCAL_SRC_FILES += ../../Classes/jansson/strconv.c
-LOCAL_SRC_FILES += ../../Classes/jansson/utf.h
 LOCAL_SRC_FILES += ../../Classes/jansson/error.c
-LOCAL_SRC_FILES += ../../Classes/jansson/hashtable.h
-LOCAL_SRC_FILES += ../../Classes/jansson/jansson_config.h
 LOCAL_SRC_FILES += ../../Classes/jansson/load.c
 LOCAL_SRC_FILES += ../../Classes/jansson/pack_unpack.c
-LOCAL_SRC_FILES += ../../Classes/jansson/strbuffer.h
 LOCAL_SRC_FILES += ../../Classes/jansson/utf.c
 LOCAL_SRC_FILES += ../../Classes/jansson/value.c
 
