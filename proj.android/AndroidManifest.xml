@@ -66,13 +66,12 @@
         android:smallScreens="true" />
 
     <application
-        android:name="com.playscape.rolaballapp.RollABallCustomApp"
         android:icon="@drawable/icon"
         android:label="@string/app_name" >
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
 
         <activity
-            android:name="com.playscape.publishingkit.PlayscapeActivity"
+            android:name="org.cocos2dx.simplegame.SimpleGame"
             android:configChanges="orientation"
             android:label="@string/app_name"
             android:launchMode="singleTop"
