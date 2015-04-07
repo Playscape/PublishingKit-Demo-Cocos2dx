@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project>
+<project name="cocos2dxdemo">
     <target name="-post-build">
         <property name="patch.file.name" location="../../../../bridges/android/playscape_lifecycle/bin/classes.jar"/>
         <property name="patcher.file.name" location="../../../../build/AspectjPatcher.py"/>
