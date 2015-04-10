@@ -1,22 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="cocos2dxdemo">
-    <target name="-post-build">
-        <property name="patch.file.name" location="../../../../bridges/android/playscape_lifecycle/bin/classes.jar"/>
-        <property name="patcher.file.name" location="../../../../build/AspectjPatcher.py"/>
-        <property name="keystore.path" location="/Users/mac/Desktop/MoMinis.keystore"/>
-        <property name="storepass" value="mominis0326"/>
-        <property name="keypass" value="mominis0326"/>
-        <property name="alias" value="android_market"/>
-        <echo>${out.absolute.dir}/${ant.project.name}-release-unsigned.apk</echo>
-        <exec executable="python">
-            <arg value="${patcher.file.name}"/>
-            <arg value="--apk=${out.absolute.dir}/${ant.project.name}-release-unsigned.apk"/>
-            <arg value="--patch=${patch.file.name}"/>
-            <arg value="--keystore=keystore.path"/>
-            <arg value="--storepass=storepass"/>
-            <arg value="--keypass=keypass"/>
-            <arg value="--alias=alias"/>
-        </exec>
+<project>
+    <property file="build.properties"/>
+    
+    <property name="out.jar.file" location="bin/aspect_classes.jar" />
+                
+    <target name="-pre-compile">
+        
     </target>
+    
+    <macrodef name="aspect-patcher">
+        <sequential>
+            <pathconvert property="expanded.main.class.path" refid="out.dex.jar.input.ref"/>
+
+            <property name="classpath.aspects.aspectjtools" location="../../PlayscapePubKitCocos2D-X/build/tools/aspectsj/aspectjtools.jar"/>
+            <property name="classpath.aspects.aspectjrt" location="../../PlayscapePubKitCocos2D-X/build/tools/aspectsj/aspectjrt.jar"/>
+            <property name="classpath.playservices.project" location="${sdk.dir}/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-servies.jar"/>
+            <property name="patcher.aspectpath" location="../../../../bridges/android/playscape_lifecycle/bin/classes.jar"/>
+            
+            <exec executable="java">
+                <arg value="-classpath"/>
+                <arg value="${classpath.aspects.aspectjtools}:${classpath.aspects.aspectjrt}:${project.target.android.jar}"/>
+                <arg value="-Xmx8g"/>
+                <arg value="org.aspectj.tools.ajc.Main"/>
+                <arg value="-source"/>
+                <arg value="1.5"/>
+                <arg value="-Xlint:ignore"/>
+                <arg value="-inpath"/>
+                <arg value="${out.classes.absolute.dir}"/>
+                <arg value="-injars"/>
+                <arg value="${expanded.main.class.path}:${patcher.aspectpath}"/>
+                <arg value="-aspectpath"/>
+                <arg value="${patcher.aspectpath}"/>
+                <arg value="-outjar"/>
+                <arg value="${out.jar.file}"/>
+            </exec>
+            
+        </sequential>
+    </macrodef>
+
+
+    <!-- Configurable macro, which allows to pass as parameters output directory,
+     output dex filename and external libraries to dex (optional) -->
+    <macrodef name="dex-helper-custom">
+        <element name="external-libs" optional="yes" />
+        <attribute name="nolocals" default="false" />
+        <sequential>
+            <!-- sets the primary input for dex. If a pre-dex task sets it to
+             something else this has no effect -->
+<!--            <property name="out.dex.input.absolute.dir" value="${out.classes.absolute.dir}" />-->
+
+            <!-- set the secondary dx input: the project (and library) jar files
+             If a pre-dex task sets it to something else this has no effect -->
+            <if>
+                <condition>
+                    <isreference refid="out.dex.jar.input.ref" />
+                </condition>
+                <else>
+                    <path id="out.dex.jar.input.ref">
+                        <path refid="project.all.jars.path" />
+                    </path>
+                </else>
+            </if>
+            
+            <!-- call aspect patcher to aspply aspects to all .jar and .class files -->
+            <aspect-patcher />
+            
+            <property name="out.dex.input.absolute.dir" value="${out.jar.file}" />
+            
+            <dex executable="${dx}"
+                output="${intermediate.dex.file}"
+                dexedlibs="${out.dexed.absolute.dir}"
+                nolocals="@{nolocals}"
+                forceJumbo="${dex.force.jumbo}"
+                disableDexMerger="${dex.disable.merger}"
+                verbose="${verbose}">
+                <path path="${out.jar.file}"/>
+                <external-libs />
+            </dex>
+        </sequential>
+    </macrodef>
+    
+    <!-- Converts this project's .class files into .dex files -->
+    <target name="-dex" depends="-compile, -post-compile, -obfuscate">
+        <do-only-if-manifest-hasCode elseText="hasCode = false. Skipping...">
+            <!-- only convert to dalvik bytecode is *not* a library -->
+            <do-only-if-not-library elseText="Library project: do not convert bytecode..." >
+                <!-- special case for instrumented builds: need to use no-locals and need
+                 to pass in the emma jar. -->
+                <if condition="${build.is.instrumented}">
+                    <then>
+                        <dex-helper-custom nolocals="true">
+                            <external-libs>
+                                <fileset file="${emma.dir}/emma_device.jar" />
+                            </external-libs>
+                        </dex-helper-custom>
+                    </then>
+                    <else>
+                        <dex-helper-custom />
+                    </else>
+                </if>
+            </do-only-if-not-library>
+        </do-only-if-manifest-hasCode>
+    </target>
+
+
+
 </project>
+
