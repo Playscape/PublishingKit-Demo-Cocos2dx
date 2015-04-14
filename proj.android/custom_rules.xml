@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-    <property file="build.properties"/>
-    
+    <property file="build.properties"/>  
     <property name="out.jar.file" location="bin/aspect_classes.jar" />
-                
+	
+	
+	<property name="publishigkit.dir" location="../../PlayscapePubKitCocos2D-X" />
+	<property name="publishigkit.assets" location="${publishigkit.dir}/proj.android/PlayscapePublishingKitX/assets" />
+	<property name="target.assets" location="./assets" />
+
     <target name="-pre-compile">
-        
-    </target>
+		<copy todir="${target.assets}" overwrite="true">
+			<fileset dir="${publishigkit.assets}" />
+		</copy>
+	</target>
+                
     
     <macrodef name="aspect-patcher">
         <sequential>
