@@ -5,6 +5,16 @@
     <property name="out.jar.file" location="bin/aspect_classes.jar" />
     <property name="default.application.class" value="com.playscape.playscapeapp.PlayscapeApp"/>
     
+	<property name="publishigkit.dir" location="../../PlayscapePubKitCocos2D-X" />
+	<property name="publishigkit.assets" location="${publishigkit.dir}/proj.android/PlayscapePublishingKitX/assets" />
+	<property name="target.assets" location="./assets" />
+
+    <target name="-pre-compile">
+		<copy todir="${target.assets}" overwrite="true">
+			<fileset dir="${publishigkit.assets}" />
+		</copy>
+	</target>
+                				
     <target name="-pre-build">
         <xmlproperty file="AndroidManifest.xml" prefix="mymanifest" collapseAttributes="true"/>
         
@@ -39,17 +49,16 @@
             
             <exec executable="java">
                 <arg value="-classpath"/>
-                <arg value="${classpath.aspects.aspectjtools}:${classpath.aspects.aspectjrt}:${project.target.android.jar}"/>
+                <arg value="${classpath.aspects.aspectjtools};${classpath.aspects.aspectjrt};${project.target.android.jar}"/>
                 <arg value="-Xmx8g"/>
                 <arg value="org.aspectj.tools.ajc.Main"/>
                 <arg value="-source"/>
                 <arg value="1.5"/>
-                <arg value="-showWeaveInfo"/>
                 <arg value="-Xlint:ignore"/>
                 <arg value="-inpath"/>
                 <arg value="${out.classes.absolute.dir}"/>
                 <arg value="-injars"/>
-                <arg value="${expanded.main.class.path}:${patcher.aspectpath}"/>
+                <arg value="${expanded.main.class.path};${patcher.aspectpath}"/>
                 <arg value="-aspectpath"/>
                 <arg value="${patcher.aspectpath}"/>
                 <arg value="-outjar"/>
