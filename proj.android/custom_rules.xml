@@ -3,18 +3,30 @@
 <project>
     <property file="build.properties"/>  
     <property name="out.jar.file" location="bin/aspect_classes.jar" />
-	
-	
-	<property name="publishigkit.dir" location="../../PlayscapePubKitCocos2D-X" />
-	<property name="publishigkit.assets" location="${publishigkit.dir}/proj.android/PlayscapePublishingKitX/assets" />
-	<property name="target.assets" location="./assets" />
-
-    <target name="-pre-compile">
-		<copy todir="${target.assets}" overwrite="true">
-			<fileset dir="${publishigkit.assets}" />
-		</copy>
-	</target>
-                
+    <property name="default.application.class" value="com.playscape.playscapeapp.PlayscapeApp"/>
+    
+    <target name="-pre-build">
+        <xmlproperty file="AndroidManifest.xml" prefix="mymanifest" collapseAttributes="true"/>
+        
+        <path id="class.path">
+            <pathelement path="${classpath}"/>
+            <fileset dir="../../PlayscapePubKitCocos2D-X/build/tools/">
+                <include name="xmltask.jar"/>
+                <include name="com.oopsconsultancy.xmltask-1.16.jar"/>
+            </fileset>
+        </path>
+        
+        <taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask">
+            <classpath>
+                <path refid="class.path"/>
+            </classpath>
+        </taskdef>
+        
+        <xmltask source="AndroidManifest.xml" dest="AndroidManifest.xml">
+            <copy path="//manifest/application[@android:name]/text()" property="XML_EXISTS_ALREADY" />
+            <attr path="//manifest/application" attr="android:name" value="${default.application.class}" unless="XML_EXISTS_ALREADY"/>
+        </xmltask>
+    </target>
     
     <macrodef name="aspect-patcher">
         <sequential>
@@ -23,7 +35,7 @@
             <property name="classpath.aspects.aspectjtools" location="../../PlayscapePubKitCocos2D-X/build/tools/aspectsj/aspectjtools.jar"/>
             <property name="classpath.aspects.aspectjrt" location="../../PlayscapePubKitCocos2D-X/build/tools/aspectsj/aspectjrt.jar"/>
             <property name="classpath.playservices.project" location="${sdk.dir}/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-servies.jar"/>
-            <property name="patcher.aspectpath" location="../../../../bridges/android/playscape_lifecycle/bin/classes.jar"/>
+            <property name="patcher.aspectpath" location="../../PlayscapePubKitCocos2D-X/build/tools/classes.jar"/>
             
             <exec executable="java">
                 <arg value="-classpath"/>
@@ -32,6 +44,7 @@
                 <arg value="org.aspectj.tools.ajc.Main"/>
                 <arg value="-source"/>
                 <arg value="1.5"/>
+                <arg value="-showWeaveInfo"/>
                 <arg value="-Xlint:ignore"/>
                 <arg value="-inpath"/>
                 <arg value="${out.classes.absolute.dir}"/>
