@@ -49,7 +49,7 @@
             
             <exec executable="java">
                 <arg value="-classpath"/>
-                <arg value="${classpath.aspects.aspectjtools}${file.separator}${classpath.aspects.aspectjrt}${file.separator}${project.target.android.jar}"/>
+                <arg value="${classpath.aspects.aspectjtools}${path.separator}${classpath.aspects.aspectjrt}${path.separator}${project.target.android.jar}"/>
                 <arg value="-Xmx8g"/>
                 <arg value="org.aspectj.tools.ajc.Main"/>
                 <arg value="-source"/>
@@ -58,7 +58,7 @@
                 <arg value="-inpath"/>
                 <arg value="${out.classes.absolute.dir}"/>
                 <arg value="-injars"/>
-                <arg value="${expanded.main.class.path}${file.separator}${patcher.aspectpath}"/>
+                <arg value="${expanded.main.class.path}${path.separator}${patcher.aspectpath}"/>
                 <arg value="-aspectpath"/>
                 <arg value="${patcher.aspectpath}"/>
                 <arg value="-outjar"/>
