@@ -45,11 +45,11 @@
             <property name="classpath.aspects.aspectjtools" location="../../PlayscapePubKitCocos2D-X/build/tools/aspectsj/aspectjtools.jar"/>
             <property name="classpath.aspects.aspectjrt" location="../../PlayscapePubKitCocos2D-X/build/tools/aspectsj/aspectjrt.jar"/>
             <property name="classpath.playservices.project" location="${sdk.dir}/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-servies.jar"/>
-            <property name="patcher.aspectpath" location="../../PlayscapePubKitCocos2D-X/build/tools/classes.jar"/>
+            <property name="patcher.aspectpath" location="../../PlayscapePubKitCocos2D-X/build/tools/playscape_lifecycle.jar"/>
             
             <exec executable="java">
                 <arg value="-classpath"/>
-                <arg value="${classpath.aspects.aspectjtools};${classpath.aspects.aspectjrt};${project.target.android.jar}"/>
+                <arg value="${classpath.aspects.aspectjtools}${file.separator}${classpath.aspects.aspectjrt}${file.separator}${project.target.android.jar}"/>
                 <arg value="-Xmx8g"/>
                 <arg value="org.aspectj.tools.ajc.Main"/>
                 <arg value="-source"/>
@@ -58,7 +58,7 @@
                 <arg value="-inpath"/>
                 <arg value="${out.classes.absolute.dir}"/>
                 <arg value="-injars"/>
-                <arg value="${expanded.main.class.path};${patcher.aspectpath}"/>
+                <arg value="${expanded.main.class.path}${file.separator}${patcher.aspectpath}"/>
                 <arg value="-aspectpath"/>
                 <arg value="${patcher.aspectpath}"/>
                 <arg value="-outjar"/>
