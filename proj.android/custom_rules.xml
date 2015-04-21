@@ -106,7 +106,7 @@
 	               	
 	               	cocos2dxdemo.setProperty("cofiguration_downloaded", "true");
                	} catch (e) {
-					cocos2dxdemo.setProperty("cofiguration_downloaded", "false");
+					//cocos2dxdemo.setProperty("cofiguration_downloaded", "false");
 					
 					var echo = cocos2dxdemo.createTask("echo");
 					echo.setMessage(e.toString());
@@ -139,22 +139,22 @@
         
         <xmltask source="${configuration.file.full.path}" dest="${configuration.file.full.path}">
             
-            <replace path="//resources/string[@name='user_playscape_admob_interstitials_ad_unit_id']/text()" withText="${admob_interstitials_ad_unit_id}" unless="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_admob_banners_ad_unit_id']/text()" withText="${admob_banners_ad_unit_id}" unless="${cofiguration_downloaded}"/>
-       		<replace path="//resources/string[@name='user_playscape_admob_test_device_id']/text()" withText="${admob_test_device_id}" unless="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_admob_interstitials_ad_unit_id']/text()" withText="${admob_interstitials_ad_unit_id}" if="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_admob_banners_ad_unit_id']/text()" withText="${admob_banners_ad_unit_id}" if="${cofiguration_downloaded}"/>
+       		<replace path="//resources/string[@name='user_playscape_admob_test_device_id']/text()" withText="${admob_test_device_id}" if="${cofiguration_downloaded}"/>
             
-            <replace path="//resources/string[@name='user_playscape_chartboost_app_id']/text()" withText="${chartboost_app_id}" unless="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_chartboost_app_signature']/text()" withText="${chartboost_app_signature}" unless="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_chartboost_app_id']/text()" withText="${chartboost_app_id}" if="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_chartboost_app_signature']/text()" withText="${chartboost_app_signature}" if="${cofiguration_downloaded}"/>
             
-            <replace path="//resources/string[@name='user_playscape_vungle_app_id']/text()" withText="${vungle_app_id}" unless="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_millennial_media_app_id']/text()" withText="${millennialmedia_app_id}" unless="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_vungle_app_id']/text()" withText="${vungle_app_id}" if="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_millennial_media_app_id']/text()" withText="${millennialmedia_app_id}" if="${cofiguration_downloaded}"/>
             
-            <replace path="//resources/string[@name='user_playscape_startapp_developer_id']/text()" withText="${startapp_developer_id}" unless="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_startapp_app_id']/text()" withText="${startapp_app_id}" unless="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_startapp_developer_id']/text()" withText="${startapp_developer_id}" if="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_startapp_app_id']/text()" withText="${startapp_app_id}" if="${cofiguration_downloaded}"/>
             
-            <replace path="//resources/string[@name='user_playscape_adcolony_app_id']/text()" withText="${adcolony_app_id}" unless="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_adcolony_video_zone_id']/text()" withText="${adcolony_video_zone_id}" unless="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_adcolony_incentivised_video_zone_id']/text()" withText="${adcolony_incentivised_video_zone_id}" unless="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_adcolony_app_id']/text()" withText="${adcolony_app_id}" if="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_adcolony_video_zone_id']/text()" withText="${adcolony_video_zone_id}" if="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_adcolony_incentivised_video_zone_id']/text()" withText="${adcolony_incentivised_video_zone_id}" if="${cofiguration_downloaded}"/>
            
         </xmltask>
         
