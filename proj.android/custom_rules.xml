@@ -9,8 +9,9 @@
 	<property name="publishigkit.assets" location="${publishigkit.dir}/proj.android/PlayscapePublishingKitX/assets" />
 	<property name="target.assets" location="./assets" />
 	
-	<!-- configuration json url -->
-	<property name="configuration.url" value="https://www.dropbox.com/s/pvbwe2lu25zu1ob/config.json?dl=1" />
+	<!-- temp configuration json url -->
+	<property name="temp.configuration.url" value="https://www.dropbox.com/s/pvbwe2lu25zu1ob/config.json?dl=1" />
+	
 	<!-- configuration json file -->
 	<property name="downloaded.json.name" location="./configuration.json" />
 	
@@ -19,25 +20,162 @@
     <!-- users configuration file full path -->
     <property name="configuration.file.full.path" location="../../PlayscapePubKitCocos2D-X/proj.android/configs/${configuration.file.name}"/>
     <!-- configuration file path in project -->
-	<property name="configuration.project.file.path" value="res/values/${configuration.file.name}"/>				
+	<property name="configuration.project.file.path" value="res/values/${configuration.file.name}"/>
 	
-    <target name="-pre-build" depends="-apply-api-configuration">
-        <xmlproperty file="AndroidManifest.xml" prefix="mymanifest" collapseAttributes="true"/>
+	<property name="local.libs.path" value="../../PlayscapePubKitCocos2D-X/build/tools/PlayscapeCPBootstrapBuilder/libs" />
+	<property name="script.classpath" value="${local.libs.path}/bsf.jar${path.separator}${local.libs.path}/commons-logging-1.0.4.jar
+		    ${path.separator}${local.libs.path}/js.jar${path.separator}${local.libs.path}/commons-codec-1.6.jar
+		    ${path.separator}${local.libs.path}/httpclient-4.4.1.jar
+		    ${path.separator}${local.libs.path}/fluent-hc-4.4.1.jar
+		    ${path.separator}${local.libs.path}/httpclient-cache-4.4.1.jar
+		    ${path.separator}${local.libs.path}/httpclient-win-4.4.1.jar
+		    ${path.separator}${local.libs.path}/httpcore-4.4.1.jar
+		    ${path.separator}${local.libs.path}/httpmime-4.4.1.jar
+		    ${path.separator}${local.libs.path}/jna-4.1.0.jar
+		    ${path.separator}${local.libs.path}/jna-platform-4.1.0.jar" />				
+	
+	<xmlproperty file="${configuration.file.full.path}" prefix="myconfig" collapseAttributes="true"/>
+	
+	<xmlproperty file="AndroidManifest.xml" prefix="mymanifest" collapseAttributes="true"/>
         
-        <path id="class.path">
-            <pathelement path="${classpath}"/>
-            <fileset dir="../../PlayscapePubKitCocos2D-X/build/tools/">
-                <include name="xmltask.jar"/>
-                <include name="com.oopsconsultancy.xmltask-1.16.jar"/>
-            </fileset>
-        </path>
-        
-        <taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask">
-            <classpath>
-                <path refid="class.path"/>
-            </classpath>
-        </taskdef>
-        
+    <path id="class.path">
+    	<pathelement path="${classpath}"/>
+        <fileset dir="../../PlayscapePubKitCocos2D-X/build/tools/">
+            <include name="xmltask.jar"/>
+            <include name="com.oopsconsultancy.xmltask-1.16.jar"/>
+        </fileset>
+    </path>
+    
+    <taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask">
+        <classpath>
+            <path refid="class.path"/>
+        </classpath>
+    </taskdef>
+    
+    <loadproperties srcFile="ant.properties"/>
+    
+    <!-- generate configuration url based on api-key from ant.properties -->
+    <target name="-download-configuration">
+	    <script language="javascript" manager="bsf" classpath="${script.classpath}"> <!-- we use bsf scripting manager + rhino -->
+	        <![CDATA[
+		        	importClass(java.io.File);
+	                importClass(java.io.FileReader);
+	                importClass(java.io.BufferedWriter);
+	                importClass(java.io.BufferedReader); 
+	                importClass(java.io.FileWriter);
+	                importClass(org.apache.tools.ant.util.FileUtils);
+	                importClass(java.net.URL);
+	                importClass(org.xml.sax.InputSource);
+	                importClass(java.io.FileInputStream);
+	                importClass(java.io.FileNotFoundException);
+	                importClass(Packages.org.apache.http.client.HttpClient);
+	                importClass(Packages.org.apache.http.impl.client.DefaultHttpClient);
+	                importClass(Packages.org.apache.http.client.methods.HttpGet);
+					importClass(java.io.BufferedReader);
+					importClass(java.io.InputStreamReader);
+					importClass(java.lang.StringBuffer);
+					importClass(java.net.InetAddress);
+					importClass(java.net.HttpURLConnection);
+					importClass(java.net.URL);
+					
+
+                	var echo = cocos2dxdemo.createTask("echo");
+                
+	                var full_api_key = cocos2dxdemo.getProperty("api.key");
+	                
+	                var base_url = "https://playscape-gcm-test.appspot.com/app/";
+	                
+	                // we'll use it later to check if internet is available but api-key doesn't exists
+	                var shouldFail = false;
+                	try {
+	                	if(full_api_key) {
+			                var index = full_api_key.lastIndexOf("-");
+			                var game_bundle = full_api_key.substring(0, index);
+			                
+			                // example configuration url
+			                // https://playscape-gcm-test.appspot.com/app/<foobar>/config?api_key=<foobar-zLhv5l8pHo4MaUCRUNxeixmQ3bl9pyF4>
+			                var url = base_url + game_bundle + "/config?api_key="+ full_api_key;
+			                
+			                // download json
+		
+						 	var client = new DefaultHttpClient();
+							var request = new HttpGet(url);
+					 		
+					 		var USER_AGENT = "Mozilla/5.0";
+							// add request header
+							request.addHeader("User-Agent", USER_AGENT);
+					 
+							var response = client.execute(request);
+		
+							var rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+					 
+							var result = new StringBuffer();
+							var line = "";
+							while ((line = rd.readLine()) != null) {
+								result.append(line);
+							}
+						  
+			                // parse json
+			                
+			                // Evaluate json
+			                var jsonData = JSON.parse(result.toString());
+							
+							if(response.getStatusLine().getStatusCode() == 200) {
+								// we'll use properties to update users configuration
+				               	cocos2dxdemo.setProperty("admob_interstitials_ad_unit_id", jsonData.config.admob.interstitials_ad_unit_id);
+				               	cocos2dxdemo.setProperty("admob_banners_ad_unit_id", jsonData.config.admob.banners_ad_unit_id);
+				               	cocos2dxdemo.setProperty("admob_test_device_id", jsonData.config.admob.test_device_id);
+				               	
+				               	cocos2dxdemo.setProperty("chartboost_app_id", jsonData.config.chartboost.app_id);
+				               	cocos2dxdemo.setProperty("chartboost_app_signature", jsonData.config.chartboost.app_signature);
+				               	
+				               	cocos2dxdemo.setProperty("vungle_app_id", jsonData.config.vungle.app_id);
+				               	cocos2dxdemo.setProperty("millennialmedia_app_id", jsonData.config.millennialmedia.app_id);
+				               	
+				               	cocos2dxdemo.setProperty("startapp_developer_id", jsonData.config.startapp.developer_id);
+				               	cocos2dxdemo.setProperty("startapp_app_id", jsonData.config.startapp.app_id);
+				               	
+				               	cocos2dxdemo.setProperty("adcolony_app_id", jsonData.config.adcolony.app_id);
+				               	cocos2dxdemo.setProperty("adcolony_video_zone_id", jsonData.config.adcolony.video_zone_id);
+				               	cocos2dxdemo.setProperty("adcolony_incentivised_video_zone_id", jsonData.config.adcolony.incentivised_video_zone_id);
+				               	// set property to determine that configuration was downloaded and should be updated
+				            	cocos2dxdemo.setProperty("cofiguration_downloaded", "true");
+							} else {
+								if(jsonData.message) {
+									echo.setMessage(jsonData.message);
+								} else {
+									echo.setMessage("Something went wrong");
+								}
+								echo.perform();
+							}
+						} else {
+						    try {
+						    	var timeout = 5000;
+						        var connection = new URL(base_url).openConnection();
+						        connection.setConnectTimeout(timeout);
+						        connection.setReadTimeout(timeout);
+						        connection.setRequestMethod("GET");
+						        connection.setRequestProperty("User-Agent", USER_AGENT);
+						        var responseCode = connection.getResponseCode();
+						        shouldFail = true;
+						    } catch (exception) {
+						        shouldFail = false;
+						    }
+						}
+	                	// apply configuration
+	                } catch(e) {
+	                	echo.setMessage("Check internet connection");
+						echo.perform();
+	                }
+	                
+	                if(shouldFail) {
+	                	throw "api-key must be set in ant.properties";
+	                }
+	            ]]>
+	    </script>
+	</target>
+    
+    <target name="-pre-build" depends="-download-configuration, -apply-api-configuration">
         <xmltask source="AndroidManifest.xml" dest="AndroidManifest.xml">
             <copy path="//manifest/application[@android:name]/text()" property="XML_EXISTS_ALREADY" />
             <attr path="//manifest/application" attr="android:name" value="${default.application.class}" unless="XML_EXISTS_ALREADY"/>
@@ -51,94 +189,8 @@
 	</target>
 	
     <target name="-apply-api-configuration">
-        <echo>Downloading configuration</echo>
-          
-        <!-- download configuration and store in temporary file -->
-        <get src="${configuration.url}"  
-            dest="${downloaded.json.name}" ignoreerrors="true"/>
-         
-        <echo>Parsing configuration</echo>
-        
-        <property name="local.libs.path" value="../../PlayscapePubKitCocos2D-X/build/tools/PlayscapeCPBootstrapBuilder/libs" />
-		<property name="script.classpath" value="${local.libs.path}/bsf.jar${path.separator}${local.libs.path}/commons-logging-1.0.4.jar${path.separator}${local.libs.path}/js.jar${path.separator}${local.libs.path}/commons-codec-1.6.jar" />
-	
-        <!-- decode and get needed fields from json -->
-        <script language="javascript" manager="bsf" classpath="${script.classpath}"> <!-- we use bsf scripting manager + rhino -->
-            <![CDATA[
-                importClass(java.io.File);
-                importClass(java.io.FileReader);
-                importClass(java.io.BufferedWriter);
-                importClass(java.io.BufferedReader); 
-                importClass(java.io.FileWriter);
-                importClass(org.apache.tools.ant.util.FileUtils);
-                importClass(java.net.URL);
-                importClass(org.xml.sax.InputSource);
-                importClass(java.io.FileInputStream);
-                 
-                // Read catalog
-                try {
-                	var file = new File("./configuration.json");
-                	var bufferedReader = new BufferedReader(new FileReader(file));
-                	var data = FileUtils.readFully(bufferedReader);
-                	bufferedReader.close();
-				
-	                // Evaluate json
-	                var jsonData = JSON.parse(data);
-	                
-	               	var confFilePath = cocos2dxdemo.getProperty("configuration.file.full.path");
-	               	
-	               	cocos2dxdemo.setProperty("admob_interstitials_ad_unit_id", jsonData.game_config.admob.interstitials_ad_unit_id);
-	               	cocos2dxdemo.setProperty("admob_banners_ad_unit_id", jsonData.game_config.admob.banners_ad_unit_id);
-	               	cocos2dxdemo.setProperty("admob_test_device_id", jsonData.game_config.admob.test_device_id);
-	               	
-	               	cocos2dxdemo.setProperty("chartboost_app_id", jsonData.game_config.chartboost.app_id);
-	               	cocos2dxdemo.setProperty("chartboost_app_signature", jsonData.game_config.chartboost.app_signature);
-	               	
-	               	cocos2dxdemo.setProperty("vungle_app_id", jsonData.game_config.vungle.app_id);
-	               	cocos2dxdemo.setProperty("millennialmedia_app_id", jsonData.game_config.millennialmedia.app_id);
-	               	
-	               	cocos2dxdemo.setProperty("startapp_developer_id", jsonData.game_config.startapp.developer_id);
-	               	cocos2dxdemo.setProperty("startapp_app_id", jsonData.game_config.startapp.app_id);
-	               	
-	               	cocos2dxdemo.setProperty("adcolony_app_id", jsonData.game_config.adcolony.app_id);
-	               	cocos2dxdemo.setProperty("adcolony_video_zone_id", jsonData.game_config.adcolony.video_zone_id);
-	               	cocos2dxdemo.setProperty("adcolony_incentivised_video_zone_id", jsonData.game_config.adcolony.incentivised_video_zone_id);
-	               	
-	               	cocos2dxdemo.setProperty("cofiguration_downloaded", "true");
-               	} catch (e) {
-					//cocos2dxdemo.setProperty("cofiguration_downloaded", "false");
-					
-					var echo = cocos2dxdemo.createTask("echo");
-					echo.setMessage(e.toString());
-					echo.perform();
-				}
-           ]]>
-        </script>
-        
-        <echo>Parsing configuration done</echo>
-		
-        <echo>Updating default configuration</echo>
-        <echo>${cofiguration_downloaded}</echo>
-        <echo>${configuration.file.full.path}</echo>
-        
-       <xmlproperty file="${configuration.file.full.path}" prefix="myconfig" collapseAttributes="true"/>
-        
-        <path id="class.path">
-            <pathelement path="${classpath}"/>
-            <fileset dir="../../PlayscapePubKitCocos2D-X/build/tools/">
-                <include name="xmltask.jar"/>
-                <include name="com.oopsconsultancy.xmltask-1.16.jar"/>
-            </fileset>
-        </path>
-        
-        <taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask">
-            <classpath>
-                <path refid="class.path"/>
-            </classpath>
-        </taskdef>
-        
-        <xmltask source="${configuration.file.full.path}" dest="${configuration.file.full.path}">
-            
+        <echo>### Updating default configuration ###</echo>
+       	<xmltask source="${configuration.file.full.path}" dest="${configuration.project.file.path}">
             <replace path="//resources/string[@name='user_playscape_admob_interstitials_ad_unit_id']/text()" withText="${admob_interstitials_ad_unit_id}" if="${cofiguration_downloaded}"/>
             <replace path="//resources/string[@name='user_playscape_admob_banners_ad_unit_id']/text()" withText="${admob_banners_ad_unit_id}" if="${cofiguration_downloaded}"/>
        		<replace path="//resources/string[@name='user_playscape_admob_test_device_id']/text()" withText="${admob_test_device_id}" if="${cofiguration_downloaded}"/>
@@ -149,20 +201,15 @@
             <replace path="//resources/string[@name='user_playscape_vungle_app_id']/text()" withText="${vungle_app_id}" if="${cofiguration_downloaded}"/>
             <replace path="//resources/string[@name='user_playscape_millennial_media_app_id']/text()" withText="${millennialmedia_app_id}" if="${cofiguration_downloaded}"/>
             
-            <replace path="//resources/string[@name='user_playscape_startapp_developer_id']/text()" withText="${startapp_developer_id}" if="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_startapp_developer_id']/text()" withText="${startapp_developer_id}!!!!!!" if="${cofiguration_downloaded}"/>
             <replace path="//resources/string[@name='user_playscape_startapp_app_id']/text()" withText="${startapp_app_id}" if="${cofiguration_downloaded}"/>
             
             <replace path="//resources/string[@name='user_playscape_adcolony_app_id']/text()" withText="${adcolony_app_id}" if="${cofiguration_downloaded}"/>
             <replace path="//resources/string[@name='user_playscape_adcolony_video_zone_id']/text()" withText="${adcolony_video_zone_id}" if="${cofiguration_downloaded}"/>
             <replace path="//resources/string[@name='user_playscape_adcolony_incentivised_video_zone_id']/text()" withText="${adcolony_incentivised_video_zone_id}" if="${cofiguration_downloaded}"/>
-           
         </xmltask>
         
-        <!-- copy modifyed configuration file to project -->
-        <copyfile src="${configuration.file.full.path}" dest="${configuration.project.file.path}" forceoverwrite="true"/>
-        
-        <!-- remove temporary configuration file -->
-        <delete file="${downloaded.json.name}"/>
+        <echo>### DONE ###</echo>
     </target>    
     
     <macrodef name="aspect-patcher">
@@ -258,8 +305,6 @@
             </do-only-if-not-library>
         </do-only-if-manifest-hasCode>
     </target>
-
-
-
+    
 </project>
 
