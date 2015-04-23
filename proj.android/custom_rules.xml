@@ -9,6 +9,8 @@
 	<property name="publishigkit.assets" location="${publishigkit.dir}/proj.android/PlayscapePublishingKitX/assets" />
 	<property name="target.assets" location="./assets" />
 	
+	<loadproperties srcFile="ant.properties"/>
+	
 	<!-- temp configuration json url -->
 	<property name="temp.configuration.url" value="https://www.dropbox.com/s/pvbwe2lu25zu1ob/config.json?dl=1" />
 	
@@ -52,8 +54,6 @@
         </classpath>
     </taskdef>
     
-    <loadproperties srcFile="ant.properties"/>
-    
     <!-- generate configuration url based on api-key from ant.properties -->
     <target name="-download-configuration">
 	    <script language="javascript" manager="bsf" classpath="${script.classpath}"> <!-- we use bsf scripting manager + rhino -->
@@ -83,21 +83,28 @@
                 
 	                var full_api_key = cocos2dxdemo.getProperty("api.key");
 	                
-	                var base_url = "https://playscape-gcm-test.appspot.com/app/";
-	                
-	                // we'll use it later to check if internet is available but api-key doesn't exists
-	                var shouldFail = false;
-                	try {
-	                	if(full_api_key) {
-			                var index = full_api_key.lastIndexOf("-");
-			                var game_bundle = full_api_key.substring(0, index);
-			                
-			                // example configuration url
-			                // https://playscape-gcm-test.appspot.com/app/<foobar>/config?api_key=<foobar-zLhv5l8pHo4MaUCRUNxeixmQ3bl9pyF4>
-			                var url = base_url + game_bundle + "/config?api_key="+ full_api_key;
-			                
+	                var base_url = "https://api.playscape.com/app/";
+	                var base_url_test = "https://playscape-gcm-test.appspot.com/app/";
+                	
+                	// we'll use it later to rethrow exception if need
+                	var shouldFail = false;
+                	
+                	if(full_api_key) {
+		                var index = full_api_key.lastIndexOf("-");
+		                var game_bundle = full_api_key.substring(0, index);
+		                
+		                var jsonData;
+		                
+		                // example configuration url
+		                // https://playscape-gcm-test.appspot.com/app/<foobar>/config?api_key=<foobar-zLhv5l8pHo4MaUCRUNxeixmQ3bl9pyF4>
+		                
+		                var base_url_part = base_url;
+		                if(cocos2dxdemo.getProperty("playscape.debug")) {
+		                	base_url_part = base_url_test;
+		                }
+		                var url = base_url_part + game_bundle + "/config?api_key="+ full_api_key;
+		                try {
 			                // download json
-		
 						 	var client = new DefaultHttpClient();
 							var request = new HttpGet(url);
 					 		
@@ -114,12 +121,17 @@
 							while ((line = rd.readLine()) != null) {
 								result.append(line);
 							}
-						  
-			                // parse json
+							
+							// parse json
 			                
 			                // Evaluate json
-			                var jsonData = JSON.parse(result.toString());
-							
+			                jsonData = JSON.parse(result.toString());
+						} catch(e) {
+		                	echo.setMessage("Warning!!! Could not download game configuration. Please check your internet connection");
+							echo.perform();
+		                }
+						
+						if(jsonData) {	
 							if(response.getStatusLine().getStatusCode() == 200) {
 								// we'll use properties to update users configuration
 				               	cocos2dxdemo.setProperty("admob_interstitials_ad_unit_id", jsonData.config.admob.interstitials_ad_unit_id);
@@ -141,36 +153,19 @@
 				               	// set property to determine that configuration was downloaded and should be updated
 				            	cocos2dxdemo.setProperty("cofiguration_downloaded", "true");
 							} else {
+								// should fail in both cases
+								shouldFail = true;
 								if(jsonData.message) {
-									echo.setMessage(jsonData.message);
+									throw "Error!!! Could not retrieve configuration from the server. Message: " + jsonData.message;								
 								} else {
-									echo.setMessage("Something went wrong");
+									throw "Error!!! Could not retrieve configuration from the server.";
 								}
-								echo.perform();
 							}
-						} else {
-						    try {
-						    	var timeout = 5000;
-						        var connection = new URL(base_url).openConnection();
-						        connection.setConnectTimeout(timeout);
-						        connection.setReadTimeout(timeout);
-						        connection.setRequestMethod("GET");
-						        connection.setRequestProperty("User-Agent", USER_AGENT);
-						        var responseCode = connection.getResponseCode();
-						        shouldFail = true;
-						    } catch (exception) {
-						        shouldFail = false;
-						    }
 						}
-	                	// apply configuration
-	                } catch(e) {
-	                	echo.setMessage("Check internet connection");
-						echo.perform();
-	                }
-	                
-	                if(shouldFail) {
-	                	throw "api-key must be set in ant.properties";
-	                }
+					} else {
+						throw "Error!!! API key must be set";
+					}
+                	// apply configuration
 	            ]]>
 	    </script>
 	</target>
