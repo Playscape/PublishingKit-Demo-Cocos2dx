@@ -24,9 +24,12 @@
     <!-- configuration file path in project -->
 	<property name="configuration.project.file.path" value="res/values/${configuration.file.name}"/>
 	
-	<property name="local.libs.path" value="../../PlayscapePubKitCocos2D-X/build/tools/PlayscapeCPBootstrapBuilder/libs" />
-	<property name="script.classpath" value="${local.libs.path}/bsf.jar${path.separator}${local.libs.path}/commons-logging-1.0.4.jar
-		    ${path.separator}${local.libs.path}/js.jar${path.separator}${local.libs.path}/commons-codec-1.6.jar
+	<property name="cp.libs.path" value="../../PlayscapePubKitCocos2D-X/build/tools/PlayscapeCPBootstrapBuilder/libs" />
+	<property name="local.libs.path" value="../../PlayscapePubKitCocos2D-X/build/tools/libs" />
+	<property name="script.classpath" value="${cp.libs.path}/bsf.jar
+	    	${path.separator}${cp.libs.path}/commons-logging-1.0.4.jar
+		    ${path.separator}${cp.libs.path}/js.jar
+		    ${path.separator}${cp.libs.path}/commons-codec-1.6.jar
 		    ${path.separator}${local.libs.path}/httpclient-4.4.1.jar
 		    ${path.separator}${local.libs.path}/fluent-hc-4.4.1.jar
 		    ${path.separator}${local.libs.path}/httpclient-cache-4.4.1.jar
