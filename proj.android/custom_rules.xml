@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project name="cocos2dxdemo">
-    <property file="build.properties"/>  
+    <property file="build.properties"/>
     <property name="out.jar.file" location="bin/aspect_classes.jar" />
     <property name="default.application.class" value="com.playscape.playscapeapp.PlayscapeApp"/>
-    
+
 	<property name="publishigkit.dir" location="../../PlayscapePubKitCocos2D-X" />
 	<property name="publishigkit.assets" location="${publishigkit.dir}/proj.android/PlayscapePublishingKitX/assets" />
 	<property name="target.assets" location="./assets" />
-	
+
 	<loadproperties srcFile="ant.properties"/>
-	
+
 	<!-- temp configuration json url -->
 	<property name="temp.configuration.url" value="https://www.dropbox.com/s/pvbwe2lu25zu1ob/config.json?dl=1" />
-	
+
 	<!-- configuration json file -->
 	<property name="downloaded.json.name" location="./configuration.json" />
-	
+
 	<!-- users configuration file name -->
     <property name="configuration.file.name" value="user_playscape_config_release.xml"/>
     <!-- users configuration file full path -->
     <property name="configuration.file.full.path" location="../../PlayscapePubKitCocos2D-X/proj.android/configs/${configuration.file.name}"/>
     <!-- configuration file path in project -->
 	<property name="configuration.project.file.path" value="res/values/${configuration.file.name}"/>
-	
+
 	<property name="cp.libs.path" value="../../PlayscapePubKitCocos2D-X/build/tools/PlayscapeCPBootstrapBuilder/libs" />
 	<property name="local.libs.path" value="../../PlayscapePubKitCocos2D-X/build/tools/libs" />
 	<property name="script.classpath" value="${cp.libs.path}/bsf.jar
@@ -37,12 +37,12 @@
 		    ${path.separator}${local.libs.path}/httpcore-4.4.1.jar
 		    ${path.separator}${local.libs.path}/httpmime-4.4.1.jar
 		    ${path.separator}${local.libs.path}/jna-4.1.0.jar
-		    ${path.separator}${local.libs.path}/jna-platform-4.1.0.jar" />				
-	
+		    ${path.separator}${local.libs.path}/jna-platform-4.1.0.jar" />
+
 	<xmlproperty file="${configuration.file.full.path}" prefix="myconfig" collapseAttributes="true"/>
-	
+
 	<xmlproperty file="AndroidManifest.xml" prefix="mymanifest" collapseAttributes="true"/>
-        
+
     <path id="class.path">
     	<pathelement path="${classpath}"/>
         <fileset dir="../../PlayscapePubKitCocos2D-X/build/tools/">
@@ -50,13 +50,13 @@
             <include name="com.oopsconsultancy.xmltask-1.16.jar"/>
         </fileset>
     </path>
-    
+
     <taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask">
         <classpath>
             <path refid="class.path"/>
         </classpath>
     </taskdef>
-    
+
     <!-- generate configuration url based on api-key from ant.properties -->
     <target name="-download-configuration">
 	    <script language="javascript" manager="bsf" classpath="${script.classpath}"> <!-- we use bsf scripting manager + rhino -->
@@ -64,7 +64,7 @@
 		        	importClass(java.io.File);
 	                importClass(java.io.FileReader);
 	                importClass(java.io.BufferedWriter);
-	                importClass(java.io.BufferedReader); 
+	                importClass(java.io.BufferedReader);
 	                importClass(java.io.FileWriter);
 	                importClass(org.apache.tools.ant.util.FileUtils);
 	                importClass(java.net.URL);
@@ -80,76 +80,74 @@
 					importClass(java.net.InetAddress);
 					importClass(java.net.HttpURLConnection);
 					importClass(java.net.URL);
-					
+
 
                 	var echo = cocos2dxdemo.createTask("echo");
-                
+
 	                var full_api_key = cocos2dxdemo.getProperty("api.key");
-	                
-	                var base_url = "https://api.playscape.com/app/";
-	                var base_url_test = "https://playscape-gcm-test.appspot.com/app/";
-                	
+
+	                var base_url = "https://api.playscape.com/";
+
                 	// we'll use it later to rethrow exception if need
                 	var shouldFail = false;
-                	
+
                 	if(full_api_key) {
-		                var index = full_api_key.lastIndexOf("-");
-		                var game_bundle = full_api_key.substring(0, index);
-		                
 		                var jsonData;
-		                
+
 		                // example configuration url
-		                // https://playscape-gcm-test.appspot.com/app/<foobar>/config?api_key=<foobar-zLhv5l8pHo4MaUCRUNxeixmQ3bl9pyF4>
-		                
+		                // https://api.playscape.com/config?api_key=<zLhv5l8pHo4MaUCRUNxeixmQ3bl9pyF4>
+
 		                var base_url_part = base_url;
-		                if(cocos2dxdemo.getProperty("playscape.debug")) {
-		                	base_url_part = base_url_test;
-		                }
-		                var url = base_url_part + game_bundle + "/config?api_key="+ full_api_key;
+		                var url = base_url_part + "/config?api_key=" + full_api_key;
+
 		                try {
 			                // download json
 						 	var client = new DefaultHttpClient();
 							var request = new HttpGet(url);
-					 		
+
 					 		var USER_AGENT = "Mozilla/5.0";
 							// add request header
 							request.addHeader("User-Agent", USER_AGENT);
-					 
+
 							var response = client.execute(request);
-		
+
 							var rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-					 
+
 							var result = new StringBuffer();
 							var line = "";
 							while ((line = rd.readLine()) != null) {
 								result.append(line);
 							}
-							
+
 							// parse json
-			                
+
 			                // Evaluate json
 			                jsonData = JSON.parse(result.toString());
 						} catch(e) {
 		                	echo.setMessage("Warning!!! Could not download game configuration. Please check your internet connection");
 							echo.perform();
 		                }
-						
-						if(jsonData) {	
+
+						if(jsonData) {
 							if(response.getStatusLine().getStatusCode() == 200) {
 								// we'll use properties to update users configuration
+
+                        cocos2dxdemo.setProperty("analytics_reporter_id", jsonData.config.analytics_report.reporter_id);
+                        cocos2dxdemo.setProperty("ads_config_url", jsonData.config.ads_config.url);
+
 				               	cocos2dxdemo.setProperty("admob_interstitials_ad_unit_id", jsonData.config.admob.interstitials_ad_unit_id);
 				               	cocos2dxdemo.setProperty("admob_banners_ad_unit_id", jsonData.config.admob.banners_ad_unit_id);
 				               	cocos2dxdemo.setProperty("admob_test_device_id", jsonData.config.admob.test_device_id);
-				               	
+
 				               	cocos2dxdemo.setProperty("chartboost_app_id", jsonData.config.chartboost.app_id);
 				               	cocos2dxdemo.setProperty("chartboost_app_signature", jsonData.config.chartboost.app_signature);
-				               	
+
 				               	cocos2dxdemo.setProperty("vungle_app_id", jsonData.config.vungle.app_id);
 				               	cocos2dxdemo.setProperty("millennialmedia_app_id", jsonData.config.millennialmedia.app_id);
-				               	
+
 				               	cocos2dxdemo.setProperty("startapp_developer_id", jsonData.config.startapp.developer_id);
 				               	cocos2dxdemo.setProperty("startapp_app_id", jsonData.config.startapp.app_id);
-				               	
+
 				               	cocos2dxdemo.setProperty("adcolony_app_id", jsonData.config.adcolony.app_id);
 				               	cocos2dxdemo.setProperty("adcolony_video_zone_id", jsonData.config.adcolony.video_zone_id);
 				               	cocos2dxdemo.setProperty("adcolony_incentivised_video_zone_id", jsonData.config.adcolony.incentivised_video_zone_id);
@@ -159,7 +157,7 @@
 								// should fail in both cases
 								shouldFail = true;
 								if(jsonData.message) {
-									throw "Error!!! Could not retrieve configuration from the server. Message: " + jsonData.message;								
+									throw "Error!!! Could not retrieve configuration from the server. Message: " + jsonData.message;
 								} else {
 									throw "Error!!! Could not retrieve configuration from the server.";
 								}
@@ -172,44 +170,51 @@
 	            ]]>
 	    </script>
 	</target>
-    
+
     <target name="-pre-build" depends="-download-configuration, -apply-api-configuration">
         <xmltask source="AndroidManifest.xml" dest="AndroidManifest.xml">
             <copy path="//manifest/application[@android:name]/text()" property="XML_EXISTS_ALREADY" />
             <attr path="//manifest/application" attr="android:name" value="${default.application.class}" unless="XML_EXISTS_ALREADY"/>
         </xmltask>
     </target>
-    
+
     <target name="-pre-compile">
 		<copy todir="${target.assets}" overwrite="true">
 			<fileset dir="${publishigkit.assets}" />
 		</copy>
 	</target>
-	
+
     <target name="-apply-api-configuration">
-        <echo>### Updating default configuration ###</echo>
+        <echo>### Updating default configuration with '${api.key}' apikey ###</echo>
+
        	<xmltask source="${configuration.file.full.path}" dest="${configuration.project.file.path}">
-            <replace path="//resources/string[@name='user_playscape_admob_interstitials_ad_unit_id']/text()" withText="${admob_interstitials_ad_unit_id}" if="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_admob_banners_ad_unit_id']/text()" withText="${admob_banners_ad_unit_id}" if="${cofiguration_downloaded}"/>
-       		<replace path="//resources/string[@name='user_playscape_admob_test_device_id']/text()" withText="${admob_test_device_id}" if="${cofiguration_downloaded}"/>
-            
-            <replace path="//resources/string[@name='user_playscape_chartboost_app_id']/text()" withText="${chartboost_app_id}" if="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_chartboost_app_signature']/text()" withText="${chartboost_app_signature}" if="${cofiguration_downloaded}"/>
-            
-            <replace path="//resources/string[@name='user_playscape_vungle_app_id']/text()" withText="${vungle_app_id}" if="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_millennial_media_app_id']/text()" withText="${millennialmedia_app_id}" if="${cofiguration_downloaded}"/>
-            
-            <replace path="//resources/string[@name='user_playscape_startapp_developer_id']/text()" withText="${startapp_developer_id}!!!!!!" if="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_startapp_app_id']/text()" withText="${startapp_app_id}" if="${cofiguration_downloaded}"/>
-            
-            <replace path="//resources/string[@name='user_playscape_adcolony_app_id']/text()" withText="${adcolony_app_id}" if="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_adcolony_video_zone_id']/text()" withText="${adcolony_video_zone_id}" if="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_adcolony_incentivised_video_zone_id']/text()" withText="${adcolony_incentivised_video_zone_id}" if="${cofiguration_downloaded}"/>
+
+            <replace path="//resources/string[@name='user_playscape_reporter_id']/text()" withText="${analytics_reporter_id}" unless="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_ads_config_url']/text()" withText="${ads_config_url}" unless="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_ads_api_key']/text()" withText="${api.key}" unless="${cofiguration_downloaded}"/>
+
+            <replace path="//resources/string[@name='user_playscape_adcolony_incentivised_video_zone_id']/text()" withText="${adcolony_incentivised_video_zone_id}" unless="${cofiguration_downloaded}"/>
+
+            <replace path="//resources/string[@name='user_playscape_admob_interstitials_ad_unit_id']/text()" withText="${admob_interstitials_ad_unit_id}" unless="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_admob_banners_ad_unit_id']/text()" withText="${admob_banners_ad_unit_id}" unless="${cofiguration_downloaded}"/>
+       		<replace path="//resources/string[@name='user_playscape_admob_test_device_id']/text()" withText="${admob_test_device_id}" unless="${cofiguration_downloaded}"/>
+
+            <replace path="//resources/string[@name='user_playscape_chartboost_app_id']/text()" withText="${chartboost_app_id}" unless="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_chartboost_app_signature']/text()" withText="${chartboost_app_signature}" unless="${cofiguration_downloaded}"/>
+
+            <replace path="//resources/string[@name='user_playscape_vungle_app_id']/text()" withText="${vungle_app_id}" unless="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_millennial_media_app_id']/text()" withText="${millennialmedia_app_id}" unless="${cofiguration_downloaded}"/>
+
+            <replace path="//resources/string[@name='user_playscape_startapp_developer_id']/text()" withText="${startapp_developer_id}" unless="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_startapp_app_id']/text()" withText="${startapp_app_id}" unless="${cofiguration_downloaded}"/>
+
+            <replace path="//resources/string[@name='user_playscape_adcolony_app_id']/text()" withText="${adcolony_app_id}" unless="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_adcolony_video_zone_id']/text()" withText="${adcolony_video_zone_id}" unless="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_adcolony_incentivised_video_zone_id']/text()" withText="${adcolony_incentivised_video_zone_id}" unless="${cofiguration_downloaded}"/>
         </xmltask>
-        
         <echo>### DONE ###</echo>
-    </target>    
-    
+    </target>
+
     <macrodef name="aspect-patcher">
         <sequential>
             <pathconvert property="expanded.main.class.path" refid="out.dex.jar.input.ref"/>
@@ -218,7 +223,7 @@
             <property name="classpath.aspects.aspectjrt" location="../../PlayscapePubKitCocos2D-X/build/tools/aspectsj/aspectjrt.jar"/>
             <property name="classpath.playservices.project" location="${sdk.dir}/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-servies.jar"/>
             <property name="patcher.aspectpath" location="../../PlayscapePubKitCocos2D-X/build/tools/playscape_lifecycle.jar"/>
-            
+
             <exec executable="java">
                 <arg value="-classpath"/>
                 <arg value="${classpath.aspects.aspectjtools}${path.separator}${classpath.aspects.aspectjrt}${path.separator}${project.target.android.jar}"/>
@@ -236,7 +241,7 @@
                 <arg value="-outjar"/>
                 <arg value="${out.jar.file}"/>
             </exec>
-            
+
         </sequential>
     </macrodef>
 
@@ -262,12 +267,12 @@
                     </path>
                 </else>
             </if>
-            
+
             <!-- call aspect patcher to aspply aspects to all .jar and .class files -->
             <aspect-patcher />
-            
+
             <property name="out.dex.input.absolute.dir" value="${out.jar.file}" />
-            
+
             <dex executable="${dx}"
                 output="${intermediate.dex.file}"
                 dexedlibs="${out.dexed.absolute.dir}"
@@ -280,7 +285,7 @@
             </dex>
         </sequential>
     </macrodef>
-    
+
     <!-- Converts this project's .class files into .dex files -->
     <target name="-dex" depends="-compile, -post-compile, -obfuscate">
         <do-only-if-manifest-hasCode elseText="hasCode = false. Skipping...">
@@ -303,6 +308,5 @@
             </do-only-if-not-library>
         </do-only-if-manifest-hasCode>
     </target>
-    
-</project>
 
+</project>
