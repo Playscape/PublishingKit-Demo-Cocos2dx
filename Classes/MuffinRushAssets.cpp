@@ -41,252 +41,29 @@ bool MuffinRushAssets::init() {
     CCVirtualCurrencyPack *samuraiShield = CCVirtualCurrencyPack::create(
             CCString::create("Samurai Shield"),                                   // name
             CCString::create("Test refund of an item"),                       // description
-            CCString::create("samurai_shield"),                                   // item id
+            CCString::create("dark_matter"),                                   // item id
             CCInteger::create(10),												// number of currencies in the pack
             CCString::create(MUFFIN_CURRENCY_ITEM_ID),                        // the currency associated with this pack
-            CCPurchaseWithMarket::create(CCString::create("samurai_shield"), CCDouble::create(0.99))
+            CCPurchaseWithMarket::create(CCString::create("dark_matter"), CCDouble::create(0.99))
     );
-    
+
     CCVirtualCurrencyPack *ninjaStars = CCVirtualCurrencyPack::create(
             CCString::create("Ninja stars"),                                   // name
             CCString::create("Test refund of an item"),                       // description
-            CCString::create("ninja_stars_10"),                                   // item id
+            CCString::create("diamond_item"),                                   // item id
             CCInteger::create(1),												// number of currencies in the pack
             CCString::create(MUFFIN_CURRENCY_ITEM_ID),                        // the currency associated with this pack
-            CCPurchaseWithMarket::create(CCString::create("ninja_stars_10"), CCDouble::create(0.99))
+            CCPurchaseWithMarket::create(CCString::create("diamond_item"), CCDouble::create(0.99))
     );
 
     CCVirtualCurrencyPack *shougunKatana = CCVirtualCurrencyPack::create(
             CCString::create("Shougun Katana"),                                   // name
             CCString::create("Test cancellation of an item"),                 // description
-            CCString::create("shougun_katana"),                                   // item id
+            CCString::create("dark_matter_unmanaged"),                                   // item id
             CCInteger::create(50),												// number of currencies in the pack
             CCString::create(MUFFIN_CURRENCY_ITEM_ID),                        // the currency associated with this pack
-            CCPurchaseWithMarket::create(CCString::create("shougun_katana"), CCDouble::create(1.99))
+            CCPurchaseWithMarket::create(CCString::create("dark_matter_unmanaged"), CCDouble::create(1.99))
     );
-
-    CCVirtualCurrencyPack *fourhundmuffPack = CCVirtualCurrencyPack::create(
-            CCString::create("400 Muffins"),                                   // name
-            CCString::create("Test purchase of an item"),                 // description
-            CCString::create("muffins_400"),                                   // item id
-            CCInteger::create(400),												// number of currencies in the pack
-            CCString::create(MUFFIN_CURRENCY_ITEM_ID),                        // the currency associated with this pack
-            CCPurchaseWithMarket::create(CCString::create(FOURHUNDMUFF_PACK_PRODUCT_ID), CCDouble::create(4.99))
-    );
-
-    CCVirtualCurrencyPack *thousandmuffPack = CCVirtualCurrencyPack::create(
-            CCString::create("1000 Muffins"),                                   // name
-            CCString::create("Test item unavailable"),                 // description
-            CCString::create("muffins_1000"),                                   // item id
-            CCInteger::create(1000),												// number of currencies in the pack
-            CCString::create(MUFFIN_CURRENCY_ITEM_ID),                        // the currency associated with this pack
-            CCPurchaseWithMarket::create(CCString::create(THOUSANDMUFF_PACK_PRODUCT_ID), CCDouble::create(8.99))
-    );
-
-    /** Virtual Goods **/
-
-    CCVirtualGood *muffincakeGood = CCSingleUseVG::create(
-            CCString::create("Fruit Cake"),                                       // name
-            CCString::create("Customers buy a double portion on each purchase of this cake"), // description
-            CCString::create("fruit_cake"),                                       // item id
-            CCPurchaseWithVirtualItem::create(
-                    CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(225)
-            ) // the way this virtual good is purchased
-    );
-
-    CCVirtualGood *pavlovaGood = CCSingleUseVG::create(
-            CCString::create("Pavlova"),                                       // name
-            CCString::create("Gives customers a sugar rush and they call their friends"), // description
-            CCString::create("pavlova"),                                       // item id
-            CCPurchaseWithVirtualItem::create(CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(175)) // the way this virtual good is purchased
-    );
-
-    CCVirtualGood *tenPavlovaGoods = CCSingleUsePackVG::create(
-            CCString::create("pavlova"), CCInteger::create(10),
-            CCString::create("10 Pavlova"),
-            CCString::create("Gives customers a sugar rush and they call their friends"),
-            CCString::create("pavlova_10"),
-            CCPurchaseWithVirtualItem::create(CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(1750)));
-
-    CCVirtualGood *choclatecakeGood = CCSingleUseVG::create(
-            CCString::create("Chocolate Cake"),                                       // name
-            CCString::create("A classic cake to maximize customer satisfaction"), // description
-            CCString::create("chocolate_cake"),                                       // item id
-            CCPurchaseWithVirtualItem::create(
-                    CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(250)
-            ) // the way this virtual good is purchased
-    );
-
-    CCVirtualGood *creamcupGood = CCSingleUseVG::create(
-            CCString::create("Cream Cup"),                                       // name
-            CCString::create("Increase bakery reputation with this original pastry"), // description
-            CCString::create("cream_cup"),                                       // item id
-            CCPurchaseWithVirtualItem::create(CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(50)
-            ) // the way this virtual good is purchased
-    );
-
-    CCVirtualGood *tenCreamcupGoods = CCSingleUsePackVG::create(
-            CCString::create("cream_cup"), CCInteger::create(10),
-            CCString::create("10 Cream Cup"),
-            CCString::create("Increase bakery reputation with this original pastry"),
-            CCString::create("cream_cup_10"),
-            CCPurchaseWithVirtualItem::create(CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(500)));
-
-    CCVirtualGood *showRoomGood =
-            CCLifetimeVG::create(CCString::create("Show Room"), // name
-                    CCString::create("Show Room "), // description
-                    CCString::create("show_room"), // item id
-                    CCPurchaseWithVirtualItem::create(CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(100)));
-
-    CCVirtualGood *showRoomGood0 = CCUpgradeVG::create(
-            CCString::create("show_room"),
-            NULL,
-            CCString::create("show_room_1"),
-            CCString::create("Show Room L0"),
-            CCString::create(""),
-            CCString::create("show_room_0"),
-            CCPurchaseWithVirtualItem::create(CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(220)));
-	
-    CCVirtualGood *showRoomGood1 = CCUpgradeVG::create(
-            CCString::create("show_room"),
-            CCString::create("show_room_0"),
-            CCString::create("show_room_2"),
-            CCString::create("Show Room L1"),
-            CCString::create(""),
-            CCString::create("show_room_1"),
-            CCPurchaseWithVirtualItem::create(CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(220)));
-
-	CCVirtualGood *showRoomGood2 = CCUpgradeVG::create(
-			CCString::create("show_room"),
-			CCString::create("show_room_1"),
-			CCString::create("show_room_3"),
-			CCString::create("Show Room L2"),
-			CCString::create(""),
-			CCString::create("show_room_2"),
-			CCPurchaseWithVirtualItem::create(CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(220)));
-
-	CCVirtualGood *showRoomGood3 = CCUpgradeVG::create(
-			CCString::create("show_room"),
-			CCString::create("show_room_2"),
-			CCString::create("show_room_4"),
-			CCString::create("Show Room L3"),
-			CCString::create(""),
-			CCString::create("show_room_3"),
-			CCPurchaseWithVirtualItem::create(CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(220)));
-
-	CCVirtualGood *showRoomGood4 = CCUpgradeVG::create(
-			CCString::create("show_room"),
-			CCString::create("show_room_3"),
-			NULL,
-			CCString::create("Show Room L4"),
-			CCString::create(""),
-			CCString::create("show_room_4"),
-			CCPurchaseWithVirtualItem::create(CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(220)));
-	
-    CCVirtualGood *deliveryVehicleGood =
-            CCLifetimeVG::create(CCString::create("Delivery Vehicle"), // name
-                    CCString::create("Delivery Vehicle"), // description
-                    CCString::create("delivery_vehicle"), // item id
-                    CCPurchaseWithVirtualItem::create(CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(20)));
-
-    CCVirtualGood *deliveryVehicleGood0 = CCUpgradeVG::create(
-            CCString::create("delivery_vehicle"),
-            NULL,
-            CCString::create("delivery_vehicle_1"),
-            CCString::create("Delivery Vehicle 0"),
-            CCString::create(""),
-            CCString::create("delivery_vehicle_0"),
-            CCPurchaseWithVirtualItem::create(CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(20)));
-
-    CCVirtualGood *deliveryVehicleGood1 = CCUpgradeVG::create(
-            CCString::create("delivery_vehicle"),
-            CCString::create("delivery_vehicle_0"),
-            CCString::create("delivery_vehicle_2"),
-            CCString::create("Delivery Vehicle 1"),
-            CCString::create(""),
-            CCString::create("delivery_vehicle_1"),
-            CCPurchaseWithVirtualItem::create(CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(20)));
-
-    CCVirtualGood *deliveryVehicleGood2 = CCUpgradeVG::create(
-			CCString::create("delivery_vehicle"),
-			CCString::create("delivery_vehicle_1"),
-			CCString::create("delivery_vehicle_3"),
-			CCString::create("Delivery Vehicle 2"),
-			CCString::create(""),
-			CCString::create("delivery_vehicle_2"),
-			CCPurchaseWithVirtualItem::create(CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(20)));
-
-    CCVirtualGood *deliveryVehicleGood3 = CCUpgradeVG::create(
-			CCString::create("delivery_vehicle"),
-			CCString::create("delivery_vehicle_2"),
-			CCString::create("delivery_vehicle_4"),
-			CCString::create("Delivery Vehicle 3"),
-			CCString::create(""),
-			CCString::create("delivery_vehicle_3"),
-			CCPurchaseWithVirtualItem::create(CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(20)));
-
-	CCVirtualGood *deliveryVehicleGood4 = CCUpgradeVG::create(
-			CCString::create("delivery_vehicle"),
-			CCString::create("delivery_vehicle_3"),
-			NULL,
-			CCString::create("Delivery Vehicle 4"),
-			CCString::create(""),
-			CCString::create("delivery_vehicle_4"),
-			CCPurchaseWithVirtualItem::create(CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(20)));
-	
-    CCVirtualGood *fatCatGood = CCEquippableVG::create(
-            CCInteger::create(CCEquippableVG::kCategory),
-            CCString::create("Fat Cat"),
-            CCString::create("Fat cat description"),
-            CCString::create("fat_cat"),
-            CCPurchaseWithVirtualItem::create(CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(27)));
-
-    CCVirtualGood *happiHippoGood = CCEquippableVG::create(
-            CCInteger::create(CCEquippableVG::kCategory),
-            CCString::create("Happi Hippo"),
-            CCString::create("Happi Hippo description"),
-            CCString::create("happi_hippo"),
-            CCPurchaseWithVirtualItem::create(CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(44)));
-
-    CCVirtualGood *funkeyMonkeyGood = CCEquippableVG::create(
-            CCInteger::create(CCEquippableVG::kCategory),
-            CCString::create("Funkey Monkey"),
-            CCString::create("Funkey Monkey description"),
-            CCString::create("funkey_monkey"),
-            CCPurchaseWithVirtualItem::create(CCString::create(MUFFIN_CURRENCY_ITEM_ID), CCInteger::create(35)));
-
-
-    /** Virtual Categories **/
-
-    CCVirtualCategory *cakes = CCVirtualCategory::create(
-            CCString::create("Cakes"),
-            CCArray::create(
-                    CCString::create(MUFFINCAKE_ITEM_ID),
-                    CCString::create(PAVLOVA_ITEM_ID),
-                    CCString::create("pavlova_10"),
-                    CCString::create(CHOCLATECAKE_ITEM_ID),
-                    CCString::create(CREAMCUP_ITEM_ID),
-                    CCString::create("cream_cup_10"),
-                    NULL));
-
-    CCVirtualCategory *upgrades = CCVirtualCategory::create(
-            CCString::create("Upgrades"),
-            CCArray::create(CCString::create("show_room_0"),
-							CCString::create("show_room_1"),
-							CCString::create("show_room_2"),
-							CCString::create("show_room_3"),
-							CCString::create("show_room_4"),
-							CCString::create("delivery_vehicle_0"),
-							CCString::create("delivery_vehicle_1"),
-							CCString::create("delivery_vehicle_2"),
-							CCString::create("delivery_vehicle_3"),
-							CCString::create("delivery_vehicle_4"),
-							NULL));
-
-    CCVirtualCategory *characters = CCVirtualCategory::create(
-            CCString::create("Characters"),
-            CCArray::create(CCString::create("fat_cat"), CCString::create("happi_hippo"), CCString::create("funkey_monkey"), NULL));
-
 
     /** Google MANAGED Items **/
 
@@ -303,30 +80,20 @@ bool MuffinRushAssets::init() {
     mCurrencies = CCArray::create(muffinCurrency, NULL);
     mCurrencies->retain();
 
-    mGoods = CCArray::create(muffincakeGood, pavlovaGood, tenPavlovaGoods, choclatecakeGood, creamcupGood, tenCreamcupGoods,
-							 showRoomGood, showRoomGood0, showRoomGood1, showRoomGood2, showRoomGood3, showRoomGood4,
-							 deliveryVehicleGood, deliveryVehicleGood0, deliveryVehicleGood1, deliveryVehicleGood2,
-							 deliveryVehicleGood3, deliveryVehicleGood4, fatCatGood, happiHippoGood, funkeyMonkeyGood, noAdsLTVG, NULL);
-    mGoods->retain();
-
-    mCurrencyPacks = CCArray::create(samuraiShield, ninjaStars, shougunKatana, fourhundmuffPack, thousandmuffPack, NULL);
+    mCurrencyPacks = CCArray::create(samuraiShield, ninjaStars, shougunKatana, NULL);
     mCurrencyPacks->retain();
-
-    mCategories = CCArray::create(cakes, upgrades, characters, NULL);
-    mCategories->retain();
 
     return true;
 }
 
 MuffinRushAssets::~MuffinRushAssets() {
     CC_SAFE_RELEASE(mCurrencies);
-    CC_SAFE_RELEASE(mGoods);
     CC_SAFE_RELEASE(mCurrencyPacks);
     CC_SAFE_RELEASE(mCategories);
 }
 
 int MuffinRushAssets::getVersion() {
-    return 0;
+    return 1;
 }
 
 cocos2d::CCArray *MuffinRushAssets::getCurrencies() {
@@ -334,7 +101,7 @@ cocos2d::CCArray *MuffinRushAssets::getCurrencies() {
 }
 
 cocos2d::CCArray *MuffinRushAssets::getGoods() {
-    return mGoods;
+    return NULL;
 }
 
 cocos2d::CCArray *MuffinRushAssets::getCurrencyPacks() {
@@ -344,4 +111,3 @@ cocos2d::CCArray *MuffinRushAssets::getCurrencyPacks() {
 cocos2d::CCArray *MuffinRushAssets::getCategories() {
     return mCategories;
 }
-

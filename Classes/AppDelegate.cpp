@@ -38,24 +38,24 @@ bool AppDelegate::applicationDidFinishLaunching()
     // We initialize CCSoomlaStore and the event handler before
     // we open the store.
 //    CCStoreEventDispatcher::getInstance()->addEventHandler(handler);
-    
+
     // We initialize CCSoomlaStore and the event handler before
     // we open the store.
     MuffinRushAssets *assets = MuffinRushAssets::create();
 
     CCDictionary *storeParams = CCDictionary::create();
-    storeParams->setObject(CCString::create("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn5eClGHzFHjk741g5Mm7jFhFA0tQL0w/0NDx8sPHta+eScyLdgBM9SEkjSFJpDvQs4BHI9hhhCLfOG94gv3dN094mOzCKod1jdnFs0E0gsA24HHhQYnVnBhgFYM4vmD3mXAsxrceUr6KISlfkqkNrnoyQ/xTpzI97Z0EaoMLnKc7h/9w5jtLuaJnsVMdac3K8Ou0JJmoYyQZsOogkTeCUjyula8hPDDvj3h8bBCMJBxRAvi5QWtKQoDxwHhq2hNt1tSi07sJKvq5qKqtMnN+UC7O54kFhBFbe0lLfLkM24KFHcRBAiqFIVnGMTlZ/yCjJX8wNMXvyLDKoui9A0IpUwIDAQAB"), "androidPublicKey");
+    storeParams->setObject(CCString::create("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg2TaRDmaGqRiQA+XAeN/X5FfxtH+l6vwxBO4tgOlrC/M+qcTqmRfkdTJe6Y4ZVCPV2krdbp/HK3mhKVoFVhrS71hoxQW8LrXxiWgDcessd4uCg+ZDdF4Utg5GZgk3V3B1fIHHkb1Eb2I63Qp0Fyt3lPU4R0U0S261l4x4fxvolcHB44TlG1EXhOyC1p8uKSIjKgKtyy8bJ9oAL19K4zyqSAtYV9v2ogm7MgQW11z7HRXRjnn0IZqHe4aX18zb5vUM3GD/gpJM2Bi0koA2N/0fT3Nu/fwovCJZQfECFQD5qLWj5L79bys68YrBgW46lDIZGZ0JFqpD12QXjpeeou3xwIDAQAB"), "androidPublicKey");
 //    storeParams->setObject(CCBool::create(true), "testPurchases");
-    
+
     soomla::CCSoomlaStore::initialize(assets, storeParams);
-    
+
     /*
      * ** Set the amount of each currency to 10,000 if the **
      * ** balance drops under 1,000                        **
      *
      * ** Of course, this is just for testing...           **
      */
-    
+
     CCArray *currencies =
     soomla::CCStoreInfo::sharedStoreInfo()->getCurrencies();
     CCObject *currencyObject;

@@ -23,13 +23,11 @@
 
 class MuffinRushAssets: public soomla::CCStoreAssets {
     cocos2d::CCArray *mCurrencies;
-    cocos2d::CCArray *mGoods;
     cocos2d::CCArray *mCurrencyPacks;
     cocos2d::CCArray *mCategories;
 public:
     MuffinRushAssets():
     mCurrencies(NULL),
-    mGoods(NULL),
     mCurrencyPacks(NULL),
     mCategories(NULL)
     {}
