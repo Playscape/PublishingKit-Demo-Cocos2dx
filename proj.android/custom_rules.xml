@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="cocos2dxdemo">
+<project>
     <property file="build.properties"/>
     <property name="out.jar.file" location="bin/aspect_classes.jar" />
     <property name="default.application.class" value="com.playscape.playscapeapp.PlayscapeApp"/>
@@ -11,18 +11,15 @@
 
 	<loadproperties srcFile="ant.properties"/>
 
-	<!-- temp configuration json url -->
-	<property name="temp.configuration.url" value="https://www.dropbox.com/s/pvbwe2lu25zu1ob/config.json?dl=1" />
-
 	<!-- configuration json file -->
 	<property name="downloaded.json.name" location="./configuration.json" />
 
 	<!-- users configuration file name -->
-    <property name="configuration.file.name" value="user_playscape_config_release.xml"/>
+    <property name="configuration.file.name" value="PlayscapeConfig.xml"/>
     <!-- users configuration file full path -->
-    <property name="configuration.file.full.path" location="../../PlayscapePubKitCocos2D-X/proj.android/configs/${configuration.file.name}"/>
+    <property name="configuration.file.full.path" location="${publishigkit.assets}/playscape/${configuration.file.name}"/>
     <!-- configuration file path in project -->
-	<property name="configuration.project.file.path" value="res/values/${configuration.file.name}"/>
+	<property name="configuration.project.file.path" value="assets/playscape/${configuration.file.name}"/>
 
 	<property name="cp.libs.path" value="../../PlayscapePubKitCocos2D-X/build/tools/PlayscapeCPBootstrapBuilder/libs" />
 	<property name="local.libs.path" value="../../PlayscapePubKitCocos2D-X/build/tools/libs" />
@@ -87,18 +84,21 @@
 	                var full_api_key = cocos2dxdemo.getProperty("api.key");
 
 	                var base_url = "https://api.playscape.com/";
-
-                	// we'll use it later to rethrow exception if need
-                	var shouldFail = false;
+                    if(cocos2dxdemo.getProperty("base.url")) {
+                        base_url = cocos2dxdemo.getProperty("base.url");
+                    }
 
                 	if(full_api_key) {
 		                var jsonData;
 
 		                // example configuration url
-		                // https://api.playscape.com/config?api_key=<zLhv5l8pHo4MaUCRUNxeixmQ3bl9pyF4>
+		                // https://api.playscape.com/config?api_key=<Y1ROp0kVhFF7h61Go3PzFQS3aEUGxFMt>
 
-		                var base_url_part = base_url;
-		                var url = base_url_part + "/config?api_key=" + full_api_key;
+		                var url = base_url + "/config?api_key=" + full_api_key;
+
+                        // we'll use it to determine if no connectivity or something wrong on server side
+                        // its need to workaround rethrowing exception
+                        var hasInternetConnection = true;
 
 		                try {
 			                // download json
@@ -126,14 +126,15 @@
 						} catch(e) {
 		                	echo.setMessage("Warning!!! Could not download game configuration. Please check your internet connection");
 							echo.perform();
+                            hasInternetConnection = false;
 		                }
 
 						if(jsonData) {
 							if(response.getStatusLine().getStatusCode() == 200) {
 								// we'll use properties to update users configuration
 
-                        cocos2dxdemo.setProperty("analytics_reporter_id", jsonData.config.analytics_report.reporter_id);
-                        cocos2dxdemo.setProperty("ads_config_url", jsonData.config.ads_config.url);
+                                cocos2dxdemo.setProperty("analytics_reporter_id", jsonData.config.analytics_report.reporter_id);
+                                cocos2dxdemo.setProperty("ads_config_url", jsonData.config.ads_config.url);
 
 				               	cocos2dxdemo.setProperty("admob_interstitials_ad_unit_id", jsonData.config.admob.interstitials_ad_unit_id);
 				               	cocos2dxdemo.setProperty("admob_banners_ad_unit_id", jsonData.config.admob.banners_ad_unit_id);
@@ -154,15 +155,15 @@
 				               	// set property to determine that configuration was downloaded and should be updated
 				            	cocos2dxdemo.setProperty("cofiguration_downloaded", "true");
 							} else {
-								// should fail in both cases
-								shouldFail = true;
 								if(jsonData.message) {
 									throw "Error!!! Could not retrieve configuration from the server. Message: " + jsonData.message;
 								} else {
 									throw "Error!!! Could not retrieve configuration from the server.";
 								}
 							}
-						}
+						} else if(hasInternetConnection) {
+                            throw "Error!!! Could not retrieve configuration from the server.";
+                        }
 					} else {
 						throw "Error!!! API key must be set";
 					}
@@ -171,20 +172,20 @@
 	    </script>
 	</target>
 
-    <target name="-pre-build" depends="-download-configuration, -apply-api-configuration">
+    <target name="-pre-build" depends="-copy-template-assets, -download-configuration, -apply-api-configuration">
         <xmltask source="AndroidManifest.xml" dest="AndroidManifest.xml">
             <copy path="//manifest/application[@android:name]/text()" property="XML_EXISTS_ALREADY" />
             <attr path="//manifest/application" attr="android:name" value="${default.application.class}" unless="XML_EXISTS_ALREADY"/>
         </xmltask>
     </target>
 
-    <target name="-pre-compile">
-		<copy todir="${target.assets}" overwrite="true">
-			<fileset dir="${publishigkit.assets}" />
-		</copy>
-	</target>
+    <target name="-copy-template-assets">
+      <copy todir="${target.assets}" overwrite="true">
+        <fileset dir="${publishigkit.assets}" />
+      </copy>
+    </target>
 
-    <target name="-apply-api-configuration">
+    <target name="-apply-api-configuration">        
         <echo>### Updating default configuration with '${api.key}' apikey ###</echo>
 
        	<xmltask source="${configuration.file.full.path}" dest="${configuration.project.file.path}">
@@ -197,7 +198,7 @@
 
             <replace path="//resources/string[@name='user_playscape_admob_interstitials_ad_unit_id']/text()" withText="${admob_interstitials_ad_unit_id}" unless="${cofiguration_downloaded}"/>
             <replace path="//resources/string[@name='user_playscape_admob_banners_ad_unit_id']/text()" withText="${admob_banners_ad_unit_id}" unless="${cofiguration_downloaded}"/>
-       		<replace path="//resources/string[@name='user_playscape_admob_test_device_id']/text()" withText="${admob_test_device_id}" unless="${cofiguration_downloaded}"/>
+            <replace path="//resources/string[@name='user_playscape_admob_test_device_id']/text()" withText="${admob_test_device_id}" unless="${cofiguration_downloaded}"/>
 
             <replace path="//resources/string[@name='user_playscape_chartboost_app_id']/text()" withText="${chartboost_app_id}" unless="${cofiguration_downloaded}"/>
             <replace path="//resources/string[@name='user_playscape_chartboost_app_signature']/text()" withText="${chartboost_app_signature}" unless="${cofiguration_downloaded}"/>
