@@ -22,7 +22,7 @@ CCScene* HelloWorld::scene()
 {
     // 'scene' is an autorelease object
     CCScene *scene = CCScene::create();
-    
+
     // 'layer' is an autorelease object
     HelloWorld *layer = HelloWorld::create();
 
@@ -82,6 +82,8 @@ void HelloWorld::setSomeCustomVars() {
 	is << value;
 	Report::getInstance().setCustomVariable("var3", is.str());
 	Report::getInstance().setCustomVariable("var4", "");
+    // uncomment for disable ads
+    // Report::getInstance().setCustomVariable("disable_ads", "true");
 
 }
 
@@ -150,10 +152,10 @@ void HelloWorld::showInGameMenuLayer()
 void HelloWorld::createRoom()
 {
     dbgprint("createRoom");
-    
+
     std::map<std::string, std::string> properties;
     properties["playscape"] = "room12345";
-    
+
     AppWarp::Client::getInstance()->createRoom(ROOM_NAME, mUserName, 2, properties);
 }
 
@@ -184,7 +186,7 @@ void HelloWorld::getRooms()
 
 void HelloWorld::updateRoomProperties()
 {
-    
+
 }
 
 void HelloWorld::removeStartGameLayer()
@@ -199,15 +201,15 @@ void HelloWorld::startGame()
     // Initialize arrays
     mTargets = new CCArray();
     mProjectiles = new CCArray();
-    
+
     // Get the dimensions of the window for calculation purposes
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-    
+
     mPlayer = (Player*)CCSprite::create("Player.png");
     mPlayer->setPosition(ccp(mPlayer->getContentSize().width/2, winSize.height/2));
     mPlayer->isEnemy = false;
     addChild(mPlayer);
-    
+
     mEnemy = (Player*)CCSprite::create("Enemy.png");
     mEnemy->setPosition(ccp(winSize.width-mEnemy->getContentSize().width/2, winSize.height/2));
     mEnemy->isEnemy = true;
@@ -218,7 +220,7 @@ void HelloWorld::startGame()
     {
         scheduleUpdate();
     }
-    
+
     std::map<std::string, double> additionalParams;
     additionalParams["meaningOfLife"] = 42.0;
 
@@ -248,12 +250,12 @@ void HelloWorld::stopGame() {
 
 void HelloWorld::update(float time)
 {
-    
+
     if (!mIsEnemyAdded)
     {
         return;
     }
-    
+
 	CCArray *projectilesToDelete = CCArray::create();
     if (mProjectiles->count())
     {
@@ -265,9 +267,9 @@ void HelloWorld::update(float time)
                                               projectile->getPosition().y - (projectile->getContentSize().height/2),
                                               projectile->getContentSize().width,
                                               projectile->getContentSize().height);
-            
+
             CCArray *targetsToDelete = CCArray::create();
-            
+
             CCObject *tObj = NULL;
             CCARRAY_FOREACH(mTargets, tObj)
             {
@@ -276,7 +278,7 @@ void HelloWorld::update(float time)
                                                target->getPosition().y - (target->getContentSize().height/2),
                                                target->getContentSize().width,
                                                target->getContentSize().height);
-                
+
                 if (projectileRect.intersectsRect(targetRect))
                 {
                     targetsToDelete->addObject(target);
@@ -285,9 +287,9 @@ void HelloWorld::update(float time)
                 {
                      targetsToDelete->addObject(target);
                 }
-                
+
             }
-            
+
             if (!projectilesToDelete->containsObject(projectile) && projectileRect.intersectsRect(mEnemy->boundingBox()))
             {
                 projectilesToDelete->addObject(projectile);
@@ -301,13 +303,13 @@ void HelloWorld::update(float time)
                 mProjectilesDestroyed++;
 
             }
-            
+
             if (!projectilesToDelete->containsObject(projectile) && targetsToDelete->count() > 0)
             {
                 projectilesToDelete->addObject(projectile);
             }
         }
-        
+
          pObj=NULL;
         CCARRAY_FOREACH(projectilesToDelete, pObj)
         {
@@ -328,14 +330,14 @@ void HelloWorld::update(float time)
                                            target->getPosition().y - (target->getContentSize().height/2),
                                            target->getContentSize().width,
                                            target->getContentSize().height);
-            
+
             if (!targetsToDelete->containsObject(target) && mPlayer->boundingBox().intersectsRect(targetRect))
             {
                 targetsToDelete->addObject(target);
             }
-            
+
         }
-        
+
        tObj=NULL;
         CCARRAY_FOREACH(targetsToDelete, tObj)
         {
@@ -345,7 +347,7 @@ void HelloWorld::update(float time)
             mProjectilesDestroyed++;
         }
     }
-    	
+
 }
 
 void HelloWorld::updateEnemyStatus(CCPoint destination,float actualDuration)
@@ -355,7 +357,7 @@ void HelloWorld::updateEnemyStatus(CCPoint destination,float actualDuration)
 	CCSprite *target = CCSprite::create("Bullet-blue.png");
 	target->setPosition(ccp(mEnemy->getPosition().x-mEnemy->getContentSize().width/2, mEnemy->getPosition().y));
 	addChild(target,10);
-	
+
     // Move projectile to actual endpoint
     CCActionInterval* move = CCMoveTo::create(actualDuration, destination);
     CCCallFuncN* moveFinished = CCCallFuncN::create(this, callfuncN_selector(HelloWorld::spriteMoveFinished));
@@ -381,36 +383,36 @@ void HelloWorld::ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEve
 	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 	CCSprite *projectile = CCSprite::create("Bullet-red.png");
 	projectile->setPosition(ccp(mPlayer->getPosition().x+mPlayer->getContentSize().width/2, mPlayer->getPosition().y));
-	
+
     CCPoint projectilePos = projectile->getPosition();
 	// Determine offset of location to projectile
 	int offX = location.x - projectilePos.x;
 	int offY = location.y - projectilePos.y;
-	
+
 	// Bail out if we are shooting down or backwards
 	if (offX <= 0) return;
-    
+
     // Ok to add now - we've double checked position
     addChild(projectile,10);
-    
-	
+
+
 	// Determine where we wish to shoot the projectile to
 	int realX = winSize.width + (projectile->getContentSize().width/2);
 	float ratio = (float) offY / (float) offX;
 	int realY = (realX * ratio) + projectilePos.y;
 	CCPoint realDest = ccp(realX, realY);
-	
+
 	// Determine the length of how far we're shooting
 	int offRealX = realX - projectilePos.x;
 	int offRealY = realY - projectilePos.y;
 	float length = sqrtf((offRealX*offRealX)+(offRealY*offRealY));
 	float velocity = 480/1; // 480pixels/1sec
 	float realMoveDuration = length/velocity;
-	
+
     //CCPoint destination = CCPointMake(winSize.width-realDest.x, realDest.y);
-    
+
     sendData(winSize.width-realDest.x, realDest.y, realMoveDuration);
-       
+
 	// Move projectile to actual endpoint
     CCActionInterval* move = CCMoveTo::create(realMoveDuration, realDest);
     CCCallFuncN* moveFinished = CCCallFuncN::create(this, callfuncN_selector(HelloWorld::spriteMoveFinished));
@@ -419,18 +421,18 @@ void HelloWorld::ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEve
 	// Add to projectiles array
 	projectile->setTag(2);
     mProjectiles->addObject(projectile);
-	
+
 }
 
 void HelloWorld::spriteMoveFinished(CCSprite* pSender)
 {
     CCSprite *sprite = (CCSprite *)pSender;
 	removeChild(sprite, true);
-	
+
 	if (sprite->getTag() == 3)
     { // target
 		mTargets->removeObject(sprite);
-		
+
 	}
     else if (sprite->getTag() == 2)
     { // projectile
@@ -456,11 +458,11 @@ std::string genRandom()
 {
 	std::string charStr;
 	srand (time(NULL));
-    
+
 	for (int i = 0; i < 10; ++i) {
 		charStr += (char)(65+(rand() % (26)));
 	}
-    
+
 	return charStr;
 }
 
@@ -664,7 +666,7 @@ void HelloWorld::sendData(float x, float y, float duration)
 {
     AppWarp::Client *warpClientRef;
 	warpClientRef = AppWarp::Client::getInstance();
-    
+
     std::stringstream str;
     str <<x << "x" <<y << "d" << duration;
     warpClientRef->sendChat(str.str());
@@ -712,20 +714,20 @@ void HelloWorld::onChatReceived(AppWarp::chat chatevent)
 void HelloWorld::showMessageLayer(std::string message)
 {
 	removeMessageLayer();
-    
+
     // Get the dimensions of the window for calculation purposes
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-    
+
     mMessageLayer = CCLayerColor::create();
     mMessageLayer->setColor(ccc3(0, 0, 0));
     mMessageLayer->setOpacity(50);
     addChild(mMessageLayer);
-    
+
     CCLabelTTF *buttonTitle = CCLabelTTF::create(message.c_str(), "Marker Felt", 30);
     buttonTitle->setColor(ccBLUE);
     mMessageLayer->addChild(buttonTitle);
     buttonTitle->setPosition(ccp(winSize.width/2,winSize.height/2));
-    
+
 }
 
 void HelloWorld::removeMessageLayer() {
@@ -804,7 +806,7 @@ void HelloWorld::onGetMatchedRoomsDone(AppWarp::matchedroom mevent)
 		{
             dbgprint("\nonGetMatchedRoomsDone..roomId= %s\n",it->roomId.c_str());
 		}
-        
+
     }
 }
 
