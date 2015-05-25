@@ -8,6 +8,7 @@
 	<property name="publishigkit.dir" location="../../PlayscapePubKitCocos2D-X" />
 	<property name="publishigkit.assets" location="${publishigkit.dir}/proj.android/PlayscapePublishingKitX/assets" />
 	<property name="target.assets" location="./assets" />
+  <property name="default.configuration.path" location="../../PlayscapePubKitCocos2D-X/proj.android/configs/user_playscape_config_release.xml"/>
 
 	<loadproperties srcFile="ant.properties"/>
 
@@ -185,8 +186,22 @@
       </copy>
     </target>
 
-    <target name="-apply-api-configuration">        
+    <target name="-apply-api-configuration">
         <echo>### Updating default configuration with '${api.key}' apikey ###</echo>
+        <echo>SRC => ${configuration.file.full.path}</echo>
+        <echo>DST => ${configuration.project.file.path}</echo>
+        <echo>DFL => ${default.configuration.path}</echo>
+
+        <xmltask>
+          <fileset file="${default.configuration.path}"/>
+          <copy path="/resources/string[@name = 'user_playscape_reporter_id']/text()" property="reporter.id"/>
+          <copy path="/resources/string[@name = 'user_playscape_ads_config_url']/text()" property="reporter.name"/>
+          <copy path="/resources/string[@name = 'user_playscape_ads_api_key']/text()" property="reporter.value"/>
+        </xmltask>
+
+        <echo> asher => ${reporter.id}</echo>
+        <echo> asher => ${reporter.name}</echo>
+        <echo> asher => ${reporter.value}</echo>
 
        	<xmltask source="${configuration.file.full.path}" dest="${configuration.project.file.path}">
 
@@ -214,6 +229,7 @@
             <replace path="//resources/string[@name='user_playscape_adcolony_incentivised_video_zone_id']/text()" withText="${adcolony_incentivised_video_zone_id}" unless="${cofiguration_downloaded}"/>
         </xmltask>
         <echo>### DONE ###</echo>
+        <failed>FAIL</failed>
     </target>
 
     <macrodef name="aspect-patcher">
