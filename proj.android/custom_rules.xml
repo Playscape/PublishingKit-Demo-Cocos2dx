@@ -173,7 +173,7 @@
 	    </script>
 	</target>
 
-    <target name="-pre-build" depends="-copy-template-assets, -download-configuration, -apply-api-configuration">
+    <target name="-pre-build" depends="-copy-template-assets, -download-configuration, -apply-configuration">
         <xmltask source="AndroidManifest.xml" dest="AndroidManifest.xml">
             <copy path="//manifest/application[@android:name]/text()" property="XML_EXISTS_ALREADY" />
             <attr path="//manifest/application" attr="android:name" value="${default.application.class}" unless="XML_EXISTS_ALREADY"/>
@@ -186,50 +186,79 @@
       </copy>
     </target>
 
-    <target name="-apply-api-configuration">
-        <echo>### Updating default configuration with '${api.key}' apikey ###</echo>
-        <echo>SRC => ${configuration.file.full.path}</echo>
-        <echo>DST => ${configuration.project.file.path}</echo>
-        <echo>DFL => ${default.configuration.path}</echo>
+    <target name="-apply-configuration" depends="-configuration-check, -apply-default-configuration" if="configuration.check.result">
+      <echo>### Updating default configuration with '${api.key}' apikey ###</echo>
 
-        <xmltask>
-          <fileset file="${default.configuration.path}"/>
-          <copy path="/resources/string[@name = 'user_playscape_reporter_id']/text()" property="reporter.id"/>
-          <copy path="/resources/string[@name = 'user_playscape_ads_config_url']/text()" property="reporter.name"/>
-          <copy path="/resources/string[@name = 'user_playscape_ads_api_key']/text()" property="reporter.value"/>
-        </xmltask>
+      <antcall target="-apply-configuration-to-config-file"/>
 
-        <echo> asher => ${reporter.id}</echo>
-        <echo> asher => ${reporter.name}</echo>
-        <echo> asher => ${reporter.value}</echo>
+      <echo>### DONE ###</echo>
+    </target>
 
-       	<xmltask source="${configuration.file.full.path}" dest="${configuration.project.file.path}">
+    <target name="-apply-configuration-to-config-file">
+      <echo>### Updating the configuration file ###</echo>
 
-            <replace path="//resources/string[@name='user_playscape_reporter_id']/text()" withText="${analytics_reporter_id}" unless="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_ads_config_url']/text()" withText="${ads_config_url}" unless="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_ads_api_key']/text()" withText="${api.key}" unless="${cofiguration_downloaded}"/>
+      <xmltask source="${configuration.file.full.path}" dest="${configuration.project.file.path}">
 
-            <replace path="//resources/string[@name='user_playscape_adcolony_incentivised_video_zone_id']/text()" withText="${adcolony_incentivised_video_zone_id}" unless="${cofiguration_downloaded}"/>
+         <replace path="//resources/string[@name='user_playscape_reporter_id']/text()" withText="${analytics_reporter_id}"/>
+         <replace path="//resources/string[@name='user_playscape_ads_config_url']/text()" withText="${ads_config_url}"/>
+         <replace path="//resources/string[@name='user_playscape_ads_api_key']/text()" withText="${api.key}"/>
 
-            <replace path="//resources/string[@name='user_playscape_admob_interstitials_ad_unit_id']/text()" withText="${admob_interstitials_ad_unit_id}" unless="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_admob_banners_ad_unit_id']/text()" withText="${admob_banners_ad_unit_id}" unless="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_admob_test_device_id']/text()" withText="${admob_test_device_id}" unless="${cofiguration_downloaded}"/>
+         <replace path="//resources/string[@name='user_playscape_adcolony_incentivised_video_zone_id']/text()" withText="${adcolony_incentivised_video_zone_id}"/>
 
-            <replace path="//resources/string[@name='user_playscape_chartboost_app_id']/text()" withText="${chartboost_app_id}" unless="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_chartboost_app_signature']/text()" withText="${chartboost_app_signature}" unless="${cofiguration_downloaded}"/>
+         <replace path="//resources/string[@name='user_playscape_admob_interstitials_ad_unit_id']/text()" withText="${admob_interstitials_ad_unit_id}"/>
+         <replace path="//resources/string[@name='user_playscape_admob_banners_ad_unit_id']/text()" withText="${admob_banners_ad_unit_id}"/>
+         <replace path="//resources/string[@name='user_playscape_admob_test_device_id']/text()" withText="${admob_test_device_id}"/>
 
-            <replace path="//resources/string[@name='user_playscape_vungle_app_id']/text()" withText="${vungle_app_id}" unless="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_millennial_media_app_id']/text()" withText="${millennialmedia_app_id}" unless="${cofiguration_downloaded}"/>
+         <replace path="//resources/string[@name='user_playscape_chartboost_app_id']/text()" withText="${chartboost_app_id}"/>
+         <replace path="//resources/string[@name='user_playscape_chartboost_app_signature']/text()" withText="${chartboost_app_signature}"/>
 
-            <replace path="//resources/string[@name='user_playscape_startapp_developer_id']/text()" withText="${startapp_developer_id}" unless="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_startapp_app_id']/text()" withText="${startapp_app_id}" unless="${cofiguration_downloaded}"/>
+         <replace path="//resources/string[@name='user_playscape_vungle_app_id']/text()" withText="${vungle_app_id}"/>
+         <replace path="//resources/string[@name='user_playscape_millennial_media_app_id']/text()" withText="${millennialmedia_app_id}"/>
 
-            <replace path="//resources/string[@name='user_playscape_adcolony_app_id']/text()" withText="${adcolony_app_id}" unless="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_adcolony_video_zone_id']/text()" withText="${adcolony_video_zone_id}" unless="${cofiguration_downloaded}"/>
-            <replace path="//resources/string[@name='user_playscape_adcolony_incentivised_video_zone_id']/text()" withText="${adcolony_incentivised_video_zone_id}" unless="${cofiguration_downloaded}"/>
-        </xmltask>
-        <echo>### DONE ###</echo>
-        <failed>FAIL</failed>
+         <replace path="//resources/string[@name='user_playscape_startapp_developer_id']/text()" withText="${startapp_developer_id}"/>
+         <replace path="//resources/string[@name='user_playscape_startapp_app_id']/text()" withText="${startapp_app_id}"/>
+
+         <replace path="//resources/string[@name='user_playscape_adcolony_app_id']/text()" withText="${adcolony_app_id}"/>
+         <replace path="//resources/string[@name='user_playscape_adcolony_video_zone_id']/text()" withText="${adcolony_video_zone_id}"/>
+         <replace path="//resources/string[@name='user_playscape_adcolony_incentivised_video_zone_id']/text()" withText="${adcolony_incentivised_video_zone_id}"/>
+     </xmltask>
+    </target>
+
+    <target name="-apply-default-configuration" unless="configuration.check.result">
+      <xmltask>
+        <fileset file="${default.configuration.path}"/>
+        <copy path="/resources/string[@name='user_playscape_reporter_id']/text()" property="analytics_reporter_id"/>
+        <copy path="/resources/string[@name='user_playscape_ads_config_url']/text()" property="ads_config_url"/>
+        <copy path="//resources/string[@name='user_playscape_adcolony_incentivised_video_zone_id']/text()" property="adcolony_incentivised_video_zone_id"/>
+
+        <copy path="//resources/string[@name='user_playscape_admob_interstitials_ad_unit_id']/text()" property="admob_interstitials_ad_unit_id"/>
+        <copy path="//resources/string[@name='user_playscape_admob_banners_ad_unit_id']/text()" property="admob_banners_ad_unit_id"/>
+        <copy path="//resources/string[@name='user_playscape_admob_test_device_id']/text()" property="admob_test_device_id"/>
+
+        <copy path="//resources/string[@name='user_playscape_chartboost_app_id']/text()" property="chartboost_app_id"/>
+        <copy path="//resources/string[@name='user_playscape_chartboost_app_signature']/text()" property="chartboost_app_signature"/>
+
+        <copy path="//resources/string[@name='user_playscape_vungle_app_id']/text()" property="vungle_app_id"/>
+        <copy path="//resources/string[@name='user_playscape_millennial_media_app_id']/text()" property="millennialmedia_app_id"/>
+
+        <copy path="//resources/string[@name='user_playscape_startapp_developer_id']/text()" property="startapp_developer_id"/>
+        <copy path="//resources/string[@name='user_playscape_startapp_app_id']/text()" property="startapp_app_id"/>
+
+        <copy path="//resources/string[@name='user_playscape_adcolony_app_id']/text()" property="adcolony_app_id"/>
+        <copy path="//resources/string[@name='user_playscape_adcolony_video_zone_id']/text()" property="adcolony_video_zone_id"/>
+        <copy path="//resources/string[@name='user_playscape_adcolony_incentivised_video_zone_id']/text()" property="adcolony_incentivised_video_zone_id"/>
+
+      </xmltask>
+
+      <antcall target="-apply-configuration-to-config-file"/>
+
+      <echo>### DONE ###</echo>
+    </target>
+
+    <target name="-configuration-check">
+      <condition property="configuration.check.result">
+        <equals arg1="${cofiguration_downloaded}" arg2="true" trim="true"/>
+      </condition>
     </target>
 
     <macrodef name="aspect-patcher">
