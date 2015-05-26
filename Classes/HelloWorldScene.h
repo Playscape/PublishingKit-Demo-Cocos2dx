@@ -112,6 +112,9 @@ public:
     void setSomeCustomVars();
     void connect(bool force);
 
+	void disableAdManagerAds(CCObject* sender);
+	void enableAdManagerAds(CCObject* sender);
+
 private:
     AppWarpMultiplayerProvider *mAppWarpMultiplayerProvider;
     FacebookSocialAnalyticsProvider *mFacebookSocialAnalyticsProvider;
