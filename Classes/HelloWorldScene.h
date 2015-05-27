@@ -112,8 +112,8 @@ public:
     void setSomeCustomVars();
     void connect(bool force);
 
-	void disableAdManagerAds(CCObject* sender);
-	void enableAdManagerAds(CCObject* sender);
+	void disableAds(CCObject* sender);
+	void enableAds(CCObject* sender);
 
 private:
     AppWarpMultiplayerProvider *mAppWarpMultiplayerProvider;

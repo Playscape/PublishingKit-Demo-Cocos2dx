@@ -8,14 +8,14 @@
 
 #include "playscape/Report.h"
 #include "InviteFriendsScene.h"
-#include "playscape/AdManager.h"
+#include "playscape/AdManagerX.h"
 
 #include <sstream>
 
 using namespace cocos2d;
 using namespace CocosDenshion;
 using playscape::Report;
-using playscape::AdManager;
+using namespace playscape::ads;
 using std::ostringstream;
 
 #define FAKE_FACEBOOK_ID "fake_facebook_id"
@@ -100,8 +100,8 @@ void HelloWorld::showStartGameLayer()
 			CCMenuItemFont::create("Simulate Received Invite", this, menu_selector(HelloWorld::simulateReceivedInviteButtonCallback)),
 			CCMenuItemFont::create("Simulate SocialNetwork Login/Logout", this, menu_selector(HelloWorld::simulateSocialNetworkLoginCallback)),
             CCMenuItemFont::create("Open Ads Test", this, menu_selector(HelloWorld::openAdsTest)),
-            CCMenuItemFont::create("Disable Ads", this, menu_selector(HelloWorld::disableAdManagerAds)),
-            CCMenuItemFont::create("Enable Ads", this, menu_selector(HelloWorld::enableAdManagerAds)),
+            CCMenuItemFont::create("Disable Ads", this, menu_selector(HelloWorld::disableAds)),
+            CCMenuItemFont::create("Enable Ads", this, menu_selector(HelloWorld::enableAds)),
 			NULL);
 
     CCObject* item;
@@ -113,12 +113,12 @@ void HelloWorld::showStartGameLayer()
     mStartGameLayer->addChild(pMenu, 1);
 }
 
-void HelloWorld::disableAdManagerAds(CCObject* sender) {
-    AdManager::disableAds();
+void HelloWorld::disableAds(CCObject* sender) {
+    AdManagerX::disableAds();
 }
 
-void HelloWorld::enableAdManagerAds(CCObject* sender) {
-    AdManager::enableAds();
+void HelloWorld::enableAds(CCObject* sender) {
+    AdManagerX::enableAds();
 }
 
 void HelloWorld::openAdsTest(CCObject* sender) {
