@@ -5,6 +5,7 @@
 #include "dbgprint.h"
 #include "StoreScene.h"
 #include "AdsTestScene.h"
+#include "playscape/CatalogX.h"
 
 #include "playscape/Report.h"
 #include "InviteFriendsScene.h"
@@ -15,6 +16,7 @@ using namespace cocos2d;
 using namespace CocosDenshion;
 using playscape::Report;
 using std::ostringstream;
+using namespace playscape::catalog;
 
 #define FAKE_FACEBOOK_ID "fake_facebook_id"
 
@@ -99,6 +101,7 @@ void HelloWorld::showStartGameLayer()
 			CCMenuItemFont::create("Simulate Received Invite", this, menu_selector(HelloWorld::simulateReceivedInviteButtonCallback)),
 			CCMenuItemFont::create("Simulate SocialNetwork Login/Logout", this, menu_selector(HelloWorld::simulateSocialNetworkLoginCallback)),
             CCMenuItemFont::create("Open Ads Test", this, menu_selector(HelloWorld::openAdsTest)),
+			CCMenuItemFont::create("Show Catalog", this, menu_selector(HelloWorld::showCatalog)),
 			NULL);
 
     CCObject* item;
@@ -108,6 +111,11 @@ void HelloWorld::showStartGameLayer()
 
     pMenu->alignItemsVertically();
     mStartGameLayer->addChild(pMenu, 1);
+}
+
+void HelloWorld::showCatalog(CCObject* sender) {
+	CatalogX::showCatalog();
+	//CCDirector::sharedDirector()->replaceScene(ShowCatalogScene::scene());
 }
 
 void HelloWorld::openAdsTest(CCObject* sender) {
