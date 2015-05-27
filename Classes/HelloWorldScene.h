@@ -61,6 +61,7 @@ public:
     void menuCloseCallback(CCObject* pSender);
     void mainMenuButtonCallback(CCObject* pSender);
     void openAdsTest(CCObject* sender);
+	void showCatalog(CCObject* sender);
     void inviteFriendsButtonCallback(CCObject* pSender);
     void simulateReceivedInviteButtonCallback(CCObject* pSender);
     void joinGameButtonCallback(CCObject* pSender);

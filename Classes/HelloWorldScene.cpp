@@ -5,6 +5,7 @@
 #include "dbgprint.h"
 #include "StoreScene.h"
 #include "AdsTestScene.h"
+#include "playscape/CatalogX.h"
 
 #include "playscape/Report.h"
 #include "InviteFriendsScene.h"
@@ -17,6 +18,7 @@ using namespace CocosDenshion;
 using playscape::Report;
 using namespace playscape::ads;
 using std::ostringstream;
+using namespace playscape::catalog;
 
 #define FAKE_FACEBOOK_ID "fake_facebook_id"
 
@@ -102,6 +104,7 @@ void HelloWorld::showStartGameLayer()
             CCMenuItemFont::create("Open Ads Test", this, menu_selector(HelloWorld::openAdsTest)),
             CCMenuItemFont::create("Disable Ads", this, menu_selector(HelloWorld::disableAds)),
             CCMenuItemFont::create("Enable Ads", this, menu_selector(HelloWorld::enableAds)),
+			CCMenuItemFont::create("Show Catalog", this, menu_selector(HelloWorld::showCatalog)),
 			NULL);
 
     CCObject* item;
@@ -119,6 +122,11 @@ void HelloWorld::disableAds(CCObject* sender) {
 
 void HelloWorld::enableAds(CCObject* sender) {
     AdManagerX::enableAds();
+}
+
+void HelloWorld::showCatalog(CCObject* sender) {
+	CatalogX::showCatalog();
+	//CCDirector::sharedDirector()->replaceScene(ShowCatalogScene::scene());
 }
 
 void HelloWorld::openAdsTest(CCObject* sender) {
