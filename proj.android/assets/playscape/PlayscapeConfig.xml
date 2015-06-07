@@ -7,13 +7,13 @@
     <string name="ga_dispatchPeriod">30</string>
     <string name="ga_autoActivityTracking">true</string>
     <string name="ga_reportUncaughtExceptions">true</string>
-    <string name="playscape_remote_logger_url">%{REMOTE_LOGGER_URL}</string>
+    <string name="playscape_remote_logger_url">https://server.gameconsole.mominis.com/services/LoggingService/WriteToLog</string>
     <string name="playscape_remote_logger_campaign_id">campaign_id</string>
     <string name="playscape_remote_logger_dump_size_threshold_bytes">2048</string>
     <string name="playscape_remote_logger_file_size_limit_bytes">2097152</string>
     <string name="playscape_remote_logger_entry_size_limit_bytes">2048</string>
     <string name="playscape_remote_logger_force_dump_now">false</string>
-    <string name="playscape_publishing_kit_version">dev</string>
+    <string name="playscape_publishing_kit_version">1.6.117</string>
     <string name="playscape_reporter_id">TestGame</string>
     <string name="playscape_is_alive_service_reschedule_delay_seconds">86400</string>
 
@@ -39,32 +39,12 @@
     <string name="playscape_ads_refresh_interval_secs">15</string>
     <string name="playscape_ads_min_interval_between_syncs">900000</string>
     <string name="playscape_adience_key">5f6d5af0df237cd8b2bb7ed2a3098254</string>
+    <string name="playscape_is_published_by_playscape">false</string>
 
     <!-- Experiments -->
     <string name="playscape_amazon_abtesing_public_key"/>
     <string name="playscape_amazon_abtesing_private_key"/>
     <string name="playscape_enable_ab_testing_system"/>
-    <!--
-    Experiment Format example
-     <string-array name="playscape_experiment_1">
-		<item >playscpae_experiment_name</item>
-		<item >playscpae_experiment_type</item>
-		<item >playscape_experiment_variable_id1</item>
-		<item >playscape_experiment_variable_id2</item>
-		<item >playscape_experiment_variable_id3</item>
-		<item >playscape_experiment_variable_id4</item>
-	</string-array>
-
-    <string-array name="playscape_experiment_2">
-		<item >playscpae_experiment_name</item>
-		<item >playscpae_experiment_type</item>
-		<item >playscape_experiment_variable_id1</item>
-		<item >playscape_experiment_variable_id2</item>
-		<item >playscape_experiment_variable_id3</item>
-		<item >playscape_experiment_variable_id4</item>
-	</string-array>
-    -->
-
 
     <!-- Cocos 2D-x specific -->
     <string name="playscape_google_sender_id">95276907422</string>
@@ -77,17 +57,17 @@
 
 	<!-- playscape cross promotion -->
 
-	<string formatted="false" name="playscape_cp_catalog_main_category">Featured</string>
+	<string name="playscape_cp_catalog_main_category">Featured</string>
 	<string name="playscape_cp_init_timeout">5</string>
 
-	<string formatted="false" name="playscape_cp_welcome_notification_url">http://server.notification.mominis.com/Services/CompressedNotificationService/json/GetWelcomeNotification_PS2.json</string>
-	<string formatted="false" name="playscape_cp_user_data_update_url">https://server.gameconsole.mominis.com/Services/ClientAccountService/json/UpdateUserData</string>
-	<string formatted="false" name="playscape_cp_user_data_login_url">https://server.gameconsole.mominis.com/Services/ClientAccountService/json/GetServerUserId?clientUserId={clientUserId}&amp;idType={idType}</string>
-	<string formatted="false" name="playscape_cp_categories_url">http://server.gameconsole.mominis.com/services/CompressedCatalogService/json/GetCompressedTags?catalogName=Playscape_Launch</string>
-	<string formatted="false" name="playscape_cp_resolutions_url">http://playscape.s3.amazonaws.com/playscape_launch/getallresolutions</string>
-	<string formatted="false" name="playscape_cp_catalog_url">http://server.gameconsole.mominis.com/services/CompressedCatalogService/json/GetCompressedApps?catalogName=Playscape_Launch&amp;width=%1$d&amp;height=%2$d&amp;supportDiff=true</string>
-	<string formatted="false" name="playscape_cp_missions_url">http://server.gameconsole.mominis.com/services/CompressedCatalogService/json/GetCompressedMissions?catalogName=Playscape_Launch&amp;supportDiff=true</string>
-	<string formatted="false" name="playscape_cp_notification_download_url">http://server.notification.mominis.com/Services/CompressedNotificationService/json/GetGamesNotifications.json</string>
+	<string name="playscape_cp_welcome_notification_url">http://server.notification.mominis.com/Services/CompressedNotificationService/json/GetWelcomeNotification_PS2.json</string>
+	<string name="playscape_cp_user_data_update_url">https://server.gameconsole.mominis.com/Services/ClientAccountService/json/UpdateUserData</string>
+	<string name="playscape_cp_user_data_login_url">https://server.gameconsole.mominis.com/Services/ClientAccountService/json/GetServerUserId?clientUserId={clientUserId}&amp;idType={idType}</string>
+	<string name="playscape_cp_categories_url">http://server.gameconsole.mominis.com/services/CompressedCatalogService/json/GetCompressedTags?catalogName=Playscape_Launch</string>
+	<string name="playscape_cp_resolutions_url">http://playscape.s3.amazonaws.com/playscape_launch/getallresolutions</string>
+	<string name="playscape_cp_catalog_url">http://server.gameconsole.mominis.com/services/CompressedCatalogService/json/GetCompressedApps?catalogName=Playscape_Launch&amp;width=%1$d&amp;height=%2$d&amp;supportDiff=true</string>
+	<string name="playscape_cp_missions_url">http://server.gameconsole.mominis.com/services/CompressedCatalogService/json/GetCompressedMissions?catalogName=Playscape_Launch&amp;supportDiff=true</string>
+	<string name="playscape_cp_notification_download_url">http://server.notification.mominis.com/Services/CompressedNotificationService/json/GetGamesNotifications.json</string>
 
 	<string name="playscape_cp_sync_initial_failure_delay_min">2</string> 			<!-- Default: 2 Minutes -->
 	<string name="playscape_cp_sync_failure_recede_factor">1.5</string>				<!-- Default: 1.5 -->
@@ -98,48 +78,28 @@
 	<string name="playscape_cp_sync_periodic_sync_minutes">1500</string>			<!-- Default: 1500 = 25hours x 60minutes -->
 	<string name="playscape_cp_sync_max_minutes_from_last_launch">10080</string>
 
-	<string formatted="false" name="playscape_cp_mobpartner_campaign_id">558</string>
+	<string name="playscape_cp_mobpartner_campaign_id">558</string>
 
-  <string name="user_playscape_remote_logger_url">https://qa.server.gameconsole.mominis.com/services/LoggingService/WriteToLog</string>
-  <string name="user_playscape_publishing_kit_version">dev</string>
-  <string name="user_playscape_pushwoosh_id">Replace Me</string>
 
-  <string name="user_playscape_reporter_id">com_agrisausejs_spinly</string>
-
-  <!-- Please Populate The Ad Identifiers and Ad Config Url below with data from PlayScape -->
-
-  <!-- Config -->
-  <string name="user_playscape_ads_api_key">mLvAK0fOPmtT5IC9E5xlyvbrPjNeNtCK</string>
-  <string name="user_playscape_ads_config_url">http://server.ads.mominis.com.s3.amazonaws.com/Services/CompressedAdService/json/RollABallMultiplayer_Pubkit_Demo_AdsConfig.json</string>
-
-  <!-- Chartboost -->
-  <string name="user_playscape_chartboost_app_id">5369e2cec26ee409e1f7ed6f</string>
-  <string name="user_playscape_chartboost_app_signature">38ed2b6271bd82cfd4b0a673058ff7cc5bffe762</string>
-
-  <!-- Millennial Media -->
-  <string name="user_playscape_millennial_media_app_id">163708</string>
-
-  <!-- AdMob -->
-  <string name="user_playscape_admob_interstitials_ad_unit_id">ca-app-pub-6855635722675667/3604954833</string>
-  <string name="user_playscape_admob_banners_ad_unit_id">ca-app-pub-6855635722675667/8801184031</string>
-  <string name="user_playscape_admob_test_device_id"/>
-
-  <!-- StartApp -->
-  <string name="user_playscape_startapp_developer_id">105840068</string>
-  <string name="user_playscape_startapp_app_id">205418137</string>
-
-  <!-- MoPub -->
-  <string name="user_playscape_mopub_interstitial_id">%{user_playscape_mopub_interstitial_id}</string>
-  <string name="user_playscape_mopub_banner_id">%{user_playscape_mopub_banner_id}</string>
-
-  <!-- AdColony -->
-  <string name="user_playscape_adcolony_app_id">app8dbfb639f7564b4399</string>
-  <string name="user_playscape_adcolony_video_zone_id">vz80e0ea32fdf64b63a2</string>
-  <string name="user_playscape_adcolony_incentivised_video_zone_id">vzdc652d7a595345b5ab</string>
-
-  <!-- Vungle -->
-  <string name="user_playscape_vungle_app_id">5369e21389c713e308000211</string>
-
-  <string name="user_playscape_debug_mode">true</string>
-  <string name="user_playscape_is_published_by_playscape">true</string>
-</resources>
+        
+        <string name="user_playscape_remote_logger_url">https://server.gameconsole.mominis.com/services/LoggingService/WriteToLog</string>
+        <string name="user_playscape_publishing_kit_version">1.6.117</string>
+        <string name="user_playscape_ads_api_key">Ky8A4DtTpzbux9fsP6t5DtPnHIoMUKym</string>
+        <string name="user_playscape_reporter_id">${analytics_reporter_id}</string>
+        <string name="user_playscape_ads_config_url">${ads_config_url}</string>
+        <string name="user_playscape_adcolony_incentivised_video_zone_id">${adcolony_incentivised_video_zone_id}</string>
+        <string name="user_playscape_admob_interstitials_ad_unit_id">${admob_interstitials_ad_unit_id}</string>
+        <string name="user_playscape_admob_banners_ad_unit_id">${admob_banners_ad_unit_id}</string>
+        <string name="user_playscape_admob_test_device_id">${admob_test_device_id}</string>
+        <string name="user_playscape_chartboost_app_id">${chartboost_app_id}</string>
+        <string name="user_playscape_chartboost_app_signature">${chartboost_app_signature}</string>
+        <string name="user_playscape_vungle_app_id">${vungle_app_id}</string>
+        <string name="user_playscape_millennial_media_app_id">${millennialmedia_app_id}</string>
+        <string name="user_playscape_startapp_developer_id">${startapp_developer_id}</string>
+        <string name="user_playscape_startapp_app_id">${startapp_app_id}</string>
+        <string name="user_playscape_adcolony_app_id">${adcolony_app_id}</string>
+        <string name="user_playscape_adcolony_video_zone_id">${adcolony_video_zone_id}</string>
+        <string name="user_playscape_adcolony_incentivised_video_zone_id">${adcolony_incentivised_video_zone_id}</string>
+        <string name="user_playscape_is_published_by_playscape">${is_published_by_playscape}</string>
+        
+        </resources>

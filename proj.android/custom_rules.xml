@@ -8,7 +8,7 @@
 	<property name="publishigkit.dir" location="../../PlayscapePubKitCocos2D-X" />
 	<property name="publishigkit.assets" location="${publishigkit.dir}/proj.android/PlayscapePublishingKitX/assets" />
 	<property name="target.assets" location="./assets" />
-  <property name="default.configuration.path" location="../../PlayscapePubKitCocos2D-X/proj.android/configs/user_playscape_config_release.xml"/>
+    <property name="default.configuration.path" location="../../PlayscapePubKitCocos2D-X/proj.android/PlayscapePublishingKitX/assets/playscape/PlayscapeConfig.xml"/>
 
 	<loadproperties srcFile="ant.properties"/>
 
@@ -134,8 +134,8 @@
 							if(response.getStatusLine().getStatusCode() == 200) {
 								// we'll use properties to update users configuration
 
-                                cocos2dxdemo.setProperty("analytics_reporter_id", jsonData.config.analytics_report.reporter_id);
-                                cocos2dxdemo.setProperty("ads_config_url", jsonData.config.ads_config.url);
+                        cocos2dxdemo.setProperty("analytics_reporter_id", jsonData.config.analytics_report.reporter_id);
+                        cocos2dxdemo.setProperty("ads_config_url", jsonData.config.ads_config.url);
 
 				               	cocos2dxdemo.setProperty("admob_interstitials_ad_unit_id", jsonData.config.admob.interstitials_ad_unit_id);
 				               	cocos2dxdemo.setProperty("admob_banners_ad_unit_id", jsonData.config.admob.banners_ad_unit_id);
@@ -153,8 +153,11 @@
 				               	cocos2dxdemo.setProperty("adcolony_app_id", jsonData.config.adcolony.app_id);
 				               	cocos2dxdemo.setProperty("adcolony_video_zone_id", jsonData.config.adcolony.video_zone_id);
 				               	cocos2dxdemo.setProperty("adcolony_incentivised_video_zone_id", jsonData.config.adcolony.incentivised_video_zone_id);
+
+                        cocos2dxdemo.setProperty("is_published_by_playscape", jsonData.config.published_by_playscape);
+
 				               	// set property to determine that configuration was downloaded and should be updated
-				            	cocos2dxdemo.setProperty("cofiguration_downloaded", "true");
+				            	  cocos2dxdemo.setProperty("cofiguration_downloaded", "true");
 							} else {
 								if(jsonData.message) {
 									throw "Error!!! Could not retrieve configuration from the server. Message: " + jsonData.message;
@@ -194,41 +197,50 @@
       <echo>### DONE ###</echo>
     </target>
 
-    <target name="-apply-configuration-to-config-file">
-      <echo>### Updating the configuration file ###</echo>
+    <target name="-apply-configuration-to-config-file" depends="-read-build-configuration">
+      <echo>### Updating the configuration file ###</echo>    
 
       <xmltask source="${configuration.file.full.path}" dest="${configuration.project.file.path}">
 
-         <replace path="//resources/string[@name='user_playscape_reporter_id']/text()" withText="${analytics_reporter_id}"/>
-         <replace path="//resources/string[@name='user_playscape_ads_config_url']/text()" withText="${ads_config_url}"/>
-         <replace path="//resources/string[@name='user_playscape_ads_api_key']/text()" withText="${api.key}"/>
-
-         <replace path="//resources/string[@name='user_playscape_adcolony_incentivised_video_zone_id']/text()" withText="${adcolony_incentivised_video_zone_id}"/>
-
-         <replace path="//resources/string[@name='user_playscape_admob_interstitials_ad_unit_id']/text()" withText="${admob_interstitials_ad_unit_id}"/>
-         <replace path="//resources/string[@name='user_playscape_admob_banners_ad_unit_id']/text()" withText="${admob_banners_ad_unit_id}"/>
-         <replace path="//resources/string[@name='user_playscape_admob_test_device_id']/text()" withText="${admob_test_device_id}"/>
-
-         <replace path="//resources/string[@name='user_playscape_chartboost_app_id']/text()" withText="${chartboost_app_id}"/>
-         <replace path="//resources/string[@name='user_playscape_chartboost_app_signature']/text()" withText="${chartboost_app_signature}"/>
-
-         <replace path="//resources/string[@name='user_playscape_vungle_app_id']/text()" withText="${vungle_app_id}"/>
-         <replace path="//resources/string[@name='user_playscape_millennial_media_app_id']/text()" withText="${millennialmedia_app_id}"/>
-
-         <replace path="//resources/string[@name='user_playscape_startapp_developer_id']/text()" withText="${startapp_developer_id}"/>
-         <replace path="//resources/string[@name='user_playscape_startapp_app_id']/text()" withText="${startapp_app_id}"/>
-
-         <replace path="//resources/string[@name='user_playscape_adcolony_app_id']/text()" withText="${adcolony_app_id}"/>
-         <replace path="//resources/string[@name='user_playscape_adcolony_video_zone_id']/text()" withText="${adcolony_video_zone_id}"/>
-         <replace path="//resources/string[@name='user_playscape_adcolony_incentivised_video_zone_id']/text()" withText="${adcolony_incentivised_video_zone_id}"/>
+        <insert path="//resources" position="under">
+        <![CDATA[
+        <string name="user_playscape_remote_logger_url">${remote_logger_url}</string>
+        <string name="user_playscape_publishing_kit_version">${publishing_kit_version}</string>
+        <string name="user_playscape_ads_api_key">${api.key}</string>
+        <string name="user_playscape_reporter_id">${analytics_reporter_id}</string>
+        <string name="user_playscape_ads_config_url">${ads_config_url}</string>
+        <string name="user_playscape_adcolony_incentivised_video_zone_id">${adcolony_incentivised_video_zone_id}</string>
+        <string name="user_playscape_admob_interstitials_ad_unit_id">${admob_interstitials_ad_unit_id}</string>
+        <string name="user_playscape_admob_banners_ad_unit_id">${admob_banners_ad_unit_id}</string>
+        <string name="user_playscape_admob_test_device_id">${admob_test_device_id}</string>
+        <string name="user_playscape_chartboost_app_id">${chartboost_app_id}</string>
+        <string name="user_playscape_chartboost_app_signature">${chartboost_app_signature}</string>
+        <string name="user_playscape_vungle_app_id">${vungle_app_id}</string>
+        <string name="user_playscape_millennial_media_app_id">${millennialmedia_app_id}</string>
+        <string name="user_playscape_startapp_developer_id">${startapp_developer_id}</string>
+        <string name="user_playscape_startapp_app_id">${startapp_app_id}</string>
+        <string name="user_playscape_adcolony_app_id">${adcolony_app_id}</string>
+        <string name="user_playscape_adcolony_video_zone_id">${adcolony_video_zone_id}</string>
+        <string name="user_playscape_adcolony_incentivised_video_zone_id">${adcolony_incentivised_video_zone_id}</string>
+        <string name="user_playscape_is_published_by_playscape">${is_published_by_playscape}</string>
+        ]]>
+        </insert>
      </xmltask>
+    </target>
+
+    <target name="-read-build-configuration">
+      <xmltask>
+        <fileset file="${default.configuration.path}"/>
+        <copy path="//resources/string[@name='playscape_remote_logger_url']/text()" property="remote_logger_url"/>
+        <copy path="//resources/string[@name='playscape_publishing_kit_version']/text()" property="publishing_kit_version"/>
+      </xmltask>
     </target>
 
     <target name="-apply-default-configuration" unless="configuration.check.result">
       <xmltask>
         <fileset file="${default.configuration.path}"/>
-        <copy path="/resources/string[@name='user_playscape_reporter_id']/text()" property="analytics_reporter_id"/>
-        <copy path="/resources/string[@name='user_playscape_ads_config_url']/text()" property="ads_config_url"/>
+        <copy path="//resources/string[@name='user_playscape_reporter_id']/text()" property="analytics_reporter_id"/>
+        <copy path="//resources/string[@name='user_playscape_ads_config_url']/text()" property="ads_config_url"/>
         <copy path="//resources/string[@name='user_playscape_adcolony_incentivised_video_zone_id']/text()" property="adcolony_incentivised_video_zone_id"/>
 
         <copy path="//resources/string[@name='user_playscape_admob_interstitials_ad_unit_id']/text()" property="admob_interstitials_ad_unit_id"/>
@@ -247,6 +259,8 @@
         <copy path="//resources/string[@name='user_playscape_adcolony_app_id']/text()" property="adcolony_app_id"/>
         <copy path="//resources/string[@name='user_playscape_adcolony_video_zone_id']/text()" property="adcolony_video_zone_id"/>
         <copy path="//resources/string[@name='user_playscape_adcolony_incentivised_video_zone_id']/text()" property="adcolony_incentivised_video_zone_id"/>
+
+        <copy path="//resources/string[@name='user_playscape_is_published_by_playscape']/text()" property="${is_published_by_playscape}"/>
 
       </xmltask>
 
