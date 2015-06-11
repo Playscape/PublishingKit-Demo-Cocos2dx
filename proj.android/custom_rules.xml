@@ -68,6 +68,7 @@
 	                importClass(java.net.URL);
 	                importClass(org.xml.sax.InputSource);
 	                importClass(java.io.FileInputStream);
+					importClass(java.io.IOException);
 	                importClass(java.io.FileNotFoundException);
 	                importClass(Packages.org.apache.http.client.HttpClient);
 	                importClass(Packages.org.apache.http.impl.client.DefaultHttpClient);
@@ -124,7 +125,7 @@
 
 			                // Evaluate json
 			                jsonData = JSON.parse(result.toString());
-						} catch(e) {
+						} catch(e if e instanceof IOException) {
 		                	echo.setMessage("Warning!!! Could not download game configuration. Please check your internet connection");
 							echo.perform();
                             hasInternetConnection = false;
@@ -189,7 +190,7 @@
       </copy>
     </target>
 
-    <target name="-apply-configuration" depends="-configuration-check, -apply-default-configuration" if="configuration.check.result">
+    <target name="-apply-configuration" depends="-configuration-check, -read-default-configuration" if="configuration.check.result">
       <echo>### Updating default configuration with '${api.key}' apikey ###</echo>
 
       <antcall target="-apply-configuration-to-config-file"/>
@@ -236,31 +237,31 @@
       </xmltask>
     </target>
 
-    <target name="-apply-default-configuration" unless="configuration.check.result">
+    <target name="-read-default-configuration" unless="configuration.check.result">
       <xmltask>
         <fileset file="${default.configuration.path}"/>
-        <copy path="//resources/string[@name='user_playscape_reporter_id']/text()" property="analytics_reporter_id"/>
-        <copy path="//resources/string[@name='user_playscape_ads_config_url']/text()" property="ads_config_url"/>
-        <copy path="//resources/string[@name='user_playscape_adcolony_incentivised_video_zone_id']/text()" property="adcolony_incentivised_video_zone_id"/>
+        <copy path="//resources/string[@name='playscape_reporter_id']/text()" property="analytics_reporter_id"/>
+        <copy path="//resources/string[@name='playscape_ads_config_url']/text()" property="ads_config_url"/>
+        <copy path="//resources/string[@name='playscape_adcolony_incentivised_video_zone_id']/text()" property="adcolony_incentivised_video_zone_id"/>
 
-        <copy path="//resources/string[@name='user_playscape_admob_interstitials_ad_unit_id']/text()" property="admob_interstitials_ad_unit_id"/>
-        <copy path="//resources/string[@name='user_playscape_admob_banners_ad_unit_id']/text()" property="admob_banners_ad_unit_id"/>
-        <copy path="//resources/string[@name='user_playscape_admob_test_device_id']/text()" property="admob_test_device_id"/>
+        <copy path="//resources/string[@name='playscape_admob_interstitials_ad_unit_id']/text()" property="admob_interstitials_ad_unit_id"/>
+        <copy path="//resources/string[@name='playscape_admob_banners_ad_unit_id']/text()" property="admob_banners_ad_unit_id"/>
+        <copy path="//resources/string[@name='playscape_admob_test_device_id']/text()" property="admob_test_device_id"/>
 
-        <copy path="//resources/string[@name='user_playscape_chartboost_app_id']/text()" property="chartboost_app_id"/>
-        <copy path="//resources/string[@name='user_playscape_chartboost_app_signature']/text()" property="chartboost_app_signature"/>
+        <copy path="//resources/string[@name='playscape_chartboost_app_id']/text()" property="chartboost_app_id"/>
+        <copy path="//resources/string[@name='playscape_chartboost_app_signature']/text()" property="chartboost_app_signature"/>
 
-        <copy path="//resources/string[@name='user_playscape_vungle_app_id']/text()" property="vungle_app_id"/>
-        <copy path="//resources/string[@name='user_playscape_millennial_media_app_id']/text()" property="millennialmedia_app_id"/>
+        <copy path="//resources/string[@name='playscape_vungle_app_id']/text()" property="vungle_app_id"/>
+        <copy path="//resources/string[@name='playscape_millennial_media_app_id']/text()" property="millennialmedia_app_id"/>
 
-        <copy path="//resources/string[@name='user_playscape_startapp_developer_id']/text()" property="startapp_developer_id"/>
-        <copy path="//resources/string[@name='user_playscape_startapp_app_id']/text()" property="startapp_app_id"/>
+        <copy path="//resources/string[@name='playscape_startapp_developer_id']/text()" property="startapp_developer_id"/>
+        <copy path="//resources/string[@name='playscape_startapp_app_id']/text()" property="startapp_app_id"/>
 
-        <copy path="//resources/string[@name='user_playscape_adcolony_app_id']/text()" property="adcolony_app_id"/>
-        <copy path="//resources/string[@name='user_playscape_adcolony_video_zone_id']/text()" property="adcolony_video_zone_id"/>
-        <copy path="//resources/string[@name='user_playscape_adcolony_incentivised_video_zone_id']/text()" property="adcolony_incentivised_video_zone_id"/>
+        <copy path="//resources/string[@name='playscape_adcolony_app_id']/text()" property="adcolony_app_id"/>
+        <copy path="//resources/string[@name='playscape_adcolony_video_zone_id']/text()" property="adcolony_video_zone_id"/>
+        <copy path="//resources/string[@name='playscape_adcolony_incentivised_video_zone_id']/text()" property="adcolony_incentivised_video_zone_id"/>
 
-        <copy path="//resources/string[@name='user_playscape_is_published_by_playscape']/text()" property="${is_published_by_playscape}"/>
+        <copy path="//resources/string[@name='playscape_is_published_by_playscape']/text()" property="is_published_by_playscape"/>
 
       </xmltask>
 
