@@ -44,7 +44,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     MuffinRushAssets *assets = MuffinRushAssets::create();
 
     CCDictionary *storeParams = CCDictionary::create();
-    storeParams->setObject(CCString::create("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg2TaRDmaGqRiQA+XAeN/X5FfxtH+l6vwxBO4tgOlrC/M+qcTqmRfkdTJe6Y4ZVCPV2krdbp/HK3mhKVoFVhrS71hoxQW8LrXxiWgDcessd4uCg+ZDdF4Utg5GZgk3V3B1fIHHkb1Eb2I63Qp0Fyt3lPU4R0U0S261l4x4fxvolcHB44TlG1EXhOyC1p8uKSIjKgKtyy8bJ9oAL19K4zyqSAtYV9v2ogm7MgQW11z7HRXRjnn0IZqHe4aX18zb5vUM3GD/gpJM2Bi0koA2N/0fT3Nu/fwovCJZQfECFQD5qLWj5L79bys68YrBgW46lDIZGZ0JFqpD12QXjpeeou3xwIDAQAB"), "androidPublicKey");
+    storeParams->setObject(CCString::create("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkSVxCNSbtt2D45fu1qUOTy2wmpiIT0gi8vc1NNiS0ooPbW8A7bNRSfpsIml4my8LB5e8Ta1jTAmTWh/azxj7It+r3VMb2OxIXBaZKQHqsMBgShYFFuRIooLa5Xs3d/yQdNogHo9flR3+pNhXJH5UEsRPKKneU+ebz/CqMGR59shYpTIZTPqlTPTLkeuFKvE7fmxBWVUI7HChp4+6CNWDOG1wMn1VWz82CDQ1m5eZepo9B1iZieijaUmjglTNw2drt+l6JQN99JBwoI1nQh8ni6f5ehcCadfoEkxflTN8ek6eD2dhME5Ll7GiwFDRORUBD5vmLRyNq4QThFBEzr6KewIDAQAB"), "androidPublicKey");
 //    storeParams->setObject(CCBool::create(true), "testPurchases");
 
     soomla::CCSoomlaStore::initialize(assets, storeParams);
