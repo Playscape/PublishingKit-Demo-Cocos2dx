@@ -156,6 +156,8 @@
         <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.vungle.sdk.VungleAdvert" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
 
         <service android:name="com.vungle.sdk.VungleIntentService"/>
+
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.vungle.publisher.FullScreenAdActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
         <!-- AdColony Video Ads -->
         <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.jirbo.adcolony.AdColonyOverlay" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
         <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.jirbo.adcolony.AdColonyFullscreen" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"/>
