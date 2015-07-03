@@ -41,28 +41,37 @@ bool MuffinRushAssets::init() {
     CCVirtualCurrencyPack *samuraiShield = CCVirtualCurrencyPack::create(
             CCString::create("Samurai Shield"),                                   // name
             CCString::create("Test refund of an item"),                       // description
-            CCString::create("dark_matter"),                                   // item id
-            CCInteger::create(10),												// number of currencies in the pack
+            CCString::create("samurai_shield"),                                   // item id
+            CCInteger::create(10),                                              // number of currencies in the pack
             CCString::create(MUFFIN_CURRENCY_ITEM_ID),                        // the currency associated with this pack
-            CCPurchaseWithMarket::create(CCString::create("dark_matter"), CCDouble::create(0.99))
+            CCPurchaseWithMarket::create(CCString::create("samurai_shield"), CCDouble::create(0.99))
     );
 
     CCVirtualCurrencyPack *ninjaStars = CCVirtualCurrencyPack::create(
-            CCString::create("Ninja stars"),                                   // name
+            CCString::create("Ninjs Stars"),                                   // name
             CCString::create("Test refund of an item"),                       // description
-            CCString::create("diamond_item"),                                   // item id
-            CCInteger::create(1),												// number of currencies in the pack
+            CCString::create("ninja_stars"),                                   // item id
+            CCInteger::create(10),                                              // number of currencies in the pack
             CCString::create(MUFFIN_CURRENCY_ITEM_ID),                        // the currency associated with this pack
-            CCPurchaseWithMarket::create(CCString::create("diamond_item"), CCDouble::create(0.99))
+            CCPurchaseWithMarket::create(CCString::create("ninja_stars"), CCDouble::create(0.99))
+    );
+
+    CCVirtualCurrencyPack *ninjaSword = CCVirtualCurrencyPack::create(
+            CCString::create("Ninja sword"),                                   // name
+            CCString::create("Test refund of an item"),                       // description
+            CCString::create("ninjs_sword"),                                   // item id
+            CCInteger::create(1),                                               // number of currencies in the pack
+            CCString::create(MUFFIN_CURRENCY_ITEM_ID),                        // the currency associated with this pack
+            CCPurchaseWithMarket::create(CCString::create("ninjs_sword"), CCDouble::create(0.99))
     );
 
     CCVirtualCurrencyPack *shougunKatana = CCVirtualCurrencyPack::create(
             CCString::create("Shougun Katana"),                                   // name
             CCString::create("Test cancellation of an item"),                 // description
-            CCString::create("dark_matter_unmanaged"),                                   // item id
-            CCInteger::create(50),												// number of currencies in the pack
+            CCString::create("shogun_katana"),                                   // item id
+            CCInteger::create(50),                                              // number of currencies in the pack
             CCString::create(MUFFIN_CURRENCY_ITEM_ID),                        // the currency associated with this pack
-            CCPurchaseWithMarket::create(CCString::create("dark_matter_unmanaged"), CCDouble::create(1.99))
+            CCPurchaseWithMarket::create(CCString::create("shogun_katana"), CCDouble::create(1.99))
     );
 
     /** Google MANAGED Items **/
@@ -80,7 +89,7 @@ bool MuffinRushAssets::init() {
     mCurrencies = CCArray::create(muffinCurrency, NULL);
     mCurrencies->retain();
 
-    mCurrencyPacks = CCArray::create(samuraiShield, ninjaStars, shougunKatana, NULL);
+    mCurrencyPacks = CCArray::create(samuraiShield, ninjaStars, shougunKatana, ninjaSword, NULL);
     mCurrencyPacks->retain();
 
     return true;
@@ -93,7 +102,7 @@ MuffinRushAssets::~MuffinRushAssets() {
 }
 
 int MuffinRushAssets::getVersion() {
-    return 1;
+    return 2;
 }
 
 cocos2d::CCArray *MuffinRushAssets::getCurrencies() {
