@@ -211,11 +211,7 @@ void StoreScene::cancelBuyButtonCallback(CCObject* sender) {
 	mShouldFail = false;
 
 	Report::getInstance().ReportFlowStep(mStoreFlow, CANCELLED_FLOW_STEP, "ok", mDummyFlowDetails);
-	Report::getInstance().ReportFlowStep(mStoreFlow, CLOSED_STORE_FLOW_STEP, "ok", mDummyFlowDetails);
-
-	Report::getInstance().ReportPurchaseStarted(*mCurrentItemPurchasing);
-	Report::getInstance().ReportPurchaseCancelled(*mCurrentItemPurchasing);
-
+	Report::getInstance().ReportFlowStep(mStoreFlow, CLOSED_STORE_FLOW_STEP, "ok", mDummyFlowDetails);	
 }
 
 void StoreScene::hideBuyDialog() {
