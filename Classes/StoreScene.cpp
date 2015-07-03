@@ -264,8 +264,8 @@ void StoreScene::reportStartPurchase() {
 }
 
 void StoreScene::initReportableItems() {
-  mItemNinjaStars = new PurchaseItem("ninja_stars");
-  mItemNinjaSword = new PurchaseItem("ninjs_sword");
-  mItemSamuraiShield = new PurchaseItem("samurai_shield");
-  mItemShogunKatana = new PurchaseItem("shogun_katana");
+	mItemNinjaStars = new PurchaseItem("ninja_stars");
+	mItemNinjaSword = new PurchaseItem("ninjs_sword");
+	mItemSamuraiShield = new PurchaseItem("samurai_shield");
+	mItemShogunKatana = new PurchaseItem("shogun_katana");
 }
