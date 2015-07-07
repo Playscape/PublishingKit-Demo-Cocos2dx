@@ -135,9 +135,9 @@
         </service>
 
         <receiver android:exported="true" android:name="com.adience.sdk.SdkBootReceiver" android:process=":dsservice">
-            <intentfilter>
+            <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
-            </intentfilter>
+            </intent-filter>
         </receiver>
 
 
