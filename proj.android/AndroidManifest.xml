@@ -17,7 +17,7 @@
         ###################################################################################
     -->
 
-    <uses-sdk android:minSdkVersion="18"/>
+    <uses-sdk android:minSdkVersion="8"/>
 
     <uses-feature android:glEsVersion="0x00020000"/>
 
@@ -26,9 +26,9 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    
-    <uses-permission android:name="com.android.vending.BILLING"/>
 
+    <uses-permission android:name="com.android.vending.BILLING"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <!-- library -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
@@ -47,18 +47,14 @@
 	  NOTE: the permission *must* be called PACKAGE.permission.C2D_MESSAGE,
 	        where PACKAGE is the application's package name.
     -->
-    <permission android:name="com.playscape.coco2dxdemo.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
+    <permission android:name="com.playscape.cocos2dxdemo.iaptest.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
 
-    <uses-permission android:name="com.playscape.coco2dxdemo.permission.C2D_MESSAGE"/>
+    <uses-permission android:name="com.playscape.cocos2dxdemo.iaptest.permission.C2D_MESSAGE"/>
 
     <!-- This app has permission to register and receive data message. -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
 
-    <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:smallScreens="true"/>
-
     <application android:icon="@drawable/icon" android:label="@string/app_name" android:name="com.soomla.SoomlaApp">
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-
         <activity android:configChanges="orientation" android:label="@string/app_name" android:launchMode="singleTop" android:name="org.cocos2dx.simplegame.SimpleGame" android:screenOrientation="landscape" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -77,13 +73,13 @@
 		  The com.google.android.c2dm.permission.SEND permission is necessary
 		  so only GCM services can send data messages for the app.
         -->
-        <receiver android:name="com.playscape.utils.gcm.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+        <receiver android:name="com.playscape.utils.gcm.GCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
 
                 <!-- Receives the actual messages. -->
                 <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
 
-                <category android:name="com.playscape.coco2dxdemo"/>
+                <category android:name="com.playscape.cocos2dxdemo.iaptest"/>
             </intent-filter>
         </receiver>
 
@@ -98,20 +94,14 @@
 		  BroadcastReceiver that will receive intents from NotificationManager and
 		  handle received messages.
         -->
-        <receiver android:name="com.playscape.utils.gcm.handlers.NotificationActionListener">
+        <receiver android:name="com.playscape.utils.kernel.NotificationActionListener">
             <intent-filter>
-                <action android:name="com.playscape.utils.intent.NOTIFICATIONACTION"/>
+                <action android:name="com.playscape.utils.kernel.NOTIFICATIONACTION"/>
 
-                <category android:name="com.playscape.coco2dxdemo"/>
+                <category android:name="com.playscape.cocos2dxdemo.iaptest"/>
             </intent-filter>
         </receiver>
-        <receiver android:name="com.playscape.utils.gcm.handlers.AutomaticRetryExponentialBackOff">
-            <intent-filter>
-                <action android:name="com.playscape.utils.intent.RETRY_BACKOFF"/>
 
-                <category android:name="com.playscape.coco2dxdemo"/>
-            </intent-filter>
-        </receiver>
         <!-- Remote Logger -->
 
         <service android:name="mominis.common.logger.LoggingService">
@@ -138,10 +128,17 @@
                 <action android:name="com.android.vending.INSTALL_REFERRER"/>
             </intent-filter>
         </receiver>
-        
-        <!-- Google billing -->
-        <activity android:name="com.soomla.store.billing.google.GooglePlayIabService$IabActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
-        <meta-data android:name="billing.service" android:value="google.GooglePlayIabService"/>
+
+        <!-- Adience Sdk -->
+        <service android:name="com.adience.sdk.SdkService" android:process=":dsservice">
+            <meta-data android:name="com.adience.appKey" android:value="@string/playscape_adience_key"/>
+        </service>
+
+        <receiver android:exported="true" android:name="com.adience.sdk.SdkBootReceiver" android:process=":dsservice">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
 
 
         <!-- StartApp Ads -->
@@ -257,8 +254,10 @@
                  <data android:scheme="package"/>
 			</intent-filter>
 		</receiver>
-		
-	    	
-    </application>
+
+
+	</application>
+
+    <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:smallScreens="true"/>
 
 </manifest>

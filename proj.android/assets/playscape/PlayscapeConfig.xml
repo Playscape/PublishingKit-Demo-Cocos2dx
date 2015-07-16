@@ -38,7 +38,6 @@
     <string name="playscape_ads_retry_wait_secs">10</string>
     <string name="playscape_ads_refresh_interval_secs">15</string>
     <string name="playscape_ads_min_interval_between_syncs">900000</string>
-    <string name="playscape_adience_key">5f6d5af0df237cd8b2bb7ed2a3098254</string>
     <string name="playscape_is_published_by_playscape">false</string>
 
     <!-- Experiments -->
@@ -83,10 +82,11 @@
 
         
         <string name="user_playscape_remote_logger_url">https://server.gameconsole.mominis.com/services/LoggingService/WriteToLog</string>
-        <string name="user_playscape_publishing_kit_version">1.6.140</string>
+        <string name="user_playscape_publishing_kit_version">dev</string>
         <string name="user_playscape_ads_api_key">Ky8A4DtTpzbux9fsP6t5DtPnHIoMUKym</string>
         <string name="user_playscape_reporter_id">com_playscape_coco2dxdemo_iaptest</string>
         <string name="user_playscape_ads_config_url">http://server.ads.mominis.com.s3.amazonaws.com/Services/CompressedAdService/json/RollABallMultiplayer_Pubkit_Demo_AdsConfig.json</string>
+        <string name="user_playscape_ads_config_enable_ads_system">true</string>
         <string name="user_playscape_adcolony_incentivised_video_zone_id">vzdc652d7a595345b5ab</string>
         <string name="user_playscape_admob_interstitials_ad_unit_id">ca-app-pub-6855635722675667/3604954833</string>
         <string name="user_playscape_admob_banners_ad_unit_id">ca-app-pub-6855635722675667/8801184031</string>

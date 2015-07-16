@@ -160,8 +160,8 @@
 	                var full_api_key = cocos2dxdemo.getProperty("playscape.api.key");
 
 	                var base_url = "https://playscape-backend-prod.appspot.com";
-                    if(cocos2dxdemo.getProperty("base.url")) {
-                        base_url = cocos2dxdemo.getProperty("base.url");
+                    if(cocos2dxdemo.getProperty("playscape.base.url")) {
+                        base_url = cocos2dxdemo.getProperty("playscape.base.url");
                     }
 
                 	if(full_api_key) {
