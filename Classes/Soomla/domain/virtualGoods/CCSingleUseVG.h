@@ -52,8 +52,8 @@ namespace soomla {
          @param purchaseType The purchase type for this virtual good.
          @return The Single Use virtual good.
 		*/
-        static CCSingleUseVG *create(cocos2d::CCString* name, cocos2d::CCString* description,
-                cocos2d::CCString* itemId, CCPurchaseType * purchaseType);
+        static CCSingleUseVG *create(cocos2d::__String* name, cocos2d::__String* description,
+                cocos2d::__String* itemId, CCPurchaseType * purchaseType);
 
 		/**
          Create a `CCSingleUseVG` from a dictionary.

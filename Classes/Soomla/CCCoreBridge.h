@@ -24,7 +24,7 @@
 
 namespace soomla {
 
-    class CCCoreBridge: public cocos2d::CCObject {
+    class CCCoreBridge: public cocos2d::Ref {
     public:
 		/**
 		   This class is singleton, use this function to access it.

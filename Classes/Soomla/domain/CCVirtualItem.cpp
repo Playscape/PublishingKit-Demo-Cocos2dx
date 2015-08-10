@@ -23,7 +23,7 @@ namespace soomla {
 
     using namespace cocos2d;
 
-    CCString *CCVirtualItem::getItemId() {
+    __String *CCVirtualItem::getItemId() {
         return getId();
     }
     

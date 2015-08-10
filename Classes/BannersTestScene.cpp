@@ -4,6 +4,7 @@
 #include "InGameMenuLayer.h"
 #include "playscape/Report.h"
 #include "playscape/BannersX.h"
+#include "ui/CocosGUI.h"
 
 #include <string>
 
@@ -17,34 +18,33 @@ bool BannersTestScene::init()
 {
     //////////////////////////////
     // 1. super init first
-    if ( !CCLayerColor::initWithColor(cocos2d::ccc4(255, 255, 255, 255)) )
+    if ( !LayerColor::initWithColor(cocos2d::Color4B(255, 255, 255, 255)) )
     {
         return false;
     }
 
-    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    Size winSize = Director::getInstance()->getWinSize();
 
     setTouchEnabled(true);
-    CCLabelTTF* label = CCLabelTTF::create("Ads Test", "Marker Felt", 22);
+    cocos2d::ui::Text* label = cocos2d::ui::Text::create("Ads Test", "Marker Felt", 22);
 
-    label->setPosition(ccp(winSize.width/2-label->getContentSize().width/2, winSize.height-label->getContentSize().height));
+    label->setPosition(Point(winSize.width/2-label->getContentSize().width/2, winSize.height-label->getContentSize().height));
 
     mMainMenu =
-		CCMenu::create(
-			CCMenuItemFont::create("Show Banner Top Middle", this,menu_selector(BannersTestScene::showBannerTopMiddle)),
-			CCMenuItemFont::create("Show Banner Top Left", this,menu_selector(BannersTestScene::showBannerTopLeft)),
-			CCMenuItemFont::create("Show Banner Top Right", this,menu_selector(BannersTestScene::showBannerTopRight)),
+		Menu::create(
+			MenuItemFont::create("Show Banner Top Middle", this,menu_selector(BannersTestScene::showBannerTopMiddle)),
+			MenuItemFont::create("Show Banner Top Left", this,menu_selector(BannersTestScene::showBannerTopLeft)),
+			MenuItemFont::create("Show Banner Top Right", this,menu_selector(BannersTestScene::showBannerTopRight)),
 
-			CCMenuItemFont::create("Show Banner Bottom Middle", this,menu_selector(BannersTestScene::showBannerBottomMiddle)),
-			CCMenuItemFont::create("Show Banner Bottom Left", this,menu_selector(BannersTestScene::showBannerBottomLeft)),
-			CCMenuItemFont::create("Show Banner Bottom Right", this,menu_selector(BannersTestScene::showBannerBottomRight)),
+			MenuItemFont::create("Show Banner Bottom Middle", this,menu_selector(BannersTestScene::showBannerBottomMiddle)),
+			MenuItemFont::create("Show Banner Bottom Left", this,menu_selector(BannersTestScene::showBannerBottomLeft)),
+			MenuItemFont::create("Show Banner Bottom Right", this,menu_selector(BannersTestScene::showBannerBottomRight)),
 
-			CCMenuItemFont::create("Hide Banner", this,menu_selector(BannersTestScene::hideBanner)),
+			MenuItemFont::create("Hide Banner", this,menu_selector(BannersTestScene::hideBanner)),
 			NULL);
 
-    CCObject* item;
-    CCARRAY_FOREACH(mMainMenu->getChildren(), item) {
-    	((CCMenuItemFont*)item)->setColor(ccBLACK);
+    for(Ref* item : mMainMenu->getChildren()) {
+    	((MenuItemFont*)item)->setColor(Color3B::BLACK);
     }
 
     mMainMenu->alignItemsVertically();
@@ -55,59 +55,59 @@ bool BannersTestScene::init()
     return true;
 }
 
-void BannersTestScene::showBannerTopMiddle(CCObject* sender) {
+void BannersTestScene::showBannerTopMiddle(Ref* sender) {
 	BannersX::display(BannersX::topMiddle, "top-middle");
 }
 
-void BannersTestScene::showBannerTopLeft(CCObject* sender) {
+void BannersTestScene::showBannerTopLeft(Ref* sender) {
 	BannersX::display(BannersX::topLeft, "top-left");
 }
-void BannersTestScene::showBannerTopRight(CCObject* sender) {
+void BannersTestScene::showBannerTopRight(Ref* sender) {
 	BannersX::display(BannersX::topRight, "top-right");
 }
 
-void BannersTestScene::showBannerBottomMiddle(CCObject* sender) {
+void BannersTestScene::showBannerBottomMiddle(Ref* sender) {
 	BannersX::display(BannersX::bottomMiddle, "bottom-middle");
 }
 
-void BannersTestScene::showBannerBottomLeft(CCObject* sender) {
+void BannersTestScene::showBannerBottomLeft(Ref* sender) {
 	BannersX::display(BannersX::bottomLeft, "bottom-left");
 }
 
-void BannersTestScene::showBannerBottomRight(CCObject* sender) {
+void BannersTestScene::showBannerBottomRight(Ref* sender) {
 	BannersX::display(BannersX::bottomRight, "bottom-right");
 }
 
-void BannersTestScene::hideBanner(CCObject* sender) {
+void BannersTestScene::hideBanner(Ref* sender) {
 	BannersX::hide();
 }
 
 void BannersTestScene::showInGameMenuLayer() {
-	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+	Size winSize = Director::getInstance()->getWinSize();
 
 	InGameMenuLayer* _inGameMenuLayer = InGameMenuLayer::create();
 	addChild(_inGameMenuLayer);
 
-	CCMenuItemFont *menuButton = CCMenuItemFont::create("Menu", this,menu_selector(BannersTestScene::menuButtonCallback));
-	menuButton->setColor(ccc3(0,0,0));
+	MenuItemFont *menuButton = MenuItemFont::create("Menu", this,menu_selector(BannersTestScene::menuButtonCallback));
+	menuButton->setColor(Color3B(0,0,0));
 
-	menuButton->setPosition(ccp(winSize.width - menuButton->getContentSize().width, winSize.height - menuButton->getContentSize().height));
+	menuButton->setPosition(Point(winSize.width - menuButton->getContentSize().width, winSize.height - menuButton->getContentSize().height));
 
-	CCMenu *pMenu = CCMenu::create(menuButton,NULL);
-	pMenu->setPosition(CCPointZero);
+	Menu *pMenu = Menu::create(menuButton,NULL);
+	pMenu->setPosition(Point::ZERO);
 
 	_inGameMenuLayer->addChild(pMenu, 1);
 }
 
-void BannersTestScene::menuButtonCallback(CCObject* sender) {
-	CCDirector::sharedDirector()->replaceScene(HelloWorld::scene());
+void BannersTestScene::menuButtonCallback(Ref* sender) {
+	Director::getInstance()->replaceScene(HelloWorld::scene());
 }
 
 
-CCScene* BannersTestScene::scene()
+Scene* BannersTestScene::scene()
 {
     // 'scene' is an autorelease object
-    CCScene *scene = CCScene::create();
+    Scene *scene = Scene::create();
 
     // 'layer' is an autorelease object
     BannersTestScene *layer = BannersTestScene::create();
@@ -118,7 +118,3 @@ CCScene* BannersTestScene::scene()
     // return the scene
     return scene;
 }
-
-
-
-

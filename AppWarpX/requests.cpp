@@ -51,7 +51,7 @@ namespace AppWarp
 			byteArray[10] = reserved;
 
 			//byte 11 : payload type String, Binary, JSON
-			if(payload.length() > 0 && requestType != RequestType::update_peers)
+			if(payload.length() > 0 && requestType != RequestType::update_peers && requestType != RequestType::private_update)
 				byteArray[11] = (byte)PayLoadType::json;
 			else
 				byteArray[11] = (byte)PayLoadType::binary;
@@ -95,7 +95,7 @@ namespace AppWarp
 			byteArray[10] = reserved;
 
 			//byte 11 : payload type String, Binary, JSON
-			if(payload_len > 0 && requestType != RequestType::update_peers)
+			if(payload_len > 0 && requestType != RequestType::update_peers && requestType != RequestType::private_update)
 				byteArray[11] = (byte)PayLoadType::json;
 			else
 				byteArray[11] = (byte)PayLoadType::binary;
@@ -124,7 +124,7 @@ namespace AppWarp
 			params.append(timeStamp);
 			params.append("user");
 			params.append(username);
-			params.append("version1.5");
+			params.append("versionCocos2DX_1.10");
 
 			unsigned char hmac_digest[20];
 			memset(hmac_digest, 0, 20);
@@ -135,7 +135,7 @@ namespace AppWarp
 			cJSON *payloadJSON;
 			payloadJSON = cJSON_CreateObject();
 			cJSON_AddStringToObject(payloadJSON,"apiKey", APIKEY.c_str());
-			cJSON_AddStringToObject(payloadJSON,"version", "1.5");
+			cJSON_AddStringToObject(payloadJSON,"version", "Cocos2DX_1.10");
 			cJSON_AddStringToObject(payloadJSON,"timeStamp", timeStamp.c_str());
 			cJSON_AddStringToObject(payloadJSON,"user", username.c_str());
 			cJSON_AddStringToObject(payloadJSON,"signature", hmac.c_str());

@@ -22,9 +22,9 @@
 #define CREAMCUP_ITEM_ID "cream_cup"
 
 class MuffinRushAssets: public soomla::CCStoreAssets {
-    cocos2d::CCArray *mCurrencies;
-    cocos2d::CCArray *mCurrencyPacks;
-    cocos2d::CCArray *mCategories;
+    cocos2d::__Array *mCurrencies;
+    cocos2d::__Array *mCurrencyPacks;
+    cocos2d::__Array *mCategories;
 public:
     MuffinRushAssets():
     mCurrencies(NULL),
@@ -39,13 +39,13 @@ public:
 
     virtual int getVersion();
 
-    virtual cocos2d::CCArray *getCurrencies();
+    virtual cocos2d::__Array *getCurrencies();
 
-    virtual cocos2d::CCArray *getGoods();
+    virtual cocos2d::__Array *getGoods();
 
-    virtual cocos2d::CCArray *getCurrencyPacks();
+    virtual cocos2d::__Array *getCurrencyPacks();
 
-    virtual cocos2d::CCArray *getCategories();
+    virtual cocos2d::__Array *getCategories();
 };
 
 

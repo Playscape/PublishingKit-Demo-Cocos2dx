@@ -37,7 +37,6 @@ namespace soomla {
     char const *CCStoreConsts::JSON_MARKET_ITEM_ANDROID_ID = "androidId";
     char const *CCStoreConsts::JSON_MARKET_ITEM_IOS_ID = "iosId";
 
-    char const *CCStoreConsts::JSON_MARKET_ITEM_CONSUMABLE = "consumable";
     char const *CCStoreConsts::JSON_MARKET_ITEM_PRICE = "price";
 
     char const *CCStoreConsts::JSON_MARKET_ITEM_MARKET_PRICE = "marketPrice";
@@ -82,6 +81,31 @@ namespace soomla {
     char const *CCStoreConsts::JSON_JSON_TYPE_SINGLE_USE_VG = "SingleUseVG";
     char const *CCStoreConsts::JSON_JSON_TYPE_UPGRADE_VG = "UpgradeVG";
     char const *CCStoreConsts::JSON_JSON_TYPE_ITEM = "VirtualItemReward";
+    
+    char const *CCStoreConsts::DICT_ELEMENT_BALANCE = "balance";
+    char const *CCStoreConsts::DICT_ELEMENT_CURRENCY = "VirtualCurrency";
+    char const *CCStoreConsts::DICT_ELEMENT_AMOUNT_ADDED = "amountAdded";
+    char const *CCStoreConsts::DICT_ELEMENT_GOOD = "VirtualGood";
+    char const *CCStoreConsts::DICT_ELEMENT_EQUIPPABLEVG = "EquippableVG";
+    char const *CCStoreConsts::DICT_ELEMENT_UPGRADEVG = "UpgradeVG";
+    char const *CCStoreConsts::DICT_ELEMENT_PURCHASABLE = "PurchasableVirtualItem";
+    char const *CCStoreConsts::DICT_ELEMENT_PURCHASABLE_ID = "PurchasableVirtualItemId";
+    char const *CCStoreConsts::DICT_ELEMENT_DEVELOPERPAYLOAD = "DeveloperPayload";
+    char const *CCStoreConsts::DICT_ELEMENT_RECEIPT = "receipt";
+    char const *CCStoreConsts::DICT_ELEMENT_TOKEN = "token";
+    char const *CCStoreConsts::DICT_ELEMENT_ORIGINAL_JSON = "originalJson";
+    char const *CCStoreConsts::DICT_ELEMENT_SIGNATURE = "signature";
+    char const *CCStoreConsts::DICT_ELEMENT_USER_ID = "userId";
+    char const *CCStoreConsts::DICT_ELEMENT_SUCCESS = "success";
+    char const *CCStoreConsts::DICT_ELEMENT_VERIFIED = "verified";
+    char const *CCStoreConsts::DICT_ELEMENT_TRANSACTION = "transaction";
+    char const *CCStoreConsts::DICT_ELEMENT_ERROR_CODE = "errorCode";
+    char const *CCStoreConsts::DICT_ELEMENT_ERROR_MESSAGE = "errorMessage";
+    char const *CCStoreConsts::DICT_ELEMENT_PRODUCTID = "productId";
+    char const *CCStoreConsts::DICT_ELEMENT_PRICE = "price";
+    char const *CCStoreConsts::DICT_ELEMENT_TITLE = "title";
+    char const *CCStoreConsts::DICT_ELEMENT_DESCRIPTION = "description";
+    char const *CCStoreConsts::DICT_ELEMENT_MARKET_ITEMS = "marketItems";
 
     char const *CCStoreConsts::EVENT_BILLING_NOT_SUPPORTED = "CCStoreEventHandler::onBillingNotSupported";
     char const *CCStoreConsts::EVENT_BILLING_SUPPORTED = "CCStoreEventHandler::onBillingSupported";

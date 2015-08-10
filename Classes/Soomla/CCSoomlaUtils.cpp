@@ -22,19 +22,19 @@
 namespace soomla {
     void CCSoomlaUtils::logDebug(const char *tag, const char *message) {
         if (SOOMLA_DEBUG) {
-            CCLOG("%s %s", tag, message);
+            cocos2d::log("%s %s", tag, message);
         }
     }
     void CCSoomlaUtils::logError(const char *tag, const char *message) {
         CCLOGERROR("%s %s", tag, message);
     }
 
-    void CCSoomlaUtils::logException(char const *tag, soomla::CCError *error) {
+    void CCSoomlaUtils::logException(char const *tag, CCError *error) {
         CC_ASSERT(error);
-        CCLOG("%s Soomla error: %s", tag, error->getInfo());
+        cocos2d::log("%s Soomla error: %s", tag, error->getInfo());
     }
 
-    bool CCSoomlaUtils::isNullOrEmpty(cocos2d::CCString *str) {
+    bool CCSoomlaUtils::isNullOrEmpty(cocos2d::__String *str) {
         return ((str == NULL) || (str->length() == 0));
     }
 };

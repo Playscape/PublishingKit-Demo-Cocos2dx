@@ -7,32 +7,32 @@
 
 using namespace cocos2d;
 using std::string;
-class BannersTestScene : public CCLayerColor
+class BannersTestScene : public LayerColor
 {
 protected:
 	void showInGameMenuLayer();
 
 	// Ingame menu Callbacks
-	void menuButtonCallback(CCObject* sender);
+	void menuButtonCallback(Ref* sender);
 
-	void showBannerTopMiddle(CCObject* sender);
-    void showBannerTopLeft(CCObject* sender);
-    void showBannerTopRight(CCObject* sender);
+	void showBannerTopMiddle(Ref* sender);
+    void showBannerTopLeft(Ref* sender);
+    void showBannerTopRight(Ref* sender);
 
-    void showBannerBottomMiddle(CCObject* sender);
-    void showBannerBottomLeft(CCObject* sender);
-    void showBannerBottomRight(CCObject* sender);
-    
-    void hideBanner(CCObject* sender);
+    void showBannerBottomMiddle(Ref* sender);
+    void showBannerBottomLeft(Ref* sender);
+    void showBannerBottomRight(Ref* sender);
 
-    CCMenu* mMainMenu;
-	
+    void hideBanner(Ref* sender);
+
+    Menu* mMainMenu;
+
 public:
     // Method 'init' in cocos2d-x returns bool, instead of 'id' in cocos2d-iphone (an object pointer)
     virtual bool init();
 
     // there's no 'id' in cpp, so we recommend to return the class instance pointer
-	static cocos2d::CCScene* scene();
+	static cocos2d::Scene* scene();
 
     // preprocessor macro for "static create()" constructor ( node() deprecated )
     CREATE_FUNC(BannersTestScene);

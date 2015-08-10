@@ -59,7 +59,7 @@ namespace soomla {
         if (val == NULL) {
             return 0;
         }
-        return CCString::create(val)->intValue();
+        return __String::create(val)->intValue();
     }
     
     int CCRewardStorage::getLastSeqIdxGiven(CCSequenceReward *sequenceReward) {
@@ -68,12 +68,12 @@ namespace soomla {
         if (val == NULL) {
             return -1;
         }
-        return CCString::create(val)->intValue();
+        return __String::create(val)->intValue();
     }
     
     void CCRewardStorage::setLastSeqIdxGiven(CCSequenceReward *sequenceReward, unsigned int idx) {
         const char *key = keyRewardIdxSeqGiven(sequenceReward->getId()->getCString());
-        CCKeyValueStorage::getInstance()->setValue(key, CCString::createWithFormat("%d", idx)->getCString());
+        CCKeyValueStorage::getInstance()->setValue(key, __String::createWithFormat("%d", idx)->getCString());
     }
     
     void CCRewardStorage::setTimesGiven(CCReward *reward, bool up, bool notify) {
@@ -81,14 +81,14 @@ namespace soomla {
         if(total<0) total = 0;
         
         const char *key = keyRewardTimesGiven(reward->getId()->getCString());
-        CCKeyValueStorage::getInstance()->setValue(key, CCString::createWithFormat("%d", total)->getCString());
+        CCKeyValueStorage::getInstance()->setValue(key, __String::createWithFormat("%d", total)->getCString());
         
         if (up) {
             key = keyRewardLastGiven(reward->getId()->getCString());
             
             time_t currentTime;
             time(&currentTime);
-            CCString *val = CCString::createWithFormat("%lld", (long long)(((double)currentTime) * 1000));
+            __String *val = __String::createWithFormat("%lld", (long long)(((double)currentTime) * 1000));
             
             CCKeyValueStorage::getInstance()->setValue(key, val->getCString());
         }
@@ -103,7 +103,7 @@ namespace soomla {
     }
     
     const char* CCRewardStorage::keyRewards(const char* rewardId, const char* postfix) {
-        return CCString::createWithFormat("%srewards.%s.%s", DB_KEY_PRFIX, rewardId, postfix)->getCString();
+        return __String::createWithFormat("%srewards.%s.%s", DB_KEY_PRFIX, rewardId, postfix)->getCString();
     }
     
     const char* CCRewardStorage::keyRewardIdxSeqGiven(const char* rewardId) {

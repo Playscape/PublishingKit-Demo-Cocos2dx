@@ -17,12 +17,12 @@
 
 
 #include "CCStoreInfo.h"
-#include "CCSingleUseVG.h"
-#include "CCEquippableVG.h"
-#include "CCSingleUsePackVG.h"
-#include "CCVirtualCurrency.h"
-#include "CCVirtualCurrencyPack.h"
-#include "CCMarketItem.h"
+#include "../domain/virtualGoods/CCSingleUseVG.h"
+#include "../domain/virtualGoods/CCEquippableVG.h"
+#include "../domain/virtualGoods/CCSingleUsePackVG.h"
+#include "../domain/virtualCurrencies/CCVirtualCurrency.h"
+#include "../domain/virtualCurrencies/CCVirtualCurrencyPack.h"
+#include "../domain/CCMarketItem.h"
 #include "CCPurchaseWithMarket.h"
 #include "CCDomainFactory.h"
 #include "CCDomainHelper.h"
@@ -70,7 +70,9 @@ namespace soomla {
         
         // support reflection call to initializeFromDB
         CCSoomlaEventDispatcher::getInstance()->registerEventHandler("Reflection::CCStoreInfo::initializeFromDB",
-                                                                     this, (SEL_EventHandler)(&CCStoreInfo::handle__REFLECTION_INITIALIZE_FROM_DB));
+                                                                     [this](__Dictionary *parameters) {
+                                                                         this->initializeFromDB();
+                                                                     });
         
         setStoreAssets(storeAssets);
         
@@ -84,50 +86,50 @@ namespace soomla {
 
     CCVirtualItem *CCStoreInfo::getItemByItemId(char const *itemId, CCError **error) {
         CCSoomlaUtils::logDebug(TAG,
-							   CCString::createWithFormat("Trying to fetch an item with itemId: %s", itemId)->getCString());
+							   __String::createWithFormat("Trying to fetch an item with itemId: %s", itemId)->getCString());
 
         CCVirtualItem *item = dynamic_cast<CCVirtualItem *>(getVirtualItems()->objectForKey(itemId));
         if (item != NULL) {
             return item;
         }
         
-        CCError::tryFillError(error, CCString::createWithFormat("Virtual item was not found when searching with itemId=%s", itemId));
+        CCError::tryFillError(error, __String::createWithFormat("Virtual item was not found when searching with itemId=%s", itemId));
         return NULL;
     }
 
     CCPurchasableVirtualItem *CCStoreInfo::getPurchasableItemWithProductId(char const *productId, CCError **error) {
         CCSoomlaUtils::logDebug(TAG,
-                                CCString::createWithFormat("Trying to fetch a purchasable item with productId: %s", productId)->getCString());
+                                __String::createWithFormat("Trying to fetch a purchasable item with productId: %s", productId)->getCString());
         
         CCPurchasableVirtualItem *item = dynamic_cast<CCPurchasableVirtualItem *>(getPurchasableItems()->objectForKey(productId));
         if (item != NULL) {
             return item;
         }
         
-        CCError::tryFillError(error, CCString::createWithFormat("Virtual item was not found when searching with productId=%s", productId));
+        CCError::tryFillError(error, __String::createWithFormat("Virtual item was not found when searching with productId=%s", productId));
         return NULL;
     }
 
     CCVirtualCategory *CCStoreInfo::getCategoryForVirtualGood(char const *goodItemId, CCError **error) {
         CCSoomlaUtils::logDebug(TAG,
-                                CCString::createWithFormat("Trying to fetch a category for a good with itemId: %s", goodItemId)->getCString());
+                                __String::createWithFormat("Trying to fetch a category for a good with itemId: %s", goodItemId)->getCString());
         
         CCVirtualCategory *category = dynamic_cast<CCVirtualCategory *>(getGoodsCategories()->objectForKey(goodItemId));
         if (category != NULL) {
             return category;
         }
         
-        CCError::tryFillError(error, CCString::createWithFormat("Virtual item was not found when searching with goodItemId of category=%s", goodItemId));
+        CCError::tryFillError(error, __String::createWithFormat("Virtual item was not found when searching with goodItemId of category=%s", goodItemId));
         return NULL;
     }
 
     CCUpgradeVG *CCStoreInfo::getFirstUpgradeForVirtualGood(char const *goodItemId) {
         CCSoomlaUtils::logDebug(TAG,
-                                CCString::createWithFormat("Trying to fetch first upgrade of a good with itemId: %s", goodItemId)->getCString());
+                                __String::createWithFormat("Trying to fetch first upgrade of a good with itemId: %s", goodItemId)->getCString());
         
-        CCArray *upgrades = dynamic_cast<CCArray *>(getGoodsUpgrades()->objectForKey(goodItemId));
+        __Array *upgrades = dynamic_cast<__Array *>(getGoodsUpgrades()->objectForKey(goodItemId));
         if (upgrades != NULL) {
-            CCObject *obj;
+            Ref *obj;
             CCARRAY_FOREACH(upgrades, obj) {
                 CCUpgradeVG *upgradeVG = dynamic_cast<CCUpgradeVG *>(obj);
                 if (CCSoomlaUtils::isNullOrEmpty(upgradeVG->getPrevItemId())) {
@@ -141,11 +143,11 @@ namespace soomla {
 
     CCUpgradeVG *CCStoreInfo::getLastUpgradeForVirtualGood(char const *goodItemId) {
         CCSoomlaUtils::logDebug(TAG,
-                                CCString::createWithFormat("Trying to fetch last upgrade of a good with itemId: %s", goodItemId)->getCString());
+                                __String::createWithFormat("Trying to fetch last upgrade of a good with itemId: %s", goodItemId)->getCString());
         
-        CCArray *upgrades = dynamic_cast<CCArray *>(getGoodsUpgrades()->objectForKey(goodItemId));
+        __Array *upgrades = dynamic_cast<__Array *>(getGoodsUpgrades()->objectForKey(goodItemId));
         if (upgrades != NULL) {
-            CCObject *obj;
+            Ref *obj;
             CCARRAY_FOREACH(upgrades, obj) {
                 CCUpgradeVG *upgradeVG = dynamic_cast<CCUpgradeVG *>(obj);
                 if (CCSoomlaUtils::isNullOrEmpty(upgradeVG->getNextItemId())) {
@@ -157,11 +159,11 @@ namespace soomla {
         return NULL;
     }
 
-    CCArray *CCStoreInfo::getUpgradesForVirtualGood(char const *goodItemId) {
+    __Array *CCStoreInfo::getUpgradesForVirtualGood(char const *goodItemId) {
         CCSoomlaUtils::logDebug(TAG,
-                                CCString::createWithFormat("Trying to fetch upgrades of a good with itemId: %s", goodItemId)->getCString());
+                                __String::createWithFormat("Trying to fetch upgrades of a good with itemId: %s", goodItemId)->getCString());
         
-        CCArray *upgrades = dynamic_cast<CCArray *>(getGoodsUpgrades()->objectForKey(goodItemId));
+        __Array *upgrades = dynamic_cast<__Array *>(getGoodsUpgrades()->objectForKey(goodItemId));
         return upgrades;
     }
 
@@ -173,12 +175,12 @@ namespace soomla {
         }
     }
     
-    void CCStoreInfo::saveItems(cocos2d::CCArray *virtualItems, bool saveToDB) {
+    void CCStoreInfo::saveItems(cocos2d::__Array *virtualItems, bool saveToDB) {
         if ((virtualItems == NULL) || (virtualItems->count() == 0)) {
             return;
         }
         
-        CCObject *obj;
+        Ref *obj;
         CCARRAY_FOREACH(virtualItems, obj) {
             CCVirtualItem *virtualItem = dynamic_cast<CCVirtualItem *>(obj);
             CC_ASSERT(virtualItem);
@@ -191,38 +193,38 @@ namespace soomla {
     }
     
     void CCStoreInfo::save() {
-        CCDictionary *storeDict = toDictionary();
+        __Dictionary *storeDict = toDictionary();
         const char *jsonString = json_dumps(CCJsonHelper::getJsonFromCCObject(storeDict), JSON_COMPACT | JSON_ENSURE_ASCII);
-        CCSoomlaUtils::logDebug(TAG, CCString::createWithFormat("saving StoreInfo to DB. json is: %s", jsonString)->getCString());
+        CCSoomlaUtils::logDebug(TAG, __String::createWithFormat("saving StoreInfo to DB. json is: %s", jsonString)->getCString());
         CCKeyValueStorage::getInstance()->setValue(KEY_META_STORE_INFO, jsonString);
     }
 
-    CCDictionary *CCStoreInfo::storeAssetsToDictionary(CCStoreAssets *storeAssets) {
-        CCArray *currenciesJSON = CCArray::create();
+    __Dictionary *CCStoreInfo::storeAssetsToDictionary(CCStoreAssets *storeAssets) {
+        __Array *currenciesJSON = __Array::create();
         {
-            CCArray *currencies = storeAssets->getCurrencies();
-            CCObject *obj;
+            __Array *currencies = storeAssets->getCurrencies();
+            Ref *obj;
             CCARRAY_FOREACH(currencies, obj) {
                 currenciesJSON->addObject(((CCVirtualCurrency *)obj)->toDictionary());
             }
         }
         
-        CCArray *packsJSON = CCArray::create();
+        __Array *packsJSON = __Array::create();
         {
-            CCArray *packs = storeAssets->getCurrencyPacks();
-            CCObject *obj;
+            __Array *packs = storeAssets->getCurrencyPacks();
+            Ref *obj;
             CCARRAY_FOREACH(packs, obj) {
                 packsJSON->addObject(((CCVirtualCurrencyPack *)obj)->toDictionary());
             }
         }
         
-        CCArray *suGoods = CCArray::create();
-        CCArray *ltGoods = CCArray::create();
-        CCArray *eqGoods = CCArray::create();
-        CCArray *upGoods = CCArray::create();
-        CCArray *paGoods = CCArray::create();
+        __Array *suGoods = __Array::create();
+        __Array *ltGoods = __Array::create();
+        __Array *eqGoods = __Array::create();
+        __Array *upGoods = __Array::create();
+        __Array *paGoods = __Array::create();
         
-        CCObject *obj;
+        Ref *obj;
         CCARRAY_FOREACH(storeAssets->getGoods(), obj) {
             if (dynamic_cast<CCSingleUseVG *>(obj)) {
                 suGoods->addObject(((CCSingleUseVG *)obj)->toDictionary());
@@ -237,23 +239,23 @@ namespace soomla {
             }
         }
         
-        CCDictionary *goodsJSON = CCDictionary::create();
+        __Dictionary *goodsJSON = __Dictionary::create();
         goodsJSON->setObject(suGoods, CCStoreConsts::JSON_STORE_GOODS_SU);
         goodsJSON->setObject(ltGoods, CCStoreConsts::JSON_STORE_GOODS_LT);
         goodsJSON->setObject(eqGoods, CCStoreConsts::JSON_STORE_GOODS_EQ);
         goodsJSON->setObject(upGoods, CCStoreConsts::JSON_STORE_GOODS_UP);
         goodsJSON->setObject(paGoods, CCStoreConsts::JSON_STORE_GOODS_PA);
         
-        CCArray *categoriesJSON = CCArray::create();
+        __Array *categoriesJSON = __Array::create();
         {
-            CCArray *categories = storeAssets->getCategories();
-            CCObject *obj;
+            __Array *categories = storeAssets->getCategories();
+            Ref *obj;
             CCARRAY_FOREACH(categories, obj) {
                 categoriesJSON->addObject(((CCVirtualCategory *)obj)->toDictionary());
             }
         }
         
-        CCDictionary *storeAssetsObj = CCDictionary::create();
+        __Dictionary *storeAssetsObj = __Dictionary::create();
         storeAssetsObj->setObject(categoriesJSON, CCStoreConsts::JSON_STORE_CATEGORIES);
         storeAssetsObj->setObject(currenciesJSON, CCStoreConsts::JSON_STORE_CURRENCIES);
         storeAssetsObj->setObject(packsJSON, CCStoreConsts::JSON_STORE_CURRENCY_PACKS);
@@ -263,7 +265,7 @@ namespace soomla {
     }
     
     void CCStoreInfo::setStoreAssets(CCStoreAssets *storeAssets) {
-        CCDictionary *storeDict = storeAssetsToDictionary(storeAssets);
+        __Dictionary *storeDict = storeAssetsToDictionary(storeAssets);
         const char *jsonString = json_dumps(CCJsonHelper::getJsonFromCCObject(storeDict), JSON_COMPACT | JSON_ENSURE_ASCII);
         CCKeyValueStorage::getInstance()->setValue(KEY_META_STORE_INFO, jsonString);
     }
@@ -276,7 +278,7 @@ namespace soomla {
             CC_ASSERT(false);
         }
         
-        CCSoomlaUtils::logDebug(TAG, CCString::createWithFormat("the metadata-economy json (from DB) is %s", val)->getCString());
+        CCSoomlaUtils::logDebug(TAG, __String::createWithFormat("the metadata-economy json (from DB) is %s", val)->getCString());
         
         json_error_t error;
         json_t* storeJson = json_loads(val, 0, &error);
@@ -285,13 +287,13 @@ namespace soomla {
             CC_ASSERT(false);
         }
         
-        CCDictionary *storeDict = dynamic_cast<CCDictionary *>(CCJsonHelper::getCCObjectFromJson(storeJson));
+        __Dictionary *storeDict = dynamic_cast<__Dictionary *>(CCJsonHelper::getCCObjectFromJson(storeJson));
         initWithDictionary(storeDict);
     }
     
     void CCStoreInfo::updateAggregatedLists() {
         // rewritten from android java code
-        CCObject *obj;
+        Ref *obj;
         
         CCARRAY_FOREACH(getCurrencies(), obj) {
             CCVirtualCurrency *vi = dynamic_cast<CCVirtualCurrency *>(obj);
@@ -317,9 +319,9 @@ namespace soomla {
             
             CCUpgradeVG *upgradeVG = dynamic_cast<CCUpgradeVG *>(vi);
             if (upgradeVG != NULL) {
-                CCArray *upgrades = dynamic_cast<CCArray *>(getGoodsUpgrades()->objectForKey(upgradeVG->getGoodItemId()->getCString()));
+                __Array *upgrades = dynamic_cast<__Array *>(getGoodsUpgrades()->objectForKey(upgradeVG->getGoodItemId()->getCString()));
                 if (upgrades == NULL) {
-                    upgrades = CCArray::create();
+                    upgrades = __Array::create();
                     getGoodsUpgrades()->setObject(upgrades, upgradeVG->getGoodItemId()->getCString());
                 }
                 upgrades->addObject(upgradeVG);
@@ -335,9 +337,9 @@ namespace soomla {
             CCVirtualCategory *category = dynamic_cast<CCVirtualCategory *>(obj);
             CC_ASSERT(category);
             
-            CCObject *itemIdObj;
+            Ref *itemIdObj;
             CCARRAY_FOREACH(category->getGoodItemIds(), itemIdObj) {
-                CCString *goodItemId = dynamic_cast<CCString *>(itemIdObj);
+                __String *goodItemId = dynamic_cast<__String *>(itemIdObj);
                 CC_ASSERT(goodItemId);
                 getGoodsCategories()->setObject(category, goodItemId->getCString());
             }
@@ -350,7 +352,7 @@ namespace soomla {
         CCVirtualCurrency *currency = dynamic_cast<CCVirtualCurrency *>(virtualItem);
         if (currency != NULL) {
             for (int i = 0; i < getCurrencies()->count(); ++i) {
-                CCVirtualCurrency *currentCurrency = dynamic_cast<CCVirtualCurrency *>(getCurrencies()->objectAtIndex(i));
+                CCVirtualCurrency *currentCurrency = dynamic_cast<CCVirtualCurrency *>(getCurrencies()->getObjectAtIndex(i));
                 CC_ASSERT(currentCurrency);
                 if (currentCurrency->getItemId()->isEqual(currency->getItemId())) {
                     getCurrencies()->removeObjectAtIndex(i);
@@ -368,7 +370,7 @@ namespace soomla {
             }
             
             for (int i = 0; i < getCurrencyPacks()->count(); ++i) {
-                CCVirtualCurrencyPack *currentCurrencyPack = dynamic_cast<CCVirtualCurrencyPack *>(getCurrencyPacks()->objectAtIndex(i));
+                CCVirtualCurrencyPack *currentCurrencyPack = dynamic_cast<CCVirtualCurrencyPack *>(getCurrencyPacks()->getObjectAtIndex(i));
                 CC_ASSERT(currentCurrencyPack);
                 if (currentCurrencyPack->getItemId()->isEqual(vcp->getItemId())) {
                     getCurrencyPacks()->removeObjectAtIndex(i);
@@ -383,9 +385,9 @@ namespace soomla {
         if (vg != NULL) {
             CCUpgradeVG *upgradeVG = dynamic_cast<CCUpgradeVG *>(vg);
             if (upgradeVG != NULL) {
-                CCArray *upgrades = dynamic_cast<CCArray *>(getGoodsUpgrades()->objectForKey(upgradeVG->getGoodItemId()->getCString()));
+                __Array *upgrades = dynamic_cast<__Array *>(getGoodsUpgrades()->objectForKey(upgradeVG->getGoodItemId()->getCString()));
                 if (upgrades == NULL) {
-                    upgrades = CCArray::create();
+                    upgrades = __Array::create();
                     getGoodsUpgrades()->setObject(upgrades, upgradeVG->getGoodItemId()->getCString());
                 }
                 upgrades->addObject(upgradeVG);
@@ -397,7 +399,7 @@ namespace soomla {
             }
             
             for (int i = 0; i < getGoods()->count(); ++i) {
-                CCVirtualGood *currentVG = dynamic_cast<CCVirtualGood *>(getGoods()->objectAtIndex(i));
+                CCVirtualGood *currentVG = dynamic_cast<CCVirtualGood *>(getGoods()->getObjectAtIndex(i));
                 CC_ASSERT(currentVG);
                 if (currentVG->getItemId()->isEqual(vg->getItemId())) {
                     getGoods()->removeObjectAtIndex(i);
@@ -409,48 +411,48 @@ namespace soomla {
         }
     }
     
-    bool CCStoreInfo::initWithDictionary(cocos2d::CCDictionary* dict) {
+    bool CCStoreInfo::initWithDictionary(cocos2d::__Dictionary* dict) {
         if (dict == NULL) {
             CCSoomlaUtils::logError(TAG, "The given store dictionary can't be null!");
             return false;
         }
         
-        setVirtualItems(CCDictionary::create());
-        setPurchasableItems(CCDictionary::create());
-        setGoodsCategories(CCDictionary::create());
-        setGoodsUpgrades(CCDictionary::create());
+        setVirtualItems(__Dictionary::create());
+        setPurchasableItems(__Dictionary::create());
+        setGoodsCategories(__Dictionary::create());
+        setGoodsUpgrades(__Dictionary::create());
         
-        CCObject *ref;
+        Ref *ref;
         
         ref = dict->objectForKey(CCStoreConsts::JSON_STORE_CURRENCIES);
         if (ref) {
-            CCArray *currenciesDictArray = dynamic_cast<CCArray *>(ref);
+            __Array *currenciesDictArray = dynamic_cast<__Array *>(ref);
             CC_ASSERT(currenciesDictArray);
-            CCArray *currenciesArray = CCDomainHelper::getInstance()->getDomainsFromDictArray(currenciesDictArray);
+            __Array *currenciesArray = CCDomainHelper::getInstance()->getDomainsFromDictArray(currenciesDictArray);
             setCurrencies(currenciesArray);
         }
         
         ref = dict->objectForKey(CCStoreConsts::JSON_STORE_CURRENCY_PACKS);
         if (ref) {
-            CCArray *currencyPacksDictArray = dynamic_cast<CCArray *>(ref);
+            __Array *currencyPacksDictArray = dynamic_cast<__Array *>(ref);
             CC_ASSERT(currencyPacksDictArray);
-            CCArray *currencyPacksArray = CCDomainHelper::getInstance()->getDomainsFromDictArray(currencyPacksDictArray);
+            __Array *currencyPacksArray = CCDomainHelper::getInstance()->getDomainsFromDictArray(currencyPacksDictArray);
             setCurrencyPacks(currencyPacksArray);
         }
         
-        setGoods(CCArray::create());
+        setGoods(__Array::create());
         ref = dict->objectForKey(CCStoreConsts::JSON_STORE_GOODS);
         if (ref) {
-            CCDictionary *goodsDictArray = dynamic_cast<CCDictionary *>(ref);
+            __Dictionary *goodsDictArray = dynamic_cast<__Dictionary *>(ref);
             CC_ASSERT(goodsDictArray);
             
             ref = goodsDictArray->objectForKey(CCStoreConsts::JSON_STORE_GOODS_SU);
             if (ref) {
-                CCArray *singleUseDictArray = dynamic_cast<CCArray *>(ref);
+                __Array *singleUseDictArray = dynamic_cast<__Array *>(ref);
                 CC_ASSERT(singleUseDictArray);
                 
-                CCArray *suGoods = CCDomainHelper::getInstance()->getDomainsFromDictArray(singleUseDictArray);
-                CCObject *obj;
+                __Array *suGoods = CCDomainHelper::getInstance()->getDomainsFromDictArray(singleUseDictArray);
+                Ref *obj;
                 CCARRAY_FOREACH(suGoods, obj) {
                     CCSingleUseVG *singleUseVG = dynamic_cast<CCSingleUseVG *>(obj);
                     CC_ASSERT(singleUseVG);
@@ -460,11 +462,11 @@ namespace soomla {
             
             ref = goodsDictArray->objectForKey(CCStoreConsts::JSON_STORE_GOODS_LT);
             if (ref) {
-                CCArray *liftimeDictArray = dynamic_cast<CCArray *>(ref);
+                __Array *liftimeDictArray = dynamic_cast<__Array *>(ref);
                 CC_ASSERT(liftimeDictArray);
                 
-                CCArray *ltGoods = CCDomainHelper::getInstance()->getDomainsFromDictArray(liftimeDictArray);
-                CCObject *obj;
+                __Array *ltGoods = CCDomainHelper::getInstance()->getDomainsFromDictArray(liftimeDictArray);
+                Ref *obj;
                 CCARRAY_FOREACH(ltGoods, obj) {
                     CCLifetimeVG *lifetimeVG = dynamic_cast<CCLifetimeVG *>(obj);
                     CC_ASSERT(lifetimeVG);
@@ -474,11 +476,11 @@ namespace soomla {
             
             ref = goodsDictArray->objectForKey(CCStoreConsts::JSON_STORE_GOODS_EQ);
             if (ref) {
-                CCArray *equippableDictArray = dynamic_cast<CCArray *>(ref);
+                __Array *equippableDictArray = dynamic_cast<__Array *>(ref);
                 CC_ASSERT(equippableDictArray);
                 
-                CCArray *eqGoods = CCDomainHelper::getInstance()->getDomainsFromDictArray(equippableDictArray);
-                CCObject *obj;
+                __Array *eqGoods = CCDomainHelper::getInstance()->getDomainsFromDictArray(equippableDictArray);
+                Ref *obj;
                 CCARRAY_FOREACH(eqGoods, obj) {
                     CCEquippableVG *equippableVG = dynamic_cast<CCEquippableVG *>(obj);
                     CC_ASSERT(equippableVG);
@@ -488,11 +490,11 @@ namespace soomla {
             
             ref = goodsDictArray->objectForKey(CCStoreConsts::JSON_STORE_GOODS_PA);
             if (ref) {
-                CCArray *singleUsePackDictArray = dynamic_cast<CCArray *>(ref);
+                __Array *singleUsePackDictArray = dynamic_cast<__Array *>(ref);
                 CC_ASSERT(singleUsePackDictArray);
                 
-                CCArray *paGoods = CCDomainHelper::getInstance()->getDomainsFromDictArray(singleUsePackDictArray);
-                CCObject *obj;
+                __Array *paGoods = CCDomainHelper::getInstance()->getDomainsFromDictArray(singleUsePackDictArray);
+                Ref *obj;
                 CCARRAY_FOREACH(paGoods, obj) {
                     CCSingleUsePackVG *singleUsePackVG = dynamic_cast<CCSingleUsePackVG *>(obj);
                     CC_ASSERT(singleUsePackVG);
@@ -502,11 +504,11 @@ namespace soomla {
             
             ref = goodsDictArray->objectForKey(CCStoreConsts::JSON_STORE_GOODS_UP);
             if (ref) {
-                CCArray *upgradeDictArray = dynamic_cast<CCArray *>(ref);
+                __Array *upgradeDictArray = dynamic_cast<__Array *>(ref);
                 CC_ASSERT(upgradeDictArray);
                 
-                CCArray *upGoods = CCDomainHelper::getInstance()->getDomainsFromDictArray(upgradeDictArray);
-                CCObject *obj;
+                __Array *upGoods = CCDomainHelper::getInstance()->getDomainsFromDictArray(upgradeDictArray);
+                Ref *obj;
                 CCARRAY_FOREACH(upGoods, obj) {
                     CCUpgradeVG *upgradeVG = dynamic_cast<CCUpgradeVG *>(obj);
                     CC_ASSERT(upgradeVG);
@@ -517,9 +519,9 @@ namespace soomla {
         
         ref = dict->objectForKey(CCStoreConsts::JSON_STORE_CATEGORIES);
         if (ref) {
-            CCArray *categoriesDictArray = dynamic_cast<CCArray *>(ref);
+            __Array *categoriesDictArray = dynamic_cast<__Array *>(ref);
             CC_ASSERT(categoriesDictArray);
-            CCArray *categoriesArray = CCDomainHelper::getInstance()->getDomainsFromDictArray(categoriesDictArray);
+            __Array *categoriesArray = CCDomainHelper::getInstance()->getDomainsFromDictArray(categoriesDictArray);
             setCategories(categoriesArray);
         }
         
@@ -528,33 +530,33 @@ namespace soomla {
         return true;
     }
     
-    CCDictionary* CCStoreInfo::toDictionary() {
+    __Dictionary* CCStoreInfo::toDictionary() {
         
-        CCArray *currenciesJSON = CCArray::create();
+        __Array *currenciesJSON = __Array::create();
         {
-            CCArray *currencies = getCurrencies();
-            CCObject *obj;
+            __Array *currencies = getCurrencies();
+            Ref *obj;
             CCARRAY_FOREACH(currencies, obj) {
                 currenciesJSON->addObject(((CCVirtualCurrency *)obj)->toDictionary());
             }
         }
         
-        CCArray *packsJSON = CCArray::create();
+        __Array *packsJSON = __Array::create();
         {
-            CCArray *packs = getCurrencyPacks();
-            CCObject *obj;
+            __Array *packs = getCurrencyPacks();
+            Ref *obj;
             CCARRAY_FOREACH(packs, obj) {
                 packsJSON->addObject(((CCVirtualCurrencyPack *)obj)->toDictionary());
             }
         }
         
-        CCArray *suGoods = CCArray::create();
-        CCArray *ltGoods = CCArray::create();
-        CCArray *eqGoods = CCArray::create();
-        CCArray *upGoods = CCArray::create();
-        CCArray *paGoods = CCArray::create();
+        __Array *suGoods = __Array::create();
+        __Array *ltGoods = __Array::create();
+        __Array *eqGoods = __Array::create();
+        __Array *upGoods = __Array::create();
+        __Array *paGoods = __Array::create();
         
-        CCObject *obj;
+        Ref *obj;
         CCARRAY_FOREACH(getGoods(), obj) {
             if (dynamic_cast<CCSingleUseVG *>(obj)) {
                 suGoods->addObject(((CCSingleUseVG *)obj)->toDictionary());
@@ -569,32 +571,28 @@ namespace soomla {
             }
         }
         
-        CCDictionary *goodsJSON = CCDictionary::create();
+        __Dictionary *goodsJSON = __Dictionary::create();
         goodsJSON->setObject(suGoods, CCStoreConsts::JSON_STORE_GOODS_SU);
         goodsJSON->setObject(ltGoods, CCStoreConsts::JSON_STORE_GOODS_LT);
         goodsJSON->setObject(eqGoods, CCStoreConsts::JSON_STORE_GOODS_EQ);
         goodsJSON->setObject(upGoods, CCStoreConsts::JSON_STORE_GOODS_UP);
         goodsJSON->setObject(paGoods, CCStoreConsts::JSON_STORE_GOODS_PA);
         
-        CCArray *categoriesJSON = CCArray::create();
+        __Array *categoriesJSON = __Array::create();
         {
-            CCArray *categories = getCategories();
-            CCObject *obj;
+            __Array *categories = getCategories();
+            Ref *obj;
             CCARRAY_FOREACH(categories, obj) {
                 categoriesJSON->addObject(((CCVirtualCategory *)obj)->toDictionary());
             }
         }
         
-        CCDictionary *storeAssetsObj = CCDictionary::create();
+        __Dictionary *storeAssetsObj = __Dictionary::create();
         storeAssetsObj->setObject(categoriesJSON, CCStoreConsts::JSON_STORE_CATEGORIES);
         storeAssetsObj->setObject(currenciesJSON, CCStoreConsts::JSON_STORE_CURRENCIES);
         storeAssetsObj->setObject(packsJSON, CCStoreConsts::JSON_STORE_CURRENCY_PACKS);
         storeAssetsObj->setObject(goodsJSON, CCStoreConsts::JSON_STORE_GOODS);
         
         return storeAssetsObj;
-    }
-    
-    void CCStoreInfo::handle__REFLECTION_INITIALIZE_FROM_DB(cocos2d::CCDictionary *paramaters) {
-        this->initializeFromDB();
     }
 }

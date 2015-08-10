@@ -23,7 +23,7 @@
 
 The reason to implement with private inheritance is to hide some interface details of CCDirector.
 */
-class  AppDelegate : private cocos2d::CCApplication
+class  AppDelegate : private cocos2d::Application
 {
 public:
     AppDelegate();
@@ -50,4 +50,3 @@ public:
 };
 
 #endif // _APP_DELEGATE_H_
-

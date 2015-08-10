@@ -1,8 +1,16 @@
 LOCAL_PATH := $(call my-dir)
 
-JNI_LOCAL_PATH := $(LOCAL_PATH)
+JNI_LOCAL_PATH = $(LOCAL_PATH)
 
 include $(CLEAR_VARS)
+
+$(call import-add-path,$(LOCAL_PATH)/../../cocos2d)
+$(call import-add-path,$(LOCAL_PATH)/../../cocos2d/external)
+$(call import-add-path,$(LOCAL_PATH)/../../cocos2d/cocos)
+$(call import-add-path,$(LOCAL_PATH)/../../cocos2d/cocos/platform/android)
+# Required path for Facebook plugin
+$(call import-add-path,$(JNI_LOCAL_PATH)/../../cocos2d/plugin/protocols/proj.android)
+
 
 LOCAL_MODULE := game_shared
 
@@ -17,6 +25,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
     ../../Classes/StoreScene.cpp \
     ../../Classes/InviteFriendsScene.cpp \
     ../../Classes/AdsTestScene.cpp \
+	../../Classes/FacebookTestScene.cpp \
     ../../Classes/VideosTestScene.cpp \
     ../../Classes/InterstitialsTestScene.cpp \
     ../../Classes/BannersTestScene.cpp \
@@ -41,7 +50,6 @@ LOCAL_SRC_FILES += ../../Classes/Soomla//CCError.cpp
 LOCAL_SRC_FILES += ../../Classes/Soomla//CCJsonHelper.cpp
 LOCAL_SRC_FILES += ../../Classes/Soomla//CCNdkBridge.cpp
 LOCAL_SRC_FILES += ../../Classes/Soomla//CCSchedule.cpp
-LOCAL_SRC_FILES += ../../Classes/Soomla//CCSimpleStoreEventHandler.cpp
 LOCAL_SRC_FILES += ../../Classes/Soomla//CCSoomla.cpp
 LOCAL_SRC_FILES += ../../Classes/Soomla//CCSoomlaEventDispatcher.cpp
 LOCAL_SRC_FILES += ../../Classes/Soomla//CCSoomlaStore.cpp
@@ -116,30 +124,28 @@ LOCAL_C_INCLUDES += $(JNI_LOCAL_PATH)/../../Classes/Soomla/PurchaseTypes
 LOCAL_C_INCLUDES += $(JNI_LOCAL_PATH)/../../Classes/Soomla/NativeImpl
 LOCAL_C_INCLUDES += $(JNI_LOCAL_PATH)/../../Classes/Soomla/rewards
 
-LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static
-LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static
-LOCAL_WHOLE_STATIC_LIBRARIES += cocos_curl_static
-LOCAL_WHOLE_STATIC_LIBRARIES += cocos_extension_static
-#LOCAL_WHOLE_STATIC_LIBRARIES += jansson_static
+LOCAL_WHOLE_STATIC_LIBRARIES += PluginProtocolStatic
+
+LOCAL_STATIC_LIBRARIES := cocos2dx_static
+LOCAL_STATIC_LIBRARIES += cocosdenshion_static
+LOCAL_STATIC_LIBRARIES += cocos_curl_static
+LOCAL_STATIC_LIBRARIES += cocos_extension_static
+LOCAL_STATIC_LIBRARIES += cocos2dxandroid_static
 
 # Playscape libs we're dependant on + gnustl shared lib
 LOCAL_SHARED_LIBRARIES := playscape_pubkit_shared
 LOCAL_SHARED_LIBRARIES += playscape_pubkit_cocos2dx_shared
 LOCAL_SHARED_LIBRARIES += gnustl_shared
 
+# Required path, playscape publishing kit modules reside there.
+$(call import-add-path,$(LOCAL_PATH)/../../../PlayscapePubkitCocos2D-X/proj.android/prebuilt)
+
 include $(BUILD_SHARED_LIBRARY)
 
-# Required path, playscape publishing kit modules reside there.
-$(call import-add-path,$(JNI_LOCAL_PATH)/../../../PlayscapePubkitCocos2D-X/proj.android/prebuilt)
-
-# Playscape Publishing Kit Modules
-$(call import-add-path,$(JNI_LOCAL_PATH))
 $(call import-module,playscape_pubkit)
 $(call import-module,playscape_pubkit_cocos2dx)
 
-# Cocos2D-X Modules
+$(call import-add-path,.)
+$(call import-module,./)
 
-$(call import-module,libcurl)
-$(call import-module,CocosDenshion/android)
-$(call import-module,cocos2dx)
-#$(call import-module,external/jansson)
+$(call import-module,jni)

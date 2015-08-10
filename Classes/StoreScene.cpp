@@ -7,6 +7,7 @@
 #include "CCStoreInventory.h"
 #include "CCError.h"
 #include "CCSoomlaUtils.h"
+#include "ui/CocosGUI.h"
 #include <map>
 /// <summary>
 /// Analytics flow type for the store
@@ -36,26 +37,26 @@ bool StoreScene::init()
 {
     //////////////////////////////
     // 1. super init first
-    if ( !CCLayerColor::initWithColor(cocos2d::ccc4(255, 255, 255, 255)) )
+    if ( !LayerColor::initWithColor(cocos2d::Color4B(255, 255, 255, 255)) )
     {
         return false;
     }
 
     setTouchEnabled(true);
 
-    CCMenuItemFont *item1 = CCMenuItemFont::create("$10 Ninja Stars", this,menu_selector(StoreScene::buyNinjaStarsCallback));
-    item1->setColor(ccBLACK);
+    MenuItemFont *item1 = MenuItemFont::create("$10 Ninja Stars", this,menu_selector(StoreScene::buyNinjaStarsCallback));
+    item1->setColor(Color3B::BLACK);
 
-    CCMenuItemFont *item2 = CCMenuItemFont::create("$15 Ninja Sword and Simulate Fail", this,menu_selector(StoreScene::buyNinjaSwordCallback));
-    item2->setColor(ccBLACK);
+    MenuItemFont *item2 = MenuItemFont::create("$15 Ninja Sword and Simulate Fail", this,menu_selector(StoreScene::buyNinjaSwordCallback));
+    item2->setColor(Color3B::BLACK);
 
-	CCMenuItemFont *item3 = CCMenuItemFont::create("$20 Samurai Shield", this,menu_selector(StoreScene::buySamuraiShieldCallback));
-	item3->setColor(ccBLACK);
+	MenuItemFont *item3 = MenuItemFont::create("$20 Samurai Shield", this,menu_selector(StoreScene::buySamuraiShieldCallback));
+	item3->setColor(Color3B::BLACK);
 
-	CCMenuItemFont *item4 = CCMenuItemFont::create("$25 Shogun Katana", this,menu_selector(StoreScene::buyShogunKatanaCallback));
-	item4->setColor(ccBLACK);
+	MenuItemFont *item4 = MenuItemFont::create("$25 Shogun Katana", this,menu_selector(StoreScene::buyShogunKatanaCallback));
+	item4->setColor(Color3B::BLACK);
 
-    mItemsMenu = CCMenu::create(item1, item2, item3, item4, NULL);
+    mItemsMenu = Menu::create(item1, item2, item3, item4, NULL);
 
     mItemsMenu->alignItemsVertically();
     addChild(mItemsMenu, 1);
@@ -74,7 +75,7 @@ bool StoreScene::init()
     return true;
 }
 
-void StoreScene::buyNinjaStarsCallback(CCObject* sender) {
+void StoreScene::buyNinjaStarsCallback(Ref* sender) {
 	mCurrentItemPurchasing = mItemNinjaStars;
 	mCurrentItemPrice = 10.0;
 
@@ -82,7 +83,7 @@ void StoreScene::buyNinjaStarsCallback(CCObject* sender) {
 	dbgprint("Buying ninja stars");
 }
 
-void StoreScene::buyNinjaSwordCallback(CCObject* sender) {
+void StoreScene::buyNinjaSwordCallback(Ref* sender) {
 	mCurrentItemPurchasing = mItemNinjaSword;
 	mCurrentItemPrice = 15.0;
 
@@ -91,14 +92,14 @@ void StoreScene::buyNinjaSwordCallback(CCObject* sender) {
 	dbgprint("Buying ninja sword and failing");
 }
 
-void StoreScene::buySamuraiShieldCallback(CCObject* sender) {
+void StoreScene::buySamuraiShieldCallback(Ref* sender) {
 	mCurrentItemPurchasing = mItemSamuraiShield;
 	mCurrentItemPrice = 20.0;
 
 	showBuyDialog("Samurai Shield");
 	dbgprint("Buying samurai shield");
 }
-void StoreScene::buyShogunKatanaCallback(CCObject* sender) {
+void StoreScene::buyShogunKatanaCallback(Ref* sender) {
 	mCurrentItemPurchasing = mItemShogunKatana;
 	mCurrentItemPrice = 25.0;
 
@@ -107,24 +108,24 @@ void StoreScene::buyShogunKatanaCallback(CCObject* sender) {
 }
 
 void StoreScene::showInGameMenuLayer() {
-	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+	Size winSize = Director::getInstance()->getWinSize();
 
 	InGameMenuLayer* _inGameMenuLayer = InGameMenuLayer::create();
 	addChild(_inGameMenuLayer);
 
-	CCMenuItemFont *menuButton = CCMenuItemFont::create("Menu", this,menu_selector(StoreScene::menuButtonCallback));
-	menuButton->setColor(ccc3(0,0,0));
+	MenuItemFont *menuButton = MenuItemFont::create("Menu", this,menu_selector(StoreScene::menuButtonCallback));
+	menuButton->setColor(Color3B(0,0,0));
 
-	menuButton->setPosition(ccp(winSize.width - menuButton->getContentSize().width, winSize.height - menuButton->getContentSize().height));
+	menuButton->setPosition(Point(winSize.width - menuButton->getContentSize().width, winSize.height - menuButton->getContentSize().height));
 
-	CCMenu *pMenu = CCMenu::create(menuButton,NULL);
-	pMenu->setPosition(CCPointZero);
+	Menu *pMenu = Menu::create(menuButton,NULL);
+	pMenu->setPosition(Point::ZERO);
 
 	_inGameMenuLayer->addChild(pMenu, 1);
 }
 
-void StoreScene::menuButtonCallback(CCObject* sender) {
-	CCDirector::sharedDirector()->replaceScene(HelloWorld::scene());
+void StoreScene::menuButtonCallback(Ref* sender) {
+	Director::getInstance()->replaceScene(HelloWorld::scene());
 }
 
 
@@ -135,36 +136,35 @@ void StoreScene::showBuyDialog(const string& itemName) {
 		removeChild(mBuyDialog);
 	}
 
-	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-	mBuyDialog = CCLayerColor::create(ccc4(0xcc, 0xcc, 0xcc, 0xff), (winSize.width * 0.8f), (winSize.height * 0.8f));
+	Size winSize = Director::getInstance()->getWinSize();
+	mBuyDialog = LayerColor::create(Color4B(0xcc, 0xcc, 0xcc, 0xff), (winSize.width * 0.8f), (winSize.height * 0.8f));
 	addChild(mBuyDialog);
 
 	string question = string("Are you sure you want to buy ") + itemName + "?";
-	CCLabelTTF* questionLabel = CCLabelTTF::create(question.c_str(), "Marker Felt", 26);
+	cocos2d::ui::Text* questionLabel = cocos2d::ui::Text::create(question.c_str(), "Marker Felt", 26);
 
-	questionLabel->setAnchorPoint(CCPointZero);
-	mBuyDialog->setAnchorPoint(CCPointZero);
-	mBuyDialog->setPosition(ccp(winSize.width/2 - mBuyDialog->getContentSize().width/2,
+	questionLabel->setAnchorPoint(Point::ZERO);
+	mBuyDialog->setAnchorPoint(Point::ZERO);
+	mBuyDialog->setPosition(Point(winSize.width/2 - mBuyDialog->getContentSize().width/2,
 								   winSize.height/2 - mBuyDialog->getContentSize().height/2));
 
-	questionLabel->setPosition(ccp(mBuyDialog->getContentSize().width/2 - questionLabel->getContentSize().width/2,
+	questionLabel->setPosition(Point(mBuyDialog->getContentSize().width/2 - questionLabel->getContentSize().width/2,
 			mBuyDialog->getContentSize().height/2 - questionLabel->getContentSize().height/2));
 
-	CCMenu *pMenu =
-		CCMenu::create(
-			CCMenuItemFont::create(" Buy ", this,menu_selector(StoreScene::buyButtonCallback)),
-			CCMenuItemFont::create(" Cancel", this,menu_selector(StoreScene::cancelBuyButtonCallback)),
+	Menu *pMenu =
+		Menu::create(
+			MenuItemFont::create(" Buy ", this,menu_selector(StoreScene::buyButtonCallback)),
+			MenuItemFont::create(" Cancel", this,menu_selector(StoreScene::cancelBuyButtonCallback)),
 			NULL);
 
-	CCObject* item;
-	CCARRAY_FOREACH(pMenu->getChildren(), item) {
-		((CCMenuItemFont*)item)->setColor(ccBLACK);
+	for(Ref* item : pMenu->getChildren()) {
+		((MenuItemFont*)item)->setColor(Color3B::BLACK);
 	}
 
 	mBuyDialog->addChild(pMenu);
 	pMenu->alignItemsHorizontally();
-	pMenu->setAnchorPoint(CCPointZero);
-	pMenu->setPosition(ccp(mBuyDialog->getPosition().x + mBuyDialog->getContentSize().width/2 , mBuyDialog->getPosition().y));
+	pMenu->setAnchorPoint(Point::ZERO);
+	pMenu->setPosition(Point(mBuyDialog->getPosition().x + mBuyDialog->getContentSize().width/2 , mBuyDialog->getPosition().y));
 
 	mBuyDialog->addChild(questionLabel);
 
@@ -178,7 +178,7 @@ void StoreScene::showBuyDialog(const string& itemName) {
 
 
 
-void StoreScene::buyButtonCallback(CCObject* sender) {
+void StoreScene::buyButtonCallback(Ref* sender) {
 	hideBuyDialog();
 
     string itemId = ((PurchaseItem)*mCurrentItemPurchasing).getName();
@@ -206,12 +206,12 @@ void StoreScene::buyButtonCallback(CCObject* sender) {
 	mShouldFail = false;
 }
 
-void StoreScene::cancelBuyButtonCallback(CCObject* sender) {
+void StoreScene::cancelBuyButtonCallback(Ref* sender) {
 	hideBuyDialog();
 	mShouldFail = false;
 
 	Report::getInstance().ReportFlowStep(mStoreFlow, CANCELLED_FLOW_STEP, "ok", mDummyFlowDetails);
-	Report::getInstance().ReportFlowStep(mStoreFlow, CLOSED_STORE_FLOW_STEP, "ok", mDummyFlowDetails);	
+	Report::getInstance().ReportFlowStep(mStoreFlow, CLOSED_STORE_FLOW_STEP, "ok", mDummyFlowDetails);
 }
 
 void StoreScene::hideBuyDialog() {
@@ -220,10 +220,10 @@ void StoreScene::hideBuyDialog() {
 	mItemsMenu->setVisible(true);
 }
 
-CCScene* StoreScene::scene()
+Scene* StoreScene::scene()
 {
     // 'scene' is an autorelease object
-    CCScene *scene = CCScene::create();
+    Scene *scene = Scene::create();
 
     // 'layer' is an autorelease object
     StoreScene *layer = StoreScene::create();

@@ -54,7 +54,7 @@ namespace soomla {
     void CCVirtualCurrencyStorage::postBalanceChangeEvent(CCVirtualItem *item, int balance, int amountAdded) {
         CCVirtualCurrency *virtualCurrency = dynamic_cast<CCVirtualCurrency *>(item);
         if (virtualCurrency == NULL) {
-            CCSoomlaUtils::logError(TAG, CCString::createWithFormat("Trying to post currency balance changed with a non VirtualCurrency item %s", item->getId()->getCString())->getCString());
+            CCSoomlaUtils::logError(TAG, __String::createWithFormat("Trying to post currency balance changed with a non VirtualCurrency item %s", item->getId()->getCString())->getCString());
             return;
         }
         
@@ -62,6 +62,6 @@ namespace soomla {
     }
 
     const char *CCVirtualCurrencyStorage::keyCurrencyBalance(const char *itemId) {
-        return CCString::createWithFormat("currency.%s.balance", itemId)->getCString();
+        return __String::createWithFormat("currency.%s.balance", itemId)->getCString();
     }
 }

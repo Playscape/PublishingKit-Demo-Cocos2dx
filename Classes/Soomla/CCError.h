@@ -18,14 +18,13 @@
 #define __CCError_H_
 
 #include "cocos2d.h"
-#include "CCSoomlaMacros.h"
 
 namespace soomla {
 
-    class CCError : public cocos2d::CCObject {
+    class CCError : public cocos2d::Ref {
     public:
-        static CCError *createWithObject(cocos2d::CCObject *obj);
-        static void tryFillError(CCError **error, cocos2d::CCObject *obj, const char *tag = NULL);
+        static CCError *createWithObject(cocos2d::Ref *obj);
+        static void tryFillError(CCError **error, cocos2d::Ref *obj, const char *tag = NULL);
         const char *getInfo() {return mInfo.c_str();};
     private:
 		/**

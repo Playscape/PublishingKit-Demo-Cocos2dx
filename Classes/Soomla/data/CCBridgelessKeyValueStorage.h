@@ -37,7 +37,7 @@ namespace soomla {
         virtual void deleteKeyValue(const char *key);
         virtual void purge();
     protected:
-        cocos2d::CCSet *mStoredKeys;
+        cocos2d::__Set *mStoredKeys;
         void addStoredKeys(const char* key);
         void removeStoredKeys(const char *key);
         void saveStoredKeys();

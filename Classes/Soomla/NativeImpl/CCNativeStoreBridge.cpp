@@ -43,16 +43,16 @@ namespace soomla {
         this->bindNative();
     }
     
-    void CCNativeStoreBridge::applyParams(cocos2d::CCDictionary *storeParams) {
+    void CCNativeStoreBridge::applyParams(cocos2d::__Dictionary *storeParams) {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-        CCBool *SSV = dynamic_cast<CCBool *>(storeParams->objectForKey("SSV"));
+        __Bool *SSV = dynamic_cast<__Bool *>(storeParams->objectForKey("SSV"));
         if (SSV == NULL) {
-            SSV = CCBool::create(false);
+            SSV = __Bool::create(false);
         }
         
         {
-            CCDictionary *params = CCDictionary::create();
-            params->setObject(CCString::create("CCSoomlaStore::setSSV"), "method");
+            __Dictionary *params = __Dictionary::create();
+            params->setObject(__String::create("CCSoomlaStore::setSSV"), "method");
             params->setObject(SSV, "ssv");
             CCNdkBridge::callNative (params, NULL);
         }
@@ -62,10 +62,10 @@ namespace soomla {
             
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
             {
-                CCString *androidPublicKey = dynamic_cast<CCString *>(storeParams->objectForKey("androidPublicKey"));
+                __String *androidPublicKey = dynamic_cast<__String *>(storeParams->objectForKey("androidPublicKey"));
                 if (androidPublicKey != NULL && androidPublicKey->length()>0) {
-                    CCDictionary *params = CCDictionary::create();
-                    params->setObject(CCString::create("CCSoomlaStore::setAndroidPublicKey"), "method");
+                    __Dictionary *params = __Dictionary::create();
+                    params->setObject(__String::create("CCSoomlaStore::setAndroidPublicKey"), "method");
                     params->setObject(androidPublicKey, "androidPublicKey");
                     CCNdkBridge::callNative (params, NULL);
                 }
@@ -73,12 +73,12 @@ namespace soomla {
             }
             
             {
-                CCBool *testPurchases = dynamic_cast<CCBool *>(storeParams->objectForKey("testPurchases"));
+                __Bool *testPurchases = dynamic_cast<__Bool *>(storeParams->objectForKey("testPurchases"));
                 if (testPurchases == NULL) {
-                    testPurchases = CCBool::create(false);
+                    testPurchases = __Bool::create(false);
                 }
-                CCDictionary *params = CCDictionary::create();
-                params->setObject(CCString::create("CCSoomlaStore::setTestPurchases"), "method");
+                __Dictionary *params = __Dictionary::create();
+                params->setObject(__String::create("CCSoomlaStore::setTestPurchases"), "method");
                 params->setObject(testPurchases, "testPurchases");
                 CCNdkBridge::callNative (params, NULL);
             }

@@ -25,19 +25,19 @@ namespace soomla {
 
     #define TAG "CCError"
 
-    CCError *CCError::createWithObject(cocos2d::CCObject *obj) {
-        if (obj == NULL) {
-            return NULL;
+    CCError *CCError::createWithObject(cocos2d::Ref *obj) {
+        if (obj == nullptr) {
+            return nullptr;
         }
         
-        CCString *errorInfoStr = dynamic_cast<CCString *>(obj);
+        __String *errorInfoStr = dynamic_cast<__String *>(obj);
         if (errorInfoStr == NULL) {
-            CCDictionary *dict = static_cast<CCDictionary *>(obj);
-            if (dict->objectForKey(JSON_ERROR_INFO) == NULL) {
-                return NULL;
+            __Dictionary *dict = static_cast<__Dictionary *>(obj);
+            if (dict->objectForKey(JSON_ERROR_INFO) == nullptr) {
+                return nullptr;
             }
             
-            errorInfoStr = dynamic_cast<CCString *>(dict->objectForKey(JSON_ERROR_INFO));
+            errorInfoStr = dynamic_cast<__String *>(dict->objectForKey(JSON_ERROR_INFO));
         }
         
         std::string errorInfo;
@@ -56,7 +56,7 @@ namespace soomla {
         return ret;
     }
     
-    void CCError::tryFillError(CCError **error, cocos2d::CCObject *obj, const char *tag) {
+    void CCError::tryFillError(CCError **error, cocos2d::Ref *obj, const char *tag) {
         if (error != NULL) {
             CCError *resultError = CCError::createWithObject(obj);
             if (resultError != NULL) {
@@ -64,7 +64,7 @@ namespace soomla {
             }
         }
         else {
-            CCString *errorStr = dynamic_cast<CCString *>(obj);
+            __String *errorStr = dynamic_cast<__String *>(obj);
             if (errorStr != NULL) {
                 if (tag == NULL) {
                     tag = TAG;

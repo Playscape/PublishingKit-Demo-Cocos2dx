@@ -13,26 +13,26 @@ using playscape::PurchaseItem;
 using std::string;
 using std::map;
 using namespace cocos2d;
-class StoreScene : public cocos2d::CCLayerColor
+class StoreScene : public cocos2d::LayerColor
 {
 protected:
 	void showInGameMenuLayer();
 
 	// Ingame menu Callbacks
-	void menuButtonCallback(CCObject* sender);
+	void menuButtonCallback(Ref* sender);
 
 	// Store Callbacks
-	void buyNinjaStarsCallback(CCObject* sender);
-	void buyNinjaSwordCallback(CCObject* sender);
-	void buySamuraiShieldCallback(CCObject* sender);
-	void buyShogunKatanaCallback(CCObject* sender);
+	void buyNinjaStarsCallback(Ref* sender);
+	void buyNinjaSwordCallback(Ref* sender);
+	void buySamuraiShieldCallback(Ref* sender);
+	void buyShogunKatanaCallback(Ref* sender);
 	void hideBuyDialog();
 	void showBuyDialog(const string& itemName);
 
-	void buyButtonCallback(CCObject* sender);
-	void cancelBuyButtonCallback(CCObject* sender);
-	CCLayerColor* mBuyDialog;
-	CCMenu* mItemsMenu;
+	void buyButtonCallback(Ref* sender);
+	void cancelBuyButtonCallback(Ref* sender);
+	LayerColor* mBuyDialog;
+	Menu* mItemsMenu;
 
 	bool mShouldFail;
 
@@ -58,7 +58,7 @@ public:
     virtual bool init();
 
     // there's no 'id' in cpp, so we recommend to return the class instance pointer
-	static cocos2d::CCScene* scene();
+	static cocos2d::Scene* scene();
 
     // preprocessor macro for "static create()" constructor ( node() deprecated )
     CREATE_FUNC(StoreScene);

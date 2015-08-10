@@ -20,7 +20,7 @@
 
 #define TAG "SOOMLA Reward"
 
-bool soomla::CCReward::init(cocos2d::CCString *id, cocos2d::CCString *name, CCSchedule *schedule) {
+bool soomla::CCReward::init(cocos2d::__String *id, cocos2d::__String *name, CCSchedule *schedule) {
     bool ret = CCSoomlaEntity::init(id, name);
 
     if (ret) {
@@ -32,13 +32,13 @@ bool soomla::CCReward::init(cocos2d::CCString *id, cocos2d::CCString *name, CCSc
     return ret;
 }
 
-bool soomla::CCReward::initWithDictionary(cocos2d::CCDictionary *dict) {
+bool soomla::CCReward::initWithDictionary(cocos2d::__Dictionary *dict) {
     bool ret = CCSoomlaEntity::initWithDictionary(dict);
 
     if (ret) {
         CCSchedule *schedule;
         if (dict->objectForKey(CCCoreConsts::JSON_SCHEDULE)) {
-            schedule = CCSchedule::createWithDictionary((cocos2d::CCDictionary *) dict->objectForKey(CCCoreConsts::JSON_SCHEDULE));
+            schedule = CCSchedule::createWithDictionary((cocos2d::__Dictionary *) dict->objectForKey(CCCoreConsts::JSON_SCHEDULE));
         }
         else {
             schedule = CCSchedule::createAnyTimeOnce();
@@ -51,8 +51,8 @@ bool soomla::CCReward::initWithDictionary(cocos2d::CCDictionary *dict) {
     return ret;
 }
 
-cocos2d::CCDictionary *soomla::CCReward::toDictionary() {
-    cocos2d::CCDictionary* dict = CCSoomlaEntity::toDictionary();
+cocos2d::__Dictionary *soomla::CCReward::toDictionary() {
+    cocos2d::__Dictionary* dict = CCSoomlaEntity::toDictionary();
 
     if (mSchedule) {
         dict->setObject(mSchedule->toDictionary(), CCCoreConsts::JSON_SCHEDULE);
@@ -68,7 +68,7 @@ soomla::CCReward::~CCReward() {
 bool soomla::CCReward::take() {
     if (!CCRewardStorage::getInstance()->isRewardGiven(this)) {
         CCSoomlaUtils::logDebug(TAG,
-                cocos2d::CCString::createWithFormat("Reward not given. id: %s", getId()->getCString())->getCString());
+                cocos2d::__String::createWithFormat("Reward not given. id: %s", getId()->getCString())->getCString());
         return false;
     }
 
@@ -83,7 +83,7 @@ bool soomla::CCReward::take() {
 bool soomla::CCReward::give() {
     if (!mSchedule->approve(CCRewardStorage::getInstance()->getTimesGiven(this))) {
         CCSoomlaUtils::logDebug(TAG,
-                cocos2d::CCString::createWithFormat("(Give) Reward is not approved by Schedule. id: %s", getId()->getCString())->getCString());
+                cocos2d::__String::createWithFormat("(Give) Reward is not approved by Schedule. id: %s", getId()->getCString())->getCString());
         return false;
     }
 
@@ -99,18 +99,18 @@ bool soomla::CCReward::isOwned() {
     return CCRewardStorage::getInstance()->isRewardGiven(this);
 }
 
-cocos2d::CCDictionary *soomla::CCReward::rewardsMap = NULL;
+cocos2d::__Dictionary *soomla::CCReward::rewardsMap = NULL;
 
 void soomla::CCReward::addReward(CCReward *reward) {
     if (rewardsMap == NULL) {
-        rewardsMap = cocos2d::CCDictionary::create();
+        rewardsMap = cocos2d::__Dictionary::create();
         rewardsMap->retain();
     }
     
     rewardsMap->setObject(reward, reward->getId()->getCString());
 }
 
-soomla::CCReward *soomla::CCReward::getReward(cocos2d::CCString *id) {
+soomla::CCReward *soomla::CCReward::getReward(cocos2d::__String *id) {
     if (rewardsMap == NULL) {
         return NULL;
     }

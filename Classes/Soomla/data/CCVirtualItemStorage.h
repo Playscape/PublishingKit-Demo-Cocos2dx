@@ -25,7 +25,7 @@ namespace soomla {
     /**
      This class is an abstract definition of a Virtual Item Storage.
      */
-    class CCVirtualItemStorage : public cocos2d::CCObject {
+    class CCVirtualItemStorage : public cocos2d::Ref {
     public:
         /**
          Retrieves the balance of the given virtual item.
