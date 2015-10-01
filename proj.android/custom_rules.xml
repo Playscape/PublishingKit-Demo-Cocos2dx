@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
+    <fail message="\ ${line.separator}${line.separator}
+      ******************************** Playscape SDK ********************************${line.separator}${line.separator}
+      Looks like you don't have 'Google Play Services' library in your Android SDK folder. Please download it.${line.separator}${line.separator}
+      *******************************************************************************">
+      <condition><not>
+          <available file="${sdk.dir}/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-services.jar" />
+      </not></condition>
+    </fail>
     <property file="build.properties"/>
     <property name="out.jar.file" location="bin/aspect_classes.jar" />
     <property name="default.application.class" value="com.playscape.playscapeapp.PlayscapeApp"/>
