@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -310,7 +310,6 @@
 		BDF6251C18E2CD480067BDD3 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6251418E2CC9B0067BDD3 /* libcurl.a */; };
 		BDF6251D18E2CD480067BDD3 /* libwebp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6251518E2CC9B0067BDD3 /* libwebp.a */; };
 		BDF6252518E2EC690067BDD3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF6252418E2EC690067BDD3 /* SystemConfiguration.framework */; };
-		BDF6252918E2F2B80067BDD3 /* SimpleGame-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BDF6252718E2F2B80067BDD3 /* SimpleGame-Info.plist */; };
 		BDF625EE18E83A620067BDD3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF625ED18E83A620067BDD3 /* StoreKit.framework */; };
 		BDF625F118E83A720067BDD3 /* InviteFriendsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDF625EF18E83A720067BDD3 /* InviteFriendsScene.cpp */; };
 		BDF625F518E9570B0067BDD3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF625F418E9570B0067BDD3 /* Security.framework */; };
@@ -2462,6 +2461,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0640;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = PF7QYXCM8P;
@@ -2469,7 +2469,7 @@
 				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SimpleGame" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -2492,7 +2492,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDF6252918E2F2B80067BDD3 /* SimpleGame-Info.plist in Resources */,
 				BDF622CA18E2BF6A0067BDD3 /* Icon.png in Resources */,
 				BDF6245D18E2C51E0067BDD3 /* Android.mk in Resources */,
 				782F4619153FEDF0009FC2E5 /* Default.png in Resources */,
@@ -2816,7 +2815,6 @@
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -2849,7 +2847,7 @@
 					"$(SRCROOT)/libraries/cocos2dx/platform/third_party/ios",
 				);
 				INFOPLIST_FILE = "SimpleGame-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/libraries/cocos2dx/platform/third_party/ios/libraries",
@@ -2872,7 +2870,6 @@
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -2902,7 +2899,7 @@
 					"$(SRCROOT)/libraries/cocos2dx/platform/third_party/ios",
 				);
 				INFOPLIST_FILE = "SimpleGame-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/libraries/cocos2dx/platform/third_party/ios/libraries",
@@ -2926,12 +2923,12 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7s armv7";
@@ -2941,7 +2938,6 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = "";
