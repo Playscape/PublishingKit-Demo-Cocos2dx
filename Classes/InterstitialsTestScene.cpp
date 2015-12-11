@@ -48,8 +48,6 @@ bool InterstitialsTestScene::init()
 
     mMainMenu =
 		CCMenu::create(
-			CCMenuItemFont::create("Show Interstitial Overlay", this,menu_selector(InterstitialsTestScene::showInterstitialOverlay)),
-			CCMenuItemFont::create("Show Interstitial NonOverlay", this,menu_selector(InterstitialsTestScene::showInterstitialNonOverlay)),
 			CCMenuItemFont::create("Show Interstitial Overlay/NonOverlay", this,menu_selector(InterstitialsTestScene::showInterstitialOverlayOrNonOverlay)),
 			NULL);
 
@@ -68,16 +66,8 @@ bool InterstitialsTestScene::init()
     return true;
 }
 
-void InterstitialsTestScene::showInterstitialOverlay(CCObject* sender) {
-	InterstitialsX::display(InterstitialsX::Overlay, "test-scene-overlay");
-}
-
-void InterstitialsTestScene::showInterstitialNonOverlay(CCObject* sender) {
-	InterstitialsX::display(InterstitialsX::NonOverlay, "test-scene-non-overlay");
-}
-
 void InterstitialsTestScene::showInterstitialOverlayOrNonOverlay(CCObject* sender) {
-	InterstitialsX::display(InterstitialsX::Both, "test-scene-both");
+	InterstitialsX::display("test-scene-both");
 }
 
 void InterstitialsTestScene::showInGameMenuLayer() {

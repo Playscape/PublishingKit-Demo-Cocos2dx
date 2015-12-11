@@ -1,6 +1,7 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 #include "InGameMenuLayer.h"
+#include "ReportTestScene.h"
 #include "appwarp.h"
 #include "dbgprint.h"
 #include "StoreScene.h"
@@ -102,6 +103,7 @@ void HelloWorld::showStartGameLayer()
 			CCMenuItemFont::create("Simulate Received Invite", this, menu_selector(HelloWorld::simulateReceivedInviteButtonCallback)),
 			CCMenuItemFont::create("Simulate SocialNetwork Login/Logout", this, menu_selector(HelloWorld::simulateSocialNetworkLoginCallback)),
             CCMenuItemFont::create("Open Ads Test", this, menu_selector(HelloWorld::openAdsTest)),
+            CCMenuItemFont::create("Open Report Test", this, menu_selector(HelloWorld::openReportTest)),
             CCMenuItemFont::create("Disable Ads", this, menu_selector(HelloWorld::disableAds)),
             CCMenuItemFont::create("Enable Ads", this, menu_selector(HelloWorld::enableAds)),
 			CCMenuItemFont::create("Show Catalog", this, menu_selector(HelloWorld::showCatalog)),
@@ -114,6 +116,10 @@ void HelloWorld::showStartGameLayer()
 
     pMenu->alignItemsVertically();
     mStartGameLayer->addChild(pMenu, 1);
+}
+
+void HelloWorld::openReportTest(CCObject* sender) {
+  CCDirector::sharedDirector()->replaceScene(ReportTestScene::scene());
 }
 
 void HelloWorld::disableAds(CCObject* sender) {
