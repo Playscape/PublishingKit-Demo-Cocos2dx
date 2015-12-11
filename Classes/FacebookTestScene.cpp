@@ -34,6 +34,8 @@ bool FacebookTestScene::init()
 			MenuItemFont::create("Login Test", this,menu_selector(FacebookTestScene::login)),
 			MenuItemFont::create("Logout Test", this,menu_selector(FacebookTestScene::logout)),
 			MenuItemFont::create("Share Test", this,menu_selector(FacebookTestScene::share)),
+            MenuItemFont::create("Invite Test", this,menu_selector(FacebookTestScene::invite)),
+            MenuItemFont::create("Get Requests Amount Test", this,menu_selector(FacebookTestScene::getRequestsAmount)),
 			NULL);
 
     for(Ref* item : mMainMenu->getChildren()) {
@@ -75,6 +77,26 @@ void FacebookTestScene::share(Ref* sender) {
         dbgprint("can't share");
     }
 
+}
+
+void FacebookTestScene::invite(Ref* sender) {
+    FacebookAgent::FBInfo params;
+    params.insert(std::make_pair("message", "Cocos2d-x is a great game engine"));
+    params.insert(std::make_pair("title", "Cocos2d-x title"));
+
+    FacebookAgent::getInstance()->appRequest(params, [=](int ret, std::string& msg){
+            CCLOG("%s", msg.c_str());
+            dbgprint("invited");
+    });
+}
+
+void FacebookTestScene::getRequestsAmount(Ref* sender) {
+    std::string path = "/me/apprequests";
+       FacebookAgent::FBInfo params;
+       FacebookAgent::getInstance()->api(path, FacebookAgent::HttpMethod::Get, params, [=](int ret, std::string& msg){
+           CCLOG("%s", msg.c_str());
+           dbgprint("got apprequests");
+       });
 }
 
 void FacebookTestScene::showInGameMenuLayer() {

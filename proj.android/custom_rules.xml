@@ -1,17 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
+    <fail message="\ ${line.separator}${line.separator}
+      ******************************** Playscape SDK ********************************${line.separator}${line.separator}
+      Looks like you don't have 'Google Play Services' library in your Android SDK folder. Please download it.${line.separator}${line.separator}
+      *******************************************************************************">
+      <condition><not>
+          <available file="${sdk.dir}/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-services.jar" />
+      </not></condition>
+    </fail>
     <property file="build.properties"/>
     <property name="out.jar.file" location="bin/aspect_classes.jar" />
     <property name="default.application.class" value="com.playscape.playscapeapp.PlayscapeApp"/>
 
+  <property name="playscape.exchange.include" value="true"/>
   <property name="playscape.ads.enabled" value="true"/>
 	<property name="publishigkit.dir" location="../../PlayscapePubKitCocos2D-X" />
 	<property name="publishigkit.assets" location="${publishigkit.dir}/proj.android/PlayscapePublishingKitX/assets" />
 	<property name="target.assets" location="./assets" />
-    <property name="default.configuration.path" location="../../PlayscapePubKitCocos2D-X/proj.android/PlayscapePublishingKitX/assets/playscape/PlayscapeConfig.xml"/>
+  <property name="default.configuration.path" location="../../PlayscapePubKitCocos2D-X/proj.android/PlayscapePublishingKitX/assets/playscape/PlayscapeConfig.xml"/>
+  <property name="libproject.dir" location="../../PlayscapePubKitCocos2D-X/proj.android"/>
 
 	<loadproperties srcFile="ant.properties"/>
+
+  <target name="-include-playscape-exchange" if="${playscape.exchange.include}">
+      <copy file="${publishigkit.dir}/proj.android/ManifestTemplate/TemplateAndroidManifest.xml" tofile="./bin/PlayscapeAndroidManifest.xml" />
+      <copy todir="${libproject.dir}/PlayscapePublishingKitX/res" overwrite="true">
+        <fileset dir="${publishigkit.dir}/build/res"/>
+      </copy>
+      <copy todir="${libproject.dir}/PlayscapePublishingKitX/assets" overwrite="true">
+        <fileset dir="${publishigkit.dir}/build/assets"/>
+      </copy>
+      <copy file="${publishigkit.dir}/build/libs/PlayscapeCPSDK.jar" todir="${libproject.dir}/PlayscapePublishingKitX/libs"/>
+  </target>
+
+  <target name="-exclude-playscape-exchange" unless="${playscape.exchange.include}">
+    <delete dir="assets/fonts"/>
+    <delete dir="assets/level_up_icons"/>
+    <delete dir="assets/playscape_bootstrap"/>
+    <delete file="assets/predefined_badges.json"/>
+    <delete file="assets/ranks.json"/>
+    <delete file="assets/WelcomeMessage"/>
+    <delete file="${libproject.dir}/PlayscapePublishingKitX/libs/PlayscapeCPSDK.jar"/>
+    <delete dir="${libproject.dir}/PlayscapePublishingKitX/res"/>
+    <delete dir="${libproject.dir}/PlayscapePublishingKitX/assets"/>
+    <copy file="${publishigkit.dir}/build/assets/playscape/PlayscapeConfig.xml" todir="${libproject.dir}/PlayscapePublishingKitX/assets/playscape"/>
+    <copy file="${publishigkit.dir}/build/res/values/config_strings.xml" todir="${libproject.dir}/PlayscapePublishingKitX/res/values" verbose="true"/>
+    <copy file="${publishigkit.dir}/proj.android/ManifestTemplate/TemplateWithoutExchangeAndroidManifest.xml" tofile="./bin/PlayscapeAndroidManifest.xml" />
+  </target>
+
+  <target name="-playscape-pre-build" depends="-include-playscape-exchange, -exclude-playscape-exchange, -prepare-playscape-manifest">
+  </target>
 
 	<!-- configuration json file -->
 	<property name="downloaded.json.name" location="./configuration.json" />
@@ -55,6 +94,100 @@
             <path refid="class.path"/>
         </classpath>
     </taskdef>
+
+    <!-- Path to Playscape SDK's AndroidManifest.xml -->
+    <path id="playscape.manifest">
+      <fileset dir="./bin/">
+          <include name="PlayscapeAndroidManifest.xml"/>
+      </fileset>
+    </path>
+
+    <!-- Sets package name to Playscape SDK's AmdroidManifest.xml which was determined from application's AndroidManifest.xml -->
+    <target name="-prepare-playscape-manifest" depends="-determine-package-name">
+      <replace file="./bin/PlayscapeAndroidManifest.xml" token="PACKAGE_NAME" value="${package-name}"/>
+    </target>
+
+    <!-- Determines package name from application's AndroidManifest.xml -->
+    <target name="-determine-package-name" unless="configuration.check.result">
+        <xmltask>
+            <fileset file="AndroidManifest.xml"/>
+            <copy path="//manifest/@package" property="package-name"/>
+
+        </xmltask>
+        <echo>Package name: ${package-name}</echo>
+    </target>
+
+    <!-- Code Generation: compile resources (aapt -> R.java), aidl, renderscript -->
+    <target name="-code-gen">
+        <!-- always merge manifest -->
+        <mergemanifest
+                appManifest="./AndroidManifest.xml"
+                outManifest="./bin/AndroidManifest.xml"
+                enabled="true">
+            <library refid="playscape.manifest" />
+        </mergemanifest>
+
+        <do-only-if-manifest-hasCode
+                elseText="hasCode = false. Skipping aidl/renderscript/R.java">
+            <echo level="info">Handling aidl files...</echo>
+            <aidl executable="${aidl}"
+                    framework="${project.target.framework.aidl}"
+                    libraryBinAidlFolderPathRefid="project.library.bin.aidl.folder.path"
+                    genFolder="${gen.absolute.dir}"
+                    aidlOutFolder="${out.aidl.absolute.dir}">
+                <source path="${source.absolute.dir}"/>
+            </aidl>
+
+            <!-- renderscript generates resources so it must be called before aapt -->
+            <echo level="info">----------</echo>
+            <echo level="info">Handling RenderScript files...</echo>
+            <!-- set the rs target prop in case it hasn't been set. -->
+            <property name="renderscript.target" value="${project.minSdkVersion}" />
+            <renderscript
+                    buildToolsRoot="${android.build.tools.dir}"
+                    genFolder="${gen.absolute.dir}"
+                    resFolder="${out.res.absolute.dir}"
+                    rsObjFolder="${out.rs.obj.absolute.dir}"
+                    libsFolder="${out.rs.libs.absolute.dir}"
+                    targetApi="${renderscript.target}"
+                    optLevel="${renderscript.opt.level}"
+                    supportMode="${renderscript.support.mode}"
+                    binFolder="${out.absolute.dir}"
+                    buildType="${build.is.packaging.debug}"
+                    previousBuildType="${build.last.is.packaging.debug}">
+                <source path="${source.absolute.dir}"/>
+            </renderscript>
+
+            <echo level="info">----------</echo>
+            <echo level="info">Handling Resources...</echo>
+            <aapt executable="${aapt}"
+                    command="package"
+                    verbose="${verbose}"
+                    manifest="${out.manifest.abs.file}"
+                    originalManifestPackage="${project.app.package}"
+                    androidjar="${project.target.android.jar}"
+                    rfolder="${gen.absolute.dir}"
+                    nonConstantId="${android.library}"
+                    libraryResFolderPathRefid="project.library.res.folder.path"
+                    libraryPackagesRefid="project.library.packages"
+                    libraryRFileRefid="project.library.bin.r.file.path"
+                    ignoreAssets="${aapt.ignore.assets}"
+                    binFolder="${out.absolute.dir}"
+                    proguardFile="${out.absolute.dir}/proguard.txt">
+                <res path="${out.res.absolute.dir}" />
+                <res path="${resource.absolute.dir}" />
+            </aapt>
+
+            <echo level="info">----------</echo>
+            <echo level="info">Handling BuildConfig class...</echo>
+            <buildconfig
+                    genFolder="${gen.absolute.dir}"
+                    package="${project.app.package}"
+                    buildType="${build.is.packaging.debug}"
+                    previousBuildType="${build.last.is.packaging.debug}"/>
+
+        </do-only-if-manifest-hasCode>
+    </target>
 
     <target name="-pre-compile">
   <echo>ORIG: ${toString:project.all.jars.path}</echo>
@@ -251,7 +384,7 @@
 	    </script>
 	</target>
 
-    <target name="-pre-build" depends="-copy-template-assets, -download-configuration, -apply-configuration">
+    <target name="-pre-build" depends="-playscape-pre-build, -copy-template-assets, -download-configuration, -apply-configuration">
         <xmltask source="AndroidManifest.xml" dest="AndroidManifest.xml">
             <copy path="//manifest/application[@android:name]/text()" property="XML_EXISTS_ALREADY" />
             <attr path="//manifest/application" attr="android:name" value="${default.application.class}" unless="XML_EXISTS_ALREADY"/>
@@ -299,6 +432,7 @@
         <string name="user_playscape_adcolony_video_zone_id">${adcolony_video_zone_id}</string>
         <string name="user_playscape_adcolony_incentivised_video_zone_id">${adcolony_incentivised_video_zone_id}</string>
         <string name="user_playscape_is_published_by_playscape">${is_published_by_playscape}</string>
+        <string name="user_playscape_config_exchange_enabled">${playscape.exchange.include}</string>
         ]]>
         </insert>
      </xmltask>
@@ -359,6 +493,8 @@
             <property name="classpath.aspects.aspectjrt" location="../../PlayscapePubKitCocos2D-X/build/tools/aspectsj/aspectjrt.jar"/>
             <property name="classpath.playservices.project" location="${sdk.dir}/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-servies.jar"/>
             <property name="patcher.aspectpath" location="../../PlayscapePubKitCocos2D-X/build/tools/playscape_lifecycle.jar"/>
+            <property name="patcher.fb.aspectpath.v3" location="../../PlayscapePubKitCocos2D-X/build/tools/playscape_facebook_v3.jar"/>
+            <property name="patcher.fb.aspectpath.v4" location="../../PlayscapePubKitCocos2D-X/build/tools/playscape_facebook_v4.jar"/>
 
             <exec executable="java">
                 <arg value="-classpath"/>
@@ -371,9 +507,9 @@
                 <arg value="-inpath"/>
                 <arg value="${out.classes.absolute.dir}"/>
                 <arg value="-injars"/>
-                <arg value="${expanded.main.class.path}${path.separator}${patcher.aspectpath}"/>
+                <arg value="${expanded.main.class.path}${path.separator}${patcher.aspectpath}${path.separator}${patcher.fb.aspectpath.v3}${path.separator}${patcher.fb.aspectpath.v4}"/>
                 <arg value="-aspectpath"/>
-                <arg value="${patcher.aspectpath}"/>
+                <arg value="${patcher.aspectpath}${path.separator}${patcher.fb.aspectpath.v3}${path.separator}${patcher.fb.aspectpath.v4}"/>
                 <arg value="-outjar"/>
                 <arg value="${out.jar.file}"/>
             </exec>
@@ -381,118 +517,6 @@
         </sequential>
     </macrodef>
 
-
-        <target name="-release-obfuscation-check">
-            <echo level="info">proguard.config is ${proguard.config}</echo>
-            <condition property="proguard.enabled" value="true" else="false">
-                <and>
-                    <isset property="build.is.mode.release" />
-                    <isset property="proguard.config" />
-                </and>
-            </condition>
-            <if condition="${proguard.enabled}">
-                <then>
-                    <echo level="info">Proguard.config is enabled</echo>
-                    <!-- Original: Secondary dx input (jar files) is empty since all the
-                         jar files will be in the obfuscated jar -->
-                    <!-- Custom: we need input for aspects -->
-                    <!-- <path id="out.dex.jar.input.ref" /> -->
-                </then>
-            </if>
-        </target>
-        <!-- Override super obfuscate because we have own implementation -->
-        <target name="-obfuscate"> </target>
-        <!--
-       Suppress "Warning: can't write resource [META-INF/MANIFEST.MF] (Duplicate zip entry [classes.jar:META-INF/MANIFEST.MF])".
-       Per http://www.dancartoon.com/2012/01/14/fixing-proguard-warning-cant-write-resource-meta-infmanifest-mf/
-       Target "-obfuscate" copied from ${sdk.dir}/tools/ant/build.xml v21.
-       -->
-       <macrodef name="custom-obfuscate">
-           <sequential>
-               <echo>custom-obfuscate</echo>
-           <if condition="${proguard.enabled}">
-               <then>
-                   <property name="obfuscate.absolute.dir" location="${out.absolute.dir}/proguard" />
-                   <property name="preobfuscate.jar.file" value="${obfuscate.absolute.dir}/original.jar" />
-                   <property name="obfuscated.jar.file" value="${obfuscate.absolute.dir}/obfuscated.jar" />
-                   <!-- input for dex will be proguard's output -->
-                   <property name="out.dex.input.absolute.dir" value="${obfuscated.jar.file}" />
-
-                   <!-- Add Proguard Tasks -->
-                   <property name="proguard.jar" location="${android.tools.dir}/proguard/lib/proguard.jar" />
-                   <taskdef name="proguard" classname="proguard.ant.ProGuardTask" classpath="${proguard.jar}" />
-
-                   <!-- Set the android classpath Path object into a single property. It'll be
-                        all the jar files separated by a platform path-separator.
-                        Each path must be quoted if it contains spaces.
-                   -->
-                   <pathconvert property="project.target.classpath.value" refid="project.target.class.path">
-                       <firstmatchmapper>
-                           <regexpmapper from='^([^ ]*)( .*)$$' to='"\1\2"'/>
-                           <identitymapper/>
-                       </firstmatchmapper>
-                   </pathconvert>
-
-                   <!-- Build a path object with all the jar files that must be obfuscated.
-                        This include the project compiled source code and any 3rd party jar
-                        files. -->
-                   <path id="project.all.classes.path">
-                       <pathelement location="${preobfuscate.jar.file}" />
-                       <path refid="project.all.jars.path" />
-                   </path>
-                   <!-- Set the project jar files Path object into a single property. It'll be
-                        all the jar files separated by a platform path-separator.
-                        Each path must be quoted if it contains spaces.
-                   -->
-               <!--
-               Old:
-               <pathconvert property="project.all.classes.value" refid="project.all.classes.path">
-               New:
-               -->
-                   <pathconvert property="project.all.classes.value" refid="project.all.jars.path" pathsep=" ">
-                       <firstmatchmapper>
-                       <!--
-                       Old:
-                           <regexpmapper from='^([^ ]*)( .*)$$' to='"\1\2"'/>
-                           <identitymapper/>
-                       New:
-                       -->
-                       <regexpmapper from='^([^ ]*)( .*)$$' to='-injars "\1\2"(!META-INF/MANIFEST.MF)'/>
-                       <regexpmapper from='(.*)' to='-injars \1(!META-INF/MANIFEST.MF)'/>
-                       </firstmatchmapper>
-                   </pathconvert>
-
-                   <!-- Turn the path property ${proguard.config} from an A:B:C property
-                        into a series of includes: -include A -include B -include C
-                        suitable for processing by the ProGuard task. Note - this does
-                        not include the leading '-include "' or the closing '"'; those
-                        are added under the <proguard> call below.
-                   -->
-                   <path id="proguard.configpath">
-                       <pathelement path="${proguard.config}"/>
-                   </path>
-                   <pathconvert pathsep='" -include "' property="proguard.configcmd" refid="proguard.configpath"/>
-
-                   <mkdir   dir="${obfuscate.absolute.dir}" />
-                   <delete file="${preobfuscate.jar.file}"/>
-                   <delete file="${obfuscated.jar.file}"/>
-                   <jar basedir="${out.classes.absolute.dir}"
-                       destfile="${preobfuscate.jar.file}" />
-                   <proguard>
-                       -include      "${proguard.configcmd}"
-                       -include      "${out.absolute.dir}/proguard.txt"
-                       -injars       ${out.jar.file}
-                       -outjars      "${obfuscated.jar.file}"
-                       -libraryjars  ${project.target.classpath.value}
-                       -dump         "${obfuscate.absolute.dir}/dump.txt"
-                       -printseeds   "${obfuscate.absolute.dir}/seeds.txt"
-                       -printusage   "${obfuscate.absolute.dir}/usage.txt"
-                       -printmapping "${obfuscate.absolute.dir}/mapping.txt"
-                   </proguard>
-               </then>
-           </if>
-           </sequential>
-       </macrodef>
 
     <!-- Configurable macro, which allows to pass as parameters output directory,
      output dex filename and external libraries to dex (optional) -->
@@ -518,7 +542,6 @@
 
             <!-- call aspect patcher to aspply aspects to all .jar and .class files -->
             <aspect-patcher />
-            <custom-obfuscate />
 
             <property name="out.dex.input.absolute.dir" value="${out.jar.file}" />
 
@@ -529,7 +552,7 @@
                 forceJumbo="${dex.force.jumbo}"
                 disableDexMerger="${dex.disable.merger}"
                 verbose="${verbose}">
-                <path path="${out.dex.input.absolute.dir}"/>
+                <path path="${out.jar.file}"/>
                 <external-libs />
             </dex>
         </sequential>

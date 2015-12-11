@@ -19,6 +19,8 @@ protected:
 	void login(Ref* sender);
     void logout(Ref* sender);
     void share(Ref* sender);
+	void invite(Ref* sender);
+	void getRequestsAmount(Ref* sender);
 
     Menu* mMainMenu;
 
