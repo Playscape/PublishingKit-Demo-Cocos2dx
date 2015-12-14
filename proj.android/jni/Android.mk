@@ -19,6 +19,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
     ../../Classes/AdsTestScene.cpp \
     ../../Classes/VideosTestScene.cpp \
     ../../Classes/InterstitialsTestScene.cpp \
+		../../Classes/ReportTestScene.cpp \
     ../../Classes/BannersTestScene.cpp \
     ../../Classes/MuffinRushAssets.cpp \
     ../../AppWarpX/appwarp.cpp \

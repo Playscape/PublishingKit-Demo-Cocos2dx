@@ -115,6 +115,7 @@ public:
 
 	void disableAds(CCObject* sender);
 	void enableAds(CCObject* sender);
+	void openReportTest(CCObject* sender);
 
 private:
     AppWarpMultiplayerProvider *mAppWarpMultiplayerProvider;

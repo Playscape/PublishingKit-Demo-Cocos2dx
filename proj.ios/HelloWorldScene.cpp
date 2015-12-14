@@ -1,11 +1,11 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 #include "InGameMenuLayer.h"
+#include "ReportTestScene.h"
 #include "appwarp.h"
 #include "dbgprint.h"
 #include "StoreScene.h"
 #include "AdsTestScene.h"
-#include "SocialLoginScene.h"
 
 #include "playscape/Report.h"
 #include "InviteFriendsScene.h"
@@ -101,7 +101,7 @@ void HelloWorld::showStartGameLayer()
 			CCMenuItemFont::create("Simulate SocialNetwork Login/Logout", this, menu_selector(HelloWorld::simulateSocialNetworkLoginCallback)),
             CCMenuItemFont::create("Open Ads Test", this, menu_selector(HelloWorld::openAdsTest)),
             CCMenuItemFont::create("Set PW custom tags", this, menu_selector(HelloWorld::setCustomTagsCallback)),
-            CCMenuItemFont::create("Social Login", this, menu_selector(HelloWorld::socialLoginCallback)),
+            CCMenuItemFont::create("Open Report Test", this, menu_selector(HelloWorld::openReportTest)),
 			NULL);
 
     CCObject* item;
@@ -127,8 +127,8 @@ void HelloWorld::setCustomTagsCallback(CCObject* pSender) {
 	is << value;
 }
 
-void HelloWorld::socialLoginCallback(CCObject* pSender) {
-    CCDirector::sharedDirector()->replaceScene(SocialLoginScene::scene());
+void HelloWorld::openReportTest(CCObject* pSender) {
+    CCDirector::sharedDirector()->replaceScene(ReportTestScene::scene());
 }
 
 void HelloWorld::openAdsTest(CCObject* sender) {
