@@ -499,7 +499,7 @@
             <exec executable="java">
                 <arg value="-classpath"/>
                 <arg value="${classpath.aspects.aspectjtools}${path.separator}${classpath.aspects.aspectjrt}${path.separator}${project.target.android.jar}"/>
-                <arg value="-Xmx8g"/>
+                <arg value="-Xmx2g"/>
                 <arg value="org.aspectj.tools.ajc.Main"/>
                 <arg value="-source"/>
                 <arg value="1.5"/>

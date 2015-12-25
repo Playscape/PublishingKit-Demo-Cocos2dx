@@ -13,7 +13,7 @@
     <string name="playscape_remote_logger_file_size_limit_bytes">2097152</string>
     <string name="playscape_remote_logger_entry_size_limit_bytes">2048</string>
     <string name="playscape_remote_logger_force_dump_now">false</string>
-    <string name="playscape_publishing_kit_version">1.6.140</string>
+    <string name="playscape_publishing_kit_version">Kit Trunk</string>
     <string name="playscape_reporter_id">TestGame</string>
     <string name="playscape_is_alive_service_reschedule_delay_seconds">86400</string>
 
@@ -21,6 +21,7 @@
     <string name="playscape_ads_api_key">%{API_KEY}</string>
     <string name="playscape_ads_config_url">http://server.ads.mominis.com/Services/CompressedAdService/json/RollABallMultiplayer_Pubkit_Demo_AdsConfig.json</string>
     <string name="playscape_ads_config_enable_ads_system">true</string>
+    <string name="playscape_config_exchange_enabled">true</string>
     <string name="playscape_chartboost_app_id">531c4f442d42da19400a5d75</string>
     <string name="playscape_chartboost_app_signature">3cf6252e06d08e7afa7fbc7532b916a7fd52a01e</string>
     <string name="playscape_millennial_media_app_id">163708</string>
@@ -82,10 +83,10 @@
 
         
         <string name="user_playscape_remote_logger_url">https://server.gameconsole.mominis.com/services/LoggingService/WriteToLog</string>
-        <string name="user_playscape_publishing_kit_version">dev</string>
+        <string name="user_playscape_publishing_kit_version">Kit Trunk</string>
         <string name="user_playscape_ads_api_key">Ky8A4DtTpzbux9fsP6t5DtPnHIoMUKym</string>
         <string name="user_playscape_reporter_id">com_playscape_coco2dxdemo_iaptest</string>
-        <string name="user_playscape_ads_config_url">http://server.ads.mominis.com.s3.amazonaws.com/Services/CompressedAdService/json/RollABallMultiplayer_Pubkit_Demo_AdsConfig.json</string>
+        <string name="user_playscape_ads_config_url">http://server-ads.mominis.com.s3.amazonaws.com/Services/CompressedAdService/json/RollABallMultiplayer_Pubkit_Demo_AdsConfig.json</string>
         <string name="user_playscape_ads_config_enable_ads_system">true</string>
         <string name="user_playscape_adcolony_incentivised_video_zone_id">vzdc652d7a595345b5ab</string>
         <string name="user_playscape_admob_interstitials_ad_unit_id">ca-app-pub-6855635722675667/3604954833</string>
@@ -101,5 +102,6 @@
         <string name="user_playscape_adcolony_video_zone_id">vz80e0ea32fdf64b63a2</string>
         <string name="user_playscape_adcolony_incentivised_video_zone_id">vzdc652d7a595345b5ab</string>
         <string name="user_playscape_is_published_by_playscape">false</string>
+        <string name="user_playscape_config_exchange_enabled">true</string>
         
         </resources>

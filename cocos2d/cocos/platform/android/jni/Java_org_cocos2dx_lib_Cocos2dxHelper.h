@@ -26,8 +26,20 @@ THE SOFTWARE.
 #define __Java_org_cocos2dx_lib_Cocos2dxHelper_H__
 
 #include <string>
+#include <jni.h>
 
 typedef void (*EditTextCallback)(const char* text, void* ctx);
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+JNIEXPORT void JNICALL  Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetApkPath(JNIEnv*  env, jobject thiz, jstring apkPath);
+JNIEXPORT void JNICALL  Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetContext(JNIEnv*  env, jobject thiz, jobject context, jobject assetManager);
+
+#ifdef __cplusplus
+}
+#endif
 
 extern const char * getApkPath();
 extern void showDialogJNI(const char * message, const char * title);

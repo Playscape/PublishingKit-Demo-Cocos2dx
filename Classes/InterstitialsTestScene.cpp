@@ -48,9 +48,8 @@ bool InterstitialsTestScene::init()
     label->setPosition(Point(winSize.width/2-label->getContentSize().width/2, winSize.height-label->getContentSize().height));
 
     mMainMenu =
+
 		Menu::create(
-			MenuItemFont::create("Show Interstitial Overlay", this,menu_selector(InterstitialsTestScene::showInterstitialOverlay)),
-			MenuItemFont::create("Show Interstitial NonOverlay", this,menu_selector(InterstitialsTestScene::showInterstitialNonOverlay)),
 			MenuItemFont::create("Show Interstitial Overlay/NonOverlay", this,menu_selector(InterstitialsTestScene::showInterstitialOverlayOrNonOverlay)),
 			NULL);
 
@@ -66,14 +65,6 @@ bool InterstitialsTestScene::init()
 
     InterstitialsX::setListener(new MyInterstitialListener());
     return true;
-}
-
-void InterstitialsTestScene::showInterstitialOverlay(Ref* sender) {
-	InterstitialsX::display(InterstitialsX::Overlay, "test-scene-overlay");
-}
-
-void InterstitialsTestScene::showInterstitialNonOverlay(Ref* sender) {
-	InterstitialsX::display(InterstitialsX::NonOverlay, "test-scene-non-overlay");
 }
 
 void InterstitialsTestScene::showInterstitialOverlayOrNonOverlay(Ref* sender) {

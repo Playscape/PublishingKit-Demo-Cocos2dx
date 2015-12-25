@@ -45,7 +45,9 @@ using namespace std;
 
 string g_apkPath;
 
+#ifdef __cplusplus
 extern "C" {
+#endif
 
     JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxHelper_nativeSetApkPath(JNIEnv*  env, jobject thiz, jstring apkPath) {
         g_apkPath = JniHelper::jstring2string(apkPath);
@@ -74,7 +76,9 @@ extern "C" {
             if (s_editTextCallback) s_editTextCallback("", s_ctx);
         }
     }
+#ifdef __cplusplus
 }
+#endif
 
 const char * getApkPath() {
     return g_apkPath.c_str();

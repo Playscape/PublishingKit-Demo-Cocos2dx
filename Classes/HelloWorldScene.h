@@ -116,6 +116,7 @@ public:
 
 	void disableAds(Ref* sender);
 	void enableAds(Ref* sender);
+	void openReportTest(Ref* sender);
 
 private:
     AppWarpMultiplayerProvider *mAppWarpMultiplayerProvider;

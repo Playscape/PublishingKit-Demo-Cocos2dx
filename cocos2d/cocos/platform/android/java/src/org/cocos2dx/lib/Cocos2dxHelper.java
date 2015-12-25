@@ -44,6 +44,11 @@ import android.view.Display;
 import android.view.WindowManager;
 
 public class Cocos2dxHelper {
+  
+  	static {
+  		System.loadLibrary("game");
+  	}
+
     // ===========================================================
     // Constants
     // ===========================================================
@@ -173,7 +178,7 @@ public class Cocos2dxHelper {
         ((Cocos2dxActivity)sActivity).setKeepScreenOn(value);
     }
     
-    public static boolean openURL(String url) { 
+    public static boolean openURL(String url) {
         boolean ret = false;
         try {
             Intent i = new Intent(Intent.ACTION_VIEW);
