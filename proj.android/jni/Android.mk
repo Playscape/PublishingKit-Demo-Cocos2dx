@@ -1,6 +1,6 @@
-LOCAL_PATH := $(call my-dir)
+LOCAL_PATH :=$(call my-dir)
 
-JNI_LOCAL_PATH = $(LOCAL_PATH)
+JNI_LOCAL_PATH =$(LOCAL_PATH)
 
 include $(CLEAR_VARS)
 
@@ -25,10 +25,10 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
     ../../Classes/StoreScene.cpp \
     ../../Classes/InviteFriendsScene.cpp \
     ../../Classes/AdsTestScene.cpp \
-	../../Classes/FacebookTestScene.cpp \
+    ../../Classes/FacebookTestScene.cpp \
     ../../Classes/VideosTestScene.cpp \
     ../../Classes/InterstitialsTestScene.cpp \
-		../../Classes/ReportTestScene.cpp \
+    ../../Classes/ReportTestScene.cpp \
     ../../Classes/BannersTestScene.cpp \
     ../../Classes/MuffinRushAssets.cpp \
     ../../AppWarpX/appwarp.cpp \
@@ -141,12 +141,16 @@ LOCAL_SHARED_LIBRARIES += gnustl_shared
 # Required path, playscape publishing kit modules reside there.
 $(call import-add-path,$(LOCAL_PATH)/../../../PlayscapePubkitCocos2D-X/proj.android/prebuilt)
 
+LOCAL_CPPFLAGS := -Wno-extern-c-compat
+
+LOCAL_EXPORT_CPPFLAGS := -Wno-extern-c-compat
+
 include $(BUILD_SHARED_LIBRARY)
 
 $(call import-module,playscape_pubkit)
 $(call import-module,playscape_pubkit_cocos2dx)
 
 $(call import-add-path,.)
-$(call import-module,./)
+$(call import-module,.)
 
 $(call import-module,jni)
