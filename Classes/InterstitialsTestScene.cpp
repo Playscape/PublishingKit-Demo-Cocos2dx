@@ -68,7 +68,7 @@ bool InterstitialsTestScene::init()
 }
 
 void InterstitialsTestScene::showInterstitialOverlayOrNonOverlay(Ref* sender) {
-	InterstitialsX::display(InterstitialsX::Both, "test-scene-both");
+	InterstitialsX::display("test-scene-both");
 }
 
 void InterstitialsTestScene::showInGameMenuLayer() {
