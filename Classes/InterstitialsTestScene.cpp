@@ -4,6 +4,7 @@
 #include "InGameMenuLayer.h"
 #include "playscape/Report.h"
 #include "playscape/InterstitialsX.h"
+#include "ui/CocosGUI.h"
 
 #include <string>
 
@@ -35,25 +36,25 @@ bool InterstitialsTestScene::init()
 {
     //////////////////////////////
     // 1. super init first
-    if ( !CCLayerColor::initWithColor(cocos2d::ccc4(255, 255, 255, 255)) )
+    if ( !LayerColor::initWithColor(cocos2d::Color4B(255, 255, 255, 255)) )
     {
         return false;
     }
 
-    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    Size winSize = Director::getInstance()->getWinSize();
 
     setTouchEnabled(true);
-    CCLabelTTF* label = CCLabelTTF::create("Ads Test", "Marker Felt", 22);
-    label->setPosition(ccp(winSize.width/2-label->getContentSize().width/2, winSize.height-label->getContentSize().height));
+    LabelTTF* label = LabelTTF::create("Ads Test", "Marker Felt", 22);
+    label->setPosition(Point(winSize.width/2-label->getContentSize().width/2, winSize.height-label->getContentSize().height));
 
     mMainMenu =
-		CCMenu::create(
-			CCMenuItemFont::create("Show Interstitial Overlay/NonOverlay", this,menu_selector(InterstitialsTestScene::showInterstitialOverlayOrNonOverlay)),
+
+		Menu::create(
+			MenuItemFont::create("Show Interstitial Overlay/NonOverlay", this,menu_selector(InterstitialsTestScene::showInterstitialOverlayOrNonOverlay)),
 			NULL);
 
-    CCObject* item;
-    CCARRAY_FOREACH(mMainMenu->getChildren(), item) {
-    	((CCMenuItemFont*)item)->setColor(ccBLACK);
+	for(Ref* item : mMainMenu->getChildren()) {
+    	((MenuItemFont*)item)->setColor(Color3B::BLACK);
     }
 
     mMainMenu->alignItemsVertically();
@@ -66,36 +67,36 @@ bool InterstitialsTestScene::init()
     return true;
 }
 
-void InterstitialsTestScene::showInterstitialOverlayOrNonOverlay(CCObject* sender) {
+void InterstitialsTestScene::showInterstitialOverlayOrNonOverlay(Ref* sender) {
 	InterstitialsX::display("test-scene-both");
 }
 
 void InterstitialsTestScene::showInGameMenuLayer() {
-	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+	Size winSize = Director::getInstance()->getWinSize();
 
 	InGameMenuLayer* _inGameMenuLayer = InGameMenuLayer::create();
 	addChild(_inGameMenuLayer);
 
-	CCMenuItemFont *menuButton = CCMenuItemFont::create("Menu", this,menu_selector(InterstitialsTestScene::menuButtonCallback));
-	menuButton->setColor(ccc3(0,0,0));
+	MenuItemFont *menuButton = MenuItemFont::create("Menu", this,menu_selector(InterstitialsTestScene::menuButtonCallback));
+	menuButton->setColor(Color3B(0,0,0));
 
-	menuButton->setPosition(ccp(winSize.width - menuButton->getContentSize().width, winSize.height - menuButton->getContentSize().height));
+	menuButton->setPosition(Point(winSize.width - menuButton->getContentSize().width, winSize.height - menuButton->getContentSize().height));
 
-	CCMenu *pMenu = CCMenu::create(menuButton,NULL);
-	pMenu->setPosition(CCPointZero);
+	Menu *pMenu = Menu::create(menuButton,NULL);
+	pMenu->setPosition(Point::ZERO);
 
 	_inGameMenuLayer->addChild(pMenu, 1);
 }
 
-void InterstitialsTestScene::menuButtonCallback(CCObject* sender) {
-	CCDirector::sharedDirector()->replaceScene(HelloWorld::scene());
+void InterstitialsTestScene::menuButtonCallback(Ref* sender) {
+	Director::getInstance()->replaceScene(HelloWorld::scene());
 }
 
 
-CCScene* InterstitialsTestScene::scene()
+Scene* InterstitialsTestScene::scene()
 {
     // 'scene' is an autorelease object
-    CCScene *scene = CCScene::create();
+    Scene *scene = Scene::create();
 
     // 'layer' is an autorelease object
     InterstitialsTestScene *layer = InterstitialsTestScene::create();
@@ -106,7 +107,3 @@ CCScene* InterstitialsTestScene::scene()
     // return the scene
     return scene;
 }
-
-
-
-

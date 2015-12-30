@@ -21,9 +21,9 @@
 
 #include "cocos2d.h"
 #include "CCStoreAssets.h"
-#include "CCVirtualItem.h"
-#include "CCUpgradeVG.h"
-#include "CCVirtualCategory.h"
+#include "../domain/CCVirtualItem.h"
+#include "../domain/virtualGoods/CCUpgradeVG.h"
+#include "../domain/CCVirtualCategory.h"
 #include "CCError.h"
 
 namespace soomla {
@@ -38,15 +38,15 @@ namespace soomla {
      virtual categories, and
      non-consumables
 	*/
-	class CCStoreInfo: cocos2d::CCObject {
-        CC_SYNTHESIZE_RETAIN(cocos2d::CCDictionary *, mVirtualItems, VirtualItems);
-        CC_SYNTHESIZE_RETAIN(cocos2d::CCDictionary *, mPurchasableItems, PurchasableItems);
-        CC_SYNTHESIZE_RETAIN(cocos2d::CCDictionary *, mGoodsCategories, GoodsCategories);
-        CC_SYNTHESIZE_RETAIN(cocos2d::CCDictionary *, mGoodsUpgrades, GoodsUpgrades);
-        CC_SYNTHESIZE_RETAIN(cocos2d::CCArray*, mCurrencies, Currencies);
-        CC_SYNTHESIZE_RETAIN(cocos2d::CCArray*, mCurrencyPacks, CurrencyPacks);
-        CC_SYNTHESIZE_RETAIN(cocos2d::CCArray*, mGoods, Goods);
-        CC_SYNTHESIZE_RETAIN(cocos2d::CCArray*, mCategories, Categories);
+	class CCStoreInfo: cocos2d::Ref {
+        CC_SYNTHESIZE_RETAIN(cocos2d::__Dictionary *, mVirtualItems, VirtualItems);
+        CC_SYNTHESIZE_RETAIN(cocos2d::__Dictionary *, mPurchasableItems, PurchasableItems);
+        CC_SYNTHESIZE_RETAIN(cocos2d::__Dictionary *, mGoodsCategories, GoodsCategories);
+        CC_SYNTHESIZE_RETAIN(cocos2d::__Dictionary *, mGoodsUpgrades, GoodsUpgrades);
+        CC_SYNTHESIZE_RETAIN(cocos2d::__Array*, mCurrencies, Currencies);
+        CC_SYNTHESIZE_RETAIN(cocos2d::__Array*, mCurrencyPacks, CurrencyPacks);
+        CC_SYNTHESIZE_RETAIN(cocos2d::__Array*, mGoods, Goods);
+        CC_SYNTHESIZE_RETAIN(cocos2d::__Array*, mCategories, Categories);
     public:
         
 		/**
@@ -62,7 +62,7 @@ namespace soomla {
         static void createShared(CCStoreAssets *storeAssets);
         
         virtual bool init(CCStoreAssets *storeAssets);
-        virtual bool initWithDictionary(cocos2d::CCDictionary* dict);
+        virtual bool initWithDictionary(cocos2d::__Dictionary* dict);
         
         CCStoreInfo() : mVirtualItems(NULL), mPurchasableItems(NULL), mGoodsCategories(NULL),
         mGoodsUpgrades(NULL), mCurrencies(NULL), mCurrencyPacks(NULL), mGoods(NULL), mCategories(NULL) {}
@@ -123,7 +123,7 @@ namespace soomla {
          @param goodItemId the `CCVirtualGood` we're searching the upgrades for.
          @return Array of all upgrades for the good with the given item id.
          */
-        cocos2d::CCArray *getUpgradesForVirtualGood(const char *goodItemId = NULL);
+        cocos2d::__Array *getUpgradesForVirtualGood(const char *goodItemId = NULL);
 
         /**
          Replaces the given virtual item, and then saves the store's metadata.
@@ -137,7 +137,7 @@ namespace soomla {
          @param virtualItems The virtual items to save.
          @param saveToDB should the data persist to the local DB.
          */
-        void saveItems(cocos2d::CCArray *virtualItems, bool saveToDB = true);
+        void saveItems(cocos2d::__Array *virtualItems, bool saveToDB = true);
         
         /**
          Saves the store's metadata in the database as JSON.
@@ -148,17 +148,15 @@ namespace soomla {
          Converts the store info into a `CCDictionary`.
          @return `CCDictionary` representation of `CCStoreInfo`.
          */
-        virtual cocos2d::CCDictionary* toDictionary();
-        
-        void handle__REFLECTION_INITIALIZE_FROM_DB(cocos2d::CCDictionary *paramaters);
+        virtual cocos2d::__Dictionary* toDictionary();
     protected:
         virtual void setStoreAssets(CCStoreAssets *storeAssets);
         virtual void initializeFromDB();
         void updateAggregatedLists();
         void replaceVirtualItem(CCVirtualItem *virtualItem);
-        cocos2d::CCDictionary *storeAssetsToDictionary(CCStoreAssets *storeAssets);
+        cocos2d::__Dictionary *storeAssetsToDictionary(CCStoreAssets *storeAssets);
     private:
-        cocos2d::CCObject *createWithRetParams(cocos2d::CCDictionary *retParams);
+        cocos2d::Ref *createWithRetParams(cocos2d::__Dictionary *retParams);
     };
 };
 

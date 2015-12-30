@@ -17,28 +17,27 @@ bool ReportTestScene::init()
 {
     //////////////////////////////
     // 1. super init first
-    if ( !CCLayerColor::initWithColor(cocos2d::ccc4(255, 255, 255, 255)) )
+    if ( !LayerColor::initWithColor(cocos2d::Color4B(255, 255, 255, 255)) )
     {
         return false;
     }
 
-    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    Size winSize = Director::getInstance()->getWinSize();
 
     setTouchEnabled(true);
-    CCLabelTTF* label = CCLabelTTF::create("Report Test", "Marker Felt", 22);
+    LabelTTF* label = LabelTTF::create("Report Test", "Marker Felt", 22);
     label->setPosition(
-			ccp(winSize.width / 2 - label->getContentSize().width / 2,
+			Point(winSize.width / 2 - label->getContentSize().width / 2,
 			winSize.height - label->getContentSize().height)
 		);
 
-    mMainMenu = CCMenu::create(
-			CCMenuItemFont::create("Report Custom Event", this, menu_selector(ReportTestScene::reportEventClicked)),
-			CCMenuItemFont::create("Report Custom Event With Attributes", this, menu_selector(ReportTestScene::reportAttrEventClicked)),
+    mMainMenu = Menu::create(
+			MenuItemFont::create("Report Custom Event", this, menu_selector(ReportTestScene::reportEventClicked)),
+			MenuItemFont::create("Report Custom Event With Attributes", this, menu_selector(ReportTestScene::reportAttrEventClicked)),
 			NULL);
 
-    CCObject* item;
-    CCARRAY_FOREACH(mMainMenu->getChildren(), item) {
-    	((CCMenuItemFont*)item)->setColor(ccBLACK);
+    for(Ref* item : mMainMenu->getChildren()) {
+    	((MenuItemFont*)item)->setColor(Color3B::BLACK);
     }
 
     mMainMenu->alignItemsVertically();
@@ -50,11 +49,11 @@ bool ReportTestScene::init()
     return true;
 }
 
-void ReportTestScene::reportEventClicked(CCObject *sender) {
+void ReportTestScene::reportEventClicked(Ref *sender) {
 	Report::getInstance().ReportEvent("custom_event");
 }
 
-void ReportTestScene::reportAttrEventClicked(CCObject *sender) {
+void ReportTestScene::reportAttrEventClicked(Ref *sender) {
 	std::map<string, string> eventAttrs;
 	
 	eventAttrs["key_1"] = "value_1";
@@ -64,31 +63,31 @@ void ReportTestScene::reportAttrEventClicked(CCObject *sender) {
 }
 
 void ReportTestScene::showInGameMenuLayer() {
-	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+	Size winSize = Director::getInstance()->getWinSize();
 
 	InGameMenuLayer* _inGameMenuLayer = InGameMenuLayer::create();
 	addChild(_inGameMenuLayer);
 
-	CCMenuItemFont *menuButton = CCMenuItemFont::create("Menu", this,menu_selector(ReportTestScene::menuButtonCallback));
-	menuButton->setColor(ccc3(0,0,0));
+	MenuItemFont *menuButton = MenuItemFont::create("Menu", this,menu_selector(ReportTestScene::menuButtonCallback));
+	menuButton->setColor(Color3B(0,0,0));
 
-	menuButton->setPosition(ccp(winSize.width - menuButton->getContentSize().width, winSize.height - menuButton->getContentSize().height));
+	menuButton->setPosition(Point(winSize.width - menuButton->getContentSize().width, winSize.height - menuButton->getContentSize().height));
 
-	CCMenu *pMenu = CCMenu::create(menuButton,NULL);
-	pMenu->setPosition(CCPointZero);
+	Menu *pMenu = Menu::create(menuButton,NULL);
+	pMenu->setPosition(Point::ZERO);
 
 	_inGameMenuLayer->addChild(pMenu, 1);
 }
 
-void ReportTestScene::menuButtonCallback(CCObject* sender) {
-	CCDirector::sharedDirector()->replaceScene(HelloWorld::scene());
+void ReportTestScene::menuButtonCallback(Ref* sender) {
+	Director::getInstance()->replaceScene(HelloWorld::scene());
 }
 
 
-CCScene* ReportTestScene::scene()
+Scene* ReportTestScene::scene()
 {
     // 'scene' is an autorelease object
-    CCScene *scene = CCScene::create();
+    Scene *scene = Scene::create();
 
     // 'layer' is an autorelease object
     ReportTestScene *layer = ReportTestScene::create();

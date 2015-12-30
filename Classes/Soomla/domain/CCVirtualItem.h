@@ -39,7 +39,7 @@ namespace soomla {
     class CCVirtualItem : public CCSoomlaEntity {
     public:
 
-        cocos2d::CCString *getItemId();
+        cocos2d::__String *getItemId();
         
         /**
          Gives your user the given amount of the specific virtual item.

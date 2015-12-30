@@ -32,7 +32,7 @@ namespace soomla {
 		An interface to the native StoreInventory class, use this class to
 		access the native StoreInventory functionality.
 	 */
-    class CCStoreInventory: public cocos2d::CCObject {
+    class CCStoreInventory: public cocos2d::Ref {
     public:
 
         /**
@@ -211,16 +211,14 @@ namespace soomla {
         void refreshOnCurrencyBalanceChanged(CCVirtualCurrency *virtualCurrency, int balance, int amountAdded);
         void refreshOnGoodBalanceChanged(CCVirtualGood *good, int balance, int amountAdded);
         void updateLocalBalance(const char *itemId, int balance);
-        
-        void handle__REFLECTION_REFRESH_LOCAL_INVENTORY(cocos2d::CCDictionary *paramaters);
     private:
-        cocos2d::CCDictionary *mLocalItemBalances;
-        cocos2d::CCDictionary *mLocalUpgrades;
-        cocos2d::CCSet *mLocalEquippedGoods;
+        cocos2d::__Dictionary *mLocalItemBalances;
+        cocos2d::__Dictionary *mLocalUpgrades;
+        cocos2d::__Set *mLocalEquippedGoods;
         
-        class CCLocalUpgrade : public cocos2d::CCObject {
-            CC_SYNTHESIZE_RETAIN(cocos2d::CCInteger *, mLevel, Level);
-            CC_SYNTHESIZE_RETAIN(cocos2d::CCString *, mItemId, ItemId);
+        class CCLocalUpgrade : public cocos2d::Ref {
+            CC_SYNTHESIZE_RETAIN(cocos2d::__Integer *, mLevel, Level);
+            CC_SYNTHESIZE_RETAIN(cocos2d::__String *, mItemId, ItemId);
         public:
             static CCLocalUpgrade *create();
             CCLocalUpgrade() : mLevel(NULL), mItemId(NULL) {}

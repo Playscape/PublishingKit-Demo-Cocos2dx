@@ -85,7 +85,7 @@ namespace soomla {
         
         if (upItemId == NULL) {
             CCSoomlaUtils::logDebug(TAG,
-                                    CCString::createWithFormat("You tried to fetch the current upgrade of %s but there's not upgrade to it.", itemId)->getCString());
+                                    __String::createWithFormat("You tried to fetch the current upgrade of %s but there's not upgrade to it.", itemId)->getCString());
             return NULL;
         }
         
@@ -151,7 +151,7 @@ namespace soomla {
     void CCVirtualGoodsStorage::postBalanceChangeEvent(CCVirtualItem *item, int balance, int amountAdded) {
         CCVirtualGood *good = dynamic_cast<CCVirtualGood *>(item);
         if (good == NULL) {
-            CCSoomlaUtils::logError(TAG, CCString::createWithFormat("Trying to post good balance changed with a non VirtualGood item %s", item->getId()->getCString())->getCString());
+            CCSoomlaUtils::logError(TAG, __String::createWithFormat("Trying to post good balance changed with a non VirtualGood item %s", item->getId()->getCString())->getCString());
             return;
         }
         
@@ -159,14 +159,14 @@ namespace soomla {
     }
     
     const char *CCVirtualGoodsStorage::keyGoodBalance(const char *itemId) {
-        return CCString::createWithFormat("good.%s.balance", itemId)->getCString();
+        return __String::createWithFormat("good.%s.balance", itemId)->getCString();
     }
     
     const char *CCVirtualGoodsStorage::keyGoodEquipped(const char *itemId) {
-        return CCString::createWithFormat("good.%s.equipped", itemId)->getCString();
+        return __String::createWithFormat("good.%s.equipped", itemId)->getCString();
     }
     
     const char *CCVirtualGoodsStorage::keyGoodUpgrade(const char *itemId) {
-        return CCString::createWithFormat("good.%s.currentUpgrade", itemId)->getCString();
+        return __String::createWithFormat("good.%s.currentUpgrade", itemId)->getCString();
     }
 }

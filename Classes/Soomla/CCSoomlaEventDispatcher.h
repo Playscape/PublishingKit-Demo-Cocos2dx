@@ -18,34 +18,19 @@
 #define __CCEventDispatcher_H_
 
 #include "cocos2d.h"
-#include "CCSoomlaMacros.h"
 
 namespace soomla {
 
-    typedef void (cocos2d::CCObject::*SEL_EventHandler)(cocos2d::CCDictionary*);
-
-    struct StructEventHandler {
-        StructEventHandler(cocos2d::CCObject *target, SEL_EventHandler selector)
-                : target(target), selector(selector) {
-        }
-
-        cocos2d::CCObject *target;
-        SEL_EventHandler selector;
-    };
-
-    class CCSoomlaEventDispatcher : public cocos2d::CCObject {
-    private:
-        std::map<std::string, StructEventHandler *> mEventHandlers;
+    class CCSoomlaEventDispatcher : public cocos2d::Ref {
+	private:
+        std::map<std::string, std::function<void(cocos2d::__Dictionary *)>> mEventHandlers;
     public:
         static CCSoomlaEventDispatcher *getInstance();
 
-        void ndkCallback(cocos2d::CCDictionary *parameters);
+        void ndkCallback(cocos2d::__Dictionary *parameters);
 
-        void registerEventHandler(const char *key, cocos2d::CCObject *target, SEL_EventHandler selector);
-
-        void unregisterEventHandler(const char *key);
-
-        virtual ~CCSoomlaEventDispatcher();
+		void registerEventHandler(const char *key, std::function<void(cocos2d::__Dictionary *)> handler);
+		void unregisterEventHandler(const char *key);
     };
 };
 

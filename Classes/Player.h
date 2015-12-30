@@ -14,20 +14,20 @@
 
 #include "cocos2d.h"
 
-class Player : public cocos2d::CCSprite
+class Player : public cocos2d::Sprite
 {
 protected:
-    
+
 public:
     // Method 'init' in cocos2d-x returns bool, instead of 'id' in cocos2d-iphone (an object pointer)
     virtual bool init();
     bool isEnemy;
-    
+
     /** sets the isEneny value */
     inline void setIsEnemy(bool bValue) { isEnemy = bValue; }
     /** get the isEneny value */
     inline bool getIsEnemy(void) { return isEnemy; }
-    
+
     // preprocessor macro for "static create()" constructor ( node() deprecated )
     CREATE_FUNC(Player);
 };

@@ -29,11 +29,11 @@ namespace soomla {
     
     void CCNativeStoreInfo::setStoreAssets(CCStoreAssets *storeAssets) {
         CCSoomlaUtils::logDebug(TAG, "pushing CCStoreAssets to StoreInfo on native side");
-        CCDictionary *storeAssetsObj = storeAssetsToDictionary(storeAssets);
+        __Dictionary *storeAssetsObj = storeAssetsToDictionary(storeAssets);
         
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCStoreAssets::init"), "method");
-        params->setObject(CCInteger::create(storeAssets->getVersion()), "version");
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCStoreAssets::init"), "method");
+        params->setObject(__Integer::create(storeAssets->getVersion()), "version");
         params->setObject(storeAssetsObj, "storeAssets");
         CCNdkBridge::callNative (params, NULL);
         
@@ -43,8 +43,8 @@ namespace soomla {
     void CCNativeStoreInfo::save() {
         CCStoreInfo::save();
         
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCStoreInfo::loadFromDB"), "method");
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCStoreInfo::loadFromDB"), "method");
         CCNdkBridge::callNative (params, NULL);
     }
 }

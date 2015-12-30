@@ -1,6 +1,3 @@
-//
-// Created by Fedor Shubin on 1/22/14.
-//
 
 
 #ifndef __JSBinding_H_
@@ -13,11 +10,11 @@
 
 // Define a namespace to manage your code and make your code clearly
 namespace Soomla {
-    class JSBinding: public cocos2d::CCObject
+    class JSBinding: public cocos2d::Ref
     {
     public:
         static void callNative(const char *params, std::string &result);
-        static void ndkCallback(cocos2d::CCDictionary *params);
+        static void callCallback(cocos2d::__Dictionary *params);
     };
 }
 

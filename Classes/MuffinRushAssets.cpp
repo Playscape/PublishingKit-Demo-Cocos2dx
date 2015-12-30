@@ -30,21 +30,21 @@ MuffinRushAssets *MuffinRushAssets::create() {
 bool MuffinRushAssets::init() {
     /** Virtual Currencies **/
     CCVirtualCurrency *muffinCurrency = CCVirtualCurrency::create(
-            CCString::create("Muffins"),
-            CCString::create(""),
-            CCString::create(MUFFIN_CURRENCY_ITEM_ID)
+            String::create("Muffins"),
+            String::create(""),
+            String::create(MUFFIN_CURRENCY_ITEM_ID)
     );
 
 
     /** Virtual Currency Packs **/
 
     CCVirtualCurrencyPack *samuraiShield = CCVirtualCurrencyPack::create(
-            CCString::create("Samurai Shield"),                                   // name
-            CCString::create("Test refund of an item"),                       // description
-            CCString::create("samurai_shield"),                                   // item id
-            CCInteger::create(10),                                              // number of currencies in the pack
-            CCString::create(MUFFIN_CURRENCY_ITEM_ID),                        // the currency associated with this pack
-            CCPurchaseWithMarket::create(CCString::create("samurai_shield"), CCDouble::create(0.99))
+            String::create("Samurai Shield"),                                   // name
+            String::create("Test refund of an item"),                       // description
+            String::create("samurai_shield"),                                   // item id
+            Integer::create(10),                                              // number of currencies in the pack
+            String::create(MUFFIN_CURRENCY_ITEM_ID),                        // the currency associated with this pack
+            CCPurchaseWithMarket::create(String::create("samurai_shield"), Double::create(0.99))
     );
 
     CCVirtualCurrencyPack *ninjaStars = CCVirtualCurrencyPack::create(
@@ -53,7 +53,7 @@ bool MuffinRushAssets::init() {
             CCString::create("ninja_stars"),                                   // item id
             CCInteger::create(10),                                              // number of currencies in the pack
             CCString::create(MUFFIN_CURRENCY_ITEM_ID),                        // the currency associated with this pack
-            CCPurchaseWithMarket::create(CCString::create("ninja_stars"), CCDouble::create(0.99))
+            CCPurchaseWithMarket::create(String::create("ninja_stars"), Double::create(0.99))
     );
 
     CCVirtualCurrencyPack *ninjaSword = CCVirtualCurrencyPack::create(
@@ -62,7 +62,7 @@ bool MuffinRushAssets::init() {
             CCString::create("ninjs_sword"),                                   // item id
             CCInteger::create(1),                                               // number of currencies in the pack
             CCString::create(MUFFIN_CURRENCY_ITEM_ID),                        // the currency associated with this pack
-            CCPurchaseWithMarket::create(CCString::create("ninjs_sword"), CCDouble::create(0.99))
+            CCPurchaseWithMarket::create(String::create("ninjs_sword"), Double::create(0.99))
     );
 
     CCVirtualCurrencyPack *shougunKatana = CCVirtualCurrencyPack::create(
@@ -71,7 +71,7 @@ bool MuffinRushAssets::init() {
             CCString::create("shogun_katana"),                                   // item id
             CCInteger::create(50),                                              // number of currencies in the pack
             CCString::create(MUFFIN_CURRENCY_ITEM_ID),                        // the currency associated with this pack
-            CCPurchaseWithMarket::create(CCString::create("shogun_katana"), CCDouble::create(1.99))
+            CCPurchaseWithMarket::create(String::create("shogun_katana"), Double::create(1.99))
     );
 
     /** Google MANAGED Items **/
@@ -81,15 +81,15 @@ bool MuffinRushAssets::init() {
             CCString::create("No More Ads!"),
             CCString::create("no_ads"),
             CCPurchaseWithMarket::createWithMarketItem(CCMarketItem::create(
-                    CCString::create(NO_ADDS_LTVG_PRODUCT_ID),
-                    CCInteger::create(CCMarketItem::NONCONSUMABLE), CCDouble::create(1.99))
+                    String::create(NO_ADDS_LTVG_PRODUCT_ID),
+                    Double::create(1.99))
             )
     );
 
-    mCurrencies = CCArray::create(muffinCurrency, NULL);
+    mCurrencies = __Array::create(muffinCurrency, NULL);
     mCurrencies->retain();
 
-    mCurrencyPacks = CCArray::create(samuraiShield, ninjaStars, shougunKatana, ninjaSword, NULL);
+    mCurrencyPacks = __Array::create(samuraiShield, ninjaStars, shougunKatana, ninjaSword, NULL);
     mCurrencyPacks->retain();
 
     return true;
@@ -105,18 +105,18 @@ int MuffinRushAssets::getVersion() {
     return 2;
 }
 
-cocos2d::CCArray *MuffinRushAssets::getCurrencies() {
+cocos2d::__Array *MuffinRushAssets::getCurrencies() {
     return mCurrencies;
 }
 
-cocos2d::CCArray *MuffinRushAssets::getGoods() {
+cocos2d::__Array *MuffinRushAssets::getGoods() {
     return NULL;
 }
 
-cocos2d::CCArray *MuffinRushAssets::getCurrencyPacks() {
+cocos2d::__Array *MuffinRushAssets::getCurrencyPacks() {
     return mCurrencyPacks;
 }
 
-cocos2d::CCArray *MuffinRushAssets::getCategories() {
+cocos2d::__Array *MuffinRushAssets::getCategories() {
     return mCategories;
 }

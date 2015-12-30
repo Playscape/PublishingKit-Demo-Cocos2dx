@@ -28,10 +28,10 @@ namespace soomla {
     const char *CCNativeKeyValueStorage::getValue(const char *key) const {
         CCError *error = NULL;
         
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeKeyValueStorage::getValue"), "method");
-        params->setObject(CCString::create(key), "key");
-        CCDictionary *retParams = (CCDictionary *) CCNdkBridge::callNative (params, &error);
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeKeyValueStorage::getValue"), "method");
+        params->setObject(__String::create(key), "key");
+        __Dictionary *retParams = (__Dictionary *) CCNdkBridge::callNative (params, &error);
         
         if (error) {
             CCSoomlaUtils::logException(TAG, error);
@@ -43,7 +43,7 @@ namespace soomla {
             return NULL;
         }
         
-        CCString *retValue = (CCString *) retParams->objectForKey("return");
+        __String *retValue = (__String *) retParams->objectForKey("return");
         if (!retValue) {
             return NULL;
         }
@@ -54,10 +54,10 @@ namespace soomla {
     void CCNativeKeyValueStorage::setValue(const char *key, const char *val) {
         CCError *error = NULL;
         
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeKeyValueStorage::setValue"), "method");
-        params->setObject(CCString::create(key), "key");
-        params->setObject(CCString::create(val), "val");
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeKeyValueStorage::setValue"), "method");
+        params->setObject(__String::create(key), "key");
+        params->setObject(__String::create(val), "val");
         CCNdkBridge::callNative (params, &error);
         
         if (error) {
@@ -69,9 +69,9 @@ namespace soomla {
     void CCNativeKeyValueStorage::deleteKeyValue(const char *key) {
         CCError *error = NULL;
         
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeKeyValueStorage::deleteKeyValue"), "method");
-        params->setObject(CCString::create(key), "key");
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeKeyValueStorage::deleteKeyValue"), "method");
+        params->setObject(__String::create(key), "key");
         CCNdkBridge::callNative (params, &error);
         
         if (error) {
@@ -83,8 +83,8 @@ namespace soomla {
     void CCNativeKeyValueStorage::purge() {
         CCError *error = NULL;
         
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeKeyValueStorage::purge"), "method");
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeKeyValueStorage::purge"), "method");
         CCNdkBridge::callNative (params, &error);
         
         if (error) {

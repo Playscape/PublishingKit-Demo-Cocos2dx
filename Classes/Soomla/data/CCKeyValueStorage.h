@@ -30,7 +30,7 @@ namespace soomla {
      various capabilities is kept in a native storage on the user's device.
      This class provides a way to access the raw information and manipulate it.
      */
-    class CCKeyValueStorage : cocos2d::CCObject {
+    class CCKeyValueStorage : cocos2d::Ref {
     public:
         /**
          Retrieves the singleton instance of the storage

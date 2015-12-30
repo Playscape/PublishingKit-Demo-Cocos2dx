@@ -14,7 +14,7 @@
  limitations under the License.
  */
 
-#include "support/user_default/CCUserDefault.h"
+#include "base/CCUserDefault.h"
 
 #include "CCBridgelessKeyValueStorage.h"
 
@@ -25,7 +25,7 @@ namespace soomla {
     #define KEY_VALUE_STORAGE_KEY "soomla.kvs.keys"
     
     CCBridgelessKeyValueStorage::CCBridgelessKeyValueStorage() {
-        mStoredKeys = CCSet::create();
+        mStoredKeys = __Set::create();
         mStoredKeys->retain();
         
         loadStoredKeys();
@@ -33,50 +33,50 @@ namespace soomla {
     
     const char *CCBridgelessKeyValueStorage::getValue(const char *key) const {
         std::string defaultValue = "";
-        std::string result = CCUserDefault::sharedUserDefault()->getStringForKey(key, defaultValue);
+        std::string result = UserDefault::getInstance()->getStringForKey(key, defaultValue);
         if (result == defaultValue) {
             return NULL;
         }
         
         // Using this for pooling facilities, so c_str won't go away when returned
-        CCString *returnedValue = CCString::create(result);
+        __String *returnedValue = __String::create(result);
         return returnedValue->getCString();
     }
     
     void CCBridgelessKeyValueStorage::setValue(const char *key, const char *val) {
-        CCUserDefault::sharedUserDefault()->setStringForKey(key, val);
-        CCUserDefault::sharedUserDefault()->flush();
+        UserDefault::getInstance()->setStringForKey(key, val);
+        UserDefault::getInstance()->flush();
         
         addStoredKeys(key);
         saveStoredKeys();
     }
     
     void CCBridgelessKeyValueStorage::deleteKeyValue(const char *key) {
-        CCUserDefault::sharedUserDefault()->setStringForKey(key, "");
-        CCUserDefault::sharedUserDefault()->flush();
+        UserDefault::getInstance()->setStringForKey(key, "");
+        UserDefault::getInstance()->flush();
         
         removeStoredKeys(key);
         saveStoredKeys();
     }
     
     void CCBridgelessKeyValueStorage::purge() {
-        for(CCSetIterator i = mStoredKeys->begin(); i != mStoredKeys->end(); i++) {
+        for(__SetIterator i = mStoredKeys->begin(); i != mStoredKeys->end(); i++) {
             if (!(*i)) {
                 break;
             }
             
-            CCString *key = dynamic_cast<CCString *>(*i);
+            __String *key = dynamic_cast<__String *>(*i);
             deleteKeyValue(key->getCString());
         }
         
         mStoredKeys->removeAllObjects();
         
-        CCUserDefault::sharedUserDefault()->setStringForKey(KEY_VALUE_STORAGE_KEY, "");
-        CCUserDefault::sharedUserDefault()->flush();
+        UserDefault::getInstance()->setStringForKey(KEY_VALUE_STORAGE_KEY, "");
+        UserDefault::getInstance()->flush();
     }
     
     void CCBridgelessKeyValueStorage::addStoredKeys(const char *key) {
-        CCString *wrapKey = CCString::create(key);
+        __String *wrapKey = __String::create(key);
         
         if (mStoredKeys->containsObject(wrapKey)) {
             return;
@@ -86,28 +86,28 @@ namespace soomla {
     }
     
     void CCBridgelessKeyValueStorage::removeStoredKeys(const char *key) {
-        CCString *wrapKey = CCString::create(key);
+        __String *wrapKey = __String::create(key);
         
         mStoredKeys->removeObject(wrapKey);
     }
     
     void CCBridgelessKeyValueStorage::saveStoredKeys() {
         std::string joinedKeys = "";
-        for(CCSetIterator i = mStoredKeys->begin(); i != mStoredKeys->end(); i++) {
+        for(__SetIterator i = mStoredKeys->begin(); i != mStoredKeys->end(); i++) {
             if (!(*i)) {
                 break;
             }
             
-            CCString *key = dynamic_cast<CCString *>(*i);
+            __String *key = dynamic_cast<__String *>(*i);
             joinedKeys.append("#").append(key->getCString());
         }
         
-        CCUserDefault::sharedUserDefault()->setStringForKey(KEY_VALUE_STORAGE_KEY, joinedKeys);
-        CCUserDefault::sharedUserDefault()->flush();
+        UserDefault::getInstance()->setStringForKey(KEY_VALUE_STORAGE_KEY, joinedKeys);
+        UserDefault::getInstance()->flush();
     }
     
     void CCBridgelessKeyValueStorage::loadStoredKeys() {
-        std::string joinedKeys = CCUserDefault::sharedUserDefault()->getStringForKey(KEY_VALUE_STORAGE_KEY, "");
+        std::string joinedKeys = UserDefault::getInstance()->getStringForKey(KEY_VALUE_STORAGE_KEY, "");
         
         std::stringstream ss(joinedKeys);
         std::string item;

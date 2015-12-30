@@ -121,6 +121,11 @@ namespace AppWarp
 				if(_updatelistener != NULL)
 					_updatelistener->onSendUpdateDone(res->resultCode);
 			}
+            else if(res->requestType == RequestType::private_update)
+            {
+                if(_updatelistener != NULL)
+                    _updatelistener->onSendPrivateUpdateDone(res->resultCode);
+            }
             else if(res->requestType == RequestType::lock_properties)
 			{
 				if(_roomlistener != NULL)
@@ -137,6 +142,8 @@ namespace AppWarp
                 _turnlistener->onStopGameDone(res->resultCode);
             else if(res->requestType == RequestType::move && _turnlistener!=NULL)
                 _turnlistener->onSendMoveDone(res->resultCode);
+            else if(res->requestType == RequestType::set_next_turn && _turnlistener!=NULL)
+                _turnlistener->onSetNextTurnDone(res->resultCode);
             else if(res->requestType == RequestType::get_move_history && _turnlistener!=NULL)
             {
                 vector<move> history;
@@ -224,6 +231,27 @@ namespace AppWarp
                     
                     delete[] update;
                 }
+                else if(notification->updateType == UpdateType::private_update)
+                {
+                    byte *msg = new byte[notification->payLoadSize];
+                    for(int i=0; i<notification->payLoadSize; ++i)
+                        msg[i] = notification->payLoad[i];
+                    
+                    byte fromUserLen = msg[0];
+                    char *fromUser = new char[fromUserLen+1];
+                    int updateLen = notification->payLoadSize - fromUserLen - 1;
+                    byte *update = new byte[updateLen];
+                    memcpy(fromUser, msg+1, fromUserLen);
+					fromUser[fromUserLen] = '\0';
+                    memcpy(update, msg+fromUserLen+1, updateLen);
+                    
+                    _notificationListener->onPrivateUpdateReceived(std::string(fromUser), update, updateLen, false);
+                    
+                    delete[] fromUser;
+                    delete[] msg;
+                    delete[] update;
+                    
+                }
                 else if(notification->updateType == UpdateType::room_created)
                 {
                     room rm;
@@ -267,6 +295,11 @@ namespace AppWarp
                 {
                     move event = buildMoveEvent(notification->payLoad, notification->payLoadSize);
                     _notificationListener->onMoveCompleted(event);
+                }
+                else if(notification->updateType == UpdateType::next_turn_requested && _notificationListener!=NULL)
+                {
+                    std::string lastTurn = getJSONString("lastTurn",notification->payLoad,notification->payLoadSize);
+                    _notificationListener->onNextTurnRequest(lastTurn);
                 }
                 else if(notification->updateType == UpdateType::user_paused)
                 {
@@ -333,6 +366,7 @@ namespace AppWarp
 
 		void Client::handleAuthResponse(response *res)
 		{
+            int reasonCode = 0;
 			if(res->resultCode == ResultCode::success)
 			{
 				char *str = new char[res->payLoadSize];
@@ -353,6 +387,14 @@ namespace AppWarp
 			}
             else
             {
+                if(res->resultCode == ResultCode::auth_error && res->payLoadType == PayLoadType::json)
+                {
+                    char *str = new char[res->payLoadSize];
+                    for(int i=0; i<res->payLoadSize; ++i)
+                        str[i] = (char) res->payLoad[i];
+                    reasonCode = getJSONInt("reasonCode", res->payLoad, res->payLoadSize);
+                    delete[] str;
+                }
                 keepAliveWatchDog = false;
                 unscheduleKeepAlive();
                 setState(ConnectionState::disconnected);
@@ -360,7 +402,7 @@ namespace AppWarp
                 _socket = NULL;
             }
 			if(_connectionReqListener != NULL)
-				_connectionReqListener->onConnectDone(res->resultCode);
+				_connectionReqListener->onConnectDone(res->resultCode, reasonCode);
 		}
 
 		void Client::handleLobbyResponse(int reqType,response *res)

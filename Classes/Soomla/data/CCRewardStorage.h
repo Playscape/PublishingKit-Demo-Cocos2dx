@@ -22,7 +22,7 @@
 #include "CCSequenceReward.h"
 
 namespace soomla {
-    class CCRewardStorage: public cocos2d::CCObject {
+    class CCRewardStorage: public cocos2d::Ref {
     public:
         static CCRewardStorage *getInstance();
 

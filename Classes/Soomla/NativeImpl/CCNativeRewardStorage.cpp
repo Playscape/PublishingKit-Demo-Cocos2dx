@@ -28,11 +28,11 @@ namespace soomla {
     void CCNativeRewardStorage::setRewardStatus(CCReward *reward, bool give, bool notify) {
         CCError *error = NULL;
         
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeRewardStorage::setRewardStatus"), "method");
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeRewardStorage::setRewardStatus"), "method");
         params->setObject(reward->getId(), "reward");
-        params->setObject(CCBool::create(give), "give");
-        params->setObject(CCBool::create(notify), "notify");
+        params->setObject(__Bool::create(give), "give");
+        params->setObject(__Bool::create(notify), "notify");
         CCNdkBridge::callNative (params, &error);
         
         if (error) {
@@ -44,10 +44,10 @@ namespace soomla {
     int CCNativeRewardStorage::getTimesGiven(CCReward *reward) {
         CCError *error = NULL;
         
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeRewardStorage::getTimesGiven"), "method");
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeRewardStorage::getTimesGiven"), "method");
         params->setObject(reward->getId(), "reward");
-        CCDictionary *retParams = (CCDictionary *) CCNdkBridge::callNative (params, &error);
+        __Dictionary *retParams = (__Dictionary *) CCNdkBridge::callNative (params, &error);
         
         if (error) {
             CCSoomlaUtils::logException(TAG, error);
@@ -59,7 +59,7 @@ namespace soomla {
             return -1;
         }
         
-        CCInteger *retValue = (CCInteger *) retParams->objectForKey("return");
+        __Integer *retValue = (__Integer *) retParams->objectForKey("return");
         if (!retValue) {
             return -1;
         }
@@ -70,10 +70,10 @@ namespace soomla {
     int CCNativeRewardStorage::getLastSeqIdxGiven(CCSequenceReward *sequenceReward) {
         CCError *error = NULL;
         
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeRewardStorage::getLastSeqIdxGiven"), "method");
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeRewardStorage::getLastSeqIdxGiven"), "method");
         params->setObject(sequenceReward->getId(), "reward");
-        CCDictionary *retParams = (CCDictionary *) CCNdkBridge::callNative (params, &error);
+        __Dictionary *retParams = (__Dictionary *) CCNdkBridge::callNative (params, &error);
         
         if (error) {
             CCSoomlaUtils::logException(TAG, error);
@@ -85,7 +85,7 @@ namespace soomla {
             return -1;
         }
         
-        CCInteger *retValue = (CCInteger *) retParams->objectForKey("return");
+        __Integer *retValue = (__Integer *) retParams->objectForKey("return");
         if (!retValue) {
             return -1;
         }
@@ -96,10 +96,10 @@ namespace soomla {
     void CCNativeRewardStorage::setLastSeqIdxGiven(CCSequenceReward *sequenceReward, unsigned int idx) {
         CCError *error = NULL;
         
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeRewardStorage::setLastSeqIdxGiven"), "method");
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeRewardStorage::setLastSeqIdxGiven"), "method");
         params->setObject(sequenceReward->getId(), "reward");
-        params->setObject(CCInteger::create(idx), "idx");
+        params->setObject(__Integer::create(idx), "idx");
         CCNdkBridge::callNative (params, &error);
         
         if (error) {

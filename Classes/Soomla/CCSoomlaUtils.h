@@ -52,7 +52,7 @@ namespace soomla {
 		/**
          Prints an exception message.
          @param tag The name of the class whose instance called this function.
-         @param error A CCError from which to extract the message.
+         @param error A CCSoomlaError from which to extract the message.
 		*/
         static void logException(const char *tag, CCError *error);
         
@@ -61,7 +61,7 @@ namespace soomla {
          @param str The string to check
          @return true if the string is null or empty, false otherwise
          */
-        static bool isNullOrEmpty(cocos2d::CCString *str);
+        static bool isNullOrEmpty(cocos2d::__String *str);
     };
 };
 

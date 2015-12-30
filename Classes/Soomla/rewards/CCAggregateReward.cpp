@@ -17,9 +17,9 @@
 #include "CCAggregateReward.h"
 
 bool soomla::CCAggregateReward::init(
-        cocos2d::CCString *id,
-        cocos2d::CCString *name,
-        cocos2d::CCArray *rewards,
+        cocos2d::__String *id,
+        cocos2d::__String *name,
+        cocos2d::__Array *rewards,
         CCSchedule *schedule) {
 
     bool result = CCReward::init(id, name, schedule);
@@ -32,21 +32,21 @@ bool soomla::CCAggregateReward::init(
     }
 }
 
-bool soomla::CCAggregateReward::initWithDictionary(cocos2d::CCDictionary *dict) {
+bool soomla::CCAggregateReward::initWithDictionary(cocos2d::__Dictionary *dict) {
     CCReward::initWithDictionary(dict);
 
-    cocos2d::CCArray *dictArray = dynamic_cast<cocos2d::CCArray *>(dict->objectForKey(CCCoreConsts::JSON_REWARDS));
+    cocos2d::__Array *dictArray = dynamic_cast<cocos2d::__Array *>(dict->objectForKey(CCCoreConsts::JSON_REWARDS));
     CC_ASSERT(dictArray);
     setRewards(this->getDomainsFromDictArray(dictArray));
 
     return true;
 }
 
-cocos2d::CCDictionary *soomla::CCAggregateReward::toDictionary() {
-    cocos2d::CCDictionary *dict = CCReward::toDictionary();
+cocos2d::__Dictionary *soomla::CCAggregateReward::toDictionary() {
+    cocos2d::__Dictionary *dict = CCReward::toDictionary();
 
-    cocos2d::CCArray *dictArray = this->getDictArrayFromDomains(this->getDictArrayFromDomains(getRewards()));
-    if (dictArray != NULL) {
+    cocos2d::__Array *dictArray = this->getDictArrayFromDomains(this->getDictArrayFromDomains(getRewards()));
+    if (dictArray != nullptr) {
         dict->setObject(dictArray, CCCoreConsts::JSON_REWARDS);
     }
 

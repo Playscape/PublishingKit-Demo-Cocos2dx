@@ -39,17 +39,17 @@ namespace soomla {
         const char *itemId = item->getId()->getCString();
         
         CCSoomlaUtils::logDebug(TAG,
-                                CCString::createWithFormat("SOOMLA/COCOS2DX Calling getBalance with: %s", itemId)->getCString());
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeVirtualCurrencyStorage::getBalance"), "method");
-        params->setObject(CCString::create(itemId), "itemId");
-        CCDictionary *retParams = (CCDictionary *) CCNdkBridge::callNative (params, error);
+                                __String::createWithFormat("SOOMLA/COCOS2DX Calling getBalance with: %s", itemId)->getCString());
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeVirtualCurrencyStorage::getBalance"), "method");
+        params->setObject(__String::create(itemId), "itemId");
+        __Dictionary *retParams = (__Dictionary *) CCNdkBridge::callNative (params, error);
         
         if (retParams == NULL) {
             return 0;
         }
         
-        CCInteger *retValue = (CCInteger *) retParams->objectForKey("return");
+        __Integer *retValue = (__Integer *) retParams->objectForKey("return");
         if (retValue) {
             return retValue->getValue();
         } else {
@@ -61,19 +61,19 @@ namespace soomla {
         const char *itemId = item->getId()->getCString();
         
         CCSoomlaUtils::logDebug(TAG,
-                                CCString::createWithFormat("SOOMLA/COCOS2DX Calling setBalance with: %s", itemId)->getCString());
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeVirtualCurrencyStorage::setBalance"), "method");
-        params->setObject(CCString::create(itemId), "itemId");
-        params->setObject(CCInteger::create(balance), "balance");
-        params->setObject(CCBool::create(notify), "notify");
-        CCDictionary *retParams = (CCDictionary *) CCNdkBridge::callNative (params, error);
+                                __String::createWithFormat("SOOMLA/COCOS2DX Calling setBalance with: %s", itemId)->getCString());
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeVirtualCurrencyStorage::setBalance"), "method");
+        params->setObject(__String::create(itemId), "itemId");
+        params->setObject(__Integer::create(balance), "balance");
+        params->setObject(__Bool::create(notify), "notify");
+        __Dictionary *retParams = (__Dictionary *) CCNdkBridge::callNative (params, error);
         
         if (retParams == NULL) {
             return 0;
         }
         
-        CCInteger *retValue = (CCInteger *) retParams->objectForKey("return");
+        __Integer *retValue = (__Integer *) retParams->objectForKey("return");
         if (retValue) {
             return retValue->getValue();
         } else {
@@ -85,19 +85,19 @@ namespace soomla {
         const char *itemId = item->getId()->getCString();
         
         CCSoomlaUtils::logDebug(TAG,
-                                CCString::createWithFormat("SOOMLA/COCOS2DX Calling add with: %s", itemId)->getCString());
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeVirtualCurrencyStorage::add"), "method");
-        params->setObject(CCString::create(itemId), "itemId");
-        params->setObject(CCInteger::create(amount), "amount");
-        params->setObject(CCBool::create(notify), "notify");
-        CCDictionary *retParams = (CCDictionary *) CCNdkBridge::callNative (params, error);
+                                __String::createWithFormat("SOOMLA/COCOS2DX Calling add with: %s", itemId)->getCString());
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeVirtualCurrencyStorage::add"), "method");
+        params->setObject(__String::create(itemId), "itemId");
+        params->setObject(__Integer::create(amount), "amount");
+        params->setObject(__Bool::create(notify), "notify");
+        __Dictionary *retParams = (__Dictionary *) CCNdkBridge::callNative (params, error);
         
         if (retParams == NULL) {
             return 0;
         }
         
-        CCInteger *retValue = (CCInteger *) retParams->objectForKey("return");
+        __Integer *retValue = (__Integer *) retParams->objectForKey("return");
         if (retValue) {
             return retValue->getValue();
         } else {
@@ -109,19 +109,19 @@ namespace soomla {
         const char *itemId = item->getId()->getCString();
         
         CCSoomlaUtils::logDebug(TAG,
-                                CCString::createWithFormat("SOOMLA/COCOS2DX Calling remove with: %s", itemId)->getCString());
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeVirtualCurrencyStorage::remove"), "method");
-        params->setObject(CCString::create(itemId), "itemId");
-        params->setObject(CCInteger::create(amount), "amount");
-        params->setObject(CCBool::create(notify), "notify");
-        CCDictionary *retParams = (CCDictionary *) CCNdkBridge::callNative (params, error);
+                                __String::createWithFormat("SOOMLA/COCOS2DX Calling remove with: %s", itemId)->getCString());
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeVirtualCurrencyStorage::remove"), "method");
+        params->setObject(__String::create(itemId), "itemId");
+        params->setObject(__Integer::create(amount), "amount");
+        params->setObject(__Bool::create(notify), "notify");
+        __Dictionary *retParams = (__Dictionary *) CCNdkBridge::callNative (params, error);
         
         if (retParams == NULL) {
             return 0;
         }
         
-        CCInteger *retValue = (CCInteger *) retParams->objectForKey("return");
+        __Integer *retValue = (__Integer *) retParams->objectForKey("return");
         if (retValue) {
             return retValue->getValue();
         } else {

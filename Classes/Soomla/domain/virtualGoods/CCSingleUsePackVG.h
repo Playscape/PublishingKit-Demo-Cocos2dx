@@ -47,13 +47,13 @@ namespace soomla {
      CCVirtualItem
      */
     class CCSingleUsePackVG : public CCVirtualGood {
-        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::CCString *, mGoodItemId, GoodItemId, CCStoreConsts::JSON_VGP_GOOD_ITEM_ID);
-        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::CCInteger *, mGoodAmount, GoodAmount, CCStoreConsts::JSON_VGP_GOOD_AMOUNT);
+        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::__String *, mGoodItemId, GoodItemId, CCStoreConsts::JSON_VGP_GOOD_ITEM_ID);
+        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::__Integer *, mGoodAmount, GoodAmount, CCStoreConsts::JSON_VGP_GOOD_AMOUNT);
     public:
         CCSingleUsePackVG(): CCVirtualGood(), mGoodItemId(NULL), mGoodAmount(NULL) {};
-        static CCSingleUsePackVG *create(cocos2d::CCString* goodItemId, cocos2d::CCInteger* goodAmount,
-                cocos2d::CCString* name, cocos2d::CCString* description,
-                cocos2d::CCString* itemId, CCPurchaseType * purchaseType);
+        static CCSingleUsePackVG *create(cocos2d::__String* goodItemId, cocos2d::__Integer* goodAmount,
+                cocos2d::__String* name, cocos2d::__String* description,
+                cocos2d::__String* itemId, CCPurchaseType * purchaseType);
 
         /**
         Creates a `CCSingleUsePackVG` from a dictionary.
@@ -74,17 +74,17 @@ namespace soomla {
         @param purchaseType see parent.
         @return The Sinlge Use Pack good.
         */
-        bool init(cocos2d::CCString* goodItemId, cocos2d::CCInteger* goodAmount,
-				  cocos2d::CCString* name, cocos2d::CCString* description,
-				  cocos2d::CCString* itemId, CCPurchaseType * purchaseType);
+        bool init(cocos2d::__String* goodItemId, cocos2d::__Integer* goodAmount,
+				  cocos2d::__String* name, cocos2d::__String* description,
+				  cocos2d::__String* itemId, CCPurchaseType * purchaseType);
 
-        bool initWithDictionary(cocos2d::CCDictionary *dict);
+        bool initWithDictionary(cocos2d::__Dictionary *dict);
 
         /**
         Converts this `CCSingleUsePackVG` to a `CCDictionary`.
         @return `CCDictionary` representation of this `CCSingleUsePackVG`.
         */
-        cocos2d::CCDictionary *toDictionary();
+        cocos2d::__Dictionary *toDictionary();
 
         virtual ~CCSingleUsePackVG();
         

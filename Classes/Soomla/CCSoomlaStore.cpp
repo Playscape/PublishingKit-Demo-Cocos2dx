@@ -43,11 +43,11 @@ namespace soomla {
         return s_SharedSoomlaStore;
     }
     
-    void CCSoomlaStore::initialize(CCStoreAssets *storeAssets, cocos2d::CCDictionary *storeParams) {
+    void CCSoomlaStore::initialize(CCStoreAssets *storeAssets, cocos2d::__Dictionary *storeParams) {
         
         if (initialized) {
             const char *err = "SoomlaStore is already initialized. You can't initialize it twice!";
-            CCStoreEventDispatcher::getInstance()->onUnexpectedErrorInStore(CCString::create(err), true);
+            CCStoreEventDispatcher::getInstance()->onUnexpectedErrorInStore(__String::create(err), true);
             CCSoomlaUtils::logError(TAG, err);
             return;
         }
@@ -88,6 +88,7 @@ namespace soomla {
         item->give(1);
         
         // simulate onMarketPurchase event
-        CCStoreEventDispatcher::getInstance()->onMarketPurchase(item, CCString::create("fake_token_zyxw9876"), CCString::create(payload));
+        CCStoreEventDispatcher::getInstance()->onMarketPurchase(item, __String::create("fake_token_zyxw9876"), __String::create(payload),
+                                                                NULL, NULL, NULL);
     }
 }

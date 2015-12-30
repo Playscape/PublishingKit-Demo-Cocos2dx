@@ -23,35 +23,35 @@
 
 namespace soomla {
     class CCBadgeReward : public CCReward {
-        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::CCString *, mIconUrl, IconUrl, CCCoreConsts::JSON_ICON_URL);
+        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::__String *, mIconUrl, IconUrl, CCCoreConsts::JSON_ICON_URL);
     public:
         CCBadgeReward() : CCReward(), mIconUrl(NULL) {
         };
 
         static CCBadgeReward *create(
-                cocos2d::CCString *id,
-                cocos2d::CCString *name,
-                cocos2d::CCString *iconUrl = NULL);
+                cocos2d::__String *id,
+                cocos2d::__String *name,
+                cocos2d::__String *iconUrl = NULL);
 
         SL_CREATE_WITH_DICTIONARY(CCBadgeReward);
 
         virtual bool init(
-                cocos2d::CCString *id,
-                cocos2d::CCString *name,
-                cocos2d::CCString *iconUrl = NULL);
+                cocos2d::__String *id,
+                cocos2d::__String *name,
+                cocos2d::__String *iconUrl = NULL);
 
-        virtual bool initWithDictionary(cocos2d::CCDictionary *dict);
+        virtual bool initWithDictionary(cocos2d::__Dictionary *dict);
 
-        virtual cocos2d::CCDictionary *toDictionary();
+        virtual cocos2d::__Dictionary *toDictionary();
 
         virtual ~CCBadgeReward();
 
         virtual const char *getType() const;
 
     protected:
-        virtual bool takeInner();
+        virtual bool takeInner() override;
 
-        virtual bool giveInner();
+        virtual bool giveInner() override;
     };
 }
 

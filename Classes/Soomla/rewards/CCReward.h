@@ -31,11 +31,11 @@ namespace soomla {
         CCReward() : CCSoomlaEntity(), mSchedule(NULL) {
         };
 
-        virtual bool init(cocos2d::CCString *id, cocos2d::CCString *name, CCSchedule *schedule = NULL);
+        virtual bool init(cocos2d::__String *id, cocos2d::__String *name, CCSchedule *schedule = NULL);
 
-        virtual bool initWithDictionary(cocos2d::CCDictionary *dict);
+        virtual bool initWithDictionary(cocos2d::__Dictionary *dict);
 
-        virtual cocos2d::CCDictionary *toDictionary();
+        virtual cocos2d::__Dictionary *toDictionary();
 
         virtual ~CCReward();
 
@@ -45,14 +45,14 @@ namespace soomla {
         bool isOwned();
         
         static void addReward(CCReward *reward);
-        static CCReward *getReward(cocos2d::CCString *id);
+        static CCReward *getReward(cocos2d::__String *id);
 
     protected:
         virtual bool takeInner() = 0;
         virtual bool giveInner() = 0;
         
     private:
-        static cocos2d::CCDictionary *rewardsMap;
+        static cocos2d::__Dictionary *rewardsMap;
     };
 }
 

@@ -20,7 +20,6 @@
 #define __CCPurchaseWithVirtualItem_H_
 
 #include "CCPurchaseType.h"
-#include "CCSoomlaStore.h"
 
 namespace soomla {
 	/** 
@@ -36,8 +35,8 @@ namespace soomla {
      amount.
 	*/
     class CCPurchaseWithVirtualItem : public CCPurchaseType {
-        CC_SYNTHESIZE_RETAIN(cocos2d::CCString *, mItemId, ItemId);
-        CC_SYNTHESIZE_RETAIN(cocos2d::CCInteger *, mAmount, Amount);
+        CC_SYNTHESIZE_RETAIN(cocos2d::__String *, mItemId, ItemId);
+        CC_SYNTHESIZE_RETAIN(cocos2d::__Integer *, mAmount, Amount);
     public:
         CCPurchaseWithVirtualItem(): mItemId(NULL), mAmount(NULL) {}
 
@@ -49,9 +48,9 @@ namespace soomla {
                 make the purchase.
          @return The purchase with virtual item type.
 		*/
-        static CCPurchaseWithVirtualItem * create(cocos2d::CCString *itemId, cocos2d::CCInteger *amount);
+        static CCPurchaseWithVirtualItem * create(cocos2d::__String *itemId, cocos2d::__Integer *amount);
 
-        virtual bool init(cocos2d::CCString *itemId, cocos2d::CCInteger *amount);
+        virtual bool init(cocos2d::__String *itemId, cocos2d::__Integer *amount);
         
         /**
          See parent

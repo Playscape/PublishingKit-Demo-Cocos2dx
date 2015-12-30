@@ -31,11 +31,11 @@ namespace soomla {
      abstract class describes basic features of the actual implementations of
      `CCPurchaseType`.
 	 */
-    class CCPurchaseType : public cocos2d::CCObject {
+    class CCPurchaseType : public cocos2d::Ref {
         // 26.11.14 - this is done through ID instead of actual object, since
         // macro needs an object inheriting from `Ref`, which we cannot forward
         // declare. Including `CCPurchasableVirtualItem.h` causes circular dependency
-        CC_SYNTHESIZE_RETAIN(cocos2d::CCString *, mAssociatedItemId, AssociatedItemId);
+        CC_SYNTHESIZE_RETAIN(cocos2d::__String *, mAssociatedItemId, AssociatedItemId);
     public:
         CCPurchaseType() : mAssociatedItemId(NULL) {}
         

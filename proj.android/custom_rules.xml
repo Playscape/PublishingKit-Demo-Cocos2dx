@@ -493,11 +493,13 @@
             <property name="classpath.aspects.aspectjrt" location="../../PlayscapePubKitCocos2D-X/build/tools/aspectsj/aspectjrt.jar"/>
             <property name="classpath.playservices.project" location="${sdk.dir}/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-servies.jar"/>
             <property name="patcher.aspectpath" location="../../PlayscapePubKitCocos2D-X/build/tools/playscape_lifecycle.jar"/>
+            <property name="patcher.fb.aspectpath.v3" location="../../PlayscapePubKitCocos2D-X/build/tools/playscape_facebook_v3.jar"/>
+            <property name="patcher.fb.aspectpath.v4" location="../../PlayscapePubKitCocos2D-X/build/tools/playscape_facebook_v4.jar"/>
 
             <exec executable="java">
                 <arg value="-classpath"/>
                 <arg value="${classpath.aspects.aspectjtools}${path.separator}${classpath.aspects.aspectjrt}${path.separator}${project.target.android.jar}"/>
-                <arg value="-Xmx8g"/>
+                <arg value="-Xmx2g"/>
                 <arg value="org.aspectj.tools.ajc.Main"/>
                 <arg value="-source"/>
                 <arg value="1.5"/>
@@ -505,9 +507,9 @@
                 <arg value="-inpath"/>
                 <arg value="${out.classes.absolute.dir}"/>
                 <arg value="-injars"/>
-                <arg value="${expanded.main.class.path}${path.separator}${patcher.aspectpath}"/>
+                <arg value="${expanded.main.class.path}${path.separator}${patcher.aspectpath}${path.separator}${patcher.fb.aspectpath.v3}${path.separator}${patcher.fb.aspectpath.v4}"/>
                 <arg value="-aspectpath"/>
-                <arg value="${patcher.aspectpath}"/>
+                <arg value="${patcher.aspectpath}${path.separator}${patcher.fb.aspectpath.v3}${path.separator}${patcher.fb.aspectpath.v4}"/>
                 <arg value="-outjar"/>
                 <arg value="${out.jar.file}"/>
             </exec>

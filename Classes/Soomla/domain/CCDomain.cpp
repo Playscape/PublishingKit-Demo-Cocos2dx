@@ -18,15 +18,15 @@
 #include "CCDomainHelper.h"
 #include "CCCoreConsts.h"
 
-cocos2d::CCArray *soomla::CCDomain::getDomainsFromDictArray(cocos2d::CCArray *dictArray) {
+cocos2d::__Array *soomla::CCDomain::getDomainsFromDictArray(cocos2d::__Array *dictArray) {
     return CCDomainHelper::getInstance()->getDomainsFromDictArray(dictArray);
 }
 
-cocos2d::CCArray *soomla::CCDomain::getDictArrayFromDomains(cocos2d::CCArray *domainArray) {
+cocos2d::__Array *soomla::CCDomain::getDictArrayFromDomains(cocos2d::__Array *domainArray) {
     return CCDomainHelper::getInstance()->getDictArrayFromDomains(domainArray);
 }
 
-cocos2d::CCDictionary *soomla::CCDomain::putTypeData(cocos2d::CCDictionary *dict, const char *type) {
-    dict->setObject(cocos2d::CCString::create(type), CCCoreConsts::JSON_JSON_TYPE);
+cocos2d::__Dictionary *soomla::CCDomain::putTypeData(cocos2d::__Dictionary *dict, const char *type) {
+    dict->setObject(cocos2d::__String::create(type), CCCoreConsts::JSON_JSON_TYPE);
     return dict;
 }

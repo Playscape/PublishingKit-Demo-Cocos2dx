@@ -43,8 +43,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     // we open the store.
     MuffinRushAssets *assets = MuffinRushAssets::create();
 
-    CCDictionary *storeParams = CCDictionary::create();
-    storeParams->setObject(CCString::create("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkSVxCNSbtt2D45fu1qUOTy2wmpiIT0gi8vc1NNiS0ooPbW8A7bNRSfpsIml4my8LB5e8Ta1jTAmTWh/azxj7It+r3VMb2OxIXBaZKQHqsMBgShYFFuRIooLa5Xs3d/yQdNogHo9flR3+pNhXJH5UEsRPKKneU+ebz/CqMGR59shYpTIZTPqlTPTLkeuFKvE7fmxBWVUI7HChp4+6CNWDOG1wMn1VWz82CDQ1m5eZepo9B1iZieijaUmjglTNw2drt+l6JQN99JBwoI1nQh8ni6f5ehcCadfoEkxflTN8ek6eD2dhME5Ll7GiwFDRORUBD5vmLRyNq4QThFBEzr6KewIDAQAB"), "androidPublicKey");
+    cocos2d::__Dictionary *storeParams = cocos2d::__Dictionary::create();
+    storeParams->setObject(String::create("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkSVxCNSbtt2D45fu1qUOTy2wmpiIT0gi8vc1NNiS0ooPbW8A7bNRSfpsIml4my8LB5e8Ta1jTAmTWh/azxj7It+r3VMb2OxIXBaZKQHqsMBgShYFFuRIooLa5Xs3d/yQdNogHo9flR3+pNhXJH5UEsRPKKneU+ebz/CqMGR59shYpTIZTPqlTPTLkeuFKvE7fmxBWVUI7HChp4+6CNWDOG1wMn1VWz82CDQ1m5eZepo9B1iZieijaUmjglTNw2drt+l6JQN99JBwoI1nQh8ni6f5ehcCadfoEkxflTN8ek6eD2dhME5Ll7GiwFDRORUBD5vmLRyNq4QThFBEzr6KewIDAQAB"), "androidPublicKey");
 //    storeParams->setObject(CCBool::create(true), "testPurchases");
 
     soomla::CCSoomlaStore::initialize(assets, storeParams);
@@ -56,9 +56,9 @@ bool AppDelegate::applicationDidFinishLaunching()
      * ** Of course, this is just for testing...           **
      */
 
-    CCArray *currencies =
+    __Array *currencies =
     soomla::CCStoreInfo::sharedStoreInfo()->getCurrencies();
-    CCObject *currencyObject;
+    Ref *currencyObject;
     CCARRAY_FOREACH(currencies, currencyObject) {
         soomla::CCVirtualCurrency *vc =
         dynamic_cast<soomla::CCVirtualCurrency *>(currencyObject);
@@ -85,8 +85,12 @@ bool AppDelegate::applicationDidFinishLaunching()
     PlayscapeX::onApplicationLaunched();
 
     // initialize director
-    CCDirector *pDirector = CCDirector::sharedDirector();
-    pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
+    auto *pDirector = Director::getInstance();
+    auto glview = pDirector->getOpenGLView();
+    if(!glview) {
+        glview = GLViewImpl::create("My Game");
+        pDirector->setOpenGLView(glview);
+    }
 
     // turn on display FPS
     pDirector->setDisplayStats(true);
@@ -95,7 +99,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    CCScene *pScene = HelloWorld::scene();
+    Scene *pScene = HelloWorld::scene();
 
     // run
     pDirector->runWithScene(pScene);
@@ -106,15 +110,15 @@ bool AppDelegate::applicationDidFinishLaunching()
 // This function will be called when the app is inactive. When comes a phone call,it's be invoked too
 void AppDelegate::applicationDidEnterBackground()
 {
-    CCDirector::sharedDirector()->stopAnimation();
-    SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
-    SimpleAudioEngine::sharedEngine()->pauseAllEffects();
+    Director::getInstance()->stopAnimation();
+    SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
+    SimpleAudioEngine::getInstance()->pauseAllEffects();
 }
 
 // this function will be called when the app is active again
 void AppDelegate::applicationWillEnterForeground()
 {
-    CCDirector::sharedDirector()->startAnimation();
-    SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
-    SimpleAudioEngine::sharedEngine()->resumeAllEffects();
+    Director::getInstance()->startAnimation();
+    SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+    SimpleAudioEngine::getInstance()->resumeAllEffects();
 }

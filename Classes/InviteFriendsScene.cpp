@@ -3,7 +3,7 @@
 #include "HelloWorldScene.h"
 #include "InGameMenuLayer.h"
 #include "playscape/Report.h"
-
+#include "ui/CocosGUI.h"
 #include <string>
 
 using namespace cocos2d;
@@ -19,30 +19,29 @@ bool InviteFriendsScene::init()
 {
     //////////////////////////////
     // 1. super init first
-    if ( !CCLayerColor::initWithColor(cocos2d::ccc4(255, 255, 255, 255)) )
+    if ( !LayerColor::initWithColor(cocos2d::Color4B(255, 255, 255, 255)) )
     {
         return false;
     }
 
     mInviteDialog = NULL;
 
-    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    Size winSize = Director::getInstance()->getWinSize();
 
     setTouchEnabled(true);
-    CCLabelTTF* label = CCLabelTTF::create("Play Game with Friends (Mock Social)", "Marker Felt", 22);
+    cocos2d::ui::Text* label = cocos2d::ui::Text::create("Play Game with Friends (Mock Social)", "Marker Felt", 22);
 
-    label->setPosition(ccp(winSize.width/2-label->getContentSize().width/2, winSize.height-label->getContentSize().height));
+    label->setPosition(Point(winSize.width/2-label->getContentSize().width/2, winSize.height-label->getContentSize().height));
 
     mPlaysWithMenu =
-		CCMenu::create(
-			CCMenuItemFont::create("Play with John Snow", this,menu_selector(InviteFriendsScene::inviteJohnSnow)),
-			CCMenuItemFont::create("Play with Jack Sparrow", this,menu_selector(InviteFriendsScene::inviteJackSparrow)),
-			CCMenuItemFont::create("Play with Paul Atreides", this,menu_selector(InviteFriendsScene::invitePaulAtreides)),
+		Menu::create(
+			MenuItemFont::create("Play with John Snow", this,menu_selector(InviteFriendsScene::inviteJohnSnow)),
+			MenuItemFont::create("Play with Jack Sparrow", this,menu_selector(InviteFriendsScene::inviteJackSparrow)),
+			MenuItemFont::create("Play with Paul Atreides", this,menu_selector(InviteFriendsScene::invitePaulAtreides)),
 			NULL);
 
-    CCObject* item;
-    CCARRAY_FOREACH(mPlaysWithMenu->getChildren(), item) {
-    	((CCMenuItemFont*)item)->setColor(ccBLACK);
+	for(Ref* item : mPlaysWithMenu->getChildren()) {
+    	((MenuItemFont*)item)->setColor(Color3B::BLACK);
     }
 
     mPlaysWithMenu->alignItemsVertically();
@@ -57,47 +56,47 @@ bool InviteFriendsScene::init()
     return true;
 }
 
-void InviteFriendsScene::inviteJohnSnow(CCObject* sender) {
+void InviteFriendsScene::inviteJohnSnow(Ref* sender) {
 	showInviteDialog("John Snow");
 	dbgprint("Invite John Snow");
 }
 
-void InviteFriendsScene::inviteJackSparrow(CCObject* sender) {
+void InviteFriendsScene::inviteJackSparrow(Ref* sender) {
 	showInviteDialog("Jack Sparrow");
 	dbgprint("Invite Jack Sparrow");
 }
 
-void InviteFriendsScene::invitePaulAtreides(CCObject* sender) {
+void InviteFriendsScene::invitePaulAtreides(Ref* sender) {
 	showInviteDialog("Paul Atreides");
 	dbgprint("Invite Paul Atreides");
 }
 
 void InviteFriendsScene::showInGameMenuLayer() {
-	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+	Size winSize = Director::getInstance()->getWinSize();
 
 	InGameMenuLayer* _inGameMenuLayer = InGameMenuLayer::create();
 	addChild(_inGameMenuLayer);
 
-	CCMenuItemFont *menuButton = CCMenuItemFont::create("Menu", this,menu_selector(InviteFriendsScene::menuButtonCallback));
-	menuButton->setColor(ccc3(0,0,0));
+	MenuItemFont *menuButton = MenuItemFont::create("Menu", this,menu_selector(InviteFriendsScene::menuButtonCallback));
+	menuButton->setColor(Color3B(0,0,0));
 
-	menuButton->setPosition(ccp(winSize.width - menuButton->getContentSize().width, winSize.height - menuButton->getContentSize().height));
+	menuButton->setPosition(Point(winSize.width - menuButton->getContentSize().width, winSize.height - menuButton->getContentSize().height));
 
-	CCMenu *pMenu = CCMenu::create(menuButton,NULL);
-	pMenu->setPosition(CCPointZero);
+	Menu *pMenu = Menu::create(menuButton,NULL);
+	pMenu->setPosition(Point::ZERO);
 
 	_inGameMenuLayer->addChild(pMenu, 1);
 }
 
-void InviteFriendsScene::menuButtonCallback(CCObject* sender) {
-	CCDirector::sharedDirector()->replaceScene(HelloWorld::scene());
+void InviteFriendsScene::menuButtonCallback(Ref* sender) {
+	Director::getInstance()->replaceScene(HelloWorld::scene());
 }
 
 
-CCScene* InviteFriendsScene::scene()
+Scene* InviteFriendsScene::scene()
 {
     // 'scene' is an autorelease object
-    CCScene *scene = CCScene::create();
+    Scene *scene = Scene::create();
 
     // 'layer' is an autorelease object
     InviteFriendsScene *layer = InviteFriendsScene::create();
@@ -114,35 +113,34 @@ void InviteFriendsScene::showInviteDialog(const string& friendName) {
 	if (mInviteDialog) {
 		removeChild(mInviteDialog);
 	}
-	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-	mInviteDialog = CCLayerColor::create(ccc4(0xcc, 0xcc, 0xcc, 0xff), (winSize.width * 0.8f), (winSize.height * 0.8f));
+	Size winSize = Director::getInstance()->getWinSize();
+	mInviteDialog = LayerColor::create(Color4B(0xcc, 0xcc, 0xcc, 0xff), (winSize.width * 0.8f), (winSize.height * 0.8f));
 	addChild(mInviteDialog);
 
 	string question = string("Would you like to invite ") + friendName + "?";
-	CCLabelTTF* questionLabel = CCLabelTTF::create(question.c_str(), "Marker Felt", 26);
-	questionLabel->setAnchorPoint(CCPointZero);
-	mInviteDialog->setAnchorPoint(CCPointZero);
-	mInviteDialog->setPosition(ccp(winSize.width/2 - mInviteDialog->getContentSize().width/2,
+	cocos2d::ui::Text* questionLabel = cocos2d::ui::Text::create(question.c_str(), "Marker Felt", 26);
+	questionLabel->setAnchorPoint(Point::ZERO);
+	mInviteDialog->setAnchorPoint(Point::ZERO);
+	mInviteDialog->setPosition(Point(winSize.width/2 - mInviteDialog->getContentSize().width/2,
 								   winSize.height/2 - mInviteDialog->getContentSize().height/2));
 
-	questionLabel->setPosition(ccp(mInviteDialog->getContentSize().width/2 - questionLabel->getContentSize().width/2,
+	questionLabel->setPosition(Point(mInviteDialog->getContentSize().width/2 - questionLabel->getContentSize().width/2,
 			mInviteDialog->getContentSize().height/2 - questionLabel->getContentSize().height/2));
 
-	CCMenu *pMenu =
-		CCMenu::create(
-			CCMenuItemFont::create(" Invite ", this,menu_selector(InviteFriendsScene::inviteButtonCallback)),
-			CCMenuItemFont::create(" Cancel", this,menu_selector(InviteFriendsScene::cancelInviteButtonCallback)),
+	Menu *pMenu =
+		Menu::create(
+			MenuItemFont::create(" Invite ", this,menu_selector(InviteFriendsScene::inviteButtonCallback)),
+			MenuItemFont::create(" Cancel", this,menu_selector(InviteFriendsScene::cancelInviteButtonCallback)),
 			NULL);
 
-	CCObject* item;
-	CCARRAY_FOREACH(pMenu->getChildren(), item) {
-		((CCMenuItemFont*)item)->setColor(ccBLACK);
+	for(Ref* item : pMenu->getChildren()) {
+		((MenuItemFont*)item)->setColor(Color3B::BLACK);
 	}
 
 	mInviteDialog->addChild(pMenu);
 	pMenu->alignItemsHorizontally();
-	pMenu->setAnchorPoint(CCPointZero);
-	pMenu->setPosition(ccp(mInviteDialog->getPosition().x + mInviteDialog->getContentSize().width/2 , mInviteDialog->getPosition().y));
+	pMenu->setAnchorPoint(Point::ZERO);
+	pMenu->setPosition(Point(mInviteDialog->getPosition().x + mInviteDialog->getContentSize().width/2 , mInviteDialog->getPosition().y));
 
 	mInviteDialog->addChild(questionLabel);
 
@@ -152,7 +150,7 @@ void InviteFriendsScene::showInviteDialog(const string& friendName) {
 	mInviteDialog->setVisible(true);
 }
 
-void InviteFriendsScene::inviteButtonCallback(CCObject* sender) {
+void InviteFriendsScene::inviteButtonCallback(Ref* sender) {
 	Report::getInstance().ReportSocialRequestSent(FAKE_REQUEST_ID, // in a real game this should be the id of the sent request as given by the social network (fb/google+)
 													  FAKE_REQUESTED_USER_ID, // this should be the social identifier of the user whom the request is sent to (e.g fb/google+ user id)
 													  FAKE_RANDOM_REQUEST_ID // this should be a randomly generated number uniquely identifying the sent request which should be sent along side the request
@@ -160,7 +158,7 @@ void InviteFriendsScene::inviteButtonCallback(CCObject* sender) {
 	hideInviteDialog();
 }
 
-void InviteFriendsScene::cancelInviteButtonCallback(CCObject* sender) {
+void InviteFriendsScene::cancelInviteButtonCallback(Ref* sender) {
 	hideInviteDialog();
 }
 
@@ -170,4 +168,3 @@ void InviteFriendsScene::hideInviteDialog() {
 	mPlaysWithMenu->setEnabled(true);
 	mPlaysWithMenu->setVisible(true);
 }
-

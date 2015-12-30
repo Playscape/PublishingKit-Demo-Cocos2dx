@@ -17,10 +17,6 @@
 #ifndef __Cocos2dxCore_H
 #define __Cocos2dxCore_H
 
-#ifdef COCOS2D_JAVASCRIPT
-#include "jsb_soomla.h"
-#endif
-
 #include "CCCoreEventDispatcher.h"
 #include "CCSoomla.h"
 #include "CCCoreBridge.h"
@@ -35,5 +31,9 @@
 #include "CCSoomlaUtils.h"
 #include "CCKeyValueStorage.h"
 #include "CCRewardStorage.h"
+
+#ifdef COCOS2D_JAVASCRIPT
+#include "jsb_soomla.h"
+#endif
 
 #endif

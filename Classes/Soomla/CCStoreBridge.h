@@ -9,7 +9,7 @@
 
 namespace soomla {
 
-    class CCStoreBridge : public cocos2d::CCObject {
+    class CCStoreBridge : public cocos2d::Ref {
     public:
         /**
         This class is singleton, use this function to access it.
@@ -31,7 +31,7 @@ namespace soomla {
 
         virtual bool init();
         
-        virtual void applyParams(cocos2d::CCDictionary *storeParams);
+        virtual void applyParams(cocos2d::__Dictionary *storeParams);
     };
 }
 

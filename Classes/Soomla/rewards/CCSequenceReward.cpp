@@ -18,9 +18,9 @@
 #include "CCRewardStorage.h"
 
 soomla::CCSequenceReward *soomla::CCSequenceReward::create(
-        cocos2d::CCString *id,
-        cocos2d::CCString *name,
-        cocos2d::CCArray *rewards
+        cocos2d::__String *id,
+        cocos2d::__String *name,
+        cocos2d::__Array *rewards
 ) {
 
     CCSequenceReward *ret = new CCSequenceReward();
@@ -46,7 +46,7 @@ soomla::CCReward *soomla::CCSequenceReward::getLastGivenReward() {
     if (idx < 0) {
         return NULL;
     }
-    return (CCReward *) getRewards()->objectAtIndex(idx);
+    return (CCReward *) getRewards()->getObjectAtIndex(idx);
 }
 
 bool soomla::CCSequenceReward::hasMoreToGive() {
@@ -55,7 +55,7 @@ bool soomla::CCSequenceReward::hasMoreToGive() {
 
 bool soomla::CCSequenceReward::forceNextRewardToGive(soomla::CCReward *reward) {
     for (unsigned int i = 0; i < getRewards()->count(); i++) {
-        if (reward->equals(getRewards()->objectAtIndex(i))) {
+        if (reward->equals(getRewards()->getObjectAtIndex(i))) {
             CCRewardStorage::getInstance()->setLastSeqIdxGiven(this, i - 1);
             return true;
         }

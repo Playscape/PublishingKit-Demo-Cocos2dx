@@ -31,10 +31,10 @@ namespace soomla {
         
         int balance = 0;
         if (val != NULL) {
-            balance = CCString::create(val)->intValue();
+            balance = __String::create(val)->intValue();
         }
         
-        CCSoomlaUtils::logDebug(TAG, CCString::createWithFormat("the balance for %s is %d", itemId, balance)->getCString());
+        CCSoomlaUtils::logDebug(TAG, __String::createWithFormat("the balance for %s is %d", itemId, balance)->getCString());
         
         return balance;
     }
@@ -47,7 +47,7 @@ namespace soomla {
         
         const char *itemId = item->getId()->getCString();
         
-        const char *balanceStr = CCString::createWithFormat("%d", balance)->getCString();
+        const char *balanceStr = __String::createWithFormat("%d", balance)->getCString();
         const char *key = keyBalance(itemId);
         
         CCKeyValueStorage::getInstance()->setValue(key, balanceStr);
@@ -67,7 +67,7 @@ namespace soomla {
             amount = 0;
         }
         
-        const char *balanceStr = CCString::createWithFormat("%d", balance + amount)->getCString();
+        const char *balanceStr = __String::createWithFormat("%d", balance + amount)->getCString();
         const char *key = keyBalance(itemId);
         
         CCKeyValueStorage::getInstance()->setValue(key, balanceStr);
@@ -87,7 +87,7 @@ namespace soomla {
             amount = 0;
         }
         
-        const char *balanceStr = CCString::createWithFormat("%d", balance)->getCString();
+        const char *balanceStr = __String::createWithFormat("%d", balance)->getCString();
         const char *key = keyBalance(itemId);
         
         CCKeyValueStorage::getInstance()->setValue(key, balanceStr);

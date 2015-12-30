@@ -82,7 +82,7 @@ namespace soomla {
             kGlobal = 2
         } EquippingModel;
 
-        SL_SYNTHESIZE_RETAIN_WITH_DICT_DCL(cocos2d::CCInteger *, mEquippingModel, EquippingModel);
+        SL_SYNTHESIZE_RETAIN_WITH_DICT_DCL(cocos2d::__Integer *, mEquippingModel, EquippingModel);
     public:
 	
         CCEquippableVG(): CCLifetimeVG(), mEquippingModel(NULL) {};
@@ -97,12 +97,12 @@ namespace soomla {
          @param purchaseType see parent.
          @return The Equippable virtual good.
 		 */
-        static CCEquippableVG *create(cocos2d::CCInteger *equippingModel, cocos2d::CCString* name, cocos2d::CCString* description,
-									  cocos2d::CCString* itemId, CCPurchaseType * purchaseType);
-        bool init(cocos2d::CCInteger *equippingModel, cocos2d::CCString* name, cocos2d::CCString* description,
-                cocos2d::CCString* itemId, CCPurchaseType * purchaseType);
+        static CCEquippableVG *create(cocos2d::__Integer *equippingModel, cocos2d::__String* name, cocos2d::__String* description,
+									  cocos2d::__String* itemId, CCPurchaseType * purchaseType);
+        bool init(cocos2d::__Integer *equippingModel, cocos2d::__String* name, cocos2d::__String* description,
+                cocos2d::__String* itemId, CCPurchaseType * purchaseType);
         
-        bool initWithDictionary(cocos2d::CCDictionary *dict);
+        bool initWithDictionary(cocos2d::__Dictionary *dict);
 
 		/**
          Creates a `CCEquippableVG` from a dictionary.
@@ -117,7 +117,7 @@ namespace soomla {
         Converts this `CCEquippableVG` to a `CCDictionary`.
         @return `CCDictionary` representation of this `CCEquippableVG`.
         */
-        cocos2d::CCDictionary *toDictionary();
+        cocos2d::__Dictionary *toDictionary();
 
         virtual ~CCEquippableVG();
         

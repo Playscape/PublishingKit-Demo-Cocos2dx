@@ -61,15 +61,15 @@ namespace soomla {
         CCCoreEventDispatcher::getInstance();    // to get sure it's inited
 
         CCDomainFactory::getInstance()->registerCreator(CCCoreConsts::JSON_JSON_TYPE_BADGE,
-                (SEL_DomainCreator)CCBadgeReward::createWithDictionary);
+                &CCBadgeReward::createWithDictionary);
         CCDomainFactory::getInstance()->registerCreator(CCCoreConsts::JSON_JSON_TYPE_RANDOM,
-                (SEL_DomainCreator)CCRandomReward::createWithDictionary);
+                &CCRandomReward::createWithDictionary);
         CCDomainFactory::getInstance()->registerCreator(CCCoreConsts::JSON_JSON_TYPE_SEQUENCE,
-                (SEL_DomainCreator)CCSequenceReward::createWithDictionary);
+                &CCSequenceReward::createWithDictionary);
         CCDomainFactory::getInstance()->registerCreator(CCCoreConsts::JSON_JSON_TYPE_SCHEDULE,
-                (SEL_DomainCreator)CCSchedule::createWithDictionary);
+                &CCSchedule::createWithDictionary);
         CCDomainFactory::getInstance()->registerCreator(CCCoreConsts::JSON_JSON_TYPE_DATE_TIME_RANGE,
-                (SEL_DomainCreator)CCSchedule::CCDateTimeRange::createWithDictionary);
+                &CCSchedule::CCDateTimeRange::createWithDictionary);
 
         return true;
     }

@@ -17,9 +17,9 @@
 #include "CCRandomReward.h"
 
 soomla::CCRandomReward *soomla::CCRandomReward::create(
-        cocos2d::CCString *id,
-        cocos2d::CCString *name,
-        cocos2d::CCArray *rewards,
+        cocos2d::__String *id,
+        cocos2d::__String *name,
+        cocos2d::__Array *rewards,
         CCSchedule *schedule) {
 
     CCRandomReward *ret = new CCRandomReward();
@@ -54,7 +54,7 @@ bool soomla::CCRandomReward::takeInner() {
 }
 
 bool soomla::CCRandomReward::giveInner() {
-    CCReward *randomReward = (CCReward *) getRewards()->randomObject();
+    CCReward *randomReward = (CCReward *) getRewards()->getRandomObject();
     CCLOG("%s", randomReward->getId()->getCString());
     randomReward->give();
     setLastGivenReward(randomReward);

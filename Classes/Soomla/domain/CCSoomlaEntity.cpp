@@ -24,7 +24,7 @@ namespace soomla {
 
     using namespace cocos2d;
 
-    bool CCSoomlaEntity::init(cocos2d::CCString *id,cocos2d::CCString *name, cocos2d::CCString *description) {
+    bool CCSoomlaEntity::init(cocos2d::__String *id,cocos2d::__String *name, cocos2d::__String *description) {
         setId(id);
         setName(name);
         setDescription(description);
@@ -32,7 +32,7 @@ namespace soomla {
         return true;
     }
 
-    bool CCSoomlaEntity::initWithDictionary(cocos2d::CCDictionary *dict) {
+    bool CCSoomlaEntity::initWithDictionary(cocos2d::__Dictionary *dict) {
         fillIdFromDict(dict);
         fillNameFromDict(dict);
         fillDescriptionFromDict(dict);
@@ -42,10 +42,10 @@ namespace soomla {
             CC_ASSERT(false);
         }
         if (mName == NULL) {
-            setName(CCString::create(""));
+            setName(__String::create(""));
         }
         if (mDescription == NULL) {
-            setDescription(CCString::create(""));
+            setDescription(__String::create(""));
         }
 
         return true;
@@ -58,14 +58,14 @@ namespace soomla {
         CC_SAFE_RELEASE(mDescription);
     }
 
-    cocos2d::CCDictionary *CCSoomlaEntity::toDictionary() {
+    cocos2d::__Dictionary *CCSoomlaEntity::toDictionary() {
         if (mId == NULL) {
             CCSoomlaUtils::logError(TAG, "This is BAD! We don't have ID in the this SoomlaEntity. Stopping here.");
             CC_ASSERT(false);
             return NULL;
         }
 
-        CCDictionary* dict = CCDictionary::create();
+        __Dictionary* dict = __Dictionary::create();
         putIdToDict(dict);
         putNameToDict(dict);
         putDescriptionToDict(dict);
@@ -73,7 +73,7 @@ namespace soomla {
         return putTypeData(dict, getType());
     }
 
-    bool CCSoomlaEntity::equals(CCObject *obj) const {
+    bool CCSoomlaEntity::equals(cocos2d::Ref *obj) const {
         // If parameter is null return false.
         if (obj == NULL) {
             return false;
@@ -96,8 +96,8 @@ namespace soomla {
     }
 
     CCSoomlaEntity *CCSoomlaEntity::clone(const char *newId) {
-        cocos2d::CCDictionary *dict = this->toDictionary();
-        dict->setObject(cocos2d::CCString::create(newId), CCCoreConsts::JSON_ITEM_ITEM_ID);
+        cocos2d::__Dictionary *dict = this->toDictionary();
+        dict->setObject(cocos2d::__String::create(newId), CCCoreConsts::JSON_ITEM_ITEM_ID);
         return (CCSoomlaEntity *) CCDomainFactory::getInstance()->createWithDictionaryAndType(dict, getType());
     }
 }
