@@ -35,8 +35,8 @@ namespace soomla {
      your economy's virtual goods.
 	 */
     class CCVirtualCategory : public CCDomain {
-        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::CCString*, mName, Name, CCStoreConsts::JSON_CATEGORY_NAME);
-        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::CCArray*, mGoodItemIds, GoodItemIds, CCStoreConsts::JSON_CATEGORY_GOODS_ITEM_IDS);
+        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::__String*, mName, Name, CCStoreConsts::JSON_CATEGORY_NAME);
+        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::__Array*, mGoodItemIds, GoodItemIds, CCStoreConsts::JSON_CATEGORY_GOODS_ITEM_IDS);
     public:
 	CCVirtualCategory(): mName(NULL), mGoodItemIds(NULL) {};
 
@@ -47,7 +47,7 @@ namespace soomla {
                 in this category.
          @return The virtual category.
 		 */
-        static CCVirtualCategory *create(cocos2d::CCString *name, cocos2d::CCArray *goodItemIds);
+        static CCVirtualCategory *create(cocos2d::__String *name, cocos2d::__Array *goodItemIds);
 
 		/**
          Creates a virtual category.
@@ -57,14 +57,14 @@ namespace soomla {
 		*/
         SL_CREATE_WITH_DICTIONARY(CCVirtualCategory);
 
-        bool init(cocos2d::CCString *name, cocos2d::CCArray *goodItemIds);
-        bool initWithDictionary(cocos2d::CCDictionary *dict);
+        bool init(cocos2d::__String *name, cocos2d::__Array *goodItemIds);
+        bool initWithDictionary(cocos2d::__Dictionary *dict);
 
         /**
         Converts this `~CCVirtualCategory` to a `CCDictionary`.
         @return `CCDictionary` representation of this `~CCVirtualCategory`.
         */
-        cocos2d::CCDictionary *toDictionary();
+        cocos2d::__Dictionary *toDictionary();
 
         virtual ~CCVirtualCategory();
     };

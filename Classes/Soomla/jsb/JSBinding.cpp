@@ -1,7 +1,3 @@
-//
-// Created by Fedor Shubin on 1/22/14.
-//
-
 #ifdef COCOS2D_JAVASCRIPT
 
 #include "JSBinding.h"
@@ -9,6 +5,8 @@
 #include "jansson.h"
 #include "CCJsonHelper.h"
 #include "CCNdkBridge.h"
+
+USING_NS_CC;
 
 void Soomla::JSBinding::callNative(const char *params, std::string &result) {
     result.assign(params);
@@ -24,16 +22,16 @@ void Soomla::JSBinding::callNative(const char *params, std::string &result) {
         return;
     }
 
-    cocos2d::CCObject *dataToPass = CCJsonHelper::getCCObjectFromJson(root);
-    CCDictionary *dictToPass = dynamic_cast<CCDictionary *>(dataToPass);
+    cocos2d::Ref *dataToPass = CCJsonHelper::getCCObjectFromJson(root);
+    __Dictionary *dictToPass = dynamic_cast<__Dictionary *>(dataToPass);
     CC_ASSERT(dictToPass);
 
     soomla::CCError *soomlaError = NULL;
-    CCDictionary *retParams = (CCDictionary *) soomla::CCNdkBridge::callNative(dictToPass, &soomlaError);
+    __Dictionary *retParams = (__Dictionary *) soomla::CCNdkBridge::callNative(dictToPass, &soomlaError);
 
-    CCDictionary *resultParams = CCDictionary::create();
+    __Dictionary *resultParams = __Dictionary::create();
     if (soomlaError != NULL) {
-        retParams = CCDictionary::create();
+        retParams = __Dictionary::create();
         retParams->setObject(CCString::create(soomlaError->getInfo()), "info");
 
         resultParams->setObject(CCBool::create(false), "success");
@@ -49,7 +47,7 @@ void Soomla::JSBinding::callNative(const char *params, std::string &result) {
     free(dump);
 }
 
-void Soomla::JSBinding::ndkCallback(CCDictionary *params) {
+void Soomla::JSBinding::callCallback(__Dictionary *params) {
     json_t *root = CCJsonHelper::getJsonFromCCObject(params);
     char *dump = json_dumps(root, JSON_COMPACT | JSON_ENSURE_ASCII);
     CCLog("ndkCallback: in >> %s", dump);
@@ -59,12 +57,10 @@ void Soomla::JSBinding::ndkCallback(CCDictionary *params) {
 
     JSContext* cx = ScriptingCore::getInstance()->getGlobalContext();
 
+    jsval v = std_string_to_jsval(cx, jsonParams);
     jsval retval;
-    jsval v[] = {
-            v[0] = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, jsonParams.c_str()))
-    };
     ScriptingCore::getInstance()->executeFunctionWithOwner(OBJECT_TO_JSVAL(ScriptingCore::getInstance()->getGlobalObject()),
-            "ndkCallback", 1, v, &retval);
+            "ndkCallback", 1, &v, &retval);
 }
 
 #endif // COCOS2D_JAVASCRIPT

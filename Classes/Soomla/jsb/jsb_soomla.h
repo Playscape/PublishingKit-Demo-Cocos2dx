@@ -1,6 +1,3 @@
-//
-// Created by Fedor Shubin on 1/22/14.
-//
 
 
 #ifndef __JSB_AUTO_H_

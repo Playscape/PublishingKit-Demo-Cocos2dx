@@ -22,9 +22,9 @@ USING_NS_CC;
 
 namespace soomla {
 
-    CCMarketItem *CCMarketItem::create(CCString *productId, CCInteger *consumable, CCDouble *price) {
+    CCMarketItem *CCMarketItem::create(__String *productId, __Double *price) {
         CCMarketItem *ret = new CCMarketItem();
-        if (ret->init(productId, consumable, price)) {
+        if (ret->init(productId, price)) {
             ret->autorelease();
         }
         else {
@@ -34,15 +34,14 @@ namespace soomla {
         return ret;
     }
 
-    bool CCMarketItem::init(CCString *productId, CCInteger *consumable, CCDouble *price) {
+    bool CCMarketItem::init(__String *productId, __Double *price) {
         setProductId(productId);
-        setConsumable(consumable);
         setPrice(price);
 
         return true;
     }
 
-    bool CCMarketItem::initWithDictionary(CCDictionary *dict) {
+    bool CCMarketItem::initWithDictionary(__Dictionary *dict) {
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         char const* key = CCStoreConsts::JSON_MARKET_ITEM_ANDROID_ID;
@@ -51,15 +50,14 @@ namespace soomla {
 #else
         char const* key = CCStoreConsts::JSON_MARKET_ITEM_PRODUCT_ID;
 #endif
-        cocos2d::CCObject* obj = dict->objectForKey(key);
-        CCAssert(obj == NULL || dynamic_cast<CCString *>(obj), "invalid object type in dictionary");
-        setProductId((CCString *)obj);
+        cocos2d::Ref* obj = dict->objectForKey(key);
+        CCAssert(obj == NULL || dynamic_cast<__String *>(obj), "invalid object type in dictionary");
+        setProductId((__String *)obj);
 
         if (mProductId == NULL) {
             fillProductIdFromDict(dict);
         }
 
-        fillConsumableFromDict(dict);
         fillPriceFromDict(dict);
         
         fillMarketPriceAndCurrencyFromDict(dict);
@@ -73,7 +71,6 @@ namespace soomla {
 
     CCMarketItem::~CCMarketItem() {
         CC_SAFE_RELEASE(mProductId);
-        CC_SAFE_RELEASE(mConsumable);
         CC_SAFE_RELEASE(mPrice);
         CC_SAFE_RELEASE(mMarketPriceAndCurrency);
         CC_SAFE_RELEASE(mMarketTitle);
@@ -82,11 +79,10 @@ namespace soomla {
         CC_SAFE_RELEASE(mMarketPriceMicros);
     }
 
-    CCDictionary *CCMarketItem::toDictionary() {
-        CCDictionary *dict = CCDictionary::create();
+    __Dictionary *CCMarketItem::toDictionary() {
+        __Dictionary *dict = __Dictionary::create();
 
         putProductIdToDict(dict);
-        putConsumableToDict(dict);
         putPriceToDict(dict);
 
         putMarketPriceAndCurrencyToDict(dict);

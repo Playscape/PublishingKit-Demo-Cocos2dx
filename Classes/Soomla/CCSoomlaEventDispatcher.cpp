@@ -34,42 +34,32 @@ namespace soomla {
         return s_SharedInstance;
     }
 
-	void CCSoomlaEventDispatcher::registerEventHandler(const char *key, cocos2d::CCObject *target, SEL_EventHandler selector) {
-		mEventHandlers[key] = new StructEventHandler(target, selector);
+	void CCSoomlaEventDispatcher::registerEventHandler(const char *key, std::function<void(__Dictionary *)> handler) {
+		mEventHandlers[key] = handler;
 	}
 
     void CCSoomlaEventDispatcher::unregisterEventHandler(const char *key) {
-        if (mEventHandlers.find(key) != mEventHandlers.end()) {
-            StructEventHandler *handler = mEventHandlers[key];
-            mEventHandlers.erase(key);
-            delete handler;
-        }
+        mEventHandlers.erase(key);
     }
 
-    void CCSoomlaEventDispatcher::ndkCallback(CCDictionary *parameters) {
+    void CCSoomlaEventDispatcher::ndkCallback(__Dictionary *parameters) {
 #ifdef COCOS2D_JAVASCRIPT
-        Soomla::JSBinding::ndkCallback(parameters);
+        Soomla::JSBinding::callCallback(parameters);
 #else
-        CCString *eventName = dynamic_cast<CCString *>(parameters->objectForKey("method"));
+        __String *eventName = dynamic_cast<__String *>(parameters->objectForKey("method"));
         if (eventName == NULL) {
             // Suppress any events without callbacks (push event probably)
             return;
         }
-        
-        if (mEventHandlers.find(eventName->getCString()) != mEventHandlers.end()) {
-            StructEventHandler *handler = mEventHandlers[eventName->getCString()];
-            ((handler->target)->*(handler->selector))(parameters);
+
+        std::function<void(__Dictionary *)> handler = mEventHandlers[eventName->getCString()];
+
+        if (handler) {
+            handler(parameters);
         }
-        else {
-            CCLog("Unregistered event happened: %s", eventName->getCString());
+		else {
+            log("Unregistered event happened: %s", eventName->getCString());
         }
 #endif
-    }
-
-    CCSoomlaEventDispatcher::~CCSoomlaEventDispatcher() {
-        std::map<std::string, StructEventHandler *>::iterator iter;
-        for (iter = mEventHandlers.begin(); iter != mEventHandlers.end(); ++iter) {
-            this->unregisterEventHandler(iter->first.c_str());
-        }
     }
 }

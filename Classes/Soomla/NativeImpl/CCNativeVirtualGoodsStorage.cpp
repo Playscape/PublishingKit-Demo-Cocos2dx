@@ -37,17 +37,17 @@ namespace soomla {
         const char *itemId = item->getId()->getCString();
         
         CCSoomlaUtils::logDebug(TAG,
-                                CCString::createWithFormat("SOOMLA/COCOS2DX Calling getBalance with: %s", itemId)->getCString());
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeVirtualGoodsStorage::getBalance"), "method");
-        params->setObject(CCString::create(itemId), "itemId");
-        CCDictionary *retParams = (CCDictionary *) CCNdkBridge::callNative (params, error);
+                                __String::createWithFormat("SOOMLA/COCOS2DX Calling getBalance with: %s", itemId)->getCString());
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeVirtualGoodsStorage::getBalance"), "method");
+        params->setObject(__String::create(itemId), "itemId");
+        __Dictionary *retParams = (__Dictionary *) CCNdkBridge::callNative (params, error);
         
         if (retParams == NULL) {
             return 0;
         }
         
-        CCInteger *retValue = (CCInteger *) retParams->objectForKey("return");
+        __Integer *retValue = (__Integer *) retParams->objectForKey("return");
         if (retValue) {
             return retValue->getValue();
         } else {
@@ -59,19 +59,19 @@ namespace soomla {
         const char *itemId = item->getId()->getCString();
         
         CCSoomlaUtils::logDebug(TAG,
-                                CCString::createWithFormat("SOOMLA/COCOS2DX Calling setBalance with: %s", itemId)->getCString());
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeVirtualGoodsStorage::setBalance"), "method");
-        params->setObject(CCString::create(itemId), "itemId");
-        params->setObject(CCInteger::create(balance), "balance");
-        params->setObject(CCBool::create(notify), "notify");
-        CCDictionary *retParams = (CCDictionary *) CCNdkBridge::callNative (params, error);
+                                __String::createWithFormat("SOOMLA/COCOS2DX Calling setBalance with: %s", itemId)->getCString());
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeVirtualGoodsStorage::setBalance"), "method");
+        params->setObject(__String::create(itemId), "itemId");
+        params->setObject(__Integer::create(balance), "balance");
+        params->setObject(__Bool::create(notify), "notify");
+        __Dictionary *retParams = (__Dictionary *) CCNdkBridge::callNative (params, error);
         
         if (retParams == NULL) {
             return 0;
         }
         
-        CCInteger *retValue = (CCInteger *) retParams->objectForKey("return");
+        __Integer *retValue = (__Integer *) retParams->objectForKey("return");
         if (retValue) {
             return retValue->getValue();
         } else {
@@ -83,19 +83,19 @@ namespace soomla {
         const char *itemId = item->getId()->getCString();
         
         CCSoomlaUtils::logDebug(TAG,
-                                CCString::createWithFormat("SOOMLA/COCOS2DX Calling add with: %s", itemId)->getCString());
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeVirtualGoodsStorage::add"), "method");
-        params->setObject(CCString::create(itemId), "itemId");
-        params->setObject(CCInteger::create(amount), "amount");
-        params->setObject(CCBool::create(notify), "notify");
-        CCDictionary *retParams = (CCDictionary *) CCNdkBridge::callNative (params, error);
+                                __String::createWithFormat("SOOMLA/COCOS2DX Calling add with: %s", itemId)->getCString());
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeVirtualGoodsStorage::add"), "method");
+        params->setObject(__String::create(itemId), "itemId");
+        params->setObject(__Integer::create(amount), "amount");
+        params->setObject(__Bool::create(notify), "notify");
+        __Dictionary *retParams = (__Dictionary *) CCNdkBridge::callNative (params, error);
         
         if (retParams == NULL) {
             return 0;
         }
         
-        CCInteger *retValue = (CCInteger *) retParams->objectForKey("return");
+        __Integer *retValue = (__Integer *) retParams->objectForKey("return");
         if (retValue) {
             return retValue->getValue();
         } else {
@@ -107,19 +107,19 @@ namespace soomla {
         const char *itemId = item->getId()->getCString();
         
         CCSoomlaUtils::logDebug(TAG,
-                                CCString::createWithFormat("SOOMLA/COCOS2DX Calling remove with: %s", itemId)->getCString());
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeVirtualGoodsStorage::remove"), "method");
-        params->setObject(CCString::create(itemId), "itemId");
-        params->setObject(CCInteger::create(amount), "amount");
-        params->setObject(CCBool::create(notify), "notify");
-        CCDictionary *retParams = (CCDictionary *) CCNdkBridge::callNative (params, error);
+                                __String::createWithFormat("SOOMLA/COCOS2DX Calling remove with: %s", itemId)->getCString());
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeVirtualGoodsStorage::remove"), "method");
+        params->setObject(__String::create(itemId), "itemId");
+        params->setObject(__Integer::create(amount), "amount");
+        params->setObject(__Bool::create(notify), "notify");
+        __Dictionary *retParams = (__Dictionary *) CCNdkBridge::callNative (params, error);
         
         if (retParams == NULL) {
             return 0;
         }
         
-        CCInteger *retValue = (CCInteger *) retParams->objectForKey("return");
+        __Integer *retValue = (__Integer *) retParams->objectForKey("return");
         if (retValue) {
             return retValue->getValue();
         } else {
@@ -131,12 +131,12 @@ namespace soomla {
         const char *itemId = good->getId()->getCString();
 
         CCSoomlaUtils::logDebug(TAG,
-                                CCString::createWithFormat("SOOMLA/COCOS2DX Calling removeUpgrades with: %s", itemId)->getCString());
+                                __String::createWithFormat("SOOMLA/COCOS2DX Calling removeUpgrades with: %s", itemId)->getCString());
         
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeVirtualGoodsStorage::removeUpgrades"), "method");
-        params->setObject(CCString::create(itemId), "itemId");
-        params->setObject(CCBool::create(notify), "notify");
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeVirtualGoodsStorage::removeUpgrades"), "method");
+        params->setObject(__String::create(itemId), "itemId");
+        params->setObject(__Bool::create(notify), "notify");
         CCNdkBridge::callNative (params, error);
     }
     
@@ -145,13 +145,13 @@ namespace soomla {
         const char *upgradeItemId = upgradeVG->getId()->getCString();
         
         CCSoomlaUtils::logDebug(TAG,
-                                CCString::createWithFormat("SOOMLA/COCOS2DX Calling assignCurrentUpgrade with: %s", itemId)->getCString());
+                                __String::createWithFormat("SOOMLA/COCOS2DX Calling assignCurrentUpgrade with: %s", itemId)->getCString());
         
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeVirtualGoodsStorage::assignCurrentUpgrade"), "method");
-        params->setObject(CCString::create(itemId), "itemId");
-        params->setObject(CCString::create(upgradeItemId), "upgradeItemId");
-        params->setObject(CCBool::create(notify), "notify");
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeVirtualGoodsStorage::assignCurrentUpgrade"), "method");
+        params->setObject(__String::create(itemId), "itemId");
+        params->setObject(__String::create(upgradeItemId), "upgradeItemId");
+        params->setObject(__Bool::create(notify), "notify");
         CCNdkBridge::callNative (params, error);
     }
     
@@ -159,18 +159,18 @@ namespace soomla {
         const char *itemId = good->getId()->getCString();
         
         CCSoomlaUtils::logDebug(TAG,
-                                CCString::createWithFormat("SOOMLA/COCOS2DX Calling getCurrentUpgrade with: %s", itemId)->getCString());
+                                __String::createWithFormat("SOOMLA/COCOS2DX Calling getCurrentUpgrade with: %s", itemId)->getCString());
         
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeVirtualGoodsStorage::getCurrentUpgrade"), "method");
-        params->setObject(CCString::create(itemId), "itemId");
-        CCDictionary *retParams = (CCDictionary *) CCNdkBridge::callNative (params, error);
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeVirtualGoodsStorage::getCurrentUpgrade"), "method");
+        params->setObject(__String::create(itemId), "itemId");
+        __Dictionary *retParams = (__Dictionary *) CCNdkBridge::callNative (params, error);
         
         if (retParams == NULL) {
             return NULL;
         }
         
-        CCString *retItemId = (CCString *) retParams->objectForKey("return");
+        __String *retItemId = (__String *) retParams->objectForKey("return");
         if (retItemId != NULL) {
             return dynamic_cast<CCUpgradeVG *>(CCStoreInfo::sharedStoreInfo()->getItemByItemId(retItemId->getCString(), error));
         }
@@ -182,18 +182,18 @@ namespace soomla {
         const char *itemId = good->getId()->getCString();
         
         CCSoomlaUtils::logDebug(TAG,
-                                CCString::createWithFormat("SOOMLA/COCOS2DX Calling isEquipped with: %s", itemId)->getCString());
+                                __String::createWithFormat("SOOMLA/COCOS2DX Calling isEquipped with: %s", itemId)->getCString());
         
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeVirtualGoodsStorage::isEquipped"), "method");
-        params->setObject(CCString::create(itemId), "itemId");
-        CCDictionary *retParams = (CCDictionary *) CCNdkBridge::callNative (params, error);
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeVirtualGoodsStorage::isEquipped"), "method");
+        params->setObject(__String::create(itemId), "itemId");
+        __Dictionary *retParams = (__Dictionary *) CCNdkBridge::callNative (params, error);
         
         if (retParams == NULL) {
             return false;
         }
         
-        CCBool *retValue = (CCBool *) retParams->objectForKey("return");
+        __Bool *retValue = (__Bool *) retParams->objectForKey("return");
         if (retValue != NULL) {
             return retValue->getValue();
         }
@@ -205,12 +205,12 @@ namespace soomla {
         const char *itemId = good->getId()->getCString();
         
         CCSoomlaUtils::logDebug(TAG,
-                                CCString::createWithFormat("SOOMLA/COCOS2DX Calling equip with: %s", itemId)->getCString());
+                                __String::createWithFormat("SOOMLA/COCOS2DX Calling equip with: %s", itemId)->getCString());
         
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeVirtualGoodsStorage::equip"), "method");
-        params->setObject(CCString::create(itemId), "itemId");
-        params->setObject(CCBool::create(notify), "notify");
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeVirtualGoodsStorage::equip"), "method");
+        params->setObject(__String::create(itemId), "itemId");
+        params->setObject(__Bool::create(notify), "notify");
         CCNdkBridge::callNative (params, error);
     }
     
@@ -218,12 +218,12 @@ namespace soomla {
         const char *itemId = good->getId()->getCString();
         
         CCSoomlaUtils::logDebug(TAG,
-                                CCString::createWithFormat("SOOMLA/COCOS2DX Calling unequip with: %s", itemId)->getCString());
+                                __String::createWithFormat("SOOMLA/COCOS2DX Calling unequip with: %s", itemId)->getCString());
         
-        CCDictionary *params = CCDictionary::create();
-        params->setObject(CCString::create("CCNativeVirtualGoodsStorage::unequip"), "method");
-        params->setObject(CCString::create(itemId), "itemId");
-        params->setObject(CCBool::create(notify), "notify");
+        __Dictionary *params = __Dictionary::create();
+        params->setObject(__String::create("CCNativeVirtualGoodsStorage::unequip"), "method");
+        params->setObject(__String::create(itemId), "itemId");
+        params->setObject(__Bool::create(notify), "notify");
         CCNdkBridge::callNative (params, error);
     }
 }

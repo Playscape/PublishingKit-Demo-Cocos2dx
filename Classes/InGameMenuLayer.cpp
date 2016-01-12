@@ -5,12 +5,12 @@ bool InGameMenuLayer::init()
 {
     //////////////////////////////
     // 1. super init first
-    if ( !CCLayerColor::initWithColor(cocos2d::ccc4(255, 255, 255, 255)) )
+    if ( !LayerColor::initWithColor(cocos2d::Color4B(255, 255, 255, 255)) )
     {
         return false;
     }
-    
+
     setTouchEnabled(true);
-    
+
     return true;
 }

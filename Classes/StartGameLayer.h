@@ -12,14 +12,14 @@
 #include <iostream>
 #include "cocos2d.h"
 
-class StartGameLayer : public cocos2d::CCLayerColor
+class StartGameLayer : public cocos2d::LayerColor
 {
 protected:
-    
+
 public:
     // Method 'init' in cocos2d-x returns bool, instead of 'id' in cocos2d-iphone (an object pointer)
     virtual bool init();
-        
+
     // preprocessor macro for "static create()" constructor ( node() deprecated )
     CREATE_FUNC(StartGameLayer);
 };

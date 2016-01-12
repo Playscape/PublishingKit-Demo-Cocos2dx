@@ -42,6 +42,12 @@ namespace soomla {
         static char const *JSON_JSON_TYPE_SEQUENCE;
         static char const *JSON_JSON_TYPE_SCHEDULE;
         static char const *JSON_JSON_TYPE_DATE_TIME_RANGE;
+        
+        /** Events **/
+        
+        static char const *DICT_ELEMENT_REWARD;
+        static char const *DICT_ELEMENT_NAME;
+        static char const *DICT_ELEMENT_EXTRA;
 
         static char const *EVENT_REWARD_GIVEN;
         static char const *EVENT_REWARD_TAKEN;

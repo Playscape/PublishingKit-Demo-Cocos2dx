@@ -38,6 +38,10 @@ namespace soomla {
     char const *CCCoreConsts::JSON_JSON_TYPE_SEQUENCE = "SequenceReward";
     char const *CCCoreConsts::JSON_JSON_TYPE_SCHEDULE = "Schedule";
     char const *CCCoreConsts::JSON_JSON_TYPE_DATE_TIME_RANGE = "DateTimeRange";
+    
+    char const *CCCoreConsts::DICT_ELEMENT_REWARD = "reward";
+    char const *CCCoreConsts::DICT_ELEMENT_NAME = "name";
+    char const *CCCoreConsts::DICT_ELEMENT_EXTRA = "extra";
 
     char const *CCCoreConsts::EVENT_REWARD_GIVEN = "com.soomla.events.RewardGivenEvent";
     char const *CCCoreConsts::EVENT_REWARD_TAKEN = "com.soomla.events.RewardTakenEvent";

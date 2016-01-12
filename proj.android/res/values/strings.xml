@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SimpleGame</string>
-    <string name="facebook_app_id">274700456018483</string>
+    <string name="facebook_app_id">1606736796248205</string>
+<!--    <string name="facebook_app_id">274700456018483</string>-->
+    <string name="playscape_adience_key">123</string>    
     <string name="user_playscape_pushwoosh_id">DC9EC-2B8CD</string>
 	<string name="user_playscape_chartboost_app_id">53396a519ddc3525dec35705</string>
 	<string name="user_playscape_chartboost_app_signature">91b24a2d0a0df604c3e2ccc6bd7dbf832db88d24</string>

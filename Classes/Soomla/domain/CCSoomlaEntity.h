@@ -24,14 +24,14 @@
 
 namespace soomla {
     class CCSoomlaEntity: public CCDomain {
-        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::CCString*, mId, Id, CCCoreConsts::JSON_ITEM_ITEM_ID);
-        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::CCString*, mName, Name, CCCoreConsts::JSON_ITEM_NAME);
-        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::CCString*, mDescription, Description, CCCoreConsts::JSON_ITEM_DESCRIPTION);
+        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::__String*, mId, Id, CCCoreConsts::JSON_ITEM_ITEM_ID);
+        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::__String*, mName, Name, CCCoreConsts::JSON_ITEM_NAME);
+        SL_SYNTHESIZE_RETAIN_WITH_DICT(cocos2d::__String*, mDescription, Description, CCCoreConsts::JSON_ITEM_DESCRIPTION);
     public:
         CCSoomlaEntity(): mId(NULL), mName(NULL), mDescription(NULL) {}
 
-        virtual bool init(cocos2d::CCString *id, cocos2d::CCString *name = NULL, cocos2d::CCString *description = NULL);
-        virtual bool initWithDictionary(cocos2d::CCDictionary* dict);
+        virtual bool init(cocos2d::__String *id, cocos2d::__String *name = NULL, cocos2d::__String *description = NULL);
+        virtual bool initWithDictionary(cocos2d::__Dictionary* dict);
 
         virtual ~CCSoomlaEntity();
 
@@ -39,11 +39,11 @@ namespace soomla {
         * Converts this `CCSoomlaEntity` to a `CCDictionary`.
         * @return `CCDictionary` representation of this `CCSoomlaEntity`.
         */
-        virtual cocos2d::CCDictionary* toDictionary();
+        virtual cocos2d::__Dictionary* toDictionary();
 
         virtual char const * getType() const = 0;
 
-        virtual bool equals(CCObject *obj) const;
+        virtual bool equals(cocos2d::Ref *obj) const;
 
         virtual CCSoomlaEntity *clone(const char *newId);
     };

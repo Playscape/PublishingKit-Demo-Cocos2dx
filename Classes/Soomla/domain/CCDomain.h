@@ -20,15 +20,15 @@
 #include "cocos2d.h"
 
 namespace soomla {
-    class CCDomain: public cocos2d::CCObject {
+    class CCDomain: public cocos2d::Ref {
     public:
-        virtual bool initWithDictionary(cocos2d::CCDictionary *dict) = 0;
-        virtual cocos2d::CCDictionary *toDictionary() = 0;
+        virtual bool initWithDictionary(cocos2d::__Dictionary *dict) = 0;
+        virtual cocos2d::__Dictionary *toDictionary() = 0;
         virtual ~CCDomain() {};
     protected:
-        cocos2d::CCArray *getDomainsFromDictArray(cocos2d::CCArray *dictArray);
-        cocos2d::CCArray *getDictArrayFromDomains(cocos2d::CCArray *domainArray);
-        cocos2d::CCDictionary *putTypeData(cocos2d::CCDictionary *dict, const char* type);
+        cocos2d::__Array *getDomainsFromDictArray(cocos2d::__Array *dictArray);
+        cocos2d::__Array *getDictArrayFromDomains(cocos2d::__Array *domainArray);
+        cocos2d::__Dictionary *putTypeData(cocos2d::__Dictionary *dict, const char* type);
     };
 }
 

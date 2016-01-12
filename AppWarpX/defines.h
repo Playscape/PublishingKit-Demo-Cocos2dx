@@ -69,9 +69,9 @@ namespace AppWarp
 			connection_error = 5,	
 			unknown_error = 6,
 			size_error = 7,
-			api_not_found = 8,
-            success_recovered = 9,
-            connection_error_recoverable = 10
+            success_recovered = 8,
+            connection_error_recoverable = 9,
+            user_paused_error = 10
 		};
 	}
 
@@ -122,6 +122,7 @@ namespace AppWarp
 			get_room_with_properties = 29,
             private_chat = 30,
             move = 31,
+            private_update = 32,
             lock_properties = 35,
             unlock_properties = 36,
             join_room_range = 37,
@@ -131,7 +132,8 @@ namespace AppWarp
             ack_assoc_port = 65,
             start_game = 66,
             stop_game = 67,
-            get_move_history = 68
+            get_move_history = 68,
+            set_next_turn = 69
 		};
 	}
 
@@ -167,9 +169,20 @@ namespace AppWarp
             user_paused = 14,
             user_resumed = 15,
             game_started = 16,
-            game_stopped = 17
+            game_stopped = 17,
+            private_update = 18,
+            next_turn_requested = 19
 		};
 	}
+    
+    //Reason Code
+    namespace ReasonCode
+    {
+        enum{
+            waiting_for_paused_user = 21,
+            invalid_api_key = 22
+        };
+    }
 
     namespace ConnectionState
     {

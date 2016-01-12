@@ -29,9 +29,9 @@ namespace soomla {
         };
 
         static CCRandomReward *create(
-                cocos2d::CCString *id,
-                cocos2d::CCString *name,
-                cocos2d::CCArray *rewards,
+                cocos2d::__String *id,
+                cocos2d::__String *name,
+                cocos2d::__Array *rewards,
                 CCSchedule *schedule
         );
 

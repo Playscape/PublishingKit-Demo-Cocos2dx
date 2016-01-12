@@ -56,7 +56,7 @@ namespace AppWarp
     extern int RECOVERY_ALLOWANCE_TIME;
     extern bool AUTO_RECOVER;
 
-	class Client : public cocos2d::CCNode
+	class Client : public cocos2d::Node
 	{
 	public:
 		~Client();
@@ -375,6 +375,10 @@ namespace AppWarp
 		 */
 		void sendUdpUpdate(byte* update,int updateLen);
         
+        void sendPrivateUpdate(std::string toUser, byte* update,int updateLen);
+        
+        void sendPrivateUdpUpdate(std::string toUser, byte* update,int updateLen);
+        
 		/**
 		 * Updates the custom roomData associated with the given user on the server.
 		 * Result is provided in the onSetCustomUserDataDone callback of the
@@ -487,7 +491,7 @@ namespace AppWarp
          * provided in the onGameStarted callback of the TurnBasedRoomListener.
          *
          */
-        void startGame();
+        void startGame(bool isDefaultLogic=true, std::string firstTurn = "");
         
         /**
          * sends a stop game request to the server. Result of the request is
@@ -501,7 +505,9 @@ namespace AppWarp
          * turn.
          *
          */
-        void sendMove(std::string movedata);
+        void sendMove(std::string movedata, std::string nextTurn = "");
+        
+        void setNextTurn(std::string nextTurn);
         
         
         /**
@@ -529,6 +535,18 @@ namespace AppWarp
          * Methods used for internal AppWarp socket callbacks.
          * Not required to be called in Cocos2DX application code.
          */
+        
+        /*
+         * Get the Session ID
+         */
+        int getSessionID();
+        
+        /*
+         * Recover connection with SessionID and Username. This is helpful when app recovers
+         * from crash
+         */
+        void recoverConnectionWithSessionID(int sessio_id, std::string user_name);
+        
 		void socketConnectionCallback(int);
         void socketNewMsgCallback(unsigned char[], int len);
         void udpresponse(response* response);
@@ -543,6 +561,7 @@ namespace AppWarp
         void setState(int newState);
         int _state;
         bool isWaitingForData;
+        bool isLookUpFailed;
 		byte countPendingKeepAlive;
         Utility::Socket* _socket;
         Utility::UdpSocket* _udpsocket;

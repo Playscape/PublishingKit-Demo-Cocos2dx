@@ -20,7 +20,7 @@
 namespace soomla {
     USING_NS_CC;
     
-    CCSingleUseVG *CCSingleUseVG::create(CCString *name, CCString *description, CCString *itemId, CCPurchaseType *purchaseType) {
+    CCSingleUseVG *CCSingleUseVG::create(__String *name, __String *description, __String *itemId, CCPurchaseType *purchaseType) {
         CCSingleUseVG *ret = new CCSingleUseVG();
         if (ret->init(name, description, itemId, purchaseType)) {
             ret->autorelease();

@@ -31,7 +31,7 @@ namespace soomla {
      access the native StoreController functionality. This class holds the most
      basic assets needed to operate the Store.
 	 */
-    class CCSoomlaStore : public cocos2d::CCObject {
+    class CCSoomlaStore : public cocos2d::Ref {
     public:
 
 		/**
@@ -49,14 +49,14 @@ namespace soomla {
          "SSV": __Bool - Whether or not to enable server side
          verification of purchases.
          */
-        static void initialize(CCStoreAssets *storeAssets, cocos2d::CCDictionary *storeParams);
+        static void initialize(CCStoreAssets *storeAssets, cocos2d::__Dictionary *storeParams);
         
 		/**
          Starts an in app purchase process in the market (App Store, Google
          Play, etc...).
          @param productId The product ID of the item in the market (App Store,
                 Google Play, etc..).
-         @param soomlaError A CCError for error checking.
+         @param error A `CCError` for error checking.
 		 */
         virtual void buyMarketItem(const char *productId, const char *payload, CCError **error = NULL);
 

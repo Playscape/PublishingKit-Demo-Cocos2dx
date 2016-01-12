@@ -25,10 +25,9 @@
 #include "CCVirtualItemReward.h"
 #include "CCVirtualCurrencyStorage.h"
 #include "CCVirtualGoodsStorage.h"
+#include "CCStoreConsts.h"
 
 #include "CCStoreEventDispatcher.h"
-#include "CCStoreEventHandler.h"
-#include "CCSimpleStoreEventHandler.h"
 #include "CCStoreBridge.h"
 
 #endif /* !_Cocos2dxSoomla_H */

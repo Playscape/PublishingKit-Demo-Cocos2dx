@@ -13,38 +13,38 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
+
 #ifndef __CCAbstractAggregatedEventHandler_H_
 #define __CCAbstractAggregatedEventHandler_H_
 
 
 #include "cocos2d.h"
-#include "CCSoomlaMacros.h"
 
 namespace soomla {
 
-#define FOR_EACH_EVENT_HANDLER(__TYPE__) CCSetIterator i;\
+#define FOR_EACH_EVENT_HANDLER(__TYPE__) __SetIterator i;\
     for(i = mEventHandlers->begin(); i != mEventHandlers->end(); i++) {\
         __TYPE__ *eventHandler = dynamic_cast<__TYPE__ *>(*i);\
 
     template <class T> class CCAbstractAggregatedEventHandler {
     protected:
-        cocos2d::CCSet *mEventHandlers;
-        cocos2d::CCArray *tempAddEventHandlers;
-        cocos2d::CCArray *tempRemoveEventHandlers;
+        cocos2d::__Set *mEventHandlers;
+        cocos2d::__Set *tempAddEventHandlers;
+        cocos2d::__Set *tempRemoveEventHandlers;
         int lockCount;
     public:
         CCAbstractAggregatedEventHandler() :
-                mEventHandlers(NULL), tempAddEventHandlers(NULL),
-                tempRemoveEventHandlers(NULL), lockCount(0) {
+                mEventHandlers(nullptr), tempAddEventHandlers(nullptr),
+                tempRemoveEventHandlers(nullptr), lockCount(0) {
         }
         virtual bool init() {
-            mEventHandlers = cocos2d::CCSet::create();
+            mEventHandlers = cocos2d::__Set::create();
             mEventHandlers->retain();
 
-            tempAddEventHandlers = cocos2d::CCArray::create();
+            tempAddEventHandlers = cocos2d::__Set::create();
             tempAddEventHandlers->retain();
 
-            tempRemoveEventHandlers = cocos2d::CCArray::create();
+            tempRemoveEventHandlers = cocos2d::__Set::create();
             tempRemoveEventHandlers->retain();
 
             return true;
@@ -88,13 +88,8 @@ namespace soomla {
 
             lockCount = 0;
 
-            while (tempAddEventHandlers->count() > 0) {
-                tempAddEventHandlers->fastRemoveObjectAtIndex(0);
-            }
-            
-            while (tempAddEventHandlers->count() > 0) {
-                tempRemoveEventHandlers->fastRemoveObjectAtIndex(0);
-            }
+            tempAddEventHandlers->removeAllObjects();
+            tempRemoveEventHandlers->removeAllObjects();
         }
     protected:
         void lockEventHandlers() {
@@ -105,23 +100,26 @@ namespace soomla {
             lockCount--;
             
             if (lockCount <= 0) {
-                for (int i = 0; i < tempAddEventHandlers->count(); ++i) {
-                    T *addHandler = dynamic_cast<T *>(tempAddEventHandlers->objectAtIndex(i));
+                for(cocos2d::__SetIterator i = tempAddEventHandlers->begin(); i != tempAddEventHandlers->end(); i++) {
+                    if (!(*i)) {
+                        break;
+                    }
+                    
+                    T *addHandler = dynamic_cast<T *>(*i);
                     addEventHandler(addHandler);
                 }
                 
-                for (int i = 0; i < tempRemoveEventHandlers->count(); ++i) {
-                    T *removeHandler = dynamic_cast<T *>(tempRemoveEventHandlers->objectAtIndex(i));
+                for(cocos2d::__SetIterator i = tempRemoveEventHandlers->begin(); i != tempRemoveEventHandlers->end(); i++) {
+                    if (!(*i)) {
+                        break;
+                    }
+                    
+                    T *removeHandler = dynamic_cast<T *>(*i);
                     removeEventHandler(removeHandler);
                 }
                 
-                while (tempAddEventHandlers->count() > 0) {
-                    tempAddEventHandlers->fastRemoveObjectAtIndex(0);
-                }
-                
-                while (tempRemoveEventHandlers->count() > 0) {
-                    tempRemoveEventHandlers->fastRemoveObjectAtIndex(0);
-                }
+                tempAddEventHandlers->removeAllObjects();
+                tempRemoveEventHandlers->removeAllObjects();
                 
                 lockCount = 0;
             }

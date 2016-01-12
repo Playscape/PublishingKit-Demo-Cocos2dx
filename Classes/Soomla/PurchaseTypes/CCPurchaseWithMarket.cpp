@@ -24,9 +24,9 @@ namespace soomla {
     
     #define TAG "SOOMLA PurchaseWithMarket"
     
-    CCPurchaseWithMarket *CCPurchaseWithMarket::create(cocos2d::CCString *productId, cocos2d::CCDouble *price) {
+    CCPurchaseWithMarket *CCPurchaseWithMarket::create(cocos2d::__String *productId, cocos2d::__Double *price) {
         return createWithMarketItem(CCMarketItem::create(
-                productId, cocos2d::CCInteger::create(CCMarketItem::CONSUMABLE), price));
+                productId, price));
     }
 
     CCPurchaseWithMarket *CCPurchaseWithMarket::createWithMarketItem(CCMarketItem *marketItem) {
@@ -52,7 +52,7 @@ namespace soomla {
     }
     
     void CCPurchaseWithMarket::buy(const char* payload, CCError **error) {
-        CCSoomlaUtils::logDebug(TAG, cocos2d::CCString::createWithFormat("Starting in-app purchase for productId: %s",
+        CCSoomlaUtils::logDebug(TAG, cocos2d::__String::createWithFormat("Starting in-app purchase for productId: %s",
                                                                          getMarketItem()->getProductId()->getCString())->getCString());
         
         if (payload == NULL) {

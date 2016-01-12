@@ -25,8 +25,8 @@ namespace soomla {
     class CCDomainHelper {
     public:
         static CCDomainHelper* getInstance();
-        cocos2d::CCArray *getDomainsFromDictArray(cocos2d::CCArray *dictArray, const char *type = NULL);
-        cocos2d::CCArray *getDictArrayFromDomains(cocos2d::CCArray *domainArray);
+        cocos2d::__Array *getDomainsFromDictArray(cocos2d::__Array *dictArray, const char *type = nullptr);
+        cocos2d::__Array *getDictArrayFromDomains(cocos2d::__Array *domainArray);
     };
 }
 

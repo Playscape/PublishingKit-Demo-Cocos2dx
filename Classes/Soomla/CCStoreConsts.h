@@ -21,10 +21,8 @@
 * This class contains all static const String names of the keys/vals in the
 * JSON being parsed all around the SDK.
 */
-#include "CCCoreConsts.h"
-
 namespace soomla {
-    class CCStoreConsts: public CCCoreConsts {
+    class CCStoreConsts {
     public:
         static char const *JSON_STORE_CURRENCIES;
         static char const *JSON_STORE_CURRENCY_PACKS;
@@ -43,7 +41,6 @@ namespace soomla {
         static char const *JSON_MARKET_ITEM_ANDROID_ID;
         static char const *JSON_MARKET_ITEM_IOS_ID;
 
-        static char const *JSON_MARKET_ITEM_CONSUMABLE;
         static char const *JSON_MARKET_ITEM_PRICE;
 
         static char const *JSON_MARKET_ITEM_MARKET_PRICE;
@@ -88,6 +85,33 @@ namespace soomla {
         static char const *JSON_JSON_TYPE_SINGLE_USE_VG;
         static char const *JSON_JSON_TYPE_UPGRADE_VG;
         static char const *JSON_JSON_TYPE_ITEM;
+        
+        /** Events **/
+        
+        static char const *DICT_ELEMENT_BALANCE;
+        static char const *DICT_ELEMENT_CURRENCY;
+        static char const *DICT_ELEMENT_AMOUNT_ADDED;
+        static char const *DICT_ELEMENT_GOOD;
+        static char const *DICT_ELEMENT_EQUIPPABLEVG;
+        static char const *DICT_ELEMENT_UPGRADEVG;
+        static char const *DICT_ELEMENT_PURCHASABLE;
+        static char const *DICT_ELEMENT_PURCHASABLE_ID;
+        static char const *DICT_ELEMENT_DEVELOPERPAYLOAD;
+        static char const *DICT_ELEMENT_RECEIPT;
+        static char const *DICT_ELEMENT_TOKEN;
+        static char const *DICT_ELEMENT_ORIGINAL_JSON;
+        static char const *DICT_ELEMENT_SIGNATURE;
+        static char const *DICT_ELEMENT_USER_ID;
+        static char const *DICT_ELEMENT_SUCCESS;
+        static char const *DICT_ELEMENT_VERIFIED;
+        static char const *DICT_ELEMENT_TRANSACTION;
+        static char const *DICT_ELEMENT_ERROR_CODE;
+        static char const *DICT_ELEMENT_ERROR_MESSAGE;
+        static char const *DICT_ELEMENT_PRODUCTID;
+        static char const *DICT_ELEMENT_PRICE;
+        static char const *DICT_ELEMENT_TITLE;
+        static char const *DICT_ELEMENT_DESCRIPTION;
+        static char const *DICT_ELEMENT_MARKET_ITEMS;
 
         static char const *EVENT_BILLING_NOT_SUPPORTED;
         static char const *EVENT_BILLING_SUPPORTED;

@@ -1,6 +1,3 @@
-//
-// Created by Fedor Shubin on 1/22/14.
-//
 
 #ifdef COCOS2D_JAVASCRIPT
 
@@ -13,20 +10,14 @@ JSClass*        jsb_class;
 JSObject*       jsb_prototype;
 
 // This function is mapping the function “callNative” in “JSBinding.cpp”
-JSBool js_callNative(JSContext* cx, uint32_t argc, jsval* vp){
+bool js_callNative(JSContext* cx, uint32_t argc, jsval* vp){
     jsval *argv = JS_ARGV(cx, vp);
 
-    JSBool ok = JS_TRUE;
+    bool ok = true;
 
     if (argc == 1) {
         const char* arg0;
         std::string arg0_tmp; ok &= jsval_to_std_string(cx, argv[0], &arg0_tmp); arg0 = arg0_tmp.c_str();
-//    JSObject* obj = NULL;
-//    JSB::JSBinding* cobj = NULL;
-//    obj = JS_THIS_OBJECT(cx, vp);
-//    js_proxy_t* proxy = jsb_get_js_proxy(obj);
-//    cobj = (JSB::JSBinding* )(proxy ? proxy->ptr : NULL);
-//    JSB_PRECONDITION2(cobj, cx, JS_FALSE, "Invalid Native Object");
         std::string result;
         Soomla::JSBinding::callNative(arg0, result);
         jsval ret_jsval = std_string_to_jsval(cx, result);
@@ -34,38 +25,39 @@ JSBool js_callNative(JSContext* cx, uint32_t argc, jsval* vp){
         return ok;
     }
     JS_ReportError(cx, "Wrong number of arguments");
-    return JS_FALSE;
+    return false;
 }
 
-JSBool js_constructor(JSContext* cx, uint32_t argc, jsval* vp){
-    cocos2d::CCLog("JS Constructor...");
-    if (argc == 0) {
+bool js_constructor(JSContext* cx, uint32_t argc, jsval* vp){
+    JS::RootedValue initializing(cx);
+    bool isNewValid = true;
+    if (isNewValid)
+    {
+        TypeTest<Soomla::JSBinding> t;
+        js_type_class_t *typeClass = nullptr;
+        std::string typeName = t.s_name();
+        auto typeMapIter = _js_global_type_map.find(typeName);
+        CCASSERT(typeMapIter != _js_global_type_map.end(), "Can't find the class type!");
+        typeClass = typeMapIter->second;
+        CCASSERT(typeClass, "The value is null.");
+
+        JSObject *_tmp = JS_NewObject(cx, typeClass->jsclass, typeClass->proto, typeClass->parentProto);
         Soomla::JSBinding* cobj = new Soomla::JSBinding();
         cocos2d::CCObject* ccobj = dynamic_cast<cocos2d::CCObject*>(cobj);
         if (ccobj) {
             ccobj->autorelease();
         }
-        TypeTest<Soomla::JSBinding> t;
-        js_type_class_t* typeClass;
-        uint32_t typeId = t.s_id();
-        HASH_FIND_INT(_js_global_type_ht, &typeId, typeClass);
-        assert(typeClass);
-        JSObject* obj = JS_NewObject(cx, typeClass->jsclass, typeClass->proto, typeClass->parentProto);
-        JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(obj));
-
-        js_proxy_t* p = jsb_new_proxy(cobj, obj);
-        JS_AddNamedObjectRoot(cx, &p->obj, "JSB::JSBinding");
-
-        return JS_TRUE;
+        js_proxy_t *pp = jsb_new_proxy(cobj, _tmp);
+        JS_AddObjectRoot(cx, &pp->obj);
+        JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(_tmp));
+        return true;
     }
 
-    JS_ReportError(cx, "Wrong number of arguments: %d, was expecting: %d", argc, 0);
-
-    return JS_FALSE;
+    return false;
 }
 
 void js_finalize(JSFreeOp* fop, JSObject* obj){
-    CCLOGINFO("JSBindings: finallizing JS object %p JSB", obj);
+    CCLOGINFO("JSBindings: finalizing JS object %p JSB", obj);
 }
 
 // Binding JSB type
@@ -73,7 +65,7 @@ void js_register(JSContext* cx, JSObject* global){
     jsb_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_class->name = "CCSoomlaNdkBridge";
     jsb_class->addProperty = JS_PropertyStub;
-    jsb_class->delProperty = JS_PropertyStub;
+    jsb_class->delProperty = JS_DeletePropertyStub;
     jsb_class->getProperty = JS_PropertyStub;
     jsb_class->setProperty = JS_StrictPropertyStub;
     jsb_class->enumerate = JS_EnumerateStub;
@@ -109,26 +101,33 @@ void js_register(JSContext* cx, JSObject* global){
             funcs,
             NULL,
             st_funcs);
-    JSBool found;
-    JS_SetPropertyAttributes(cx, global, "JSB", JSPROP_ENUMERATE | JSPROP_READONLY, &found);
+
+    if (_js_global_type_map.find("JSB") == _js_global_type_map.end())
+    {
+        js_type_class_t *p;
+        p = (js_type_class_t *)malloc(sizeof(js_type_class_t));
+        p->jsclass = jsb_class;
+        p->proto = jsb_prototype;
+        p->parentProto = NULL;
+        _js_global_type_map.insert(std::make_pair("JSB", p));
+    }
 }
 
-// Binding JSB namespace so in JavaScript code JSB namespce can be recognized
-void register_jsb_soomla(JSContext *cx, JSObject *global){
-    jsval nsval;
-    JSObject* ns;
-    JS_GetProperty(cx, global, "JS", &nsval);
-
+// Binding JSB namespace so in JavaScript code JSB namespace can be recognized
+void register_jsb_soomla(JSContext *cx, JSObject *obj){
+    // first, try to get the ns
+    JS::RootedValue nsval(cx);
+    JS::RootedObject ns(cx);
+    JS_GetProperty(cx, obj, "Soomla", &nsval);
     if (nsval == JSVAL_VOID) {
         ns = JS_NewObject(cx, NULL, NULL, NULL);
         nsval = OBJECT_TO_JSVAL(ns);
-        JS_SetProperty(cx, global, "Soomla", &nsval);
-    }
-    else{
+        JS_SetProperty(cx, obj, "Soomla", nsval);
+    } else {
         JS_ValueToObject(cx, nsval, &ns);
     }
-    global = ns;
-    js_register(cx, global);
+    obj = ns;
+    js_register(cx, obj);
 
 }
 
