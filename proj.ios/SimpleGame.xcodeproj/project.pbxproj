@@ -134,6 +134,8 @@
 		AC8C6D771C196744003E7E77 /* StoreTypeConsts.mm in Sources */ = {isa = PBXBuildFile; fileRef = AC8C6D731C196744003E7E77 /* StoreTypeConsts.mm */; };
 		AC8C6D7A1C196CD4003E7E77 /* MuffinRushAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC8C6D781C196CD4003E7E77 /* MuffinRushAssets.cpp */; };
 		AC8C6D7D1C1972F8003E7E77 /* ReportTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC8C6D7B1C1972F8003E7E77 /* ReportTestScene.cpp */; };
+		ACAE46AA1C731A6E00A0381B /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAE46A81C731A6E00A0381B /* GoogleMobileAds.framework */; };
+		ACAE46AB1C731A6E00A0381B /* StartApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAE46A91C731A6E00A0381B /* StartApp.framework */; };
 		BD487FAE19974F3400B40ED8 /* AdsTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD487FA619974F3400B40ED8 /* AdsTestScene.cpp */; };
 		BD487FAF19974F3400B40ED8 /* BannersTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD487FA819974F3400B40ED8 /* BannersTestScene.cpp */; };
 		BD487FB019974F3400B40ED8 /* InterstitialsTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD487FAA19974F3400B40ED8 /* InterstitialsTestScene.cpp */; };
@@ -617,6 +619,8 @@
 		AC8C6D791C196CD4003E7E77 /* MuffinRushAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MuffinRushAssets.h; sourceTree = "<group>"; };
 		AC8C6D7B1C1972F8003E7E77 /* ReportTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ReportTestScene.cpp; sourceTree = "<group>"; };
 		AC8C6D7C1C1972F8003E7E77 /* ReportTestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportTestScene.h; sourceTree = "<group>"; };
+		ACAE46A81C731A6E00A0381B /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "../../PublishingKit/cocos2d-x/demos/PlayscapePubkitCocos2D-X/proj.ios/frameworks/GoogleMobileAds.framework"; sourceTree = "<group>"; };
+		ACAE46A91C731A6E00A0381B /* StartApp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StartApp.framework; path = "../../PublishingKit/cocos2d-x/demos/PlayscapePubkitCocos2D-X/proj.ios/frameworks/StartApp.framework"; sourceTree = "<group>"; };
 		BD487FA619974F3400B40ED8 /* AdsTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdsTestScene.cpp; sourceTree = "<group>"; };
 		BD487FA719974F3400B40ED8 /* AdsTestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdsTestScene.h; sourceTree = "<group>"; };
 		BD487FA819974F3400B40ED8 /* BannersTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BannersTestScene.cpp; sourceTree = "<group>"; };
@@ -1044,6 +1048,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACAE46AA1C731A6E00A0381B /* GoogleMobileAds.framework in Frameworks */,
+				ACAE46AB1C731A6E00A0381B /* StartApp.framework in Frameworks */,
 				424E01B41A38A8F60009EFE0 /* libsqlite3.dylib in Frameworks */,
 				424E019C1A36F1CD0009EFE0 /* CoreData.framework in Frameworks */,
 				BD9F3E60190D4B54001103C2 /* AdSupport.framework in Frameworks */,
@@ -1097,6 +1103,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ACAE46A81C731A6E00A0381B /* GoogleMobileAds.framework */,
+				ACAE46A91C731A6E00A0381B /* StartApp.framework */,
 				4219393D1A89246D00225375 /* FacebookSDK.framework */,
 				424E01B31A38A8F60009EFE0 /* libsqlite3.dylib */,
 				424E019A1A36F1850009EFE0 /* CoreData.framework */,
@@ -2445,6 +2453,7 @@
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+				ACAE46861C7211E400A0381B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2514,6 +2523,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		ACAE46861C7211E400A0381B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "python \"../../PlayscapePubkitCocos2D-X/proj.ios/run.py\" -a P4lMpJ2TIXmNQMj_DF6bi1nseMP1bKBw";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -2821,6 +2846,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(HOME)/Documents/FacebookSDK/**",
+					"$(SRCROOT)/../../PlayscapePubkitCocos2D-X/proj.ios/frameworks",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -2876,6 +2902,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(HOME)/Documents/FacebookSDK/**",
+					"$(SRCROOT)/../../PlayscapePubkitCocos2D-X/proj.ios/frameworks",
 				);
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
