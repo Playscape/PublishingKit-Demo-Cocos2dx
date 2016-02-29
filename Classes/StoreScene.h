@@ -2,16 +2,13 @@
 #define __StoreScene_h__
 
 #include <iostream>
-#include <string>
-#include <map>
 #include "cocos2d.h"
 #include "playscape/PurchaseItem.h"
 #include "playscape/FlowInstance.h"
 
 using playscape::FlowInstance;
 using playscape::PurchaseItem;
-using std::string;
-using std::map;
+
 using namespace cocos2d;
 class StoreScene : public cocos2d::LayerColor
 {
@@ -27,13 +24,12 @@ protected:
 	void buySamuraiShieldCallback(Ref* sender);
 	void buyShogunKatanaCallback(Ref* sender);
 	void hideBuyDialog();
-	void showBuyDialog(const string& itemName);
+    void showBuyDialog(const std::string& itemName);
 
 	void buyButtonCallback(Ref* sender);
 	void cancelBuyButtonCallback(Ref* sender);
 	LayerColor* mBuyDialog;
 	Menu* mItemsMenu;
-
 	bool mShouldFail;
 
 	void registerStoreFlow();
@@ -52,7 +48,7 @@ protected:
 	double mCurrentItemPrice;
 
 	// stub details map we'll use with various report calls, in a real game this should be relevant data.
-	map<string, double> mDummyFlowDetails;
+    std::map<std::string, double> mDummyFlowDetails;
 public:
     // Method 'init' in cocos2d-x returns bool, instead of 'id' in cocos2d-iphone (an object pointer)
     virtual bool init();

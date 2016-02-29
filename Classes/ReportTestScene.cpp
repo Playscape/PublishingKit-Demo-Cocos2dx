@@ -4,12 +4,9 @@
 #include "InGameMenuLayer.h"
 #include "playscape/Report.h"
 
-#include <string>
-#include <map>
 
 using namespace cocos2d;
 using playscape::Report;
-using std::string;
 
 
 // on "init" you need to initialize your instance
@@ -25,18 +22,18 @@ bool ReportTestScene::init()
     Size winSize = Director::getInstance()->getWinSize();
 
     setTouchEnabled(true);
-    LabelTTF* label = LabelTTF::create("Report Test", "Marker Felt", 22);
+    auto label = Label::createWithTTF("Report Test", "Marker Felt", 22);
     label->setPosition(
 			Point(winSize.width / 2 - label->getContentSize().width / 2,
 			winSize.height - label->getContentSize().height)
 		);
 
     mMainMenu = Menu::create(
-			MenuItemFont::create("Report Custom Event", this, menu_selector(ReportTestScene::reportEventClicked)),
-			MenuItemFont::create("Report Custom Event With Attributes", this, menu_selector(ReportTestScene::reportAttrEventClicked)),
+			MenuItemFont::create("Report Custom Event", CC_CALLBACK_1(ReportTestScene::reportEventClicked, this)),
+			MenuItemFont::create("Report Custom Event With Attributes", CC_CALLBACK_1(ReportTestScene::reportAttrEventClicked, this)),
 			NULL);
 
-    for(Ref* item : mMainMenu->getChildren()) {
+    for(auto item : mMainMenu->getChildren()) {
     	((MenuItemFont*)item)->setColor(Color3B::BLACK);
     }
 
@@ -54,7 +51,7 @@ void ReportTestScene::reportEventClicked(Ref *sender) {
 }
 
 void ReportTestScene::reportAttrEventClicked(Ref *sender) {
-	std::map<string, string> eventAttrs;
+    std::map<string, string> eventAttrs;
 	
 	eventAttrs["key_1"] = "value_1";
 	eventAttrs["key_2"] = "value_2";
@@ -68,7 +65,7 @@ void ReportTestScene::showInGameMenuLayer() {
 	InGameMenuLayer* _inGameMenuLayer = InGameMenuLayer::create();
 	addChild(_inGameMenuLayer);
 
-	MenuItemFont *menuButton = MenuItemFont::create("Menu", this,menu_selector(ReportTestScene::menuButtonCallback));
+	MenuItemFont *menuButton = MenuItemFont::create("Menu", CC_CALLBACK_1(ReportTestScene::menuButtonCallback, this));
 	menuButton->setColor(Color3B(0,0,0));
 
 	menuButton->setPosition(Point(winSize.width - menuButton->getContentSize().width, winSize.height - menuButton->getContentSize().height));
@@ -87,7 +84,7 @@ void ReportTestScene::menuButtonCallback(Ref* sender) {
 Scene* ReportTestScene::scene()
 {
     // 'scene' is an autorelease object
-    Scene *scene = Scene::create();
+    auto scene = Scene::create();
 
     // 'layer' is an autorelease object
     ReportTestScene *layer = ReportTestScene::create();

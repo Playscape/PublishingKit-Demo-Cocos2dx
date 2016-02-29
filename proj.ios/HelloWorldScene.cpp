@@ -12,17 +12,18 @@
 
 #include <sstream>
 
-using namespace cocos2d;
+USING_NS_CC;
+
 using namespace CocosDenshion;
 using playscape::Report;
 using std::ostringstream;
 
 #define FAKE_FACEBOOK_ID "fake_facebook_id"
 
-CCScene* HelloWorld::scene()
+Scene* HelloWorld::scene()
 {
     // 'scene' is an autorelease object
-    CCScene *scene = CCScene::create();
+    Scene *scene = Scene::create();
     
     // 'layer' is an autorelease object
     HelloWorld *layer = HelloWorld::create();
@@ -40,7 +41,7 @@ bool HelloWorld::init()
 {
     //////////////////////////////
     // 1. super init first
-    if ( !CCLayerColor::initWithColor(ccc4(255, 255, 255, 255)) )
+    if ( !LayerColor::initWithColor(Color4B(255, 255, 255, 255)) )
     {
         return false;
     }
@@ -91,31 +92,30 @@ void HelloWorld::showStartGameLayer()
     mStartGameLayer = StartGameLayer::create();
     addChild(mStartGameLayer);
 
-    CCMenu *pMenu =
-		CCMenu::create(
-			CCMenuItemFont::create("Host Game", this, menu_selector(HelloWorld::hostGameButtonCallback)),
-			CCMenuItemFont::create("Join Game Game", this, menu_selector(HelloWorld::joinGameButtonCallback)),
-			CCMenuItemFont::create("Open Store", this, menu_selector(HelloWorld::openStoreButtonCallback)),
-			CCMenuItemFont::create("Play With Friends", this, menu_selector(HelloWorld::inviteFriendsButtonCallback)),
-			CCMenuItemFont::create("Simulate Received Invite", this, menu_selector(HelloWorld::simulateReceivedInviteButtonCallback)),
-			CCMenuItemFont::create("Simulate SocialNetwork Login/Logout", this, menu_selector(HelloWorld::simulateSocialNetworkLoginCallback)),
-            CCMenuItemFont::create("Open Ads Test", this, menu_selector(HelloWorld::openAdsTest)),
-            CCMenuItemFont::create("Set PW custom tags", this, menu_selector(HelloWorld::setCustomTagsCallback)),
-            CCMenuItemFont::create("Open Report Test", this, menu_selector(HelloWorld::openReportTest)),
+    Menu *pMenu =
+		Menu::create(
+			MenuItemFont::create("Host Game", CC_CALLBACK_1(HelloWorld::hostGameButtonCallback, this)),
+			MenuItemFont::create("Join Game Game", CC_CALLBACK_1(HelloWorld::joinGameButtonCallback, this)),
+			MenuItemFont::create("Open Store", CC_CALLBACK_1(HelloWorld::openStoreButtonCallback, this)),
+			MenuItemFont::create("Play With Friends", CC_CALLBACK_1(HelloWorld::inviteFriendsButtonCallback, this)),
+			MenuItemFont::create("Simulate Received Invite", CC_CALLBACK_1(HelloWorld::simulateReceivedInviteButtonCallback, this)),
+			MenuItemFont::create("Simulate SocialNetwork Login/Logout", CC_CALLBACK_1(HelloWorld::simulateSocialNetworkLoginCallback, this)),
+            MenuItemFont::create("Open Ads Test", CC_CALLBACK_1(HelloWorld::openAdsTest, this)),
+            MenuItemFont::create("Set PW custom tags", CC_CALLBACK_1(HelloWorld::setCustomTagsCallback, this)),
+            MenuItemFont::create("Open Report Test", CC_CALLBACK_1(HelloWorld::openReportTest, this)),
 			NULL);
 
-    CCObject* item;
-    CCARRAY_FOREACH(pMenu->getChildren(), item) {
-    	((CCMenuItemFont*)item)->setColor(ccBLACK);
+    for (auto item : pMenu->getChildren()) {
+        ((MenuItemFont*)item)->setColor(Color3B::BLACK);
     }
-
+    
     pMenu->alignItemsVertically();
     mStartGameLayer->addChild(pMenu, 1);
 }
 
 
 
-void HelloWorld::setCustomTagsCallback(CCObject* pSender) {
+void HelloWorld::setCustomTagsCallback(Ref* pSender) {
 	// Shows how to set custom pushwoosh tags
 
 	int value = rand() % 20000;
@@ -127,19 +127,19 @@ void HelloWorld::setCustomTagsCallback(CCObject* pSender) {
 	is << value;
 }
 
-void HelloWorld::openReportTest(CCObject* pSender) {
-    CCDirector::sharedDirector()->replaceScene(ReportTestScene::scene());
+void HelloWorld::openReportTest(Ref* pSender) {
+    Director::getInstance()->replaceScene(ReportTestScene::scene());
 }
 
-void HelloWorld::openAdsTest(CCObject* sender) {
-	CCDirector::sharedDirector()->replaceScene(AdsTestScene::scene());
+void HelloWorld::openAdsTest(Ref* sender) {
+	Director::getInstance()->replaceScene(AdsTestScene::scene());
 }
 
-void HelloWorld::inviteFriendsButtonCallback(CCObject* sender) {
-	CCDirector::sharedDirector()->replaceScene(InviteFriendsScene::scene());
+void HelloWorld::inviteFriendsButtonCallback(Ref* sender) {
+	Director::getInstance()->replaceScene(InviteFriendsScene::scene());
 }
 
-void HelloWorld::simulateSocialNetworkLoginCallback(CCObject* pSender) {
+void HelloWorld::simulateSocialNetworkLoginCallback(Ref* pSender) {
 	mIsSocialNetworkLoggedIn = !mIsSocialNetworkLoggedIn;
 
 	if (mIsSocialNetworkLoggedIn) {
@@ -151,18 +151,18 @@ void HelloWorld::simulateSocialNetworkLoginCallback(CCObject* pSender) {
 
 void HelloWorld::showInGameMenuLayer()
 {
-	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+	Size winSize = Director::getInstance()->getWinSize();
 
     mInGameMenuLayer = InGameMenuLayer::create();
     addChild(mInGameMenuLayer);
 
-    CCMenuItemFont *menuButton = CCMenuItemFont::create("Menu", this,menu_selector(HelloWorld::mainMenuButtonCallback));
-    menuButton->setColor(ccc3(0,0,0));
+    MenuItemFont *menuButton = MenuItemFont::create("Menu", CC_CALLBACK_1(HelloWorld::mainMenuButtonCallback, this));
+    menuButton->setColor(Color3B::BLACK);
 
-    menuButton->setPosition(ccp(winSize.width - menuButton->getContentSize().width, winSize.height - menuButton->getContentSize().height));
+    menuButton->setPosition(Vec2(winSize.width - menuButton->getContentSize().width, winSize.height - menuButton->getContentSize().height));
 
-    CCMenu *pMenu = CCMenu::create(menuButton,NULL);
-    pMenu->setPosition(CCPointZero);
+    Menu *pMenu = Menu::create(menuButton, NULL);
+    pMenu->setPosition(Vec2::ZERO);
 
     mInGameMenuLayer->addChild(pMenu, 1);
 }
@@ -218,19 +218,20 @@ void HelloWorld::startGame()
     showInGameMenuLayer();
 
     // Initialize arrays
-    mTargets = new CCArray();
-    mProjectiles = new CCArray();
+    mTargets = __Array::createWithCapacity(10);
+    mProjectiles = __Array::createWithCapacity(10);
+    
     
     // Get the dimensions of the window for calculation purposes
-    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    Size winSize = Director::getInstance()->getWinSize();
     
     mPlayer = (Player*)CCSprite::create("Player.png");
-    mPlayer->setPosition(ccp(mPlayer->getContentSize().width/2, winSize.height/2));
+    mPlayer->setPosition(Vec2(mPlayer->getContentSize().width/2, winSize.height/2));
     mPlayer->isEnemy = false;
     addChild(mPlayer);
     
-    mEnemy = (Player*)CCSprite::create("Enemy.png");
-    mEnemy->setPosition(ccp(winSize.width-mEnemy->getContentSize().width/2, winSize.height/2));
+    mEnemy = (Player*)Sprite::create("Enemy.png");
+    mEnemy->setPosition(Vec2(winSize.width-mEnemy->getContentSize().width/2, winSize.height/2));
     mEnemy->isEnemy = true;
     mEnemy->setOpacity(100);
     addChild(mEnemy);
@@ -275,25 +276,24 @@ void HelloWorld::update(float time)
         return;
     }
     
-	CCArray *projectilesToDelete = CCArray::create();
+	__Array *projectilesToDelete = __Array::create();
     if (mProjectiles->count())
     {
-        CCObject *pObj = NULL;
-        CCARRAY_FOREACH(mProjectiles, pObj)
+        Ref *pObj = NULL;
+        for (auto pObj : *mProjectiles)
         {
-            CCSprite *projectile = (CCSprite*)pObj;
-            CCRect projectileRect = CCRectMake(projectile->getPosition().x - (projectile->getContentSize().width/2),
+            Sprite *projectile = (Sprite*)pObj;
+            Rect projectileRect = Rect(projectile->getPosition().x - (projectile->getContentSize().width/2),
                                               projectile->getPosition().y - (projectile->getContentSize().height/2),
                                               projectile->getContentSize().width,
                                               projectile->getContentSize().height);
             
-            CCArray *targetsToDelete = CCArray::create();
+            __Array *targetsToDelete = __Array::create();
             
-            CCObject *tObj = NULL;
-            CCARRAY_FOREACH(mTargets, tObj)
+            for (auto tObj : *mTargets)
             {
-                CCSprite *target = (CCSprite*)tObj;
-                CCRect targetRect = CCRectMake(target->getPosition().x - (target->getContentSize().width/2),
+                Sprite *target = (Sprite*)tObj;
+                Rect targetRect = Rect(target->getPosition().x - (target->getContentSize().width/2),
                                                target->getPosition().y - (target->getContentSize().height/2),
                                                target->getContentSize().width,
                                                target->getContentSize().height);
@@ -313,10 +313,10 @@ void HelloWorld::update(float time)
             {
                 projectilesToDelete->addObject(projectile);
             }
-            tObj=NULL;
-            CCARRAY_FOREACH(targetsToDelete, tObj)
+
+            for (auto tObj : *targetsToDelete)
             {
-                CCSprite *target = (CCSprite*)tObj;
+                Sprite *target = (Sprite*)tObj;
                 mTargets->removeObject(target);
                 removeChild(target, true);
                 mProjectilesDestroyed++;
@@ -329,10 +329,9 @@ void HelloWorld::update(float time)
             }
         }
         
-         pObj=NULL;
-        CCARRAY_FOREACH(projectilesToDelete, pObj)
+        for (auto pObj : *projectilesToDelete)
         {
-            CCSprite *projectile = (CCSprite*)pObj;
+            Sprite *projectile = (Sprite*)pObj;
             mProjectiles->removeObject(projectile);
             removeChild(projectile, true);
 
@@ -340,12 +339,12 @@ void HelloWorld::update(float time)
     }
     else
     {
-        CCArray *targetsToDelete = CCArray::create();
-        CCObject *tObj=NULL;
-        CCARRAY_FOREACH(mTargets, tObj)
+        __Array *targetsToDelete = __Array::create();
+
+        for(auto tObj : *mTargets)
         {
-            CCSprite *target = (CCSprite*)tObj;
-            CCRect targetRect = CCRectMake(target->getPosition().x - (target->getContentSize().width/2),
+            Sprite *target = (Sprite*)tObj;
+            Rect targetRect = Rect(target->getPosition().x - (target->getContentSize().width/2),
                                            target->getPosition().y - (target->getContentSize().height/2),
                                            target->getContentSize().width,
                                            target->getContentSize().height);
@@ -357,10 +356,9 @@ void HelloWorld::update(float time)
             
         }
         
-       tObj=NULL;
-        CCARRAY_FOREACH(targetsToDelete, tObj)
+        for (auto tObj : *targetsToDelete)
         {
-            CCSprite *target = (CCSprite*)tObj;
+            Sprite *target = (Sprite*)tObj;
             mTargets->removeObject(target);
             removeChild(target, true);
             mProjectilesDestroyed++;
@@ -369,18 +367,17 @@ void HelloWorld::update(float time)
     	
 }
 
-void HelloWorld::updateEnemyStatus(CCPoint destination,float actualDuration)
+void HelloWorld::updateEnemyStatus(Vec2 destination,float actualDuration)
 {
     mEnemy->setOpacity(255);
     mIsEnemyAdded = true;
-	CCSprite *target = CCSprite::create("Bullet-blue.png");
-	target->setPosition(ccp(mEnemy->getPosition().x-mEnemy->getContentSize().width/2, mEnemy->getPosition().y));
+	Sprite *target = Sprite::create("Bullet-blue.png");
+	target->setPosition(Vec2(mEnemy->getPosition().x-mEnemy->getContentSize().width/2, mEnemy->getPosition().y));
 	addChild(target,10);
 	
     // Move projectile to actual endpoint
-    CCActionInterval* move = CCMoveTo::create(actualDuration, destination);
-    CCCallFuncN* moveFinished = CCCallFuncN::create(this, callfuncN_selector(HelloWorld::spriteMoveFinished));
-    CCSequence* seq = CCSequence::create(move,moveFinished,  NULL);
+    ActionInterval* move = MoveTo::create(actualDuration, destination);
+    Sequence* seq = Sequence::create(move, std::bind(&HelloWorld::spriteMoveFinished, this),  NULL);
     target->runAction(seq);
 
 	// Add to targets array
@@ -388,22 +385,22 @@ void HelloWorld::updateEnemyStatus(CCPoint destination,float actualDuration)
 	mTargets->addObject(target);
 }
 
-void HelloWorld::ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent)
+void HelloWorld::onTouchesEnded(__Set *pTouches, Event *pEvent)
 {
     if (!mIsConnected)
     {
         return;
     }
-    CCSetIterator it = pTouches->begin();
-    CCTouch* touch = (CCTouch*)(*it);
-    CCPoint location = touch->getLocation();
+    __SetIterator it = pTouches->begin();
+    Touch* touch = (Touch*)(*it);
+    Vec2 location = touch->getLocation();
 
     // Set up initial location of projectile
-	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-	CCSprite *projectile = CCSprite::create("Bullet-red.png");
-	projectile->setPosition(ccp(mPlayer->getPosition().x+mPlayer->getContentSize().width/2, mPlayer->getPosition().y));
+	Size winSize = Director::getInstance()->getWinSize();
+	Sprite *projectile = Sprite::create("Bullet-red.png");
+	projectile->setPosition(Vec2(mPlayer->getPosition().x+mPlayer->getContentSize().width/2, mPlayer->getPosition().y));
 	
-    CCPoint projectilePos = projectile->getPosition();
+    Point projectilePos = projectile->getPosition();
 	// Determine offset of location to projectile
 	int offX = location.x - projectilePos.x;
 	int offY = location.y - projectilePos.y;
@@ -419,7 +416,7 @@ void HelloWorld::ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEve
 	int realX = winSize.width + (projectile->getContentSize().width/2);
 	float ratio = (float) offY / (float) offX;
 	int realY = (realX * ratio) + projectilePos.y;
-	CCPoint realDest = ccp(realX, realY);
+	Point realDest = Point(realX, realY);
 	
 	// Determine the length of how far we're shooting
 	int offRealX = realX - projectilePos.x;
@@ -433,9 +430,10 @@ void HelloWorld::ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEve
     sendData(winSize.width-realDest.x, realDest.y, realMoveDuration);
        
 	// Move projectile to actual endpoint
-    CCActionInterval* move = CCMoveTo::create(realMoveDuration, realDest);
-    CCCallFuncN* moveFinished = CCCallFuncN::create(this, callfuncN_selector(HelloWorld::spriteMoveFinished));
-    CCSequence* seq = CCSequence::create(move,moveFinished,  NULL);
+    ActionInterval* move = MoveTo::create(realMoveDuration, realDest);
+//    CallFunc* moveFinished = CallFunc::create(std::bind(&HelloWorld::spriteMoveFinished, this));
+//    CallFunc::create(std::bind(&HelloWorld::spriteMoveFinished, this))
+    Sequence* seq = Sequence::create(move, std::bind(&HelloWorld::spriteMoveFinished, this),  NULL);
     projectile->runAction(seq);
 	// Add to projectiles array
 	projectile->setTag(2);
@@ -443,9 +441,9 @@ void HelloWorld::ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEve
 	
 }
 
-void HelloWorld::spriteMoveFinished(CCSprite* pSender)
+void HelloWorld::spriteMoveFinished(Sprite* pSender)
 {
-    CCSprite *sprite = (CCSprite *)pSender;
+    Sprite *sprite = (Sprite *)pSender;
 	removeChild(sprite, true);
 	
 	if (sprite->getTag() == 3)
@@ -459,14 +457,14 @@ void HelloWorld::spriteMoveFinished(CCSprite* pSender)
 	}
 }
 
-void HelloWorld::mainMenuButtonCallback(CCObject* pSender)
+void HelloWorld::mainMenuButtonCallback(Ref* pSender)
 {
     stopGame();
 }
 
-void HelloWorld::menuCloseCallback(CCObject* pSender)
+void HelloWorld::menuCloseCallback(Ref* pSender)
 {
-    CCDirector::sharedDirector()->end();
+    Director::getInstance()->end();
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
@@ -488,16 +486,16 @@ std::string genRandom()
 
 /********* Menu Callbacks *********/
 
-void HelloWorld::openStoreButtonCallback(CCObject* pSender) {
-	CCDirector::sharedDirector()->replaceScene(StoreScene::scene());
+void HelloWorld::openStoreButtonCallback(Ref* pSender) {
+	Director::getInstance()->replaceScene(StoreScene::scene());
 }
 
-void HelloWorld::hostGameButtonCallback(CCObject* pSender) {
+void HelloWorld::hostGameButtonCallback(Ref* pSender) {
 	mHostGameButtonClicked = true;
 	joinGameButtonCallback(pSender);
 }
 
-void HelloWorld::joinGameButtonCallback(CCObject* pSender)
+void HelloWorld::joinGameButtonCallback(Ref* pSender)
 {
     AppWarp::Client *warpClientRef;
     if (mIsFirstLaunch)
@@ -548,7 +546,7 @@ void HelloWorld::joinRoomIfNeeded() {
 }
 
 
-void HelloWorld::simulateReceivedInviteButtonCallback(CCObject* pSender) {
+void HelloWorld::simulateReceivedInviteButtonCallback(Ref* pSender) {
     mStartedGameFromSimulatedInvite = true;
 
     Report::getInstance().ReportSocialRequestsFound(1);
@@ -624,7 +622,7 @@ void HelloWorld::unscheduleRecover()
     unschedule(schedule_selector(HelloWorld::recover));
 }
 
-void HelloWorld::recover()
+void HelloWorld::recover(float d)
 {
     dbgprint("\nHelloWorld::recover");
     AppWarp::Client::getInstance()->recoverConnection();
@@ -726,7 +724,7 @@ void HelloWorld::onChatReceived(AppWarp::chat chatevent)
 		float x = (float)std::atof (str1.c_str());
 		float y = (float)std::atof(str2.c_str());
         float dest = (float)std::atof(str3.c_str());
-        updateEnemyStatus(ccp(x,y), dest);
+        updateEnemyStatus(Vec2(x,y), dest);
     }
 }
 
@@ -735,17 +733,17 @@ void HelloWorld::showMessageLayer(std::string message)
 	removeMessageLayer();
     
     // Get the dimensions of the window for calculation purposes
-    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    Size winSize = Director::getInstance()->getWinSize();
     
-    mMessageLayer = CCLayerColor::create();
-    mMessageLayer->setColor(ccc3(0, 0, 0));
+    mMessageLayer = LayerColor::create();
+    mMessageLayer->setColor(Color3B::BLACK);
     mMessageLayer->setOpacity(50);
     addChild(mMessageLayer);
     
-    CCLabelTTF *buttonTitle = CCLabelTTF::create(message.c_str(), "Marker Felt", 30);
-    buttonTitle->setColor(ccBLUE);
+    Label *buttonTitle = Label::createWithTTF(message.c_str(), "Marker Felt", 30);
+    buttonTitle->setColor(Color3B::BLUE);
     mMessageLayer->addChild(buttonTitle);
-    buttonTitle->setPosition(ccp(winSize.width/2,winSize.height/2));
+    buttonTitle->setPosition(Vec2(winSize.width/2,winSize.height/2));
     
 }
 

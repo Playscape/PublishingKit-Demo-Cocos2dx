@@ -32,18 +32,17 @@ bool BannersTestScene::init()
 
     mMainMenu =
 		Menu::create(
-			MenuItemFont::create("Show Banner Top Middle", this,menu_selector(BannersTestScene::showBannerTopMiddle)),
-			MenuItemFont::create("Show Banner Top Left", this,menu_selector(BannersTestScene::showBannerTopLeft)),
-			MenuItemFont::create("Show Banner Top Right", this,menu_selector(BannersTestScene::showBannerTopRight)),
+			MenuItemFont::create("Show Banner Top Middle", CC_CALLBACK_1(BannersTestScene::showBannerTopMiddle, this)),
+			MenuItemFont::create("Show Banner Top Left", CC_CALLBACK_1(BannersTestScene::showBannerTopLeft, this)),
+			MenuItemFont::create("Show Banner Top Right", CC_CALLBACK_1(BannersTestScene::showBannerTopRight, this)),
+			MenuItemFont::create("Show Banner Bottom Middle", CC_CALLBACK_1(BannersTestScene::showBannerBottomMiddle, this)),
+			MenuItemFont::create("Show Banner Bottom Left", CC_CALLBACK_1(BannersTestScene::showBannerBottomLeft, this)),
+			MenuItemFont::create("Show Banner Bottom Right", CC_CALLBACK_1(BannersTestScene::showBannerBottomRight,this)),
 
-			MenuItemFont::create("Show Banner Bottom Middle", this,menu_selector(BannersTestScene::showBannerBottomMiddle)),
-			MenuItemFont::create("Show Banner Bottom Left", this,menu_selector(BannersTestScene::showBannerBottomLeft)),
-			MenuItemFont::create("Show Banner Bottom Right", this,menu_selector(BannersTestScene::showBannerBottomRight)),
-
-			MenuItemFont::create("Hide Banner", this,menu_selector(BannersTestScene::hideBanner)),
+			MenuItemFont::create("Hide Banner", CC_CALLBACK_1(BannersTestScene::hideBanner, this)),
 			NULL);
 
-    for(Ref* item : mMainMenu->getChildren()) {
+    for(auto item : mMainMenu->getChildren()) {
     	((MenuItemFont*)item)->setColor(Color3B::BLACK);
     }
 
@@ -88,13 +87,13 @@ void BannersTestScene::showInGameMenuLayer() {
 	InGameMenuLayer* _inGameMenuLayer = InGameMenuLayer::create();
 	addChild(_inGameMenuLayer);
 
-	MenuItemFont *menuButton = MenuItemFont::create("Menu", this,menu_selector(BannersTestScene::menuButtonCallback));
+	MenuItemFont *menuButton = MenuItemFont::create("Menu", CC_CALLBACK_1(BannersTestScene::menuButtonCallback, this));
 	menuButton->setColor(Color3B(0,0,0));
 
 	menuButton->setPosition(Point(winSize.width - menuButton->getContentSize().width, winSize.height - menuButton->getContentSize().height));
 
 	Menu *pMenu = Menu::create(menuButton,NULL);
-	pMenu->setPosition(Point::ZERO);
+	pMenu->setPosition(Vec2::ZERO);
 
 	_inGameMenuLayer->addChild(pMenu, 1);
 }

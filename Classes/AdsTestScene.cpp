@@ -32,12 +32,12 @@ bool AdsTestScene::init()
 
     mMainMenu =
 		Menu::create(
-			MenuItemFont::create("Open Banners Test", this,menu_selector(AdsTestScene::openBannersTest)),
-			MenuItemFont::create("Open Video Test", this,menu_selector(AdsTestScene::openVideoTest)),
-			MenuItemFont::create("Open Interstitial Test", this,menu_selector(AdsTestScene::openInterstitialTest)),
+			MenuItemFont::create("Open Banners Test", CC_CALLBACK_1(AdsTestScene::openBannersTest, this)),
+			MenuItemFont::create("Open Video Test", CC_CALLBACK_1(AdsTestScene::openVideoTest, this)),
+			MenuItemFont::create("Open Interstitial Test", CC_CALLBACK_1(AdsTestScene::openInterstitialTest, this)),
 			NULL);
 
-    for(Ref* item : mMainMenu->getChildren()) {
+    for(auto item : mMainMenu->getChildren()) {
     	((MenuItemFont*)item)->setColor(Color3B::BLACK);
     }
 
@@ -70,8 +70,8 @@ void AdsTestScene::showInGameMenuLayer() {
 	InGameMenuLayer* _inGameMenuLayer = InGameMenuLayer::create();
 	addChild(_inGameMenuLayer);
 
-	MenuItemFont *menuButton = MenuItemFont::create("Menu", this,menu_selector(AdsTestScene::menuButtonCallback));
-	menuButton->setColor(Color3B(0,0,0));
+	MenuItemFont *menuButton = MenuItemFont::create("Menu", CC_CALLBACK_1(AdsTestScene::menuButtonCallback, this));
+    menuButton->setColor(Color3B::BLACK);
 
 	menuButton->setPosition(Point(winSize.width - menuButton->getContentSize().width, winSize.height - menuButton->getContentSize().height));
 

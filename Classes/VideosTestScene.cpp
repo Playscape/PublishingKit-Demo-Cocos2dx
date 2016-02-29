@@ -3,13 +3,11 @@
 #include "HelloWorldScene.h"
 #include "InGameMenuLayer.h"
 #include "playscape/VideosX.h"
-#include "ui/CocosGUI.h"
 
-#include <string>
+USING_NS_CC;
 
-using namespace cocos2d;
 using namespace playscape::ads;
-using std::string;
+//using std::string;
 
 class MyVideoListener : public VideoListener {
 
@@ -36,17 +34,17 @@ bool VideosTestScene::init()
     Size winSize = Director::getInstance()->getWinSize();
 
     setTouchEnabled(true);
-    cocos2d::ui::Text* label = cocos2d::ui::Text::create("Ads Test", "Marker Felt", 22);
+    auto label = Label::createWithTTF("Ads Test", "Marker Felt", 22);
 
-    label->setPosition(Point(winSize.width/2-label->getContentSize().width/2, winSize.height-label->getContentSize().height));
+    label->setPosition(Vec2(winSize.width/2-label->getContentSize().width/2, winSize.height-label->getContentSize().height));
 
     mMainMenu =
 		Menu::create(
-			MenuItemFont::create("Show Video", this,menu_selector(VideosTestScene::showVideo)),
-			MenuItemFont::create("Show Incetivised Video", this,menu_selector(VideosTestScene::showIncentivisedVideo)),
+			MenuItemFont::create("Show Video", CC_CALLBACK_1(VideosTestScene::showVideo, this)),
+			MenuItemFont::create("Show Incetivised Video", CC_CALLBACK_1(VideosTestScene::showIncentivisedVideo, this)),
 			NULL);
 
-    for(Ref* item : mMainMenu->getChildren()) {
+    for(auto item : mMainMenu->getChildren()) {
     	((MenuItemFont*)item)->setColor(Color3B::BLACK);
     }
 
@@ -75,13 +73,13 @@ void VideosTestScene::showInGameMenuLayer() {
 	InGameMenuLayer* _inGameMenuLayer = InGameMenuLayer::create();
 	addChild(_inGameMenuLayer);
 
-	MenuItemFont *menuButton = MenuItemFont::create("Menu", this,menu_selector(VideosTestScene::menuButtonCallback));
-	menuButton->setColor(Color3B(0,0,0));
+	MenuItemFont *menuButton = MenuItemFont::create("Menu", CC_CALLBACK_1(VideosTestScene::menuButtonCallback, this));
+    menuButton->setColor(Color3B::BLACK);
 
 	menuButton->setPosition(Point(winSize.width - menuButton->getContentSize().width, winSize.height - menuButton->getContentSize().height));
 
 	Menu *pMenu = Menu::create(menuButton,NULL);
-	pMenu->setPosition(Point::ZERO);
+	pMenu->setPosition(Vec2::ZERO);
 
 	_inGameMenuLayer->addChild(pMenu, 1);
 }

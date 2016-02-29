@@ -1,12 +1,10 @@
 #ifndef __VideosTestScene_h__
 #define __VideosTestScene_h__
 
-#include <iostream>
-#include <string>
 #include "cocos2d.h"
 
 using namespace cocos2d;
-using std::string;
+
 class VideosTestScene : public LayerColor
 {
 protected:

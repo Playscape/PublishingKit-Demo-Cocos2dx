@@ -16,6 +16,7 @@
 #define ROOM_OWNER          "tester"
 #define MAX_PLAYER          2
 
+using namespace cocos2d;
 using playscape::MPAnalyticsProvider;
 using playscape::SocialAnalyticsProvider;
 
@@ -35,7 +36,7 @@ public:
 	}
 };
 
-class HelloWorld : public cocos2d::CCLayerColor,
+class HelloWorld : public LayerColor,
 				   public AppWarp::ConnectionRequestListener,
 				   public AppWarp::RoomRequestListener,
 				   public AppWarp::NotificationListener,
@@ -49,7 +50,7 @@ public:
     virtual bool init();
 
     // there's no 'id' in cpp, so we recommend to return the class instance pointer
-    static cocos2d::CCScene* scene();
+    static Scene* scene();
     void showStartGameLayer();
     void updateRoomProperties();
     void createRoom();
@@ -58,25 +59,25 @@ public:
     void removeMessageLayer();
 
     // menu callbacks
-    void menuCloseCallback(CCObject* pSender);
-    void mainMenuButtonCallback(CCObject* pSender);
-    void openAdsTest(CCObject* sender);
-    void inviteFriendsButtonCallback(CCObject* pSender);
-    void simulateReceivedInviteButtonCallback(CCObject* pSender);
-    void joinGameButtonCallback(CCObject* pSender);
-    void hostGameButtonCallback(CCObject* pSender);
-    void openStoreButtonCallback(CCObject* pSender);
-    void simulateSocialNetworkLoginCallback(CCObject* pSender);
-    void setCustomTagsCallback(CCObject* pSender);
-    void openReportTest(CCObject* pSender);
+    void menuCloseCallback(Ref* pSender);
+    void mainMenuButtonCallback(Ref* pSender);
+    void openAdsTest(Ref* sender);
+    void inviteFriendsButtonCallback(Ref* pSender);
+    void simulateReceivedInviteButtonCallback(Ref* pSender);
+    void joinGameButtonCallback(Ref* pSender);
+    void hostGameButtonCallback(Ref* pSender);
+    void openStoreButtonCallback(Ref* pSender);
+    void simulateSocialNetworkLoginCallback(Ref* pSender);
+    void setCustomTagsCallback(Ref* pSender);
+    void openReportTest(Ref* pSender);
 
     void joinRoomIfNeeded();
 
     void startGame();
-    void updateEnemyStatus(cocos2d::CCPoint pos,float duration);
-    void spriteMoveFinished(cocos2d::CCSprite* pSender);
+    void updateEnemyStatus(Vec2 pos,float duration);
+    void spriteMoveFinished(Sprite* pSender);
     void sendData(float x, float y, float duration);
-    virtual void ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent);
+    virtual void onTouchesEnded(__Set *pTouches, Event *pEvent);
     virtual void update(float time);
     
     void joinLobby();
@@ -108,7 +109,7 @@ public:
 
     void scheduleRecover();
     void unscheduleRecover();
-    void recover();
+    void recover(float d);
     void stopGame();
 
     void setSomeCustomVars();
@@ -117,8 +118,8 @@ public:
 private:
     AppWarpMultiplayerProvider *mAppWarpMultiplayerProvider;
     FacebookSocialAnalyticsProvider *mFacebookSocialAnalyticsProvider;
-    cocos2d::CCArray *mTargets;
-    cocos2d::CCArray *mProjectiles;
+    __Array *mTargets;
+    __Array *mProjectiles;
 
     std::string mRoomId;
 
@@ -132,8 +133,8 @@ private:
     bool mIsFirstLaunch;
     StartGameLayer *mStartGameLayer;
     InGameMenuLayer *mInGameMenuLayer;
-    CCLayerColor *mMessageLayer;
-    CCLayer *mGameLayer;
+    LayerColor *mMessageLayer;
+    Layer *mGameLayer;
     bool mIsInRoom;
     bool mStartedGameFromSimulatedInvite;
 
