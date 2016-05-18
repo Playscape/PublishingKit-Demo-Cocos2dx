@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04F65C111CECB6B50084AFB0 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F65C101CECB6B50084AFB0 /* FacebookSDK.framework */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
@@ -339,6 +340,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04F65C101CECB6B50084AFB0 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* SimpleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -1069,6 +1071,7 @@
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				BF1373EF128A898400D9F789 /* OpenGLES.framework in Frameworks */,
 				BDF6251C18E2CD480067BDD3 /* libcurl.a in Frameworks */,
+				04F65C111CECB6B50084AFB0 /* FacebookSDK.framework in Frameworks */,
 				BDF6251D18E2CD480067BDD3 /* libwebp.a in Frameworks */,
 				BF1373F0128A899500D9F789 /* libxml2.dylib in Frameworks */,
 				BF1373F1128A899E00D9F789 /* libz.dylib in Frameworks */,
@@ -1079,6 +1082,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04F65C0F1CECB6B50084AFB0 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				04F65C101CECB6B50084AFB0 /* FacebookSDK.framework */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1090,6 +1101,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				04F65C0F1CECB6B50084AFB0 /* ThirdParty */,
 				BDF620A518E2BF240067BDD3 /* libraries */,
 				BF23D4E2143315EB00657E08 /* Classes */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -2848,6 +2860,7 @@
 					"$(HOME)/Documents/FacebookSDK/**",
 					"$(SRCROOT)/../../PlayscapePubkitCocos2D-X/proj.ios/frameworks",
 					"$(SRCROOT)/ThirdParty/",
+					"$(PROJECT_DIR)/ThirdParty",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -2905,6 +2918,7 @@
 					"$(HOME)/Documents/FacebookSDK/**",
 					"$(SRCROOT)/../../PlayscapePubkitCocos2D-X/proj.ios/frameworks",
 					"$(SRCROOT)/ThirdParty/",
+					"$(PROJECT_DIR)/ThirdParty",
 				);
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
