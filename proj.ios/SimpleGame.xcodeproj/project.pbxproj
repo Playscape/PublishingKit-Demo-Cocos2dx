@@ -2847,6 +2847,7 @@
 					"$(inherited)",
 					"$(HOME)/Documents/FacebookSDK/**",
 					"$(SRCROOT)/../../PlayscapePubkitCocos2D-X/proj.ios/frameworks",
+					"$(SRCROOT)/ThirdParty/",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -2903,6 +2904,7 @@
 					"$(inherited)",
 					"$(HOME)/Documents/FacebookSDK/**",
 					"$(SRCROOT)/../../PlayscapePubkitCocos2D-X/proj.ios/frameworks",
+					"$(SRCROOT)/ThirdParty/",
 				);
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
